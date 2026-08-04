@@ -43,7 +43,7 @@ value="${payment.status}" type="text"/></td></tr>
 </tr>
 <tr>
 <th><bean:message key="jsp.screen.asOf"/></th>
-<td><bean:message key="report.asof.label"/></td>
+<td><%= com.northstar.claims.util.ClaimsConfig.get("report.asof.date") %></td>
 </tr>
 </table>
 <%@ include file="../footer.jsp" %>

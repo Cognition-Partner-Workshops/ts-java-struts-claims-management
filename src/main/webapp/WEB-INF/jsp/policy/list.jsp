@@ -45,7 +45,7 @@ name="policyStatus_${policy.policyId}" value="${policy.status}" type="text"/></t
 </tr>
 <tr>
 <th><bean:message key="jsp.screen.asOf"/></th>
-<td><bean:message key="report.asof.label"/></td>
+<td><%= com.northstar.claims.util.ClaimsConfig.get("report.asof.date") %></td>
 </tr>
 </table>
 <%@ include file="../footer.jsp" %>
