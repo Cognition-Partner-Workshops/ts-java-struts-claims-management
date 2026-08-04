@@ -2,6 +2,7 @@
 """Captures deterministic NorthStar claims workflow transcripts."""
 
 import argparse
+import glob
 import http.cookiejar
 import json
 import os
@@ -183,6 +184,12 @@ def probe(opener, key, path):
 
 
 def reset_database():
+    for database_file in glob.glob(os.path.join(ROOT, "target", "db",
+                                                "northstar*")):
+        try:
+            os.remove(database_file)
+        except OSError:
+            pass
     maven_args = os.environ.get("MAVEN_CAPTURE_ARGS", "").split()
     subprocess.run(
         ["mvn"] + maven_args + ["-q",
