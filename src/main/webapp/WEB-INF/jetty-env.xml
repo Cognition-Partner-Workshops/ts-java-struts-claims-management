@@ -15,7 +15,7 @@
         <Arg>
             <New class="org.hsqldb.jdbc.JDBCDataSource">
                 <Set name="Database">
-                    jdbc:hsqldb:file:${java.io.tmpdir}/claims-spike-db
+                    jdbc:hsqldb:file:${java.io.tmpdir}/northstar-claims-db
                 </Set>
                 <Set name="User">SA</Set>
             </New>

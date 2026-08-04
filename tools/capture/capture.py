@@ -183,18 +183,11 @@ def probe(opener, key, path):
 
 
 def reset_database():
-    classpath = os.pathsep.join([
-        os.path.join(ROOT, "target", "classes"),
-        os.path.expanduser(
-            "~/.m2/repository/org/hsqldb/hsqldb/2.7.3/"
-            "hsqldb-2.7.3.jar"),
-        os.path.expanduser(
-            "~/.m2/repository/commons-logging/commons-logging/1.2/"
-            "commons-logging-1.2.jar")
-    ])
-    subprocess.run(["java", "-cp", classpath,
-                    "com.northstar.claims.util.DatabaseBootstrap"],
-                   cwd=ROOT, check=True)
+    maven_args = os.environ.get("MAVEN_CAPTURE_ARGS", "").split()
+    subprocess.run(
+        ["mvn"] + maven_args + ["-q",
+         "org.codehaus.mojo:exec-maven-plugin:3.3.0:java"],
+        cwd=ROOT, check=True)
 
 
 def start_server():

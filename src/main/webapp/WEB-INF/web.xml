@@ -34,7 +34,7 @@
         <description>Fallback database URL used when JNDI is unavailable.</description>
         <env-entry-name>jdbc/ClaimsDBUrl</env-entry-name>
         <env-entry-type>java.lang.String</env-entry-type>
-        <env-entry-value>jdbc:hsqldb:file:${java.io.tmpdir}/claims-spike-db</env-entry-value>
+        <env-entry-value>jdbc:hsqldb:file:${java.io.tmpdir}/northstar-claims-db</env-entry-value>
     </env-entry>
     <servlet>
         <servlet-name>action</servlet-name>
