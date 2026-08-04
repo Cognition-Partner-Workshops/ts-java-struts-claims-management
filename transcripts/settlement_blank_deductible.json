@@ -24,7 +24,7 @@
       "depreciation": "500.00"
     },
     "method": "POST",
-    "path": "/settlement/calculate.do"
+    "path": "/claims/settlement/calculate.do"
   },
   "scenario": "settlement_blank_deductible"
 }

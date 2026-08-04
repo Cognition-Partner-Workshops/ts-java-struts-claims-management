@@ -23,7 +23,7 @@
   "request": {
     "form": {},
     "method": "GET",
-    "path": "/policy/search.do?lineOfBusiness=AUTO"
+    "path": "/claims/policy/search.do?lineOfBusiness=AUTO"
   },
   "scenario": "policy_search"
 }

@@ -17,7 +17,7 @@
       "claimId": "121"
     },
     "method": "POST",
-    "path": "/workbench/status.do?status=INVESTIGATING"
+    "path": "/claims/workbench/status.do?status=INVESTIGATING"
   },
   "scenario": "workbench_status"
 }

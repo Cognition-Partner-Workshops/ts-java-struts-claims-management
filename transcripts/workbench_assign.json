@@ -18,7 +18,7 @@
       "claimId": "121"
     },
     "method": "POST",
-    "path": "/workbench/assign.do"
+    "path": "/claims/workbench/assign.do"
   },
   "scenario": "workbench_assign"
 }

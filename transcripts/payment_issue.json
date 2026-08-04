@@ -24,7 +24,7 @@
       "paymentMethod": "CHECK"
     },
     "method": "POST",
-    "path": "/payment/issue.do"
+    "path": "/claims/payment/issue.do"
   },
   "scenario": "payment_issue"
 }

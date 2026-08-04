@@ -16,6 +16,7 @@ import urllib.error
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
 BASE = "http://localhost:8080/claims"
+CONTEXT_PATH = "/claims"
 FIELD_RE = re.compile(r'<span id="f_([^"]+)">(.*?)</span>', re.S)
 VIEW_RE = re.compile(r"<!--\s*ns:view\s+([^ ]+)\s*-->")
 ERROR_RE = re.compile(r"<!--\s*ns:error\s+([^ ]+)\s*-->")
@@ -228,7 +229,7 @@ def write_transcript(opener, scenario):
         "actor": "supervisor",
         "request": {
             "method": method,
-            "path": path,
+            "path": CONTEXT_PATH + path,
             "form": form
         },
         "expected": {

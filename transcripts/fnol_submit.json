@@ -22,7 +22,7 @@
       "lossType": "WATER"
     },
     "method": "POST",
-    "path": "/intake/submit.do"
+    "path": "/claims/intake/submit.do"
   },
   "scenario": "fnol_submit"
 }

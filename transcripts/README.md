@@ -2,7 +2,8 @@
 
 Each scenario is one JSON object in `transcripts/<scenario>.json`. The
 required top-level keys are `scenario`, `description`, `actor`, `request`, and
-`expected`. `request` contains `method`, `path`, and a form object. `expected`
+`expected`. `request` contains `method`, a context-qualified `path` beginning
+with `/claims`, and a form object. `expected`
 contains `status`, `result`, `business_fields`, `validation_errors`, and
 `db_state`.
 

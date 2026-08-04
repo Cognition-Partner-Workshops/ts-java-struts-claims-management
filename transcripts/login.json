@@ -16,7 +16,7 @@
       "username": "supervisor"
     },
     "method": "POST",
-    "path": "/login.do"
+    "path": "/claims/login.do"
   },
   "scenario": "login"
 }

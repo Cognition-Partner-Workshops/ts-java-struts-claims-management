@@ -24,7 +24,7 @@
   "request": {
     "form": {},
     "method": "GET",
-    "path": "/report/lossRatio.do"
+    "path": "/claims/report/lossRatio.do"
   },
   "scenario": "report_loss_ratio"
 }

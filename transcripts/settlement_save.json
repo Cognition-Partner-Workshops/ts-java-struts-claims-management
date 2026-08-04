@@ -21,7 +21,7 @@
       "depreciation": "0.00"
     },
     "method": "POST",
-    "path": "/settlement/save.do"
+    "path": "/claims/settlement/save.do"
   },
   "scenario": "settlement_save"
 }

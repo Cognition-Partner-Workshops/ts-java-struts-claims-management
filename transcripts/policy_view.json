@@ -17,7 +17,7 @@
   "request": {
     "form": {},
     "method": "GET",
-    "path": "/policy/view.do?policyId=9001"
+    "path": "/claims/policy/view.do?policyId=9001"
   },
   "scenario": "policy_view"
 }

@@ -16,7 +16,7 @@
   "request": {
     "form": {},
     "method": "GET",
-    "path": "/report/openByAdjuster.do"
+    "path": "/claims/report/openByAdjuster.do"
   },
   "scenario": "report_open_by_adjuster"
 }

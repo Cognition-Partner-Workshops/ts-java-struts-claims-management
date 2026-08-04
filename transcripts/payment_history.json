@@ -15,7 +15,7 @@
   "request": {
     "form": {},
     "method": "GET",
-    "path": "/payment/history.do"
+    "path": "/claims/payment/history.do"
   },
   "scenario": "payment_history"
 }

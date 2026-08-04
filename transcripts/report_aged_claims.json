@@ -20,7 +20,7 @@
   "request": {
     "form": {},
     "method": "GET",
-    "path": "/report/agedClaims.do"
+    "path": "/claims/report/agedClaims.do"
   },
   "scenario": "report_aged_claims"
 }
