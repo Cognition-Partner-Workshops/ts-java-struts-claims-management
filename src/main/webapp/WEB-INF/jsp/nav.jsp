@@ -7,9 +7,9 @@
 <tr><td><a href="<%= request.getContextPath() %>/report/openByAdjuster.do"><bean:message key="nav.reports"/></a></td></tr>
 <tr><td><a href="<%= request.getContextPath() %>/policy/search.do"><bean:message key="nav.policySearch"/></a></td></tr>
 <tr><td><a href="<%= request.getContextPath() %>/logout.do"><bean:message key="nav.logout"/></a></td></tr>
-<tr><td><bean:message key="nav.operatorMenu"/></td></tr>
-<tr><td><bean:message key="nav.currentSession"/></td></tr>
-<tr><td><bean:message key="nav.helpDesk"/></td></tr>
-<tr><td><bean:message key="nav.version"/></td></tr>
-<tr><td><bean:message key="nav.environment"/></td></tr>
+<tr><td><bean:message key="nav.operator"/>: <bean:write name="user"/></td></tr>
+<tr><td><bean:message key="nav.applicationVersion"/>: <bean:message key="nav.applicationVersionValue"/></td></tr>
+<tr><td><bean:message key="nav.environment"/>: <bean:message key="nav.environmentValue"/></td></tr>
+<tr><td><bean:message key="nav.desk"/>: <bean:message key="nav.deskValue"/></td></tr>
+<tr><td><bean:message key="nav.session"/>: <bean:message key="nav.sessionValue"/></td></tr>
 </table>

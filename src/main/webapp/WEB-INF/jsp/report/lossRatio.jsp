@@ -5,6 +5,8 @@
 <%@ taglib uri="http://northstar.com/tags" prefix="ns" %>
 <ns:view path="/WEB-INF/jsp/report/lossRatio.jsp"/>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<link rel="stylesheet" type="text/css"
+      href="<%= request.getContextPath() %>/northstar.css">
 <table class="page" cellpadding="0" cellspacing="0" border="0">
 <tr><td class="banner"><h1><bean:message key="app.title"/></h1></td></tr>
 <tr><td class="navigation"><a href="<%= request.getContextPath() %>/policy/list.do"><bean:message key="nav.policies"/></a> |

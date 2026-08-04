@@ -3,7 +3,9 @@
 <%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
 <%@ taglib uri="http://northstar.com/tags" prefix="ns" %>
 <ns:view path="/WEB-INF/jsp/login.jsp"/>
-<html><head><title><bean:message key="login.title"/></title></head><body>
+<html><head><title><bean:message key="login.title"/></title>
+<link rel="stylesheet" type="text/css"
+      href="<%= request.getContextPath() %>/northstar.css"></head><body>
 <table class="login" cellpadding="4" cellspacing="0" border="0">
 <tr><td colspan="2"><h1><bean:message key="login.title"/></h1></td></tr>
 <tr><td colspan="2"><html:errors/></td></tr>

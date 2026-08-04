@@ -5,6 +5,8 @@
 <%@ taglib uri="http://northstar.com/tags" prefix="ns" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<link rel="stylesheet" type="text/css"
+      href="<%= request.getContextPath() %>/northstar.css">
 <table class="page" cellpadding="0" cellspacing="0" border="0">
 <tr><td class="banner"><h1><bean:message key="app.title"/></h1></td></tr>
 <tr><td class="navigation"><a href="<%= request.getContextPath() %>/policy/list.do"><bean:message key="nav.policies"/></a> |
