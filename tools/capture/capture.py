@@ -203,7 +203,7 @@ def start_server():
                                cwd=ROOT,
                                stdout=subprocess.DEVNULL,
                                stderr=subprocess.STDOUT)
-    deadline = time.time() + 60
+    deadline = time.time() + 180
     while time.time() < deadline:
         try:
             code, unused, body = request(urllib.request.build_opener(), "GET",
