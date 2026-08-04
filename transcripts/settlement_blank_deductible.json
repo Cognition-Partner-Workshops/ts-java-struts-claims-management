@@ -1,0 +1,30 @@
+{
+  "actor": "supervisor",
+  "description": "FNOL settlement with a blank deductible",
+  "expected": {
+    "business_fields": {
+      "cappedAtLimit": "false",
+      "coveredAmount": "5000.00",
+      "deductibleApplied": "0.00",
+      "depreciation": "500.00",
+      "settlementAmount": "4500.00"
+    },
+    "db_state": {
+      "claim.120.status": "CLOSED"
+    },
+    "result": "forward:/WEB-INF/jsp/settlement/calculate.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "120",
+      "coveredAmount": "5000.00",
+      "deductible": "",
+      "depreciation": "500.00"
+    },
+    "method": "POST",
+    "path": "/settlement/calculate.do"
+  },
+  "scenario": "settlement_blank_deductible"
+}

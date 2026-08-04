@@ -1,0 +1,21 @@
+{
+  "actor": "supervisor",
+  "description": "Review payment history",
+  "expected": {
+    "business_fields": {
+      "checkNumber_61": "CHK-61",
+      "paymentAmount_61": "1000.00",
+      "paymentStatus_61": "ISSUED"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/payment/history.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/payment/history.do"
+  },
+  "scenario": "payment_history"
+}

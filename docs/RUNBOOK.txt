@@ -1,0 +1,60 @@
+NorthStar Claims Management - Operations Runbook
+================================================
+
+Deployment to Tomcat
+--------------------
+
+1. Build with `mvn -B clean package`.
+2. Copy target/northstar-claims-management.war to the Tomcat webapps
+   directory.
+3. Configure a JNDI resource named jdbc/ClaimsDB in the claims web
+   application context. Use an HSQLDB JDBCDataSource pointing at the shared
+   northstar database, user SA, and an empty password.
+4. Restart Tomcat and confirm /claims/login.do returns the login page.
+
+Deployment to WebSphere
+-----------------------
+
+Install the WAR through the application installation wizard. Map the
+application context to /claims. Define the JDBC provider and datasource
+under Resources > JDBC > Data sources, then bind the JNDI name
+java:comp/env/jdbc/ClaimsDB. Set the resource reference in the application
+deployment descriptor to the server datasource. The application retains a
+file JDBC fallback for installations where the binding is unavailable.
+
+Database setup
+--------------
+
+Run `make seed` on the application host before the first start or after a
+reset. Do not seed while Tomcat, WebSphere, or Jetty holds the HSQLDB file
+lock. The fixed report date is report.asof.date in northstar.properties.
+
+Logs
+----
+
+Tomcat writes application output to logs/catalina.out and the dated
+localhost log files. WebSphere writes to the configured SystemOut.log and
+SystemErr.log locations. The application also writes commons-logging output
+through the container logging bridge.
+
+Restart procedure
+-----------------
+
+Stop the application cleanly, wait for the HSQLDB lock file to disappear,
+verify the database process is not running, and start the application again.
+Do not remove an active .lck file. If a previous process died, confirm no
+Java process still owns the file before cleaning target/db.
+
+Common incidents
+----------------
+
+* Login redirects repeatedly: confirm the session cookie path is /claims and
+  that the authentication filter is mapped to *.do.
+* CLAIM not found: the server is using an empty or stale database path.
+  Stop the server and run `make seed`.
+* JNDI lookup warning: confirm the resource reference and server datasource.
+  DriverManager fallback is expected when the binding is not available.
+* Report rows differ: verify northstar.properties and do not substitute a
+  wall-clock date for report.asof.date.
+* JSP compilation errors: inspect the container work directory and confirm
+  the JSP and Servlet API versions match the WAR dependencies.

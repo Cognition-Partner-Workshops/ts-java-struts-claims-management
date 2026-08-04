@@ -1,0 +1,27 @@
+{
+  "actor": "supervisor",
+  "description": "Save the calculated settlement",
+  "expected": {
+    "business_fields": {
+      "savedBy": "supervisor",
+      "settlementAmount": "1000.00"
+    },
+    "db_state": {
+      "settlement.claim.119.amount": "1000.00"
+    },
+    "result": "forward:/WEB-INF/jsp/settlement/save.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "119",
+      "coveredAmount": "5000.00",
+      "deductible": "500.00",
+      "depreciation": "0.00"
+    },
+    "method": "POST",
+    "path": "/settlement/save.do"
+  },
+  "scenario": "settlement_save"
+}

@@ -1,0 +1,30 @@
+{
+  "actor": "supervisor",
+  "description": "Issue a settlement payment",
+  "expected": {
+    "business_fields": {
+      "checkNumber": "CHK-61",
+      "paymentAmount": "1000.00",
+      "paymentStatus": "ISSUED"
+    },
+    "db_state": {
+      "payment.61.amount": "1000.00",
+      "payment.61.status": "ISSUED",
+      "payment.count.claim.119": "1"
+    },
+    "result": "forward:/WEB-INF/jsp/payment/issue.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "amount": "1000.00",
+      "claimId": "119",
+      "payeeName": "Reserved Claimant",
+      "paymentMethod": "CHECK"
+    },
+    "method": "POST",
+    "path": "/payment/issue.do"
+  },
+  "scenario": "payment_issue"
+}

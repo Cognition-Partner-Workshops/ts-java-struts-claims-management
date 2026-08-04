@@ -1,0 +1,28 @@
+{
+  "actor": "supervisor",
+  "description": "Calculate a standard settlement",
+  "expected": {
+    "business_fields": {
+      "cappedAtLimit": "true",
+      "coveredAmount": "5000.00",
+      "deductibleApplied": "500.00",
+      "depreciation": "0.00",
+      "settlementAmount": "1000.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/settlement/calculate.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "119",
+      "coveredAmount": "5000.00",
+      "deductible": "500.00",
+      "depreciation": "0.00"
+    },
+    "method": "POST",
+    "path": "/settlement/calculate.do"
+  },
+  "scenario": "settlement_calculate"
+}

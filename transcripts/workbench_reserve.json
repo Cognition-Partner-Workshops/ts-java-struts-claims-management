@@ -1,0 +1,24 @@
+{
+  "actor": "supervisor",
+  "description": "Change the claim reserve",
+  "expected": {
+    "business_fields": {
+      "reserveAmount": "4500.00"
+    },
+    "db_state": {
+      "claim.121.reserve_amount": "4500.00"
+    },
+    "result": "forward:/WEB-INF/jsp/workbench/view.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "121",
+      "reserveAmount": "4500.00"
+    },
+    "method": "POST",
+    "path": "/workbench/reserve.do"
+  },
+  "scenario": "workbench_reserve"
+}

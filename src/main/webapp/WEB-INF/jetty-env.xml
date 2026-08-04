@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configure PUBLIC
+    "-//Mort Bay Consulting//DTD Configure//EN"
+    "http://www.eclipse.org/jetty/configure_9_0.dtd">
+<Configure
+    id="wac"
+    class="org.eclipse.jetty.webapp.WebAppContext">
+    <New
+        id="claimsDb"
+        class="org.eclipse.jetty.plus.jndi.Resource">
+        <Arg>
+            <Ref refid="wac" />
+        </Arg>
+        <Arg>jdbc/ClaimsDB</Arg>
+        <Arg>
+            <New class="org.hsqldb.jdbc.JDBCDataSource">
+                <Set name="Database">
+                    jdbc:hsqldb:file:${java.io.tmpdir}/claims-spike-db
+                </Set>
+                <Set name="User">SA</Set>
+            </New>
+        </Arg>
+    </New>
+</Configure>

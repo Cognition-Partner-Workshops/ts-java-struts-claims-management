@@ -1,0 +1,26 @@
+{
+  "actor": "supervisor",
+  "description": "FNOL validation when claimant is absent",
+  "expected": {
+    "business_fields": {},
+    "db_state": {
+      "claim.123.exists": "false"
+    },
+    "result": "forward:/WEB-INF/jsp/intake/new.jsp",
+    "status": 200,
+    "validation_errors": [
+      "errors.claimant.required"
+    ]
+  },
+  "request": {
+    "form": {
+      "claimantName": "",
+      "description": "Missing claimant validation",
+      "lossDate": "04/01/2019",
+      "lossType": "WATER"
+    },
+    "method": "POST",
+    "path": "/intake/submit.do"
+  },
+  "scenario": "intake_missing_claimant"
+}

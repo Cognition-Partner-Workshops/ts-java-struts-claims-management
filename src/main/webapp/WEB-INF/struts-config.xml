@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts-config PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 1.2//EN" "http://struts.apache.org/dtds/struts-config_1_2.dtd">
+<struts-config>
+<form-beans>
+<form-bean
+    name="loginForm"
+    type="com.northstar.claims.web.form.LoginForm"
+/>
+<form-bean
+    name="policySearchForm"
+    type="com.northstar.claims.web.form.PolicySearchForm"
+/>
+<form-bean
+    name="policyViewForm"
+    type="com.northstar.claims.web.form.PolicyViewForm"
+/>
+<form-bean
+    name="intakeForm"
+    type="com.northstar.claims.web.form.IntakeForm"
+/>
+<form-bean
+    name="workbenchForm"
+    type="com.northstar.claims.web.form.WorkbenchForm"
+/>
+<form-bean
+    name="settlementForm"
+    type="com.northstar.claims.web.form.SettlementForm"
+/>
+<form-bean
+    name="paymentForm"
+    type="com.northstar.claims.web.form.PaymentForm"
+/>
+<form-bean
+    name="deadForm"
+    type="com.northstar.claims.web.form.DeadForm"
+/>
+<form-bean
+    name="searchDyn"
+    type="org.apache.struts.validator.DynaValidatorForm"
+><form-property
+                name="lineOfBusiness"
+                type="java.lang.String"
+            /></form-bean>
+<form-bean
+    name="statusDyn"
+    type="org.apache.struts.validator.DynaValidatorForm"
+><form-property
+                name="status"
+                type="java.lang.String"
+            /></form-bean>
+<form-bean
+    name="amountDyn"
+    type="org.apache.struts.validator.DynaValidatorForm"
+><form-property
+                name="amount"
+                type="java.lang.String"
+            /></form-bean>
+</form-beans>
+<global-exceptions><exception key="errors.system" type="java.lang.Exception"
+                path="/WEB-INF/jsp/error.jsp"/></global-exceptions>
+<global-forwards><forward
+                name="login"
+                path="/WEB-INF/jsp/login.jsp"/><forward
+                name="home"
+                path="/WEB-INF/jsp/home.jsp"/><forward
+                name="intakeInput"
+                path="/WEB-INF/jsp/intake/new.jsp"/><forward
+                name="error"
+                path="/WEB-INF/jsp/error.jsp"/></global-forwards>
+<action-mappings>
+<action
+    path="/login"
+    type="com.northstar.claims.web.LoginAction"
+    name="loginForm"
+    scope="request"
+    validate="false"
+><forward
+                name="login"
+                path="/WEB-INF/jsp/login.jsp"/><forward
+                name="home"
+                path="/WEB-INF/jsp/home.jsp"/></action>
+<action
+    path="/home"
+    type="com.northstar.claims.web.HomeAction"
+    validate="false"
+><forward
+    name="home"
+    path="/WEB-INF/jsp/home.jsp"
+/></action>
+<action
+    path="/logout"
+    type="com.northstar.claims.web.LogoutAction"
+    validate="false"
+/>
+<action
+    path="/policy/search"
+    type="com.northstar.claims.web.PolicySearchAction"
+    name="policySearchForm"
+    scope="request"
+    validate="false"
+><forward
+                name="policySearch"
+                path="/WEB-INF/jsp/policy/search.jsp"/></action>
+<action
+    path="/policy/view"
+    type="com.northstar.claims.web.PolicyViewAction"
+    name="policyViewForm"
+    scope="request"
+    validate="false"
+><forward
+                name="policyView"
+                path="/WEB-INF/jsp/policy/view.jsp"/></action>
+<action
+    path="/policy/list"
+    type="com.northstar.claims.web.PolicyListAction"
+    validate="false"
+><forward
+                name="policyList"
+                path="/WEB-INF/jsp/policy/list.jsp"/></action>
+<action
+    path="/policy/coverages"
+    type="com.northstar.claims.web.PolicyCoveragesAction"
+    validate="false"
+><forward
+                name="coverages"
+                path="/WEB-INF/jsp/policy/coverages.jsp"/></action>
+<action
+    path="/intake/new"
+    type="com.northstar.claims.web.IntakeNewAction"
+    name="intakeForm"
+    scope="request"
+    validate="false"
+><forward
+                name="intake"
+                path="/WEB-INF/jsp/intake/new.jsp"/></action>
+<action
+    path="/intake/submit"
+    type="com.northstar.claims.web.IntakeSubmitAction"
+    name="intakeForm"
+    scope="request"
+    validate="false"
+    input="/WEB-INF/jsp/intake/new.jsp"
+><forward
+                name="input"
+                path="/WEB-INF/jsp/intake/new.jsp"/><forward
+                name="confirm"
+                path="/WEB-INF/jsp/intake/confirm.jsp"/></action>
+<action
+    path="/intake/confirm"
+    type="com.northstar.claims.web.IntakeConfirmAction"
+    validate="false"
+><forward
+                name="confirm"
+                path="/WEB-INF/jsp/intake/confirm.jsp"/></action>
+<action
+    path="/workbench/list"
+    type="com.northstar.claims.web.WorkbenchListAction"
+    name="workbenchForm"
+    scope="request"
+    validate="false"
+><forward
+                name="workbenchList"
+                path="/WEB-INF/jsp/workbench/list.jsp"/></action>
+<action
+    path="/workbench/view"
+    type="com.northstar.claims.web.WorkbenchViewAction"
+    name="workbenchForm"
+    scope="request"
+    validate="false"
+><forward
+                name="workbenchView"
+                path="/WEB-INF/jsp/workbench/view.jsp"/></action>
+<action
+    path="/workbench/assign"
+    type="com.northstar.claims.web.WorkbenchAssignAction"
+    validate="false"
+><forward
+                name="workbenchView"
+                path="/WEB-INF/jsp/workbench/view.jsp"/></action>
+<action
+    path="/workbench/status"
+    type="com.northstar.claims.web.WorkbenchStatusAction"
+    name="statusDyn"
+    scope="request"
+    validate="false"
+><forward
+                name="workbenchView"
+                path="/WEB-INF/jsp/workbench/view.jsp"/></action>
+<action
+    path="/workbench/reserve"
+    type="com.northstar.claims.web.WorkbenchReserveAction"
+    name="amountDyn"
+    scope="request"
+    validate="false"
+><forward
+                name="workbenchView"
+                path="/WEB-INF/jsp/workbench/view.jsp"/></action>
+<action
+    path="/workbench/note"
+    type="com.northstar.claims.web.WorkbenchNoteAction"
+    validate="false"
+><forward
+                name="workbenchView"
+                path="/WEB-INF/jsp/workbench/view.jsp"/></action>
+<action
+    path="/settlement/calculate"
+    type="com.northstar.claims.web.SettlementCalculateAction"
+    name="settlementForm"
+    scope="request"
+    validate="false"
+><forward
+                name="settlement"
+                path="/WEB-INF/jsp/settlement/calculate.jsp"/></action>
+<action
+    path="/settlement/save"
+    type="com.northstar.claims.web.SettlementSaveAction"
+    name="settlementForm"
+    scope="request"
+    validate="false"
+><forward
+                name="settlement"
+                path="/WEB-INF/jsp/settlement/save.jsp"/></action>
+<action
+    path="/payment/issue"
+    type="com.northstar.claims.web.PaymentIssueAction"
+    name="paymentForm"
+    scope="request"
+    validate="false"
+><forward
+                name="payment"
+                path="/WEB-INF/jsp/payment/issue.jsp"/></action>
+<action
+    path="/payment/history"
+    type="com.northstar.claims.web.PaymentHistoryAction"
+    validate="false"
+><forward
+                name="payment"
+                path="/WEB-INF/jsp/payment/history.jsp"/></action>
+<action
+    path="/report/openByAdjuster"
+    type="com.northstar.claims.web.OpenReportAction"
+    validate="false"
+><forward
+                name="report"
+                path="/WEB-INF/jsp/report/openByAdjuster.jsp"/></action>
+<action
+    path="/report/lossRatio"
+    type="com.northstar.claims.web.LossRatioReportAction"
+    validate="false"
+><forward
+                name="report"
+                path="/WEB-INF/jsp/report/lossRatio.jsp"/></action>
+<action
+    path="/report/agedClaims"
+    type="com.northstar.claims.web.AgedClaimsReportAction"
+    validate="false"
+><forward
+                name="report"
+                path="/WEB-INF/jsp/report/agedClaims.jsp"/></action>
+<action
+    path="/policy/coverageDetail"
+    type="com.northstar.claims.web.PolicyCoverageDetailAction"
+    validate="false"
+><forward
+    name="coverageDetail"
+    path="/WEB-INF/jsp/policy/coverageDetail.jsp"
+/></action>
+<action
+    path="/policy/insuredParty"
+    type="com.northstar.claims.web.PolicyInsuredPartyAction"
+    validate="false"
+><forward
+    name="insuredParty"
+    path="/WEB-INF/jsp/policy/insuredParty.jsp"
+/></action>
+<action
+    path="/policy/renewal"
+    type="com.northstar.claims.web.PolicyRenewalAction"
+    validate="false"
+><forward
+    name="renewal"
+    path="/WEB-INF/jsp/policy/renewal.jsp"
+/></action>
+<action
+    path="/workbench/notes"
+    type="com.northstar.claims.web.WorkbenchNoteHistoryAction"
+    validate="false"
+><forward
+    name="notes"
+    path="/WEB-INF/jsp/workbench/notes.jsp"
+/></action>
+<action
+    path="/workbench/reserveHistory"
+    type="com.northstar.claims.web.WorkbenchReserveHistoryAction"
+    validate="false"
+><forward
+    name="reserveHistory"
+    path="/WEB-INF/jsp/workbench/reserveHistory.jsp"
+/></action>
+<action
+    path="/workbench/statusHistory"
+    type="com.northstar.claims.web.WorkbenchStatusHistoryAction"
+    validate="false"
+><forward
+    name="statusHistory"
+    path="/WEB-INF/jsp/workbench/statusHistory.jsp"
+/></action>
+<action
+    path="/report/adjusterWorkload"
+    type="com.northstar.claims.web.AdjusterWorkloadDetailAction"
+    validate="false"
+><forward
+    name="adjusterWorkload"
+    path="/WEB-INF/jsp/report/adjusterWorkload.jsp"
+/></action>
+<action
+    path="/report/claimAgingDetail"
+    type="com.northstar.claims.web.ClaimAgingDetailAction"
+    validate="false"
+><forward
+    name="claimAgingDetail"
+    path="/WEB-INF/jsp/report/claimAgingDetail.jsp"
+/></action>
+<action
+    path="/report/reconciliation"
+    type="com.northstar.claims.web.ReconciliationAction"
+    validate="false"
+><forward
+    name="reconciliation"
+    path="/WEB-INF/jsp/report/reconciliation.jsp"
+/></action>
+<action
+    path="/report/premiumDetail"
+    type="com.northstar.claims.web.PremiumDetailAction"
+    validate="false"
+><forward
+    name="premiumDetail"
+    path="/WEB-INF/jsp/report/premiumDetail.jsp"
+/></action>
+<action
+    path="/payment/detail"
+    type="com.northstar.claims.web.PaymentDetailAction"
+    validate="false"
+><forward
+    name="paymentDetail"
+    path="/WEB-INF/jsp/payment/detail.jsp"
+/></action>
+<action
+    path="/payment/remittance"
+    type="com.northstar.claims.web.PaymentRemittanceAction"
+    validate="false"
+><forward
+    name="remittance"
+    path="/WEB-INF/jsp/payment/remittance.jsp"
+/></action>
+<action
+    path="/settlement/detail"
+    type="com.northstar.claims.web.SettlementDetailAction"
+    validate="false"
+><forward
+    name="settlementDetail"
+    path="/WEB-INF/jsp/settlement/detail.jsp"
+/></action>
+<action
+    path="/report/index"
+    type="com.northstar.claims.web.ReportIndexAction"
+    validate="false"
+><forward
+    name="reportIndex"
+    path="/WEB-INF/jsp/report/index.jsp"
+/></action>
+</action-mappings>
+<message-resources parameter="ApplicationResources"/>
+<plug-in className="org.apache.struts.validator.ValidatorPlugIn"><set-property property="pathnames"
+value="/WEB-INF/validator-rules.xml,/WEB-INF/validation.xml"/></plug-in>
+</struts-config>

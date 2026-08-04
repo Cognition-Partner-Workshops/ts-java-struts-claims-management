@@ -1,0 +1,30 @@
+NorthStar Claims Management - Internal Architecture Notes
+==========================================================
+
+The application is a single WAR deployed under the /claims context. The
+default Struts module owns policy, intake, workbench, settlement, payment,
+and reporting requests. Administration is mounted as a second module under
+/admin.
+
+Requests enter through ActionServlet and the authentication filter. Most
+actions extend WorkflowAction, which contains the request routing conventions
+used by the original claims screens. A few older actions still use their own
+DAO calls and connection handling.
+
+The data layer uses raw JDBC and a small synchronized Vector connection pool.
+ConnectionPool first attempts java:comp/env/jdbc/ClaimsDB, then checks the
+configured URL entry, and finally opens the HSQLDB file with DriverManager.
+The current deployment is expected to provide target/db/northstar.
+
+PolicyDAO and ClaimDAO own ordinary record access. ReportDAO contains the
+aggregate SQL for the operations reports. SettlementCalculator is a
+singleton service used by the settlement screens. The older settlement
+screen still performs some display preparation in the action.
+
+JSPs are under WEB-INF/jsp and use include files for the operator header,
+navigation, and footer. The custom NorthStar tag library supplies field spans
+used by screen tests and operations support scripts.
+
+The original design called for a separate batch reporting servlet. That
+servlet is no longer present; scheduled reporting is currently performed by
+the same DAO queries used by the web screens.

@@ -1,0 +1,23 @@
+{
+  "actor": "supervisor",
+  "description": "Change the claim status",
+  "expected": {
+    "business_fields": {
+      "claimStatus": "INVESTIGATING"
+    },
+    "db_state": {
+      "claim.121.status": "INVESTIGATING"
+    },
+    "result": "forward:/WEB-INF/jsp/workbench/view.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "121"
+    },
+    "method": "POST",
+    "path": "/workbench/status.do?status=INVESTIGATING"
+  },
+  "scenario": "workbench_status"
+}

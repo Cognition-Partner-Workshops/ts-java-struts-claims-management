@@ -1,0 +1,30 @@
+{
+  "actor": "supervisor",
+  "description": "Loss ratio by business line",
+  "expected": {
+    "business_fields": {
+      "lossRatio_AUTO": "0.51",
+      "lossRatio_COMMERCIAL_PROPERTY": "0.42",
+      "lossRatio_GENERAL_LIABILITY": "0.37",
+      "lossRatio_HOMEOWNERS": "0.40",
+      "lossTotal_AUTO": "46270.00",
+      "lossTotal_COMMERCIAL_PROPERTY": "38211.00",
+      "lossTotal_GENERAL_LIABILITY": "34490.00",
+      "lossTotal_HOMEOWNERS": "37550.00",
+      "premiumTotal_AUTO": "91400.00",
+      "premiumTotal_COMMERCIAL_PROPERTY": "91000.00",
+      "premiumTotal_GENERAL_LIABILITY": "93900.00",
+      "premiumTotal_HOMEOWNERS": "93700.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/report/lossRatio.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/report/lossRatio.do"
+  },
+  "scenario": "report_loss_ratio"
+}
