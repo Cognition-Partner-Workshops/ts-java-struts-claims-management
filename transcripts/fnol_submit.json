@@ -1,0 +1,28 @@
+{
+  "actor": "supervisor",
+  "description": "Submit a first notice of loss",
+  "expected": {
+    "business_fields": {
+      "claimId": "121",
+      "claimStatus": "OPEN"
+    },
+    "db_state": {
+      "claim.121.loss_date": "2019-04-01",
+      "claim.121.status": "OPEN"
+    },
+    "result": "forward:/WEB-INF/jsp/intake/confirm.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimantName": "Capture Claimant",
+      "description": "Water loss",
+      "lossDate": "04/01/2019",
+      "lossType": "WATER"
+    },
+    "method": "POST",
+    "path": "/claims/intake/submit.do"
+  },
+  "scenario": "fnol_submit"
+}

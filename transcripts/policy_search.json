@@ -1,0 +1,29 @@
+{
+  "actor": "supervisor",
+  "description": "Search policies by line of business",
+  "expected": {
+    "business_fields": {
+      "policyLimit_1": "25000.00",
+      "policyLimit_13": "25000.00",
+      "policyLimit_17": "25000.00",
+      "policyLimit_21": "25000.00",
+      "policyLimit_25": "25000.00",
+      "policyLimit_29": "25000.00",
+      "policyLimit_33": "25000.00",
+      "policyLimit_37": "25000.00",
+      "policyLimit_5": "25000.00",
+      "policyLimit_9": "25000.00",
+      "policyLimit_9001": "1000.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/policy/search.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/policy/search.do?lineOfBusiness=AUTO"
+  },
+  "scenario": "policy_search"
+}

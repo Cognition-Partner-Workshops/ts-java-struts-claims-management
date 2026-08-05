@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<taglib xmlns="http://java.sun.com/xml/ns/j2ee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee
+        http://java.sun.com/dtd/web-jsptaglibrary_2_0.xsd"
+    version="2.0">
+    <description>NorthStar presentation tags</description>
+    <display-name>NorthStar Tags</display-name>
+    <tlib-version>1.0</tlib-version>
+    <short-name>northstar</short-name>
+    <uri>http://northstar.com/tags</uri>
+    <tag>
+        <description>Renders a stable field value for screen extraction.</description>
+        <name>field</name>
+        <tag-class>com.northstar.claims.web.tag.FieldTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>name</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>value</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+        <attribute>
+            <name>type</name>
+            <required>false</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <description>Emits the page identity marker for transcript capture.</description>
+        <name>view</name>
+        <tag-class>com.northstar.claims.web.tag.ViewTag</tag-class>
+        <body-content>empty</body-content>
+        <attribute>
+            <name>path</name>
+            <required>true</required>
+            <rtexprvalue>true</rtexprvalue>
+        </attribute>
+    </tag>
+    <tag>
+        <description>Wraps translatable operator instructions.</description>
+        <name>message</name>
+        <tag-class>com.northstar.claims.web.tag.MessageTag</tag-class>
+        <body-content>JSP</body-content>
+    </tag>
+</taglib>

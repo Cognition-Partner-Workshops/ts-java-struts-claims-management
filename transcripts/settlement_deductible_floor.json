@@ -1,0 +1,28 @@
+{
+  "actor": "supervisor",
+  "description": "Settlement floored when deductible exceeds the loss",
+  "expected": {
+    "business_fields": {
+      "cappedAtLimit": "false",
+      "coveredAmount": "1000.00",
+      "deductibleApplied": "2000.00",
+      "depreciation": "0.00",
+      "settlementAmount": "0.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/settlement/calculate.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "120",
+      "coveredAmount": "1000.00",
+      "deductible": "2000.00",
+      "depreciation": "0.00"
+    },
+    "method": "POST",
+    "path": "/claims/settlement/calculate.do"
+  },
+  "scenario": "settlement_deductible_floor"
+}

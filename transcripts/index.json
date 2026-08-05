@@ -1,0 +1,112 @@
+[
+  {
+    "description": "Valid operator login",
+    "module": "policy",
+    "scenario": "login"
+  },
+  {
+    "description": "Search policies by line of business",
+    "module": "policy",
+    "scenario": "policy_search"
+  },
+  {
+    "description": "View the reserved low-limit policy",
+    "module": "policy",
+    "scenario": "policy_view"
+  },
+  {
+    "description": "Submit a first notice of loss",
+    "module": "intake",
+    "scenario": "fnol_submit"
+  },
+  {
+    "description": "Assign the current claim",
+    "module": "workbench",
+    "scenario": "workbench_assign"
+  },
+  {
+    "description": "Change the claim status",
+    "module": "workbench",
+    "scenario": "workbench_status"
+  },
+  {
+    "description": "Change the claim reserve",
+    "module": "workbench",
+    "scenario": "workbench_reserve"
+  },
+  {
+    "description": "Calculate a standard settlement",
+    "module": "settlement",
+    "scenario": "settlement_calculate"
+  },
+  {
+    "description": "Save the calculated settlement",
+    "module": "settlement",
+    "scenario": "settlement_save"
+  },
+  {
+    "description": "Issue a settlement payment",
+    "module": "settlement",
+    "scenario": "payment_issue"
+  },
+  {
+    "description": "Review payment history",
+    "module": "settlement",
+    "scenario": "payment_history"
+  },
+  {
+    "description": "Open claims by adjuster",
+    "module": "reporting",
+    "scenario": "report_open_by_adjuster"
+  },
+  {
+    "description": "Loss ratio by business line",
+    "module": "reporting",
+    "scenario": "report_loss_ratio"
+  },
+  {
+    "description": "Aged claims report",
+    "module": "reporting",
+    "scenario": "report_aged_claims"
+  },
+  {
+    "description": "FNOL settlement with a blank deductible",
+    "module": "settlement",
+    "scenario": "settlement_blank_deductible"
+  },
+  {
+    "description": "FNOL with a lenient February date",
+    "module": "intake",
+    "scenario": "intake_lenient_date"
+  },
+  {
+    "description": "Settlement using double half-cent rounding",
+    "module": "settlement",
+    "scenario": "settlement_half_cent"
+  },
+  {
+    "description": "Settlement capped by the policy limit",
+    "module": "settlement",
+    "scenario": "settlement_policy_cap"
+  },
+  {
+    "description": "Settlement floored when deductible exceeds the loss",
+    "module": "settlement",
+    "scenario": "settlement_deductible_floor"
+  },
+  {
+    "description": "FNOL validation when claimant is absent",
+    "module": "intake",
+    "scenario": "intake_missing_claimant"
+  },
+  {
+    "description": "FNOL validation when description is absent",
+    "module": "intake",
+    "scenario": "intake_missing_description"
+  },
+  {
+    "description": "FNOL validation for an incorrectly formatted date",
+    "module": "intake",
+    "scenario": "intake_bad_date"
+  }
+]

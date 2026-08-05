@@ -1,0 +1,28 @@
+{
+  "actor": "supervisor",
+  "description": "Settlement using double half-cent rounding",
+  "expected": {
+    "business_fields": {
+      "cappedAtLimit": "false",
+      "coveredAmount": "1.01",
+      "deductibleApplied": "0.00",
+      "depreciation": "0.00",
+      "settlementAmount": "1.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/settlement/calculate.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "120",
+      "coveredAmount": "1.005",
+      "deductible": "",
+      "depreciation": "0.00"
+    },
+    "method": "POST",
+    "path": "/claims/settlement/calculate.do"
+  },
+  "scenario": "settlement_half_cent"
+}

@@ -1,0 +1,22 @@
+{
+  "actor": "supervisor",
+  "description": "Valid operator login",
+  "expected": {
+    "business_fields": {
+      "signedInUser": "supervisor"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/home.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "password": "supervisor",
+      "username": "supervisor"
+    },
+    "method": "POST",
+    "path": "/claims/login.do"
+  },
+  "scenario": "login"
+}

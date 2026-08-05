@@ -1,0 +1,23 @@
+{
+  "actor": "supervisor",
+  "description": "View the reserved low-limit policy",
+  "expected": {
+    "business_fields": {
+      "deductibleApplied": "100.00",
+      "policyLimit": "1000.00",
+      "policyStatus": "ACTIVE"
+    },
+    "db_state": {
+      "policy.9001.limit": "1000.00"
+    },
+    "result": "forward:/WEB-INF/jsp/policy/view.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/policy/view.do?policyId=9001"
+  },
+  "scenario": "policy_view"
+}

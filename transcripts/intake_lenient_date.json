@@ -1,0 +1,27 @@
+{
+  "actor": "supervisor",
+  "description": "FNOL with a lenient February date",
+  "expected": {
+    "business_fields": {
+      "claimId": "122",
+      "claimStatus": "OPEN"
+    },
+    "db_state": {
+      "claim.122.loss_date": "2019-03-02"
+    },
+    "result": "forward:/WEB-INF/jsp/intake/confirm.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimantName": "Lenient Claimant",
+      "description": "Date parsing test",
+      "lossDate": "02/30/2019",
+      "lossType": "WATER"
+    },
+    "method": "POST",
+    "path": "/claims/intake/submit.do"
+  },
+  "scenario": "intake_lenient_date"
+}

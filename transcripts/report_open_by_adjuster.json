@@ -1,0 +1,22 @@
+{
+  "actor": "supervisor",
+  "description": "Open claims by adjuster",
+  "expected": {
+    "business_fields": {
+      "openCount_adjuster1": "24",
+      "openCount_adjuster2": "25",
+      "reserveTotal_adjuster1": "25404.00",
+      "reserveTotal_adjuster2": "29928.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/report/openByAdjuster.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/report/openByAdjuster.do"
+  },
+  "scenario": "report_open_by_adjuster"
+}

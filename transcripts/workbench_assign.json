@@ -1,0 +1,24 @@
+{
+  "actor": "supervisor",
+  "description": "Assign the current claim",
+  "expected": {
+    "business_fields": {
+      "assignedAdjuster": "adjuster2"
+    },
+    "db_state": {
+      "claim.121.assigned_adjuster": "adjuster2"
+    },
+    "result": "forward:/WEB-INF/jsp/workbench/view.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "assignedAdjuster": "adjuster2",
+      "claimId": "121"
+    },
+    "method": "POST",
+    "path": "/claims/workbench/assign.do"
+  },
+  "scenario": "workbench_assign"
+}
