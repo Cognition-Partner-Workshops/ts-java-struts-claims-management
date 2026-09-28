@@ -2,22 +2,167 @@ name: NorthStar Claims CI
 
 on:
   push:
+    branches: [main]
   pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+env:
+  JAVA_DISTRIBUTION: temurin
+  # Sources target Java 7; JDK 11 is the oldest JDK that can run HSQLDB 2.7.3
+  # and Jetty 9.4 while still accepting -source/-target 7.
+  JAVA_VERSION: "11"
 
 jobs:
-  verify:
+  build:
+    name: Build (Maven WAR + Ant)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Set up JDK 11
-        uses: actions/setup-java@v4
+      - uses: actions/setup-java@v4
         with:
-          distribution: temurin
-          java-version: "11"
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
+          java-version: ${{ env.JAVA_VERSION }}
           cache: maven
-      - name: Maven verification
-        run: mvn -B verify
+      - name: Maven compile and package
+        run: mvn -B clean package -DskipTests
+      - name: Ant historical build
+        run: |
+          command -v ant >/dev/null || { sudo apt-get update -q && sudo apt-get install -y -q ant; }
+          ant war
+      - uses: actions/upload-artifact@v4
+        with:
+          name: war
+          path: |
+            target/northstar-claims-management.war
+            target/northstar-claims-management-ant.war
+          if-no-files-found: error
+
+  lint:
+    name: Lint (Python tools, transcripts, workflows)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Python syntax check
+        run: python -m py_compile tools/capture/capture.py
+      - name: Pyflakes
+        # Pre-existing on main: capture.py imports 'sys' without using it.
+        continue-on-error: true
+        run: |
+          python -m pip install -q pyflakes==3.2.0
+          python -m pyflakes tools/
+      - name: Validate transcript JSON
+        run: for f in transcripts/*.json; do python -m json.tool "$f" >/dev/null || exit 1; done
+      - name: actionlint
+        run: |
+          bash <(curl -sSfL https://raw.githubusercontent.com/rhysd/actionlint/v1.7.7/scripts/download-actionlint.bash) 1.7.7
+          ./actionlint -color
+
+  test:
+    name: Test (JUnit + HSQLDB DAO integration)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
+          java-version: ${{ env.JAVA_VERSION }}
+          cache: maven
+      - name: Maven verify
+        run: mvn -B clean verify
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: surefire-reports
+          path: target/surefire-reports/
+          if-no-files-found: warn
+
+  transcripts:
+    name: Transcript parity (Jetty + HSQLDB capture)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
+          java-version: ${{ env.JAVA_VERSION }}
+          cache: maven
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Compile classes for database seed
+        run: mvn -B compile
       - name: Capture deterministic transcripts
+        env:
+          MAVEN_CAPTURE_ARGS: -B
         run: make capture
-      - name: Verify transcript stability
-        run: git diff --exit-code transcripts/
+      - name: Verify transcripts match committed fixtures
+        run: git diff --exit-code -- transcripts/
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: captured-transcripts
+          path: transcripts/
+
+  sonarqube:
+    name: SonarQube SAST
+    runs-on: ubuntu-latest
+    env:
+      SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      SONAR_HOST_URL: ${{ vars.SONAR_HOST_URL || secrets.SONAR_HOST_URL }}
+    steps:
+      - name: Skip notice
+        if: env.SONAR_TOKEN == ''
+        run: echo "SONAR_TOKEN is not configured; skipping SonarQube scan."
+      - uses: actions/checkout@v4
+        if: env.SONAR_TOKEN != ''
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-java@v4
+        if: env.SONAR_TOKEN != ''
+        with:
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
+          # The SonarQube scanner requires a Java 17+ runtime.
+          java-version: "17"
+          cache: maven
+      - name: SonarQube scan
+        if: env.SONAR_TOKEN != ''
+        run: >-
+          mvn -B verify
+          org.sonarsource.scanner.maven:sonar-maven-plugin:5.5.0.6356:sonar
+          -Dsonar.projectKey=northstar-claims-management
+          -Dsonar.java.source=7
+
+  package:
+    name: Package release WAR (main only)
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: [build, lint, test, transcripts]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: ${{ env.JAVA_DISTRIBUTION }}
+          java-version: ${{ env.JAVA_VERSION }}
+          cache: maven
+      - name: Package WAR
+        run: |
+          mvn -B clean package -DskipTests
+          cd target && sha256sum northstar-claims-management.war > northstar-claims-management.war.sha256
+      - uses: actions/upload-artifact@v4
+        with:
+          name: northstar-claims-management-${{ github.sha }}
+          path: |
+            target/northstar-claims-management.war
+            target/northstar-claims-management.war.sha256
+          if-no-files-found: error
+          retention-days: 30
