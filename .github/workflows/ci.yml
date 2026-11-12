@@ -21,3 +21,18 @@ jobs:
         run: make capture
       - name: Verify transcript stability
         run: git diff --exit-code transcripts/
+
+  claims-boot:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+          cache: maven
+          cache-dependency-path: claims-boot/pom.xml
+      - name: Maven verification
+        working-directory: claims-boot
+        run: mvn -B verify

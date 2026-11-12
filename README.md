@@ -49,5 +49,12 @@ connection pool is hand-rolled. JSPs use shared includes rather than a
 proper layout framework. The Maven Jetty run emits duplicate JSTL scanning
 warnings. Authentication uses plaintext-style adjuster credentials.
 
-This repository is the legacy source of truth. Modernization work belongs in
-a separate target repository and should not rewrite this baseline in place.
+This repository is the legacy source of truth. The Spring Boot replacement is
+being built in `claims-boot/` beside the untouched legacy baseline.
+
+With Java 21 and Maven, run `cd claims-boot && mvn spring-boot:run` and open
+http://localhost:8081/claims/login.do (currently a placeholder). The application
+uses port 8081 and context path `/claims`; legacy Jetty remains on port 8080.
+Replacement controllers must map explicit `"/xxx.do"` paths, preserving legacy
+request parameter names and redirects; Spring Boot 3 does not use suffix pattern
+matching. Real screens and the data layer will be added in later steps.
