@@ -1,0 +1,8 @@
+<html xmlns:th="http://www.thymeleaf.org"><body>
+<th:block th:replace="~{fragments/ns :: fieldTyped('reserve','10.5','money')}"></th:block>
+<th:block th:replace="~{fragments/ns :: field('null',${null})}"></th:block>
+<th:block th:replace="~{fragments/ns :: message('  &lt;b&gt;Operator message&lt;/b&gt;  ')}"></th:block>
+<th:block th:replace="~{fragments/ns :: error('errors.claimant.required')}"></th:block>
+<th:block th:replace="~{fragments/ns :: errors(${errors})}"></th:block>
+<table><tr th:replace="~{fragments/ns :: formRow(#{login.username},~{::input})}"><td><input type="text" name="username" size="25"></td></tr></table>
+</body></html>

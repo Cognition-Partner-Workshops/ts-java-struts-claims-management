@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><body>
+<th:block th:fragment="page(content)">
+<link rel="stylesheet" type="text/css" th:href="@{/northstar.css}">
+<table class="page" cellpadding="0" cellspacing="0" border="0">
+<th:block th:replace="~{fragments/layout :: header(#{app.title})}"></th:block>
+<tr><td class="content">
+<!-- NorthStar claims operator layout -->
+<!-- NorthStar claims operator layout -->
+<th:block th:replace="~{fragments/layout :: nav}"></th:block>
+<th:block th:replace="${content}"></th:block>
+</td></tr>
+<th:block th:replace="~{fragments/layout :: footer}"></th:block>
+</table>
+<th:block th:replace="~{fragments/layout :: footerLinks}"></th:block>
+</th:block>
+
+<th:block th:fragment="header(title)">
+<tr><td class="banner"><h1 th:text="${title}"></h1></td></tr>
+<tr><td class="navigation"><a th:href="@{/policy/list.do}" th:text="#{nav.policies}"></a> |
+<a th:href="@{/workbench/list.do}" th:text="#{nav.workbench}"></a> |
+<a th:href="@{/report/openByAdjuster.do}" th:text="#{nav.reports}"></a> |
+<a th:href="@{/logout.do}" th:text="#{nav.logout}"></a></td></tr>
+</th:block>
+
+<table th:fragment="nav" class="menu" cellpadding="2" cellspacing="0" border="0">
+<tr><td th:text="#{nav.quickLinks}"></td></tr>
+<tr><td><a th:href="@{/intake/new.do}" th:text="#{nav.newClaim}"></a></td></tr>
+<tr><td><a th:href="@{/payment/history.do}" th:text="#{nav.payments}"></a></td></tr>
+<tr><td><a th:href="@{/report/openByAdjuster.do}" th:text="#{nav.reports}"></a></td></tr>
+<tr><td><a th:href="@{/policy/search.do}" th:text="#{nav.policySearch}"></a></td></tr>
+<tr><td><a th:href="@{/logout.do}" th:text="#{nav.logout}"></a></td></tr>
+<tr><td>[[#{nav.operator}]]: <th:block th:text="${session.user}"></th:block></td></tr>
+<tr><td>[[#{nav.applicationVersion}]]: <th:block th:text="#{nav.applicationVersionValue}"></th:block></td></tr>
+<tr><td>[[#{nav.environment}]]: <th:block th:text="#{nav.environmentValue}"></th:block></td></tr>
+<tr><td>[[#{nav.desk}]]: <th:block th:text="#{nav.deskValue}"></th:block></td></tr>
+<tr><td>[[#{nav.session}]]: <th:block th:text="#{nav.sessionValue}"></th:block></td></tr>
+</table>
+
+<tr th:fragment="footer"><td class="footer" th:text="#{footer.copyright}"></td></tr>
+
+<th:block th:fragment="footerLinks">
+<table class="footer-links" cellpadding="2" cellspacing="0" border="0">
+<tr>
+<td><a th:href="@{/home.do}" th:text="#{nav.home}"></a></td>
+<td><a th:href="@{/policy/list.do}" th:text="#{nav.policies}"></a></td>
+</tr>
+<tr>
+<td><a th:href="@{/workbench/list.do}" th:text="#{nav.workbench}"></a></td>
+<td><a th:href="@{/logout.do}" th:text="#{nav.logout}"></a></td>
+</tr>
+</table>
+<!-- NorthStar claims operator layout -->
+<!-- NorthStar claims operator layout -->
+<!-- NorthStar claims operator layout -->
+<!-- NorthStar claims operator layout -->
+<!-- NorthStar claims operator layout -->
+<!-- NorthStar claims operator layout -->
+<!-- NorthStar claims operator layout -->
+<!-- NorthStar claims operator layout -->
+</th:block>
+
+<table th:fragment="screenAudit" class="screen-audit" cellpadding="3" cellspacing="0" border="1">
+<tr><th th:text="#{jsp.screen.context}"></th><td th:text="#{jsp.screen.readOnly}"></td></tr>
+<tr><th th:text="#{jsp.screen.operator}"></th><td th:text="${session.user}"></td></tr>
+<tr><th th:text="#{jsp.screen.asOf}"></th><td th:text="${asOfDate}"></td></tr>
+</table>
+</body></html>

@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><body>
+<th:block th:fragment="field(name,value)" th:with="markup=${@nsMarkup.field(name,value,'text')}" th:utext="${markup}"></th:block>
+<th:block th:fragment="fieldTyped(name,value,type)" th:with="markup=${@nsMarkup.field(name,value,type)}" th:utext="${markup}"></th:block>
+<th:block th:fragment="message(content)" th:utext="${#strings.trim(content)}"></th:block>
+<th:block th:fragment="view(path)" th:with="markup=${@nsMarkup.view(path)}" th:utext="${markup}"></th:block>
+<th:block th:fragment="error(key)" th:with="markup=${@nsMarkup.error(key)}" th:utext="${markup}"></th:block>
+<th:block th:fragment="errors(errors)"><th:block th:each="error : ${errors}" th:text="${error.message}"></th:block></th:block>
+<tr th:fragment="formRow(label,control)"><td th:text="${label}"></td><td><th:block th:replace="${control}"></th:block></td></tr>
+</body></html>
