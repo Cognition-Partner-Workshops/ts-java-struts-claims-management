@@ -1,4 +1,8 @@
-<th:block th:replace="~{fragments/layout :: page('/WEB-INF/jsp/settlement/save.jsp', ~{::content})}"><th:block th:fragment="content">
+<th:block th:replace="~{fragments/markers :: view('/WEB-INF/jsp/settlement/save.jsp')}"></th:block>
+<table class="page" cellpadding="0" cellspacing="0" border="0">
+<th:block th:replace="~{fragments/header :: banner}"></th:block>
+<tr><td class="content">
+<table th:replace="~{fragments/nav :: nav}"></table>
 <h2><th:block th:text="#{settlement.saved.heading}"></th:block></h2>
 <table class="details" cellpadding="3" cellspacing="0" border="1">
 <tr>
@@ -22,4 +26,7 @@
 </tr>
 </table>
 
-</th:block></th:block>
+</td></tr>
+<tr th:replace="~{fragments/footer :: footer}"></tr>
+</table>
+<th:block th:replace="~{fragments/footer :: links}"></th:block>
