@@ -1,0 +1,28 @@
+{
+  "actor": "supervisor",
+  "description": "FNOL with a blank initial reserve",
+  "expected": {
+    "business_fields": {
+      "claimId": "123",
+      "claimStatus": "OPEN"
+    },
+    "db_state": {
+      "claim.123.reserve_amount": "0.00"
+    },
+    "result": "forward:/WEB-INF/jsp/intake/confirm.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimantName": "Blank Reserve Claimant",
+      "description": "Blank reserve binding",
+      "initialReserve": "",
+      "lossDate": "04/01/2019",
+      "lossType": "WATER"
+    },
+    "method": "POST",
+    "path": "/claims/intake/submit.do"
+  },
+  "scenario": "intake_blank_reserve"
+}

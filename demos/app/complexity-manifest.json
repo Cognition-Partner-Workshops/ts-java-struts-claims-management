@@ -3,10 +3,20 @@
     {
       "class": "form bean coercion",
       "brief": "C",
-      "causing_condition": "SettlementForm.deductible is a primitive double, so Struts BeanUtils population turns a blank or non-numeric deductible into 0 instead of rejecting it",
-      "file": "src/main/java/com/northstar/claims/web/form/SettlementForm.java",
-      "line": 14,
-      "surfaces": "POST /claims/settlement/calculate.do with deductible blank; transcripts/settlement_blank_deductible.json (deductibleApplied 0.00); SettlementFormBindingTest"
+      "causing_condition": "IntakeForm.initialReserve and SettlementForm.deductible are primitive doubles, so Struts BeanUtils population turns a blank (or non-numeric) value into 0 instead of null or a validation error; the intake value is stored as CLAIM.reserve_amount on the new claim",
+      "file": "src/main/java/com/northstar/claims/web/form/IntakeForm.java",
+      "line": 16,
+      "surfaces": "Intake parity replay: POST /claims/intake/submit.do with initialReserve blank stores reserve 0.00 (transcripts/intake_blank_reserve.json, IntakeFormBindingTest). Also settlement: deductible blank -> deductibleApplied 0.00 (transcripts/settlement_blank_deductible.json, SettlementFormBindingTest)",
+      "related": [
+        {
+          "file": "src/main/java/com/northstar/claims/web/IntakeSubmitAction.java",
+          "line": 58
+        },
+        {
+          "file": "src/main/java/com/northstar/claims/web/form/SettlementForm.java",
+          "line": 14
+        }
+      ]
     },
     {
       "class": "session state",
