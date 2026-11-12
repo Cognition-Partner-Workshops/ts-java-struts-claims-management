@@ -1,0 +1,261 @@
+{
+  "asOf": "2019-04-01",
+  "rows": [
+    {
+      "assignedAdjuster": "adjuster1",
+      "claimId": 1,
+      "claimNumber": "CLM-00001",
+      "reportedDate": "2019-03-15",
+      "reserveAmount": 1001.0,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster1",
+      "claimId": 6,
+      "claimNumber": "CLM-00006",
+      "reportedDate": "2019-02-15",
+      "reserveAmount": 1006.0,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster1",
+      "claimId": 11,
+      "claimNumber": "CLM-00011",
+      "reportedDate": "2019-01-15",
+      "reserveAmount": 1011.0,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster1",
+      "claimId": 16,
+      "claimNumber": "CLM-00016",
+      "reportedDate": "2018-12-01",
+      "reserveAmount": 1016.0,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster1",
+      "claimId": 21,
+      "claimNumber": "CLM-00021",
+      "reportedDate": "2019-03-15",
+      "reserveAmount": 1021.0,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster1",
+      "claimId": 26,
+      "claimNumber": "CLM-00026",
+      "reportedDate": "2019-02-15",
+      "reserveAmount": 1026.0,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster1",
+      "claimId": 31,
+      "claimNumber": "CLM-00031",
+      "reportedDate": "2019-01-15",
+      "reserveAmount": 1031.0,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster1",
+      "claimId": 36,
+      "claimNumber": "CLM-00036",
+      "reportedDate": "2018-12-01",
+      "reserveAmount": 1036.0,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster1",
+      "claimId": 41,
+      "claimNumber": "CLM-00041",
+      "reportedDate": "2019-03-15",
+      "reserveAmount": 1041.0,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster1",
+      "claimId": 46,
+      "claimNumber": "CLM-00046",
+      "reportedDate": "2019-02-15",
+      "reserveAmount": 1046.0,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster1",
+      "claimId": 51,
+      "claimNumber": "CLM-00051",
+      "reportedDate": "2019-01-15",
+      "reserveAmount": 1051.0,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster1",
+      "claimId": 56,
+      "claimNumber": "CLM-00056",
+      "reportedDate": "2018-12-01",
+      "reserveAmount": 1056.0,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster1",
+      "claimId": 61,
+      "claimNumber": "CLM-00061",
+      "reportedDate": "2019-03-15",
+      "reserveAmount": 1061.0,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster1",
+      "claimId": 66,
+      "claimNumber": "CLM-00066",
+      "reportedDate": "2019-02-15",
+      "reserveAmount": 1066.0,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster1",
+      "claimId": 71,
+      "claimNumber": "CLM-00071",
+      "reportedDate": "2019-01-15",
+      "reserveAmount": 1071.0,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster1",
+      "claimId": 76,
+      "claimNumber": "CLM-00076",
+      "reportedDate": "2018-12-01",
+      "reserveAmount": 1076.0,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster1",
+      "claimId": 81,
+      "claimNumber": "CLM-00081",
+      "reportedDate": "2019-03-15",
+      "reserveAmount": 1081.0,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster1",
+      "claimId": 86,
+      "claimNumber": "CLM-00086",
+      "reportedDate": "2019-02-15",
+      "reserveAmount": 1086.0,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster1",
+      "claimId": 91,
+      "claimNumber": "CLM-00091",
+      "reportedDate": "2019-01-15",
+      "reserveAmount": 1091.0,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster1",
+      "claimId": 96,
+      "claimNumber": "CLM-00096",
+      "reportedDate": "2018-12-01",
+      "reserveAmount": 1096.0,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster1",
+      "claimId": 101,
+      "claimNumber": "CLM-00101",
+      "reportedDate": "2019-03-15",
+      "reserveAmount": 1101.0,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster1",
+      "claimId": 106,
+      "claimNumber": "CLM-00106",
+      "reportedDate": "2019-02-15",
+      "reserveAmount": 1106.0,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster1",
+      "claimId": 111,
+      "claimNumber": "CLM-00111",
+      "reportedDate": "2019-01-15",
+      "reserveAmount": 1111.0,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster1",
+      "claimId": 116,
+      "claimNumber": "CLM-00116",
+      "reportedDate": "2018-12-01",
+      "reserveAmount": 1116.0,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster9",
+      "claimId": 9101,
+      "claimNumber": "CLM-09101",
+      "reportedDate": "2019-03-25",
+      "reserveAmount": 2500.0,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster9",
+      "claimId": 9120,
+      "claimNumber": "CLM-09120",
+      "reportedDate": "2019-04-02",
+      "reserveAmount": 100.25,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster9",
+      "claimId": 9121,
+      "claimNumber": "CLM-09121",
+      "reportedDate": "2019-04-01",
+      "reserveAmount": 200.5,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster9",
+      "claimId": 9122,
+      "claimNumber": "CLM-09122",
+      "reportedDate": "2019-03-02",
+      "reserveAmount": 300.75,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster9",
+      "claimId": 9124,
+      "claimNumber": "CLM-09124",
+      "reportedDate": "2019-01-31",
+      "reserveAmount": 500.01,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster9",
+      "claimId": 9126,
+      "claimNumber": "CLM-09126",
+      "reportedDate": "2019-01-01",
+      "reserveAmount": 700.49,
+      "status": "OPEN"
+    },
+    {
+      "assignedAdjuster": "adjuster9",
+      "claimId": 9127,
+      "claimNumber": "CLM-09127",
+      "reportedDate": "2018-12-31",
+      "reserveAmount": 800.51,
+      "status": "OPEN"
+    }
+  ],
+  "source": "ClaimDAO.findByStatus(\"OPEN\") via ClaimAgingDetailAction",
+  "totals": {
+    "rowCount": 31,
+    "sum": {
+      "claimId": 65245,
+      "reserveAmount": 30506.51
+    }
+  }
+}

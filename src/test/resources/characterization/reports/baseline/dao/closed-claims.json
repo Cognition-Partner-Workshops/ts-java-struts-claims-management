@@ -1,0 +1,101 @@
+{
+  "asOf": "2019-04-01",
+  "rows": [
+    {
+      "claimNumber": "CLM-00005",
+      "closedDate": "2019-03-22"
+    },
+    {
+      "claimNumber": "CLM-00010",
+      "closedDate": "2019-03-22"
+    },
+    {
+      "claimNumber": "CLM-00015",
+      "closedDate": "2019-03-22"
+    },
+    {
+      "claimNumber": "CLM-00020",
+      "closedDate": "2019-03-22"
+    },
+    {
+      "claimNumber": "CLM-00025",
+      "closedDate": "2019-03-22"
+    },
+    {
+      "claimNumber": "CLM-00030",
+      "closedDate": "2019-03-22"
+    },
+    {
+      "claimNumber": "CLM-00035",
+      "closedDate": "2019-03-22"
+    },
+    {
+      "claimNumber": "CLM-00040",
+      "closedDate": "2019-03-22"
+    },
+    {
+      "claimNumber": "CLM-00045",
+      "closedDate": "2019-03-22"
+    },
+    {
+      "claimNumber": "CLM-00050",
+      "closedDate": "2019-03-22"
+    },
+    {
+      "claimNumber": "CLM-00055",
+      "closedDate": "2019-03-22"
+    },
+    {
+      "claimNumber": "CLM-00060",
+      "closedDate": "2019-03-22"
+    },
+    {
+      "claimNumber": "CLM-00065",
+      "closedDate": "2019-03-22"
+    },
+    {
+      "claimNumber": "CLM-00070",
+      "closedDate": "2019-03-22"
+    },
+    {
+      "claimNumber": "CLM-00075",
+      "closedDate": "2019-03-22"
+    },
+    {
+      "claimNumber": "CLM-00080",
+      "closedDate": "2019-03-22"
+    },
+    {
+      "claimNumber": "CLM-00085",
+      "closedDate": "2019-03-22"
+    },
+    {
+      "claimNumber": "CLM-00090",
+      "closedDate": "2019-03-22"
+    },
+    {
+      "claimNumber": "CLM-00095",
+      "closedDate": "2019-03-22"
+    },
+    {
+      "claimNumber": "CLM-00100",
+      "closedDate": "2019-03-22"
+    },
+    {
+      "claimNumber": "CLM-00110",
+      "closedDate": "2019-04-01"
+    },
+    {
+      "claimNumber": "CLM-00115",
+      "closedDate": "2019-03-31"
+    },
+    {
+      "claimNumber": "CLM-00120",
+      "closedDate": "2019-04-01"
+    }
+  ],
+  "source": "ReportDAO.closedClaimsThrough(\"2019-04-01\")",
+  "totals": {
+    "rowCount": 23
+  }
+}

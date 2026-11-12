@@ -1,0 +1,55 @@
+{
+  "asOf": "2019-04-01",
+  "rows": [
+    {
+      "lineOfBusiness": "AUTO",
+      "lossRatio": 0.44950385887541344,
+      "lossTotal": 40770.0,
+      "premiumTotal": 90700.0
+    },
+    {
+      "lineOfBusiness": "COMMERCIAL_PROPERTY",
+      "lossRatio": 0.4199010989010989,
+      "lossTotal": 38211.0,
+      "premiumTotal": 91000.0
+    },
+    {
+      "lineOfBusiness": "EDGE_LINE",
+      "lossRatio": 0.3276363636363636,
+      "lossTotal": 3604.0,
+      "premiumTotal": 11000.0
+    },
+    {
+      "lineOfBusiness": "GENERAL_LIABILITY",
+      "lossRatio": 0.36730564430244944,
+      "lossTotal": 34490.0,
+      "premiumTotal": 93900.0
+    },
+    {
+      "lineOfBusiness": "HOMEOWNERS",
+      "lossRatio": 0.4007470651013874,
+      "lossTotal": 37550.0,
+      "premiumTotal": 93700.0
+    },
+    {
+      "lineOfBusiness": "ZERO_PREMIUM",
+      "lossRatio": 0.0,
+      "lossTotal": 2900.0,
+      "premiumTotal": 0.0
+    },
+    {
+      "lineOfBusiness": "ZERO_PREMIUM_NO_LOSS",
+      "lossRatio": 0.0,
+      "lossTotal": 0.0,
+      "premiumTotal": 0.0
+    }
+  ],
+  "source": "ReportDAO.lossRatioByLine() via ReconciliationAction",
+  "totals": {
+    "rowCount": 7,
+    "sum": {
+      "lossTotal": 157525.0,
+      "premiumTotal": 380300.0
+    }
+  }
+}

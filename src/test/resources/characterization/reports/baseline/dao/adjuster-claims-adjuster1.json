@@ -1,0 +1,132 @@
+{
+  "asOf": "2019-04-01",
+  "rows": [
+    {
+      "claimNumber": "CLM-00001",
+      "reserveAmount": 1001.0,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-00006",
+      "reserveAmount": 1006.0,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-00011",
+      "reserveAmount": 1011.0,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-00016",
+      "reserveAmount": 1016.0,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-00021",
+      "reserveAmount": 1021.0,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-00026",
+      "reserveAmount": 1026.0,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-00031",
+      "reserveAmount": 1031.0,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-00036",
+      "reserveAmount": 1036.0,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-00041",
+      "reserveAmount": 1041.0,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-00046",
+      "reserveAmount": 1046.0,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-00051",
+      "reserveAmount": 1051.0,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-00056",
+      "reserveAmount": 1056.0,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-00061",
+      "reserveAmount": 1061.0,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-00066",
+      "reserveAmount": 1066.0,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-00071",
+      "reserveAmount": 1071.0,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-00076",
+      "reserveAmount": 1076.0,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-00081",
+      "reserveAmount": 1081.0,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-00086",
+      "reserveAmount": 1086.0,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-00091",
+      "reserveAmount": 1091.0,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-00096",
+      "reserveAmount": 1096.0,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-00101",
+      "reserveAmount": 1101.0,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-00106",
+      "reserveAmount": 1106.0,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-00111",
+      "reserveAmount": 1111.0,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-00116",
+      "reserveAmount": 1116.0,
+      "status": "OPEN"
+    }
+  ],
+  "source": "ReportDAO.claimsForAdjuster(\"adjuster1\")",
+  "totals": {
+    "rowCount": 24,
+    "sum": {
+      "reserveAmount": 25404.0
+    }
+  }
+}
