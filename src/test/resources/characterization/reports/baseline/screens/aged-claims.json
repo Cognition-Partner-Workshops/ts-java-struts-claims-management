@@ -1,0 +1,72 @@
+{
+  "fields": [
+    [
+      "agedBucket_0_30",
+      "18"
+    ],
+    [
+      "agedReserve_0_30",
+      "19086"
+    ],
+    [
+      "agedBucket_31_60",
+      "18"
+    ],
+    [
+      "agedReserve_31_60",
+      "19056"
+    ],
+    [
+      "agedBucket_61_90",
+      "18"
+    ],
+    [
+      "agedReserve_61_90",
+      "19026"
+    ],
+    [
+      "agedBucket_91_PLUS",
+      "18"
+    ],
+    [
+      "agedReserve_91_PLUS",
+      "19116"
+    ]
+  ],
+  "heading": "Aged Claims",
+  "request": "GET /report/agedClaims.do",
+  "status": 200,
+  "tables": [
+    {
+      "class": "results",
+      "rows": [
+        [
+          "Age Bucket",
+          "Claim Count",
+          "Reserve Total"
+        ],
+        [
+          "0_30",
+          "18",
+          "19086"
+        ],
+        [
+          "31_60",
+          "18",
+          "19056"
+        ],
+        [
+          "61_90",
+          "18",
+          "19026"
+        ],
+        [
+          "91_PLUS",
+          "18",
+          "19116"
+        ]
+      ]
+    }
+  ],
+  "view": "/WEB-INF/jsp/report/agedClaims.jsp"
+}

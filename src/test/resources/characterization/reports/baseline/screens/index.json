@@ -1,0 +1,74 @@
+{
+  "fields": [],
+  "heading": "Claims Reports",
+  "request": "GET /report/index.do",
+  "status": 200,
+  "tables": [
+    {
+      "class": "results",
+      "rows": [
+        [
+          "Report Name",
+          "Link"
+        ],
+        [
+          "Open Claims by Adjuster",
+          "Open"
+        ],
+        [
+          "Loss Ratio by Line of Business",
+          "Open"
+        ],
+        [
+          "Aged Claims",
+          "Open"
+        ],
+        [
+          "Adjuster workload",
+          "Open"
+        ],
+        [
+          "Claims by adjuster",
+          "Open"
+        ],
+        [
+          "Closed claims",
+          "Open"
+        ],
+        [
+          "Month-end claim inventory",
+          "Open"
+        ],
+        [
+          "Aged claim detail",
+          "Open"
+        ],
+        [
+          "Claims reconciliation",
+          "Open"
+        ],
+        [
+          "Premium detail",
+          "Open"
+        ],
+        [
+          "Adjuster workload",
+          "Open"
+        ],
+        [
+          "Aged claim detail",
+          "Open"
+        ],
+        [
+          "Claims reconciliation",
+          "Open"
+        ],
+        [
+          "Premium detail",
+          "Open"
+        ]
+      ]
+    }
+  ],
+  "view": "/WEB-INF/jsp/report/index.jsp"
+}
