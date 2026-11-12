@@ -38,15 +38,15 @@ public class ClaimDAO {
     }
 
     public void assign(int id, String adjuster) {
-        jdbc.update("update CLAIM set assigned_adjuster = '" + adjuster + "' where claim_id = " + id);
+        jdbc.update("update CLAIM set assigned_adjuster = ? where claim_id = ?", adjuster, id);
     }
 
     public void updateReserve(int id, double reserve) {
-        jdbc.update("update CLAIM set reserve_amount = " + reserve + " where claim_id = " + id);
+        jdbc.update("update CLAIM set reserve_amount = ? where claim_id = ?", reserve, id);
     }
 
     public void updateStatus(int id, String status) {
-        jdbc.update("update CLAIM set status = '" + status + "' where claim_id = " + id);
+        jdbc.update("update CLAIM set status = ? where claim_id = ?", status, id);
     }
 
     public void updateClosure(int id, boolean closed, String user, String asOf) {

@@ -33,12 +33,8 @@ public class PolicyDAO {
     }
 
     public List<Policy> findByLine(String lineOfBusiness) {
-        // Preserve the legacy concatenated filter, including its failure behavior.
-        StringBuilder sql = new StringBuilder();
-        sql.append("select * from POLICY where line_of_business = '");
-        sql.append(lineOfBusiness);
-        sql.append("' order by policy_number");
-        return jdbc.query(sql.toString(), this::read);
+        return jdbc.query("select * from POLICY where line_of_business = ? order by policy_number",
+                this::read, lineOfBusiness);
     }
 
     public List<Policy> search(String term) {
