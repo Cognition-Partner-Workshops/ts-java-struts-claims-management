@@ -1,0 +1,20 @@
+<!-- issue/history omit header.jsp's stylesheet in the legacy JSPs. -->
+<th:block th:fragment="page(view, content, stylesheet)">
+<th:block th:replace="~{fragments/markers :: view(${view})}"></th:block>
+<th:block th:if="${stylesheet}"><th:block th:replace="~{fragments/header :: stylesheet}"></th:block></th:block>
+<table class="page" cellpadding="0" cellspacing="0" border="0">
+<th:block th:replace="~{fragments/header :: banner}"></th:block>
+<tr><td class="content">
+<table th:replace="~{fragments/nav :: nav}"></table>
+<th:block th:replace="${content}"></th:block>
+</td></tr>
+<tr th:replace="~{fragments/footer :: footer}"></tr>
+</table>
+<th:block th:replace="~{fragments/footer :: links}"></th:block>
+</th:block>
+
+<table th:fragment="audit" class="screen-audit" cellpadding="3" cellspacing="0" border="1">
+<tr><th th:text="#{jsp.screen.context}"></th><td th:text="#{jsp.screen.readOnly}"></td></tr>
+<tr><th th:text="#{jsp.screen.operator}"></th><td th:text="${user}"></td></tr>
+<tr><th th:text="#{jsp.screen.asOf}"></th><td th:text="${reportAsOfDate}"></td></tr>
+</table>
