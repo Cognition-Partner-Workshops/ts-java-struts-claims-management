@@ -6,6 +6,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.transaction.annotation.Transactional;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.user;
@@ -15,6 +18,31 @@ import static org.hamcrest.Matchers.containsString;
 @AutoConfigureMockMvc
 class SettlementRoutesTest {
     @Autowired MockMvc mvc;
+    @Autowired JdbcTemplate jdbc;
+
+    @Test
+    @Transactional
+    void saveEnforcesAdjusterAuthorityAtTheCentBoundary() throws Exception {
+        MockHttpSession session = new MockHttpSession();
+        session.setAttribute("user", "adjuster5");
+        jdbc.update("delete from SETTLEMENT where claim_id = ?", 118);
+        mvc.perform(post("/settlement/save.do").with(user("adjuster5")).session(session)
+                        .param("claimId", "118").param("coveredAmount", "5000.01").param("deductible", "0"))
+                .andExpect(status().isOk()).andExpect(view().name("settlement/refused"))
+                .andExpect(model().attribute("nsValidationErrors", java.util.List.of("errors.settlement.authority")))
+                .andExpect(model().attribute("refusedAmount", 5000.01))
+                .andExpect(model().attribute("approvalLimit", 5000.0))
+                .andExpect(model().attribute("refusedAdjuster", "adjuster5"));
+        assertEquals(0, jdbc.queryForObject("select count(*) from SETTLEMENT where claim_id = ?", Integer.class, 118));
+
+        for (String amount : java.util.List.of("4999.99", "5000")) {
+            mvc.perform(post("/settlement/save.do").with(user("adjuster5")).session(session)
+                            .param("claimId", "118").param("coveredAmount", amount).param("deductible", "0"))
+                    .andExpect(status().isOk()).andExpect(view().name("settlement/save"))
+                    .andExpect(model().attribute("settlementAmount", Double.valueOf(amount)));
+        }
+        assertEquals(2, jdbc.queryForObject("select count(*) from SETTLEMENT where claim_id = ?", Integer.class, 118));
+    }
 
     @Test
     void calculateThenSaveAndReadWithBothMethods() throws Exception {
@@ -36,19 +64,19 @@ class SettlementRoutesTest {
         MockHttpSession session = new MockHttpSession();
         session.setAttribute("user", "adjuster4");
         mvc.perform(post("/settlement/calculate.do").with(user("adjuster4")).session(session)
-                        .param("claimId", "118").param("coveredAmount", "5000").param("deductible", "1000"))
+                        .param("claimId", "118").param("coveredAmount", "3000").param("deductible", "1000"))
                 .andExpect(view().name("settlement/calculate"))
                 .andExpect(model().attribute("settlement",
-                        org.hamcrest.Matchers.hasProperty("settlementAmount", org.hamcrest.Matchers.is(4000.0))));
+                        org.hamcrest.Matchers.hasProperty("settlementAmount", org.hamcrest.Matchers.is(2000.0))));
         mvc.perform(post("/settlement/save.do").with(user("adjuster4")).session(session)
                         .param("claimId", "118"))
                 .andExpect(view().name("settlement/save"))
-                .andExpect(model().attribute("settlementAmount", 4000.0));
+                .andExpect(model().attribute("settlementAmount", 2000.0));
         mvc.perform(get("/settlement/detail.do").with(user("adjuster4")).session(session)
                         .param("claimId", "118"))
                 .andExpect(view().name("settlement/detail"))
                 .andExpect(model().attribute("settlement",
-                        org.hamcrest.Matchers.hasProperty("settlementAmount", org.hamcrest.Matchers.is(4000.0))));
+                        org.hamcrest.Matchers.hasProperty("settlementAmount", org.hamcrest.Matchers.is(2000.0))));
     }
 
     @Test
