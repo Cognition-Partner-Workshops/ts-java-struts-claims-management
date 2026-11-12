@@ -3,6 +3,9 @@ package com.northstar.claims.boot.settlement;
 import java.util.List;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -35,14 +38,13 @@ public class SettlementController {
         SettlementForm form = SettlementForm.bind(request);
         String user = String.valueOf(request.getSession().getAttribute("user"));
         Settlement value = resolve(form, request, save);
-        var adjusters = jdbc.query("select * from ADJUSTER where username = ?",
-                (rs, row) -> rs.getDouble("approval_limit"), user);
-        double limit = adjusters.isEmpty() ? 0 : adjusters.get(0);
-        if (value.getSettlementAmount() > limit) {
+        String adjuster = authenticatedUser();
+        double limit = approvalLimit(adjuster);
+        if (!(value.getSettlementAmount() <= limit)) {
             request.setAttribute("nsValidationErrors", List.of("errors.settlement.authority"));
             request.setAttribute("refusedAmount", value.getSettlementAmount());
             request.setAttribute("approvalLimit", limit);
-            request.setAttribute("refusedAdjuster", user);
+            request.setAttribute("refusedAdjuster", String.valueOf(adjuster));
             return "settlement/refused";
         }
         if (save) {
@@ -96,6 +98,24 @@ public class SettlementController {
                 decimal(request.getParameter("depreciation"), 0), policyLimit(claimId));
         value.setClaimId(claimId);
         return value;
+    }
+
+    private String authenticatedUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || !authentication.isAuthenticated()
+                || authentication instanceof AnonymousAuthenticationToken) {
+            return null;
+        }
+        return authentication.getName();
+    }
+
+    double approvalLimit(String user) {
+        if (user == null) {
+            return 0;
+        }
+        var limits = jdbc.query("select approval_limit from ADJUSTER where username = ?",
+                (rs, row) -> rs.getDouble("approval_limit"), user);
+        return limits.isEmpty() ? 0 : limits.get(0);
     }
 
     double policyLimit(int claimId) {

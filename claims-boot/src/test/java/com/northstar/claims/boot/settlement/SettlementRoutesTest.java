@@ -88,4 +88,51 @@ class SettlementRoutesTest {
                 .andExpect(view().name("error")).andExpect(status().isOk())
                 .andExpect(content().string(containsString("Reference status: null")));
     }
+
+    @Test
+    void saveAboveApprovalLimitIsRefusedWithoutWritingSettlement() throws Exception {
+        int before = settlementCount();
+        MockHttpSession session = new MockHttpSession();
+        session.setAttribute("user", "adjuster5");
+        mvc.perform(post("/settlement/save.do").with(user("adjuster5")).session(session)
+                        .param("claimId", "118").param("coveredAmount", "250000"))
+                .andExpect(view().name("settlement/refused"))
+                .andExpect(model().attribute("approvalLimit", 5000.0))
+                .andExpect(content().string(containsString("<!-- ns:error errors.settlement.authority -->")));
+        assertEquals(before, settlementCount());
+    }
+
+    @Test
+    void reusedPendingSettlementIsCheckedAgainstSavingUser() throws Exception {
+        MockHttpSession session = new MockHttpSession();
+        session.setAttribute("user", "supervisor");
+        mvc.perform(post("/settlement/calculate.do").with(user("supervisor")).session(session)
+                        .param("claimId", "118").param("coveredAmount", "20000"))
+                .andExpect(view().name("settlement/calculate"));
+        int before = settlementCount();
+        mvc.perform(post("/settlement/save.do").with(user("adjuster4")).session(session)
+                        .param("claimId", "118"))
+                .andExpect(view().name("settlement/refused"));
+        assertEquals(before, settlementCount());
+    }
+
+    @Test
+    void sessionUserAttributeDoesNotRaiseApprovalLimit() throws Exception {
+        int before = settlementCount();
+        MockHttpSession session = new MockHttpSession();
+        session.setAttribute("user", "supervisor");
+        mvc.perform(post("/settlement/save.do").with(user("adjuster4")).session(session)
+                        .param("claimId", "118").param("coveredAmount", "20000"))
+                .andExpect(view().name("settlement/refused"))
+                .andExpect(model().attribute("approvalLimit", 2500.0));
+        mvc.perform(post("/settlement/save.do").with(user("adjusterX")).session(session)
+                        .param("claimId", "118").param("coveredAmount", "20000"))
+                .andExpect(view().name("settlement/refused"))
+                .andExpect(model().attribute("approvalLimit", 0.0));
+        assertEquals(before, settlementCount());
+    }
+
+    private int settlementCount() {
+        return jdbc.queryForObject("select count(*) from SETTLEMENT", Integer.class);
+    }
 }

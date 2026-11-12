@@ -146,11 +146,28 @@ public class SettlementCharacterizationTest {
         Observed observed = new Observed();
         observed.action = step;
         List<Integer> before = settlementIds();
+        Object actor = session.get("user");
+        if (actor != null) {
+            var context = org.springframework.security.core.context.SecurityContextHolder.createEmptyContext();
+            context.setAuthentication(org.springframework.security.authentication.UsernamePasswordAuthenticationToken
+                    .authenticated(actor, null, java.util.List.of()));
+            org.springframework.security.core.context.SecurityContextHolder.setContext(context);
+        }
         try {
-            controller.execute(request, "save".equals(step));
-            observed.settlement = (Settlement) request.getAttribute("settlement");
+            String forward = controller.execute(request, "save".equals(step));
+            observed.refused = Boolean.valueOf("settlement/refused".equals(forward));
+            if (observed.refused.booleanValue()) {
+                observed.refusedAmount = (Double) request.getAttribute("refusedAmount");
+                assertTrue(caseId() + " refusal error key",
+                        ((List) request.getAttribute("nsValidationErrors"))
+                                .contains("errors.settlement.authority"));
+            } else {
+                observed.settlement = (Settlement) request.getAttribute("settlement");
+            }
         } catch (Exception failure) {
             observed.error = failure;
+        } finally {
+            org.springframework.security.core.context.SecurityContextHolder.clearContext();
         }
         session.clear();
         java.util.Collections.list(httpSession.getAttributeNames()).forEach(name -> session.put(name, httpSession.getAttribute(name)));
@@ -170,6 +187,11 @@ public class SettlementCharacterizationTest {
             }
             assertEquals(where + " error", expectedError, actual);
         }
+        String expectedRefused = expected("expected_refused", step);
+        if (expectedRefused.length() > 0) {
+            assertEquals(where + " refused", Boolean.valueOf(expectedRefused),
+                    observed.refused);
+        }
         String expectedAmount = expected("expected_amount", step);
         if (expectedAmount.length() > 0) {
             assertAmount(where + " amount", expectedAmount, observed.amount());
@@ -183,7 +205,8 @@ public class SettlementCharacterizationTest {
         if (!"calculator".equals(row.get("scope"))) {
             verifyStored(where, step, observed, actor);
         }
-        if ("action".equals(row.get("scope")) && observed.error == null) {
+        if ("action".equals(row.get("scope")) && observed.error == null
+                && !observed.refused.booleanValue()) {
             Object pending = session.get(
                     SettlementController.PENDING_SETTLEMENT);
             if ("calculate".equals(observed.action)) {
@@ -381,9 +404,7 @@ public class SettlementCharacterizationTest {
                 for (int i = 0; i < header.length; i++) {
                     row.put(header[i], fields.get(i));
                 }
-                if (!List.of(row.get("expected_refused").split("\\|")).contains("true")) {
-                    rows.add(row);
-                }
+                rows.add(row);
             }
             return rows;
         } finally {
@@ -424,11 +445,16 @@ public class SettlementCharacterizationTest {
     private static final class Observed {
         String action;
         Settlement settlement;
+        Boolean refused;
+        Double refusedAmount;
         Exception error;
         int rowsWritten;
         Settlement stored;
 
         double amount() {
+            if (refusedAmount != null) {
+                return refusedAmount.doubleValue();
+            }
             if (settlement == null) {
                 throw new AssertionError("No settlement amount was produced");
             }
