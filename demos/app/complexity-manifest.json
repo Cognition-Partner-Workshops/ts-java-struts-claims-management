@@ -1,0 +1,141 @@
+{
+  "classes": [
+    {
+      "class": "form bean coercion",
+      "brief": "C",
+      "causing_condition": "SettlementForm.deductible is a primitive double, so Struts BeanUtils population turns a blank or non-numeric deductible into 0 instead of rejecting it",
+      "file": "src/main/java/com/northstar/claims/web/form/SettlementForm.java",
+      "line": 14,
+      "surfaces": "POST /claims/settlement/calculate.do with deductible blank; transcripts/settlement_blank_deductible.json (deductibleApplied 0.00); SettlementFormBindingTest"
+    },
+    {
+      "class": "session state",
+      "brief": "C",
+      "causing_condition": "SettlementCalculateAction stores the calculated Settlement in HttpSession as pendingSettlement; SettlementSaveAction saves that object when the request carries no coveredAmount",
+      "file": "src/main/java/com/northstar/claims/web/SettlementCalculateAction.java",
+      "line": 20,
+      "related": [
+        {
+          "file": "src/main/java/com/northstar/claims/web/SettlementSaveAction.java",
+          "line": 37
+        }
+      ],
+      "surfaces": "calculate.do then save.do (the Save link on the calculate screen); transcripts/settlement_session_save.json"
+    },
+    {
+      "class": "BigDecimal scale",
+      "brief": "C",
+      "causing_condition": "Settlement total is computed with BigDecimal.valueOf inputs and setScale(2, ROUND_HALF_EVEN); a half-cent total such as 1.005 settles at 1.00, where HALF_UP gives 1.01",
+      "file": "src/main/java/com/northstar/claims/service/SettlementCalculator.java",
+      "line": 53,
+      "related": [
+        {
+          "file": "src/main/java/com/northstar/claims/service/SettlementCalculator.java",
+          "line": 15
+        }
+      ],
+      "surfaces": "transcripts/settlement_half_cent.json (settlementAmount 1.00); SettlementCalculatorTest.halfCentRoundsToEvenCent"
+    },
+    {
+      "class": "close-date counting",
+      "brief": "C",
+      "causing_condition": "Closed claims report counts a closure on its closed_date; month-end inventory counts it from closed_date + 1 day, so claims closed on the as-of date (2019-04-01) appear in one report and not the other",
+      "file": "src/main/java/com/northstar/claims/dao/ReportDAO.java",
+      "line": 185,
+      "related": [
+        {
+          "file": "src/main/java/com/northstar/claims/dao/ReportDAO.java",
+          "line": 190
+        },
+        {
+          "file": "src/main/resources/db/seed.sql",
+          "line": 696
+        },
+        {
+          "file": "src/main/resources/db/seed.sql",
+          "line": 698
+        }
+      ],
+      "surfaces": "/claims/report/closedClaims.do (23) vs /claims/report/claimInventory.do (21); transcripts/report_closed_claims.json, transcripts/report_claim_inventory.json"
+    },
+    {
+      "class": "dropped authority limit",
+      "brief": "D",
+      "causing_condition": "ADJUSTER.approval_limit is enforced only in SettlementAuthorityAction.execute, which the settlement actions inherit; their own executeSettlement methods do not check it, and no service, DAO, JSP or validator does",
+      "file": "src/main/java/com/northstar/claims/web/SettlementAuthorityAction.java",
+      "line": 33,
+      "related": [
+        {
+          "file": "src/main/resources/db/schema.sql",
+          "line": 129
+        }
+      ],
+      "surfaces": "save.do or calculate.do above the operator's limit; transcripts/settlement_authority_refused.json, transcripts/settlement_authority_within_limit.json; SettlementAuthorityActionTest"
+    },
+    {
+      "class": "SQL injection",
+      "brief": "D",
+      "causing_condition": "ReportDAO.claimsForAdjuster concatenates the adjuster request parameter into the WHERE clause of a Statement query",
+      "file": "src/main/java/com/northstar/claims/dao/ReportDAO.java",
+      "line": 166,
+      "related": [
+        {
+          "file": "src/main/java/com/northstar/claims/web/AdjusterClaimsReportAction.java",
+          "line": 19
+        }
+      ],
+      "surfaces": "GET /claims/report/adjusterClaims.do?adjuster=... on the local app"
+    },
+    {
+      "class": "vulnerable dependency",
+      "brief": "D",
+      "causing_condition": "commons-collections 3.2.1 (CVE-2015-7501, unsafe InvokerTransformer deserialization; fixed in 3.2.2) is a compile dependency packaged in the WAR and used by ClaimsConfig's LRUMap cache",
+      "file": "pom.xml",
+      "line": 44,
+      "related": [
+        {
+          "file": "src/main/java/com/northstar/claims/util/ClaimsConfig.java",
+          "line": 20
+        }
+      ],
+      "cve": "CVE-2015-7501",
+      "surfaces": "WEB-INF/lib/commons-collections-3.2.1.jar; every ClaimsConfig.get call"
+    },
+    {
+      "class": "secret in config",
+      "brief": "D",
+      "causing_condition": "db.password for the CLAIMS_APP account is stored in plain text in northstar.properties; the seed job creates the HSQLDB user with it and the DriverManager connection paths log in with it",
+      "file": "src/main/resources/northstar.properties",
+      "line": 5,
+      "related": [
+        {
+          "file": "src/main/java/com/northstar/claims/web/ClaimsActionSupport.java",
+          "line": 29
+        },
+        {
+          "file": "src/main/java/com/northstar/claims/dao/ConnectionPool.java",
+          "line": 49
+        },
+        {
+          "file": "src/main/java/com/northstar/claims/util/DatabaseBootstrap.java",
+          "line": 61
+        }
+      ],
+      "surfaces": "WEB-INF/classes/northstar.properties in the WAR; every database connection"
+    },
+    {
+      "class": "test-fixture finding",
+      "brief": "D",
+      "causing_condition": "AdjusterFixtureBuilder hard-codes a fixture password and stores it as an unsalted MD5 hash; test source only, not packaged in the WAR",
+      "file": "src/test/java/com/northstar/claims/fixture/AdjusterFixtureBuilder.java",
+      "line": 12,
+      "related": [
+        {
+          "file": "src/test/java/com/northstar/claims/fixture/AdjusterFixtureBuilder.java",
+          "line": 50
+        }
+      ],
+      "surfaces": "code scan of src/test; used by SettlementAuthorityActionTest"
+    }
+  ]
+}

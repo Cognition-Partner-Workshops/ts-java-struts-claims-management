@@ -210,7 +210,9 @@
     validate="false"
 ><forward
                 name="settlement"
-                path="/WEB-INF/jsp/settlement/calculate.jsp"/></action>
+                path="/WEB-INF/jsp/settlement/calculate.jsp"/><forward
+                name="refused"
+                path="/WEB-INF/jsp/settlement/refused.jsp"/></action>
 <action
     path="/settlement/save"
     type="com.northstar.claims.web.SettlementSaveAction"
@@ -219,7 +221,9 @@
     validate="false"
 ><forward
                 name="settlement"
-                path="/WEB-INF/jsp/settlement/save.jsp"/></action>
+                path="/WEB-INF/jsp/settlement/save.jsp"/><forward
+                name="refused"
+                path="/WEB-INF/jsp/settlement/refused.jsp"/></action>
 <action
     path="/payment/issue"
     type="com.northstar.claims.web.PaymentIssueAction"
@@ -368,6 +372,30 @@
 ><forward
     name="reportIndex"
     path="/WEB-INF/jsp/report/index.jsp"
+/></action>
+<action
+    path="/report/adjusterClaims"
+    type="com.northstar.claims.web.AdjusterClaimsReportAction"
+    validate="false"
+><forward
+    name="report"
+    path="/WEB-INF/jsp/report/adjusterClaims.jsp"
+/></action>
+<action
+    path="/report/closedClaims"
+    type="com.northstar.claims.web.ClosedClaimsReportAction"
+    validate="false"
+><forward
+    name="report"
+    path="/WEB-INF/jsp/report/closedClaims.jsp"
+/></action>
+<action
+    path="/report/claimInventory"
+    type="com.northstar.claims.web.ClaimInventoryReportAction"
+    validate="false"
+><forward
+    name="report"
+    path="/WEB-INF/jsp/report/claimInventory.jsp"
 /></action>
 </action-mappings>
 <message-resources parameter="ApplicationResources"/>

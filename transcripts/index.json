@@ -108,5 +108,30 @@
     "description": "FNOL validation for an incorrectly formatted date",
     "module": "intake",
     "scenario": "intake_bad_date"
+  },
+  {
+    "description": "Save above the adjuster approval limit",
+    "module": "settlement",
+    "scenario": "settlement_authority_refused"
+  },
+  {
+    "description": "Save within the adjuster approval limit",
+    "module": "settlement",
+    "scenario": "settlement_authority_within_limit"
+  },
+  {
+    "description": "Save the settlement kept in the session by the calculate screen",
+    "module": "settlement",
+    "scenario": "settlement_session_save"
+  },
+  {
+    "description": "Claims closed on or before the reporting date",
+    "module": "reporting",
+    "scenario": "report_closed_claims"
+  },
+  {
+    "description": "Month-end inventory counting closures from the next day",
+    "module": "reporting",
+    "scenario": "report_claim_inventory"
   }
 ]

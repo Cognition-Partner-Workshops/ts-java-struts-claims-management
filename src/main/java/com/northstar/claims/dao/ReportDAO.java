@@ -153,6 +153,69 @@ public class ReportDAO {
         }
     }
 
+    /** Lists claims for one adjuster on the adjuster claims screen. */
+    public List claimsForAdjuster(String adjuster) throws SQLException {
+        Connection conn = null;
+        Statement st = null;
+        ResultSet rs = null;
+        List rows = new ArrayList();
+        try {
+            conn = ConnectionPool.getInstance().getConnection();
+            st = conn.createStatement();
+            rs = st.executeQuery("select claim_number, status, reserve_amount "
+                    + "from CLAIM where assigned_adjuster = '" + adjuster
+                    + "' order by claim_number");
+            while (rs.next()) {
+                Map row = new HashMap();
+                row.put("claimNumber", rs.getString("claim_number"));
+                row.put("status", rs.getString("status"));
+                row.put("reserveAmount", new Double(rs.getDouble("reserve_amount")));
+                rows.add(row);
+            }
+            return rows;
+        } finally {
+            try { rs.close(); } catch (Exception e) {}
+            try { st.close(); } catch (Exception e) {}
+            try { ConnectionPool.getInstance().release(conn); } catch (Exception e) {}
+        }
+    }
+
+    /** Claims closed on or before the as-of date. */
+    public List closedClaimsThrough(String asOfDate) throws SQLException {
+        return closures("c.closed_date <= date '" + asOfDate + "'");
+    }
+
+    /** Closures post the day after the close date, so count from then. */
+    public List closuresPostedThrough(String asOfDate) throws SQLException {
+        return closures("dateadd('day', 1, c.closed_date) <= date '"
+                + asOfDate + "'");
+    }
+
+    private List closures(String condition) throws SQLException {
+        Connection conn = null;
+        Statement st = null;
+        ResultSet rs = null;
+        List rows = new ArrayList();
+        try {
+            conn = ConnectionPool.getInstance().getConnection();
+            st = conn.createStatement();
+            rs = st.executeQuery("select cl.claim_number, c.closed_date "
+                    + "from CLAIM_CLOSURE c join CLAIM cl on cl.claim_id = c.claim_id "
+                    + "where " + condition + " order by cl.claim_number");
+            while (rs.next()) {
+                Map row = new HashMap();
+                row.put("claimNumber", rs.getString("claim_number"));
+                row.put("closedDate", rs.getString("closed_date"));
+                rows.add(row);
+            }
+            return rows;
+        } finally {
+            try { rs.close(); } catch (Exception e) {}
+            try { st.close(); } catch (Exception e) {}
+            try { ConnectionPool.getInstance().release(conn); } catch (Exception e) {}
+        }
+    }
+
     /** Records a report query in the application log. */
     private void trace(String text) {
         log.info(text);

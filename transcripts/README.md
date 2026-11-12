@@ -17,6 +17,10 @@ raw HTML. Money uses two decimal places and dates use `yyyy-MM-dd`.
 * `redirect:<path>` for a normalized HTTP redirect location
 * `error:<key>` for the application error page
 
+An optional top-level `setup` list holds requests (same shape as `request`)
+sent in the same session before the recorded request. `actor` names the
+operator whose session made the requests.
+
 `validation_errors` is an ordered list of ApplicationResources keys emitted
 by Struts. `db_state` is a flat map of dotted probe keys to string values.
 
@@ -27,6 +31,7 @@ Supported probe vocabulary:
   field spans
 * `payment.<id>.<field>` - payment history endpoint
 * `settlement.claim.<id>.<field>` - settlement calculation endpoint
+* `settlement.saved.claim.<id>.<field>` - settlement detail endpoint
 * `policy.<id>.<field>` - policy view endpoint
 
 The capture tool resolves these through the running application's read pages;

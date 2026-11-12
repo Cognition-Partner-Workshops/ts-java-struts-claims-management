@@ -1,5 +1,6 @@
 -- NorthStar Claims relational schema.
 -- Dates remain SQL DATE values because the servlet tier uses java.util.Date.
+DROP TABLE IF EXISTS CLAIM_CLOSURE;
 DROP TABLE IF EXISTS PAYMENT;
 DROP TABLE IF EXISTS SETTLEMENT;
 DROP TABLE IF EXISTS RESERVE_HISTORY;
@@ -125,8 +126,17 @@ CREATE TABLE ADJUSTER (
     full_name VARCHAR(100) NOT NULL,
     region VARCHAR(40) NOT NULL,
     active BOOLEAN NOT NULL,
+    approval_limit DOUBLE NOT NULL,
     CONSTRAINT pk_adjuster PRIMARY KEY (adjuster_id),
     CONSTRAINT uq_adjuster_username UNIQUE (username)
+);
+
+CREATE TABLE CLAIM_CLOSURE (
+    claim_id INTEGER NOT NULL,
+    closed_date DATE NOT NULL,
+    closed_by VARCHAR(40) NOT NULL,
+    CONSTRAINT pk_claim_closure PRIMARY KEY (claim_id),
+    CONSTRAINT fk_closure_claim FOREIGN KEY (claim_id) REFERENCES CLAIM(claim_id)
 );
 
 CREATE INDEX ix_policy_line ON POLICY(line_of_business);

@@ -26,6 +26,12 @@
 <td><a href="agedClaims.do"><bean:message key="button.open"/></a></td></tr>
 <tr><td><bean:message key="report.adjusterWorkload.heading"/></td>
 <td><a href="adjusterWorkload.do"><bean:message key="button.open"/></a></td></tr>
+<tr><td><bean:message key="report.adjusterClaims.heading"/></td>
+<td><a href="adjusterClaims.do?adjuster=adjuster1"><bean:message key="button.open"/></a></td></tr>
+<tr><td><bean:message key="report.closed.heading"/></td>
+<td><a href="closedClaims.do"><bean:message key="button.open"/></a></td></tr>
+<tr><td><bean:message key="report.inventory.heading"/></td>
+<td><a href="claimInventory.do"><bean:message key="button.open"/></a></td></tr>
 <tr><td><bean:message key="report.claimAgingDetail.heading"/></td>
 <td><a href="claimAgingDetail.do"><bean:message key="button.open"/></a></td></tr>
 <tr><td><bean:message key="report.reconciliation.heading"/></td>

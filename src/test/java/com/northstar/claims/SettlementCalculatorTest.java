@@ -39,9 +39,13 @@ public class SettlementCalculatorTest {
     }
 
     @Test
-    public void halfCentUsesLegacyDoubleMath() {
-        Settlement result = calculator.calculate(1.005, "0", 0, 100);
-        assertEquals(1.0, result.getSettlementAmount(), 0.0);
+    public void halfCentRoundsToEvenCent() {
+        assertEquals(1.0, calculator.calculate(1.005, "0", 0, 100)
+                .getSettlementAmount(), 0.0);
+        assertEquals(1.02, calculator.calculate(1.015, "0", 0, 100)
+                .getSettlementAmount(), 0.0);
+        assertEquals(1.02, calculator.calculate(1.025, "0", 0, 100)
+                .getSettlementAmount(), 0.0);
     }
 
     @Test

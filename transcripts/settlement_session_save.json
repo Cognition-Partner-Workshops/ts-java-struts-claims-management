@@ -1,0 +1,34 @@
+{
+  "actor": "supervisor",
+  "description": "Save the settlement kept in the session by the calculate screen",
+  "expected": {
+    "business_fields": {
+      "savedBy": "supervisor",
+      "settlementAmount": "2960.55"
+    },
+    "db_state": {
+      "settlement.saved.claim.117.amount": "2960.55"
+    },
+    "result": "forward:/WEB-INF/jsp/settlement/save.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/settlement/save.do"
+  },
+  "scenario": "settlement_session_save",
+  "setup": [
+    {
+      "form": {
+        "claimId": "117",
+        "coveredAmount": "3210.55",
+        "deductible": "250.00",
+        "depreciation": "0.00"
+      },
+      "method": "POST",
+      "path": "/claims/settlement/calculate.do"
+    }
+  ]
+}
