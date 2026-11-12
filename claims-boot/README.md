@@ -18,6 +18,73 @@ Boot serves port **8081**, context **/claims**. There is no suffix pattern
 matching: controllers explicitly map `.do` paths and keep legacy query/form
 parameter names rather than introduce REST paths or rename fields.
 
+## Run both apps side by side
+
+Both apps use context `/claims` and separate HSQLDB files, so they can run at
+the same time from the repository root in two terminals:
+
+```sh
+# Terminal 1: legacy Struts app on http://localhost:8080/claims/login.do (JDK 11)
+JAVA_HOME=/path/to/jdk11 make build seed run
+
+# Terminal 2: claims-boot on http://localhost:8081/claims/login.do (JDK 21),
+# with its loopback HSQL server on :9002 (alias northstar) for replay
+JAVA_HOME=/path/to/jdk21 mvn -B -f claims-boot/pom.xml verify
+/path/to/jdk21/bin/java -jar claims-boot/target/claims-boot-0.1.0-SNAPSHOT.jar \
+  --claims.db.server.enabled=true
+```
+
+| App | HTTP | Database file | Replay JDBC URL |
+| --- | --- | --- | --- |
+| Legacy | 8080 | `target/db/northstar` | started by `make replay` on 9001 |
+| claims-boot | 8081 | `claims-boot/target/db/claims-boot` | `jdbc:hsqldb:hsql://localhost:9002/northstar` |
+
+Log in to either app as `supervisor`/`supervisor`. `make build` wipes
+`target/db`, so seed before `make run`. `make replay` starts its own legacy
+Jetty on 8080, so stop the side-by-side legacy instance before running it.
+
+## Replay one area's slice of the parity set
+
+Restart claims-boot (it reseeds on boot), then replay against it:
+
+```sh
+python3 tools/capture/capture.py replay \
+  --base-url http://localhost:8081/claims \
+  --db-url jdbc:hsqldb:hsql://localhost:9002/northstar --db-user SA \
+  --area policy
+```
+
+`--area` is one of `policy`, `intake` (FNOL and workbench), `settlement`,
+`payments`, `reports` or `shared foundation`. Replay runs every scenario in
+order (claim ids and session state depend on it) but compares only the chosen
+area plus the seed, and exits nonzero on any diff. While other areas are
+unported, judge the slice on its response diffs; DB snapshots after the first
+write from another area differ only by missing rows (`-` lines). See the
+[runbook](../docs/migration/RUNBOOK.md) for the frozen `parity-v1` baseline.
+
+## Area ownership
+
+Each area PR branches from `claims-boot-foundation`, targets `demo-insurance`,
+and adds files only inside its own package and template folders (Java under
+`src/main/java/com/northstar/claims/boot/`, tests under the same package in
+`src/test/java`, templates under `src/main/resources/templates/`). Template
+folders mirror the legacy JSP folders and URL prefixes.
+
+| Area (`--area`) | Routes | Package | Templates |
+| --- | --- | --- | --- |
+| Policy (`policy`) | `/policy/*` | `boot.policy` | `policy/` |
+| Intake and workbench (`intake`) | `/intake/*`, `/workbench/*` | `boot.intake` | `intake/`, `workbench/` |
+| Settlement (`settlement`) | `/settlement/*` | `boot.settlement` | `settlement/` |
+| Payments (`payments`) | `/payment/*` | `boot.payment` | `payment/` |
+| Reports (`reports`) | `/report/*` | `boot.report` | `report/` |
+
+The foundation owns everything else: the `boot` package itself (security,
+errors, data layer, helpers, `NsMarkup`, login/home/admin), `fragments/`,
+`login.html`, `home.html`, `error.html`, `application.properties` and the
+pom. Area PRs reuse these without editing them; DAOs and models an area needs
+live in its own package (duplicate rather than share across areas). If a
+shared change is unavoidable, make it a separate PR against this branch.
+
 ## Shared layout, login and markers
 
 - Messages: `ApplicationResources.properties` is packaged unchanged from
