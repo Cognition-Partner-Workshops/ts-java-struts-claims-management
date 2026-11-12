@@ -1,0 +1,25 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/month_end_adjusterWorkload.json",
+  "description": "month end adjusterWorkload",
+  "expected": {
+    "business_fields": {
+      "workloadAsOf": "2019-04-01",
+      "workloadOpen_adjuster1": "35",
+      "workloadOpen_adjuster2": "25",
+      "workloadReserve_adjuster1": "25703.01",
+      "workloadReserve_adjuster2": "29928.00",
+      "workloadRows": "2"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/report/adjusterWorkload.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/report/adjusterWorkload.do"
+  },
+  "scenario": "month_end_adjusterWorkload"
+}

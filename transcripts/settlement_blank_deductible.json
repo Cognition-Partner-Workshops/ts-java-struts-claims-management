@@ -1,5 +1,6 @@
 {
   "actor": "supervisor",
+  "db_snapshot": "db/settlement_blank_deductible.json",
   "description": "FNOL settlement with a blank deductible",
   "expected": {
     "business_fields": {

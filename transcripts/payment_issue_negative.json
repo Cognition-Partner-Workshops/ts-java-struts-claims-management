@@ -1,0 +1,27 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/payment_issue_negative.json",
+  "description": "payment issue negative",
+  "expected": {
+    "business_fields": {
+      "checkNumber": "CHK-63",
+      "paymentAmount": "-1.00",
+      "paymentStatus": "ISSUED"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/payment/issue.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "amount": "-1",
+      "claimId": "118",
+      "payeeName": "Parity Payee",
+      "paymentMethod": "CHECK"
+    },
+    "method": "POST",
+    "path": "/claims/payment/issue.do"
+  },
+  "scenario": "payment_issue_negative"
+}

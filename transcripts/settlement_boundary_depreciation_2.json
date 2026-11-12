@@ -1,0 +1,29 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/settlement_boundary_depreciation_2.json",
+  "description": "settlement boundary depreciation 2",
+  "expected": {
+    "business_fields": {
+      "cappedAtLimit": "false",
+      "coveredAmount": "1000.00",
+      "deductibleApplied": "0.00",
+      "depreciation": "1000.00",
+      "settlementAmount": "0.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/settlement/calculate.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "118",
+      "coveredAmount": "1000",
+      "deductible": "0",
+      "depreciation": "1000"
+    },
+    "method": "POST",
+    "path": "/claims/settlement/calculate.do"
+  },
+  "scenario": "settlement_boundary_depreciation_2"
+}

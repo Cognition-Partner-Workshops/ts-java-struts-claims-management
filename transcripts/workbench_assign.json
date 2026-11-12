@@ -1,5 +1,6 @@
 {
   "actor": "supervisor",
+  "db_snapshot": "db/workbench_assign.json",
   "description": "Assign the current claim",
   "expected": {
     "business_fields": {

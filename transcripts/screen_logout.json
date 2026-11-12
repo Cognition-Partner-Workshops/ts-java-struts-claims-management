@@ -1,0 +1,18 @@
+{
+  "actor": "adjusterLogout",
+  "db_snapshot": "db/screen_logout.json",
+  "description": "screen logout",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/login.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/logout.do"
+  },
+  "scenario": "screen_logout"
+}

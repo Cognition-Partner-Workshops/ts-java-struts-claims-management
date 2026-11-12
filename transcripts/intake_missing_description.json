@@ -1,5 +1,6 @@
 {
   "actor": "supervisor",
+  "db_snapshot": "db/intake_missing_description.json",
   "description": "FNOL validation when description is absent",
   "expected": {
     "business_fields": {},

@@ -1,0 +1,26 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/fnol_claimantName_0.json",
+  "description": "fnol claimantName 0",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/intake/new.jsp",
+    "status": 200,
+    "validation_errors": [
+      "errors.claimant.required"
+    ]
+  },
+  "request": {
+    "form": {
+      "claimantName": "",
+      "description": "Parity loss",
+      "initialReserve": "100",
+      "lossDate": "04/01/2019",
+      "lossType": "FIRE"
+    },
+    "method": "POST",
+    "path": "/claims/intake/submit.do"
+  },
+  "scenario": "fnol_claimantName_0"
+}

@@ -1,0 +1,38 @@
+<th:block th:replace="~{fragments/layout :: page('/WEB-INF/jsp/home.jsp', ~{::content})}"><th:block th:fragment="content">
+<h2 th:text="#{home.heading}">Claims Operations Home</h2>
+<p th:text="#{home.introduction}"></p>
+<table class="dashboard" cellpadding="3" cellspacing="0" border="1">
+<tr>
+    <th th:text="#{home.column.area}">Area</th>
+    <th th:text="#{home.column.action}">Action</th>
+</tr>
+<tr>
+    <td th:text="#{home.policyArea}"></td>
+    <td><a href="policy/list.do" th:text="#{home.policyLink}"></a></td>
+</tr>
+<tr>
+    <td th:text="#{home.claimArea}"></td>
+    <td><a href="workbench/list.do" th:text="#{home.claimLink}"></a></td>
+</tr>
+<tr>
+    <td th:text="#{home.reportArea}"></td>
+    <td><a href="report/index.do" th:text="#{home.reportLink}"></a></td>
+</tr>
+</table>
+<p>[[#{home.sessionUser}]]:
+<th:block th:replace="~{fragments/markers :: field('signedInUser', ${user}, 'text')}"></th:block></p>
+<table class="screen-audit" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<th th:text="#{jsp.screen.context}"></th>
+<td th:text="#{jsp.screen.readOnly}"></td>
+</tr>
+<tr>
+<th th:text="#{jsp.screen.operator}"></th>
+<td th:text="${user}"></td>
+</tr>
+<tr>
+<th th:text="#{jsp.screen.asOf}"></th>
+<td th:text="${reportAsOfDate}"></td>
+</tr>
+</table>
+</th:block></th:block>
