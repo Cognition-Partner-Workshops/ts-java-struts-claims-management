@@ -1,0 +1,31 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/settlement_session_mismatch.json",
+  "description": "settlement session mismatch",
+  "expected": {
+    "business_fields": {
+      "savedBy": "supervisor",
+      "settlementAmount": "5000.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/settlement/save.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/settlement/save.do?claimId=117"
+  },
+  "scenario": "settlement_session_mismatch",
+  "setup": [
+    {
+      "form": {
+        "claimId": "118",
+        "coveredAmount": "1200"
+      },
+      "method": "POST",
+      "path": "/claims/settlement/calculate.do"
+    }
+  ]
+}
