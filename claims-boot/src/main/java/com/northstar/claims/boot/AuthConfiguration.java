@@ -23,6 +23,8 @@ public class AuthConfiguration {
                 ((HttpServletResponse) response).sendRedirect(http.getContextPath() + "/login.do");
             }
         };
-        return new FilterRegistrationBean<>(filter, "*.do");
+        FilterRegistrationBean<Filter> registration = new FilterRegistrationBean<>(filter);
+        registration.addUrlPatterns("*.do");
+        return registration;
     }
 }

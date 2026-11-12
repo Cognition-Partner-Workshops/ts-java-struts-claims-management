@@ -1,5 +1,6 @@
-<html xmlns:th="http://www.thymeleaf.org"><th:block th:replace="~{fragments/layout :: page(~{::main})}"><main th:remove="tag">
+<html xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="~{fragments/ns :: view('/WEB-INF/jsp/admin/adjusters.jsp')}"></th:block>
+<th:block th:replace="~{fragments/layout :: page(~{::main})}"><main th:remove="tag">
 <h2><span th:text="#{admin.adjusters.heading}" th:remove="tag"></span></h2>
 <table class="results" cellpadding="3" cellspacing="0" border="1">
 <tr>

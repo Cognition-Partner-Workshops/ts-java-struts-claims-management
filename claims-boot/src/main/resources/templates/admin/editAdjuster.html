@@ -1,5 +1,6 @@
-<html xmlns:th="http://www.thymeleaf.org"><th:block th:replace="~{fragments/layout :: page(~{::main})}"><main th:remove="tag">
+<html xmlns:th="http://www.thymeleaf.org">
 <th:block th:replace="~{fragments/ns :: view('/WEB-INF/jsp/admin/editAdjuster.jsp')}"></th:block>
+<th:block th:replace="~{fragments/layout :: page(~{::main})}"><main th:remove="tag">
 <h2><span th:text="#{admin.edit.heading}" th:remove="tag"></span></h2>
 <form method="post" th:action="@{/admin/adjusters.do}">
 <th:block th:replace="~{fragments/ns :: errors(${errors})}"></th:block>
