@@ -1,0 +1,15 @@
+<th:block th:replace="~{payment/fragments :: page('/WEB-INF/jsp/payment/history.jsp', ~{::content}, false)}"><th:block th:fragment="content">
+<p><a href="detail.do?paymentId=61" th:text="#{payment.detailLink}"></a> |
+<a th:href="|remittance.do?claimId=${claimId}|" th:text="#{payment.remittanceLink}"></a></p>
+<p><a href="detail.do?paymentId=61" th:text="#{payment.detailLink}"></a> |
+<a th:href="|remittance.do?claimId=${claimId}|" th:text="#{payment.remittanceLink}"></a></p>
+<h2 th:text="#{payment.history.heading}"></h2>
+<table class="results" cellpadding="3" cellspacing="0" border="1">
+<tr><th th:text="#{payment.check}"></th><th th:text="#{payment.amount}"></th><th th:text="#{payment.status}"></th></tr>
+<tr th:each="payment : ${payments}"><td><th:block th:replace="~{fragments/markers :: field(${'checkNumber_' + payment.paymentId}, ${payment.checkNumber}, 'text')}"></th:block></td>
+<td><th:block th:replace="~{fragments/markers :: field(${'paymentAmount_' + payment.paymentId}, ${payment.amount}, 'money')}"></th:block></td>
+<td><th:block th:replace="~{fragments/markers :: field(${'paymentStatus_' + payment.paymentId}, ${payment.status}, 'text')}"></th:block></td></tr>
+</table>
+<p th:text="#{payment.history.instruction}"></p>
+<table th:replace="~{payment/fragments :: audit}"></table>
+</th:block></th:block>

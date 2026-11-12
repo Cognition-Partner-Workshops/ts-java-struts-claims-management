@@ -1,0 +1,34 @@
+<th:block th:replace="~{fragments/markers :: view('/WEB-INF/jsp/intake/confirm.jsp')}"></th:block>
+<th:block th:replace="~{fragments/markers :: errors(${nsValidationErrors})}"></th:block>
+<table class="page" cellpadding="0" cellspacing="0" border="0">
+<th:block th:replace="~{fragments/header :: banner}"></th:block>
+<tr><td class="content">
+<table th:replace="~{fragments/nav :: nav}"></table>
+<h2><th:block th:text="#{intake.confirm.heading}"></th:block></h2>
+<table class="details" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<th><th:block th:text="#{claim.id}"></th:block></th><td><th:block th:replace="~{fragments/markers :: field('claimId', ${claimId}, 'integer')}"></th:block></td></tr>
+<tr>
+<th><th:block th:text="#{claim.status}"></th:block></th><td><th:block th:replace="~{fragments/markers :: field('claimStatus', ${claimStatus}, 'text')}"></th:block></td></tr>
+<tr>
+<th><th:block th:text="#{intake.confirm.next}"></th:block></th><td><a th:href="|../workbench/view.do?claimId=${claimId}|"><th:block th:text="#{intake.confirm.open}"></th:block></a></td></tr>
+</table>
+<p><th:block th:text="#{intake.confirm.message}"></th:block></p>
+<table class="screen-audit" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<th><th:block th:text="#{jsp.screen.context}"></th:block></th>
+<td><th:block th:text="#{jsp.screen.readOnly}"></th:block></td>
+</tr>
+<tr>
+<th><th:block th:text="#{jsp.screen.operator}"></th:block></th>
+<td><th:block th:text="${user}"></th:block></td>
+</tr>
+<tr>
+<th><th:block th:text="#{jsp.screen.asOf}"></th:block></th>
+<td>[[${reportAsOfDate}]]</td>
+</tr>
+</table>
+</td></tr>
+<tr th:replace="~{fragments/footer :: footer}"></tr>
+</table>
+<th:block th:replace="~{fragments/footer :: links}"></th:block>

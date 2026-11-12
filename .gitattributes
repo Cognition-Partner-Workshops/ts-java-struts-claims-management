@@ -1,0 +1,6 @@
+# Characterization goldens are compared byte-for-byte after LF normalization; keep LF on every platform.
+src/test/resources/characterization/** text eol=lf
+# Recorded captures and goldens; excluded from review diffs.
+transcripts/** linguist-generated
+parity/MANIFEST.json linguist-generated
+src/test/resources/characterization/** linguist-generated

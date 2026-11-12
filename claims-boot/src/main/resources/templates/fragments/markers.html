@@ -1,0 +1,4 @@
+<!-- ns:* marker helpers. Bean output is evaluated in th:with, then written with th:utext. -->
+<th:block th:fragment="view(path)" th:with="marker=${@ns.view(path)}" th:utext="${marker}"></th:block>
+<th:block th:fragment="field(name, value, type)" th:with="marker=${@ns.field(name, value, type)}" th:utext="${marker}"></th:block>
+<th:block th:fragment="errors(keys)"><th:block th:each="key : ${keys}" th:with="marker=${@ns.error(key)}" th:utext="${marker}"></th:block></th:block>

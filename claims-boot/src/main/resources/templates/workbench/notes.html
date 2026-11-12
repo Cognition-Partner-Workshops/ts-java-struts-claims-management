@@ -1,0 +1,49 @@
+<th:block th:replace="~{fragments/markers :: view('/WEB-INF/jsp/workbench/notes.jsp')}"></th:block>
+<th:block th:replace="~{fragments/header :: stylesheet}"></th:block>
+<table class="page" cellpadding="0" cellspacing="0" border="0">
+<th:block th:replace="~{fragments/header :: banner}"></th:block>
+<tr><td class="content">
+<table th:replace="~{fragments/nav :: nav}"></table>
+<h2><th:block th:text="#{jsp.claim.note.history}"></th:block></h2>
+<table class="results" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<th><th:block th:text="#{jsp.date}"></th:block></th>
+<th><th:block th:text="#{jsp.author}"></th:block></th>
+<th><th:block th:text="#{jsp.note}"></th:block></th>
+<th><th:block th:text="#{jsp.disposition}"></th:block></th></tr>
+<th:block th:each="note : ${notes}">
+<tr>
+<td><th:block th:text="${note.noteDate}"></th:block></td>
+<td><th:block th:text="${note.author}"></th:block></td>
+<td><th:block th:text="${note.noteText}"></th:block></td>
+<td><th:block th:text="#{jsp.note.recorded}"></th:block></td>
+</tr>
+</th:block>
+<tr><td colspan="4"><th:block th:text="#{jsp.notes.retained}"></th:block></td></tr>
+</table>
+<table class="detail" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<th><th:block th:text="#{jsp.claim.identifier}"></th:block></th><td><th:block th:replace="~{fragments/markers :: field('noteClaimId', ${claimId}, 'integer')}"></th:block></td></tr>
+<tr>
+<th><th:block th:text="#{jsp.current.status}"></th:block></th><td><th:block th:replace="~{fragments/markers :: field('noteClaimStatus', ${claimStatus}, 'text')}"></th:block></td></tr>
+<tr>
+<th><th:block th:text="#{jsp.current.reserve}"></th:block></th><td><th:block th:replace="~{fragments/markers :: field('noteReserve', ${reserveAmount}, 'money')}"></th:block></td></tr>
+</table>
+<table class="screen-audit" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<th><th:block th:text="#{jsp.screen.context}"></th:block></th>
+<td><th:block th:text="#{jsp.screen.readOnly}"></th:block></td>
+</tr>
+<tr>
+<th><th:block th:text="#{jsp.screen.operator}"></th:block></th>
+<td><th:block th:text="${user}"></th:block></td>
+</tr>
+<tr>
+<th><th:block th:text="#{jsp.screen.asOf}"></th:block></th>
+<td>[[${reportAsOfDate}]]</td>
+</tr>
+</table>
+</td></tr>
+<tr th:replace="~{fragments/footer :: footer}"></tr>
+</table>
+<th:block th:replace="~{fragments/footer :: links}"></th:block>
