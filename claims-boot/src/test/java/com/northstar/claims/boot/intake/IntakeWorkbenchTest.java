@@ -114,6 +114,22 @@ class IntakeWorkbenchTest {
     }
 
     @Test
+    void assignAndStatusStoreQuotedInputLiterallyOnTheTargetClaimOnly() throws Exception {
+        String others = "select count(*) from CLAIM where claim_id <> 119 and (assigned_adjuster = ? or status = ?)";
+        String adjuster = "x' where 1=1 --";
+        mvc.perform(post("/workbench/assign.do").session(session).param("claimId", "119")
+                .param("adjuster", adjuster)).andExpect(status().isOk());
+        assertThat(jdbc.queryForObject("select assigned_adjuster from CLAIM where claim_id=119", String.class))
+                .isEqualTo(adjuster);
+        String statusValue = "OPEN' --";
+        mvc.perform(post("/workbench/status.do").session(session).param("claimId", "119")
+                .param("status", statusValue)).andExpect(status().isOk());
+        assertThat(jdbc.queryForObject("select status from CLAIM where claim_id=119", String.class))
+                .isEqualTo(statusValue);
+        assertThat(jdbc.queryForObject(others, Integer.class, adjuster, statusValue)).isZero();
+    }
+
+    @Test
     void unknownClaimsAndOrphanRoutesUseTheLegacyErrorForward() throws Exception {
         for (String route : new String[]{"/workbench/view.do?claimId=999999", "/workbench/assignment.do",
                 "/intake/intake/submit.do"}) {
