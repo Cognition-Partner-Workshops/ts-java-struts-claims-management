@@ -1,0 +1,14 @@
+<!-- Operator page: header.jsp + nav.jsp + content + footer.jsp. -->
+<th:block th:fragment="page(view, content)"><th:block th:replace="~{fragments/markers :: view(${view})}"></th:block>
+<th:block th:replace="~{fragments/header :: stylesheet}"></th:block>
+<table class="page" cellpadding="0" cellspacing="0" border="0">
+<th:block th:replace="~{fragments/header :: banner}"></th:block>
+<tr><td class="content">
+<!-- NorthStar claims operator layout -->
+<!-- NorthStar claims operator layout -->
+<table th:replace="~{fragments/nav :: nav}"></table>
+<th:block th:replace="${content}"></th:block>
+</td></tr>
+<tr th:replace="~{fragments/footer :: footer}"></tr>
+</table>
+<th:block th:replace="~{fragments/footer :: links}"></th:block></th:block>

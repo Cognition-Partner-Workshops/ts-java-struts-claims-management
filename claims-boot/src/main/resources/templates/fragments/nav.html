@@ -1,0 +1,14 @@
+<!-- Port of WEB-INF/jsp/nav.jsp: quick links and operator details. -->
+<table th:fragment="nav" class="menu" cellpadding="2" cellspacing="0" border="0">
+<tr><td th:text="#{nav.quickLinks}">Quick Links</td></tr>
+<tr><td><a th:href="@{/intake/new.do}" th:text="#{nav.newClaim}">New FNOL</a></td></tr>
+<tr><td><a th:href="@{/payment/history.do}" th:text="#{nav.payments}">Payment History</a></td></tr>
+<tr><td><a th:href="@{/report/openByAdjuster.do}" th:text="#{nav.reports}">Reports</a></td></tr>
+<tr><td><a th:href="@{/policy/search.do}" th:text="#{nav.policySearch}">Policy search</a></td></tr>
+<tr><td><a th:href="@{/logout.do}" th:text="#{nav.logout}">Logout</a></td></tr>
+<tr><td>[[#{nav.operator}]]: [[${user}]]</td></tr>
+<tr><td>[[#{nav.applicationVersion}]]: [[#{nav.applicationVersionValue}]]</td></tr>
+<tr><td>[[#{nav.environment}]]: [[#{nav.environmentValue}]]</td></tr>
+<tr><td>[[#{nav.desk}]]: [[#{nav.deskValue}]]</td></tr>
+<tr><td>[[#{nav.session}]]: [[#{nav.sessionValue}]]</td></tr>
+</table>

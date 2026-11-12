@@ -1,5 +1,6 @@
 {
   "actor": "supervisor",
+  "db_snapshot": "db/payment_issue.json",
   "description": "Issue a settlement payment",
   "expected": {
     "business_fields": {

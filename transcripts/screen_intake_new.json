@@ -1,0 +1,18 @@
+{
+  "actor": "adjuster1",
+  "db_snapshot": "db/screen_intake_new.json",
+  "description": "screen intake new",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/intake/new.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/intake/new.do"
+  },
+  "scenario": "screen_intake_new"
+}

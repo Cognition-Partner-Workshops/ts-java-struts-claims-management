@@ -1,0 +1,21 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/report_claims_adjuster9.json",
+  "description": "report claims adjuster9",
+  "expected": {
+    "business_fields": {
+      "adjuster": "adjuster9",
+      "claimCount": "0"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/report/adjusterClaims.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/report/adjusterClaims.do?adjuster=adjuster9"
+  },
+  "scenario": "report_claims_adjuster9"
+}

@@ -1,0 +1,21 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/workbench_statusHistory_default.json",
+  "description": "workbench statusHistory default",
+  "expected": {
+    "business_fields": {
+      "statusHistoryClaim": "119",
+      "statusHistoryCurrent": "DENIED"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/workbench/statusHistory.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/workbench/statusHistory.do"
+  },
+  "scenario": "workbench_statusHistory_default"
+}
