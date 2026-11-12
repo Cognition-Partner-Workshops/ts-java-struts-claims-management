@@ -15,6 +15,9 @@ test:
 capture:
 	python3 tools/capture/capture.py
 
+replay:
+	python3 tools/capture/capture.py replay --start-legacy
+
 clean:
 	mvn -q clean
 	rm -rf data target/db

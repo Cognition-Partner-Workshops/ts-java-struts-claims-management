@@ -1,0 +1,18 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/workbench_view_unknown.json",
+  "description": "workbench view unknown",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/error.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/workbench/view.do?claimId=99999"
+  },
+  "scenario": "workbench_view_unknown"
+}

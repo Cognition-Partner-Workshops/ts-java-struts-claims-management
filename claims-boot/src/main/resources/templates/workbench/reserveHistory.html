@@ -1,0 +1,49 @@
+<th:block th:replace="~{fragments/markers :: view('/WEB-INF/jsp/workbench/reserveHistory.jsp')}"></th:block>
+<th:block th:replace="~{fragments/header :: stylesheet}"></th:block>
+<table class="page" cellpadding="0" cellspacing="0" border="0">
+<th:block th:replace="~{fragments/header :: banner}"></th:block>
+<tr><td class="content">
+<table th:replace="~{fragments/nav :: nav}"></table>
+<h2><th:block th:text="#{jsp.reserve.history}"></th:block></h2>
+<table class="results" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<th><th:block th:text="#{jsp.effective.date}"></th:block></th>
+<th><th:block th:text="#{jsp.previous.reserve}"></th:block></th>
+<th><th:block th:text="#{jsp.new.reserve}"></th:block></th>
+<th><th:block th:text="#{jsp.reason}"></th:block></th></tr>
+<th:block th:each="history : ${reserveHistory}">
+<tr>
+<td><th:block th:text="${history.changeDate}"></th:block></td>
+<td><th:block th:replace="~{fragments/markers :: field(|oldReserve_${history.historyId}|, ${history.previousAmount}, 'money')}"></th:block></td>
+<td><th:block th:replace="~{fragments/markers :: field(|newReserve_${history.historyId}|, ${history.newAmount}, 'money')}"></th:block></td>
+<td><th:block th:text="${history.reason}"></th:block></td>
+</tr>
+</th:block>
+<tr><td colspan="4">Reserve changes are recorded separately from claim notes.</td></tr>
+</table>
+<table class="detail" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<th><th:block th:text="#{jsp.claim}"></th:block></th><td><th:block th:replace="~{fragments/markers :: field('reserveHistoryClaim', ${claimId}, 'integer')}"></th:block></td></tr>
+<tr>
+<th><th:block th:text="#{jsp.current.reserve}"></th:block></th><td><th:block th:replace="~{fragments/markers :: field('currentReserve', ${reserveAmount}, 'money')}"></th:block></td></tr>
+<tr>
+<th><th:block th:text="#{jsp.review.status}"></th:block></th><td><th:block th:replace="~{fragments/markers :: field('reserveReviewStatus', ${claimStatus}, 'text')}"></th:block></td></tr>
+</table>
+<table class="screen-audit" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<th><th:block th:text="#{jsp.screen.context}"></th:block></th>
+<td><th:block th:text="#{jsp.screen.readOnly}"></th:block></td>
+</tr>
+<tr>
+<th><th:block th:text="#{jsp.screen.operator}"></th:block></th>
+<td><th:block th:text="${user}"></th:block></td>
+</tr>
+<tr>
+<th><th:block th:text="#{jsp.screen.asOf}"></th:block></th>
+<td>[[${reportAsOfDate}]]</td>
+</tr>
+</table>
+</td></tr>
+<tr th:replace="~{fragments/footer :: footer}"></tr>
+</table>
+<th:block th:replace="~{fragments/footer :: links}"></th:block>

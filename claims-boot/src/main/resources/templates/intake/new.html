@@ -1,0 +1,42 @@
+<th:block th:replace="~{fragments/markers :: view('/WEB-INF/jsp/intake/new.jsp')}"></th:block>
+<table class="page" cellpadding="0" cellspacing="0" border="0">
+<th:block th:replace="~{fragments/header :: banner}"></th:block>
+<tr><td class="content">
+<table th:replace="~{fragments/nav :: nav}"></table>
+<h2><th:block th:text="#{intake.heading}"></th:block></h2>
+<form action="intake/submit.do" method="post">
+<th:block th:replace="~{fragments/markers :: errors(${nsValidationErrors})}"></th:block>
+<table class="form" cellpadding="3" cellspacing="0" border="0">
+<tr><td><th:block th:text="#{intake.claimant}"></th:block></td>
+<td><input type="text" name="claimantName" size="40"/></td></tr>
+<tr><td><th:block th:text="#{intake.lossDate}"></th:block></td>
+<td><input type="text" name="lossDate" size="20"/></td></tr>
+<tr><td><th:block th:text="#{intake.description}"></th:block></td>
+<td><textarea name="description" rows="5" cols="45"></textarea></td></tr>
+<tr><td><th:block th:text="#{intake.lossType}"></th:block></td>
+<td><input type="text" name="lossType" size="20"/></td></tr>
+<tr><td><th:block th:text="#{intake.initialReserve}"></th:block></td>
+<td><input type="text" name="initialReserve" size="20"/></td></tr>
+<tr><td>&nbsp;</td>
+<td><button type="submit"><th:block th:text="#{button.submit}"></th:block></button></td></tr>
+</table>
+</form>
+<p><th:block th:text="#{intake.instruction}"></th:block></p>
+<table class="screen-audit" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<th><th:block th:text="#{jsp.screen.context}"></th:block></th>
+<td><th:block th:text="#{jsp.screen.readOnly}"></th:block></td>
+</tr>
+<tr>
+<th><th:block th:text="#{jsp.screen.operator}"></th:block></th>
+<td><th:block th:text="${user}"></th:block></td>
+</tr>
+<tr>
+<th><th:block th:text="#{jsp.screen.asOf}"></th:block></th>
+<td>[[${reportAsOfDate}]]</td>
+</tr>
+</table>
+</td></tr>
+<tr th:replace="~{fragments/footer :: footer}"></tr>
+</table>
+<th:block th:replace="~{fragments/footer :: links}"></th:block>

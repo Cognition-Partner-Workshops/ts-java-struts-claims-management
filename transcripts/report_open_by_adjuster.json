@@ -1,5 +1,6 @@
 {
   "actor": "supervisor",
+  "db_snapshot": "db/report_open_by_adjuster.json",
   "description": "Open claims by adjuster",
   "expected": {
     "business_fields": {

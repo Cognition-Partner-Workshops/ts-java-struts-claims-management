@@ -1,5 +1,6 @@
 {
   "actor": "supervisor",
+  "db_snapshot": "db/settlement_policy_cap.json",
   "description": "Settlement capped by the policy limit",
   "expected": {
     "business_fields": {

@@ -1,5 +1,6 @@
 {
   "actor": "supervisor",
+  "db_snapshot": "db/payment_history.json",
   "description": "Review payment history",
   "expected": {
     "business_fields": {
