@@ -2,6 +2,7 @@
 """Captures deterministic NorthStar claims workflow transcripts."""
 
 import argparse
+import base64
 import glob
 import http.cookiejar
 import json
@@ -13,6 +14,7 @@ import time
 import urllib.parse
 import urllib.request
 import urllib.error
+import xml.etree.ElementTree as ET
 
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
@@ -21,6 +23,98 @@ CONTEXT_PATH = "/claims"
 FIELD_RE = re.compile(r'<span id="f_([^"]+)">(.*?)</span>', re.S)
 VIEW_RE = re.compile(r"<!--\s*ns:view\s+([^ ]+)\s*-->")
 ERROR_RE = re.compile(r"<!--\s*ns:error\s+([^ ]+)\s*-->")
+CAPTURE = os.path.join(ROOT, "tools", "capture")
+HSQLDB_JAR = os.path.expanduser(
+    "~/.m2/repository/org/hsqldb/hsqldb/2.7.3/hsqldb-2.7.3.jar")
+
+
+def schema_tables(schema):
+    tables = {}
+    schema = re.sub(r"--[^\n]*", "", schema)
+    for name, definition in re.findall(
+            r"CREATE\s+TABLE\s+(\w+)\s*\((.*?)\);", schema, re.I | re.S):
+        primary_key = re.search(r"PRIMARY\s+KEY\s*\(([^)]+)\)",
+                                definition, re.I)
+        if not primary_key:
+            raise ValueError("Missing primary key for " + name)
+        columns = [column.strip().upper()
+                   for column in primary_key.group(1).split(",")]
+        if not all(re.fullmatch(r"\w+", column) for column in columns):
+            raise ValueError("Invalid primary key for " + name)
+        tables[name.upper()] = ",".join(columns)
+    if not tables:
+        raise ValueError("No schema tables found")
+    return tables
+
+
+def decode_rows(output):
+    def decode(line):
+        return [None if value == "-" else base64.b64decode(
+            value, validate=True).decode("utf-8") for value in line.split("\t")]
+    lines = output.splitlines()
+    columns = decode(lines[0])
+    rows = []
+    for line in lines[1:]:
+        values = decode(line)
+        if len(values) != len(columns):
+            raise ValueError("JDBC row width does not match metadata")
+        rows.append(dict(zip(columns, values)))
+    return rows
+
+
+def prepare_snapshots():
+    classes = os.path.join(ROOT, "target", "capture-classes")
+    os.makedirs(classes, exist_ok=True)
+    subprocess.run(["javac", "-cp", HSQLDB_JAR, "-d", classes,
+                    os.path.join(CAPTURE, "DatabaseSnapshot.java")], check=True)
+    with open(os.path.join(ROOT, "src/main/resources/db/schema.sql"),
+              encoding="utf-8") as stream:
+        return schema_tables(stream.read()), classes
+
+
+def capture_pom():
+    namespace = "http://maven.apache.org/POM/4.0.0"
+    ET.register_namespace("", namespace)
+    def tag(name):
+        return "{" + namespace + "}" + name
+    tree = ET.parse(os.path.join(ROOT, "pom.xml"))
+    build = tree.getroot().find(tag("build"))
+    for name, value in [("directory", "target"),
+                        ("sourceDirectory", "src/main/java")]:
+        ET.SubElement(build, tag(name)).text = os.path.join(ROOT, value)
+    resources = ET.SubElement(build, tag("resources"))
+    resource = ET.SubElement(resources, tag("resource"))
+    ET.SubElement(resource, tag("directory")).text = os.path.join(
+        ROOT, "src/main/resources")
+    for plugin in build.find(tag("plugins")):
+        if plugin.find(tag("artifactId")).text == "jetty-maven-plugin":
+            config = plugin.find(tag("configuration"))
+            config.find(tag("contextXml")).text = os.path.join(
+                CAPTURE, "jetty-context.xml")
+            ET.SubElement(config, tag("webAppSourceDirectory")).text = (
+                os.path.join(ROOT, "src/main/webapp"))
+            ET.SubElement(config.find(tag("webApp")), tag("war")).text = (
+                os.path.join(ROOT, "src/main/webapp"))
+    directory = os.path.join(CAPTURE, "target")
+    os.makedirs(directory, exist_ok=True)
+    path = os.path.join(directory, "pom.xml")
+    tree.write(path, encoding="utf-8", xml_declaration=True)
+    return path
+
+
+def write_snapshot(name, tables, classes):
+    snapshot = {}
+    for table, primary_key in tables.items():
+        output = subprocess.check_output(
+            ["java", "-cp", os.pathsep.join([classes, HSQLDB_JAR]),
+             "DatabaseSnapshot", table, primary_key], text=True)
+        snapshot[table] = decode_rows(output)
+    directory = os.path.join(ROOT, "transcripts", "db_snapshots")
+    os.makedirs(directory, exist_ok=True)
+    with open(os.path.join(directory, name + ".json"), "w",
+              encoding="utf-8") as stream:
+        json.dump(snapshot, stream, indent=2, sort_keys=True)
+        stream.write("\n")
 
 
 SCENARIOS = [
@@ -236,12 +330,15 @@ def reset_database():
 
 def start_server():
     maven_args = os.environ.get("MAVEN_CAPTURE_ARGS", "").split()
-    process = subprocess.Popen(["mvn"] + maven_args + ["-q", "jetty:run"],
-                               cwd=ROOT,
-                               stdout=subprocess.DEVNULL,
-                               stderr=subprocess.STDOUT)
+    log_path = os.path.join(ROOT, "target", "capture-jetty.log")
+    with open(log_path, "w", encoding="utf-8") as log:
+        process = subprocess.Popen(["mvn"] + maven_args + [
+            "-f", capture_pom(), "-q", "jetty:run"], cwd=ROOT,
+            stdout=log, stderr=subprocess.STDOUT)
     deadline = time.time() + 180
     while time.time() < deadline:
+        if process.poll() is not None:
+            raise RuntimeError("Jetty exited; see " + log_path)
         try:
             code, unused, body = request(urllib.request.build_opener(), "GET",
                                           "/login.do")
@@ -251,7 +348,8 @@ def start_server():
             pass
         time.sleep(1)
     process.terminate()
-    raise RuntimeError("Jetty did not become ready")
+    process.wait(timeout=15)
+    raise RuntimeError("Jetty did not become ready; see " + log_path)
 
 
 def options(scenario):
@@ -312,6 +410,7 @@ def main():
     try:
         if not args.no_reset:
             reset_database()
+        tables, classes = prepare_snapshots()
         process = start_server()
         jar = http.cookiejar.CookieJar()
         opener = urllib.request.build_opener(
@@ -323,6 +422,7 @@ def main():
             if actor and actor not in actors:
                 actors[actor] = login(actor)
             transcript = write_transcript(actors.get(actor, opener), scenario)
+            write_snapshot(transcript["scenario"], tables, classes)
             path = os.path.join(ROOT, "transcripts",
                                 transcript["scenario"] + ".json")
             with open(path, "w", encoding="utf-8") as stream:

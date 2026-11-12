@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Configure PUBLIC "-//Jetty//Configure//EN" "http://www.eclipse.org/jetty/configure_9_0.dtd">
+<Configure id="wac" class="org.eclipse.jetty.webapp.WebAppContext">
+  <Call name="addSystemClass"><Arg>org.hsqldb.</Arg></Call>
+  <New id="captureDb" class="org.hsqldb.server.Server">
+    <Set name="Address">127.0.0.1</Set>
+    <Set name="Port">9137</Set>
+    <Set name="NoSystemExit">true</Set>
+    <Call name="setDatabaseName"><Arg type="int">0</Arg><Arg>northstar</Arg></Call>
+    <Call name="setDatabasePath"><Arg type="int">0</Arg><Arg>file:<SystemProperty name="user.dir"/>/target/db/northstar</Arg></Call>
+    <Call name="start"/>
+  </New>
+  <New class="org.eclipse.jetty.plus.jndi.Resource">
+    <Arg><Ref refid="wac"/></Arg>
+    <Arg>jdbc/ClaimsDB</Arg>
+    <Arg>
+      <New class="org.hsqldb.jdbc.JDBCDataSource">
+        <Set name="Database">jdbc:hsqldb:hsql://127.0.0.1:9137/northstar</Set>
+        <Set name="User">SA</Set>
+      </New>
+    </Arg>
+  </New>
+</Configure>
