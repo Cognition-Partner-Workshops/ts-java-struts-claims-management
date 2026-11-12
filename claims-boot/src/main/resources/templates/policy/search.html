@@ -1,0 +1,37 @@
+<th:block th:replace="~{fragments/layout :: page('/WEB-INF/jsp/policy/search.jsp', ~{::content})}"><th:block th:fragment="content">
+<h2><th:block th:text="#{policy.search.heading}"></th:block></h2>
+<form name="policySearchForm" method="post" th:action="@{/policy/search.do}">
+<table class="form" cellpadding="3" cellspacing="0" border="0">
+<tr><td><th:block th:text="#{policy.line}"></th:block></td>
+<td><input type="text" name="lineOfBusiness" th:value="${searchLine}"></td>
+<td><input type="submit" th:value="#{button.search}"></td></tr>
+</table>
+</form>
+<table class="results" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<th><th:block th:text="#{policy.number}"></th:block></th>
+<th><th:block th:text="#{policy.line}"></th:block></th>
+<th><th:block th:text="#{policy.insured}"></th:block></th>
+<th><th:block th:text="#{policy.limit}"></th:block></th></tr>
+<th:block th:each="policy : ${policies}">
+<tr><td><th:block th:text="${policy.policyNumber}"></th:block></td>
+<td><th:block th:text="${policy.lineOfBusiness}"></th:block></td>
+<td><th:block th:text="${policy.insuredName}"></th:block></td>
+<td><th:block th:replace="~{fragments/markers :: field(${'policyLimit_' + policy.policyId}, ${policy.policyLimit}, 'money')}"></th:block></td></tr>
+</th:block>
+</table>
+<table class="screen-audit" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<th><th:block th:text="#{jsp.screen.context}"></th:block></th>
+<td><th:block th:text="#{jsp.screen.readOnly}"></th:block></td>
+</tr>
+<tr>
+<th><th:block th:text="#{jsp.screen.operator}"></th:block></th>
+<td><th:block th:text="${user}"></th:block></td>
+</tr>
+<tr>
+<th><th:block th:text="#{jsp.screen.asOf}"></th:block></th>
+<td><th:block th:text="${reportAsOfDate}"></th:block></td>
+</tr>
+</table>
+</th:block></th:block>
