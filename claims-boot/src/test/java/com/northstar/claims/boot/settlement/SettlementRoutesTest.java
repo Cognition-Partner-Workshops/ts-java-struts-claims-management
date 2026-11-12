@@ -40,7 +40,8 @@ class SettlementRoutesTest {
                 .andExpect(view().name("settlement/refused"))
                 .andExpect(content().string(containsString("<!-- ns:error errors.settlement.authority -->")));
         mvc.perform(get("/settlement/detail.do").with(user("supervisor")).param("claimId", "99999"))
-                .andExpect(view().name("settlement/detail")).andExpect(status().isOk());
+                .andExpect(view().name("error")).andExpect(status().isOk())
+                .andExpect(content().string(containsString("Reference status: null")));
         mvc.perform(get("/settlement/calculate.do").with(user("supervisor")).param("coveredAmount", "NaN"))
                 .andExpect(view().name("error")).andExpect(status().isOk())
                 .andExpect(content().string(containsString("Reference status: null")));

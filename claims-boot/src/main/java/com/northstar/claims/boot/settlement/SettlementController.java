@@ -64,7 +64,11 @@ public class SettlementController {
 
     @RequestMapping("/settlement/detail.do")
     public String detail(HttpServletRequest request, org.springframework.ui.Model model) {
-        request.setAttribute("settlement", dao.findByClaim(integer(request.getParameter("claimId"), 119)));
+        Settlement settlement = dao.findByClaim(integer(request.getParameter("claimId"), 119));
+        if (settlement == null) {
+            throw new IllegalStateException("No settlement bean available");
+        }
+        request.setAttribute("settlement", settlement);
         request.setAttribute("screenName", "detail");
         request.setAttribute("screenMode", "read");
         request.setAttribute("operatorScope", "claims");
