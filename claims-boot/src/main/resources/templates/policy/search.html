@@ -1,4 +1,4 @@
-<th:block th:replace="~{fragments/layout :: page('/WEB-INF/jsp/policy/search.jsp', ~{::content})}"><th:block th:fragment="content">
+<th:block th:replace="~{policy/layout :: page('/WEB-INF/jsp/policy/search.jsp', ~{::content})}"><th:block th:fragment="content">
 <h2><th:block th:text="#{policy.search.heading}"></th:block></h2>
 <form name="policySearchForm" method="post" th:action="@{/policy/search.do}">
 <table class="form" cellpadding="3" cellspacing="0" border="0">

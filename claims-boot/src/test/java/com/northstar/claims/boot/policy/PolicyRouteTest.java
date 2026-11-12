@@ -22,9 +22,11 @@ import org.junit.jupiter.api.TestFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.transaction.annotation.Transactional;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT,
         properties = "claims.db.url=jdbc:hsqldb:file:target/test-db/policy")
@@ -90,8 +92,8 @@ class PolicyRouteTest {
                     Matcher view = VIEW.matcher(response.body());
                     assertThat(view.find()).isTrue();
                     assertThat("forward:" + view.group(1)).isEqualTo(expected.path("result").asText());
-                    assertThat(json.valueToTree(fields(response.body())))
-                            .isEqualTo(expected.path("business_fields"));
+                    JsonNode actualFields = json.valueToTree(fields(response.body()));
+                    assertThat(actualFields).isEqualTo(expected.path("business_fields"));
                     assertThat(ERROR.matcher(response.body()).find()).isFalse();
                 }));
             }
@@ -123,6 +125,19 @@ class PolicyRouteTest {
     }
 
     @Test
+    void stylesheetInclusionsMatchTheLegacyJspHeaders() throws Exception {
+        HttpClient client = browser("supervisor");
+        for (String route : List.of("search", "view", "coverages")) {
+            assertThat(request(client, "/claims/policy/" + route + ".do?policyId=9001", null).body())
+                    .doesNotContain("rel=\"stylesheet\"");
+        }
+        for (String route : List.of("list", "coverageDetail", "insuredParty", "renewal")) {
+            assertThat(request(client, "/claims/policy/" + route + ".do?policyId=9001", null).body())
+                    .contains("href=\"/claims/northstar.css\"");
+        }
+    }
+
+    @Test
     void placeholderInsuredDataDoesNotMutatePolicy() throws Exception {
         Policy before = policies.findById(9001);
         String body = request(browser("supervisor"), "/claims/policy/insuredParty.do?policyId=9001", null).body();
@@ -139,19 +154,19 @@ class PolicyRouteTest {
         assertThat(policies.findAll()).hasSize(42)
                 .extracting(Policy::getPolicyId).isSorted();
         Policy policy = policies.findById(9001);
-        assertThat(policy.getPolicyNumber()).isEqualTo("AUTO-LOW-9001");
+        assertThat(policy.getPolicyNumber()).isEqualTo("NS-09001");
         assertThat(policy.getPolicyLimit()).isEqualTo(1000.0);
         assertThat(policy.getDeductible()).isEqualTo(100.0);
         assertThat(policies.findById(99999)).isNull();
         assertThat(policies.findByLine("AUTO")).hasSize(11)
                 .extracting(Policy::getPolicyNumber).isSorted();
         assertThat(policies.findByLine("HOME")).isEmpty();
-        assertThat(policies.search("AUTO-LOW-9001")).hasSize(1);
+        assertThat(policies.search("NS-09001")).hasSize(1);
         assertThat(policies.search(policy.getInsuredName())).extracting(Policy::getPolicyId).contains(9001);
         policies.updateStatus(9001, "TEST");
         assertThat(policies.findById(9001).getStatus()).isEqualTo("TEST");
-        policies.delete(9001);
-        assertThat(policies.findById(9001)).isNull();
-        assertThat(policies.count()).isEqualTo(41);
+        assertThatThrownBy(() -> policies.delete(9001)).isInstanceOf(DataIntegrityViolationException.class);
+        policies.delete(99999);
+        assertThat(policies.count()).isEqualTo(42);
     }
 }
