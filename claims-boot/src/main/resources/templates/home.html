@@ -1,0 +1,26 @@
+<html xmlns:th="http://www.thymeleaf.org"><th:block th:replace="~{fragments/layout :: page(~{::main})}"><main th:remove="tag">
+<th:block th:replace="~{fragments/ns :: view('/WEB-INF/jsp/home.jsp')}"></th:block>
+<h2><span th:text="#{home.heading}" th:remove="tag"></span></h2>
+<p><span th:text="#{home.introduction}" th:remove="tag"></span></p>
+<table class="dashboard" cellpadding="3" cellspacing="0" border="1">
+<tr>
+    <th><span th:text="#{home.column.area}" th:remove="tag"></span></th>
+    <th><span th:text="#{home.column.action}" th:remove="tag"></span></th>
+</tr>
+<tr>
+    <td><span th:text="#{home.policyArea}" th:remove="tag"></span></td>
+    <td><a href="policy/list.do"><span th:text="#{home.policyLink}" th:remove="tag"></span></a></td>
+</tr>
+<tr>
+    <td><span th:text="#{home.claimArea}" th:remove="tag"></span></td>
+    <td><a href="workbench/list.do"><span th:text="#{home.claimLink}" th:remove="tag"></span></a></td>
+</tr>
+<tr>
+    <td><span th:text="#{home.reportArea}" th:remove="tag"></span></td>
+    <td><a href="report/index.do"><span th:text="#{home.reportLink}" th:remove="tag"></span></a></td>
+</tr>
+</table>
+<p><span th:text="#{home.sessionUser}" th:remove="tag"></span>:
+<span th:replace="~{fragments/ns :: field('signedInUser',${session.user})}"></span></p>
+<th:block th:replace="~{fragments/layout :: screenAudit}"></th:block>
+</main></th:block></html>

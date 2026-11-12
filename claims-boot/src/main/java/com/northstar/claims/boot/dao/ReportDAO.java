@@ -1,0 +1,225 @@
+package com.northstar.claims.boot.dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import com.northstar.claims.boot.util.ClaimsConfig;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
+/**
+ * Produces the aggregate rows displayed by the claims reporting screens.
+ * Each query returns raw maps because that was the convention used by the
+ * report framework shared by the application in this period.
+ */
+@org.springframework.stereotype.Repository
+public class ReportDAO {
+
+    private final org.springframework.jdbc.core.JdbcTemplate jdbc;
+
+    public ReportDAO(org.springframework.jdbc.core.JdbcTemplate jdbc) {
+        this.jdbc = jdbc;
+    }
+
+    private static final Log log = LogFactory.getLog(ReportDAO.class);
+
+    /** Groups open claims by assigned adjuster. */
+    public List openClaimsByAdjuster() throws SQLException {
+        return jdbc.execute((org.springframework.jdbc.core.ConnectionCallback<List>) conn -> {
+            Statement st = null;
+            ResultSet rs = null;
+            List rows = new ArrayList();
+            try {
+                st = conn.createStatement();
+                rs = st.executeQuery(
+                        "select assigned_adjuster, count(*) as open_count, "
+                        + "coalesce(sum(reserve_amount),0) as reserve_total "
+                        + "from CLAIM where status in ('OPEN','INVESTIGATING') "
+                        + "group by assigned_adjuster order by assigned_adjuster");
+                while (rs.next()) {
+                    Map row = new HashMap();
+                    row.put("adjuster", rs.getString("assigned_adjuster"));
+                    row.put("openCount", new Double(rs.getDouble("open_count")));
+                    row.put("reserveTotal", new Double(rs.getDouble("reserve_total")));
+                    rows.add(row);
+                }
+                return rows;
+            } finally {
+                try { rs.close(); } catch (Exception e) {}
+                try { st.close(); } catch (Exception e) {}
+            }
+        });
+    }
+
+    /** Calculates paid plus reserve against premium for each business line. */
+    public List lossRatioByLine() throws SQLException {
+        return jdbc.execute((org.springframework.jdbc.core.ConnectionCallback<List>) conn -> {
+            Statement st = null;
+            ResultSet rs = null;
+            List rows = new ArrayList();
+            try {
+                st = conn.createStatement();
+                StringBuffer sql = new StringBuffer();
+                sql.append("select p.line_of_business, sum(p.annual_premium) premium_total,");
+                sql.append(" coalesce(sum(c.reserve_amount),0) reserve_total,");
+                sql.append(" coalesce(sum(pay.amount),0) paid_total");
+                sql.append(" from POLICY p left join CLAIM c on p.policy_id = c.policy_id");
+                sql.append(" left join PAYMENT pay on c.claim_id = pay.claim_id");
+                sql.append(" group by p.line_of_business order by p.line_of_business");
+                rs = st.executeQuery(sql.toString());
+                while (rs.next()) {
+                    Map row = new HashMap();
+                    double premium = rs.getDouble("premium_total");
+                    double loss = rs.getDouble("reserve_total") + rs.getDouble("paid_total");
+                    row.put("lineOfBusiness", rs.getString("line_of_business"));
+                    row.put("premiumTotal", new Double(premium));
+                    row.put("lossTotal", new Double(loss));
+                    row.put("lossRatio", new Double(premium == 0 ? 0 : loss / premium));
+                    rows.add(row);
+                }
+                return rows;
+            } finally {
+                try { rs.close(); } catch (Exception e) {}
+                try { st.close(); } catch (Exception e) {}
+            }
+        });
+    }
+
+    /** Places claims into age buckets based on their reported date. */
+    public List agedClaims() throws SQLException {
+        return jdbc.execute((org.springframework.jdbc.core.ConnectionCallback<List>) conn -> {
+            Statement st = null;
+            ResultSet rs = null;
+            List rows = new ArrayList();
+            try {
+                st = conn.createStatement();
+                String asOfDate = ClaimsConfig.get("report.asof.date");
+                rs = st.executeQuery(
+                        "select case "
+                        + "when datediff('day', reported_date, date '" + asOfDate + "') <= 30 "
+                        + "then '0_30' "
+                        + "when datediff('day', reported_date, date '" + asOfDate + "') <= 60 "
+                        + "then '31_60' "
+                        + "when datediff('day', reported_date, date '" + asOfDate + "') <= 90 "
+                        + "then '61_90' else '91_PLUS' end as age_bucket, "
+                        + "count(*) as claim_count, "
+                        + "coalesce(sum(reserve_amount),0) as reserve_total "
+                        + "from CLAIM where status not in ('CLOSED','DENIED') "
+                        + "group by case "
+                        + "when datediff('day', reported_date, date '" + asOfDate + "') <= 30 "
+                        + "then '0_30' "
+                        + "when datediff('day', reported_date, date '" + asOfDate + "') <= 60 "
+                        + "then '31_60' "
+                        + "when datediff('day', reported_date, date '" + asOfDate + "') <= 90 "
+                        + "then '61_90' else '91_PLUS' end order by age_bucket");
+                while (rs.next()) {
+                    Map row = new HashMap();
+                    row.put("bucket", rs.getString("age_bucket").trim());
+                    row.put("claimCount", new Double(rs.getDouble("claim_count")));
+                    row.put("reserveTotal", new Double(rs.getDouble("reserve_total")));
+                    rows.add(row);
+                }
+                return rows;
+            } finally {
+                try { rs.close(); } catch (Exception e) {}
+                try { st.close(); } catch (Exception e) {}
+            }
+        });
+    }
+
+    /** Keeps the report ordering query in the form used by old ad-hoc reports. */
+    public List claimCounts(String orderBy) throws SQLException {
+        return jdbc.execute((org.springframework.jdbc.core.ConnectionCallback<List>) conn -> {
+            Statement st = null;
+            ResultSet rs = null;
+            List rows = new ArrayList();
+            try {
+                st = conn.createStatement();
+                rs = st.executeQuery("select status, count(*) as count from CLAIM group by status order by " + orderBy);
+                while (rs.next()) {
+                    Map row = new HashMap();
+                    row.put("status", rs.getString("status"));
+                    row.put("count", new Double(rs.getDouble("count")));
+                    rows.add(row);
+                }
+                return rows;
+            } finally {
+                try { rs.close(); } catch (Exception e) {}
+                try { st.close(); } catch (Exception e) {}
+            }
+        });
+    }
+
+    /** Lists claims for one adjuster on the adjuster claims screen. */
+    public List claimsForAdjuster(String adjuster) throws SQLException {
+        return jdbc.execute((org.springframework.jdbc.core.ConnectionCallback<List>) conn -> {
+            Statement st = null;
+            ResultSet rs = null;
+            List rows = new ArrayList();
+            try {
+                st = conn.createStatement();
+                rs = st.executeQuery("select claim_number, status, reserve_amount "
+                        + "from CLAIM where assigned_adjuster = '" + adjuster
+                        + "' order by claim_number");
+                while (rs.next()) {
+                    Map row = new HashMap();
+                    row.put("claimNumber", rs.getString("claim_number"));
+                    row.put("status", rs.getString("status"));
+                    row.put("reserveAmount", new Double(rs.getDouble("reserve_amount")));
+                    rows.add(row);
+                }
+                return rows;
+            } finally {
+                try { rs.close(); } catch (Exception e) {}
+                try { st.close(); } catch (Exception e) {}
+            }
+        });
+    }
+
+    /** Claims closed on or before the as-of date. */
+    public List closedClaimsThrough(String asOfDate) throws SQLException {
+        return closures("c.closed_date <= date '" + asOfDate + "'");
+    }
+
+    /** Closures post the day after the close date, so count from then. */
+    public List closuresPostedThrough(String asOfDate) throws SQLException {
+        return closures("dateadd('day', 1, c.closed_date) <= date '"
+                + asOfDate + "'");
+    }
+
+    private List closures(String condition) throws SQLException {
+        return jdbc.execute((org.springframework.jdbc.core.ConnectionCallback<List>) conn -> {
+            Statement st = null;
+            ResultSet rs = null;
+            List rows = new ArrayList();
+            try {
+                st = conn.createStatement();
+                rs = st.executeQuery("select cl.claim_number, c.closed_date "
+                        + "from CLAIM_CLOSURE c join CLAIM cl on cl.claim_id = c.claim_id "
+                        + "where " + condition + " order by cl.claim_number");
+                while (rs.next()) {
+                    Map row = new HashMap();
+                    row.put("claimNumber", rs.getString("claim_number"));
+                    row.put("closedDate", rs.getString("closed_date"));
+                    rows.add(row);
+                }
+                return rows;
+            } finally {
+                try { rs.close(); } catch (Exception e) {}
+                try { st.close(); } catch (Exception e) {}
+            }
+        });
+    }
+
+    /** Records a report query in the application log. */
+    private void trace(String text) {
+        log.info(text);
+        System.out.println(text);
+    }
+}

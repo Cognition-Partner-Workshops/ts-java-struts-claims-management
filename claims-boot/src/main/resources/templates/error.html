@@ -1,0 +1,14 @@
+<th:block th:replace="~{fragments/ns :: view('/WEB-INF/jsp/error.jsp')}"></th:block>
+<html xmlns:th="http://www.thymeleaf.org"><head><title><span th:text="#{errors.title}" th:remove="tag"></span></title></head><body>
+<table class="error" cellpadding="4" cellspacing="0" border="1">
+<tr><td><h1><span th:text="#{errors.title}" th:remove="tag"></span></h1></td></tr>
+<tr><td><span th:text="#{errors.system}" th:remove="tag"></span></td></tr>
+<tr><td><span th:text="#{errors.reference}" th:remove="tag"></span>: 500</td></tr>
+<tr><td><a th:href="@{/login.do}"><span th:text="#{errors.loginLink}" th:remove="tag"></span></a></td></tr>
+<tr><td><span th:text="#{errors.contact}" th:remove="tag"></span></td></tr>
+<tr><td><span th:text="#{errors.retry}" th:remove="tag"></span></td></tr>
+<tr><td><span th:text="#{errors.reference}" th:remove="tag"></span></td></tr>
+<tr><td><span th:text="#{errors.status}" th:remove="tag"></span></td></tr>
+<tr><td><span th:text="#{errors.session}" th:remove="tag"></span></td></tr>
+</table>
+</body></html>

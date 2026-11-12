@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.thymeleaf.org"><th:block th:replace="~{fragments/layout :: page(~{::main})}"><main th:remove="tag">
+<th:block th:replace="~{fragments/ns :: view('/WEB-INF/jsp/admin/reference.jsp')}"></th:block>
+<h2><span th:text="#{admin.reference.heading}" th:remove="tag"></span></h2>
+<table class="results" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<th><span th:text="#{admin.reference.code}" th:remove="tag"></span></th>
+<th><span th:text="#{admin.reference.description}" th:remove="tag"></span></th></tr>
+<tr><td><span th:replace="~{fragments/ns :: field('reference_AUTO','AUTO')}"></span></td>
+<td><span th:text="#{admin.reference.auto}" th:remove="tag"></span></td></tr>
+<tr><td><span th:replace="~{fragments/ns :: field('reference_HOMEOWNERS','HOMEOWNERS')}"></span></td>
+<td><span th:text="#{admin.reference.homeowners}" th:remove="tag"></span></td></tr>
+<tr><td><span th:replace="~{fragments/ns :: field('reference_COMMERCIAL','COMMERCIAL_PROPERTY')}"></span></td>
+<td><span th:text="#{admin.reference.commercial}" th:remove="tag"></span></td></tr>
+<tr><td><span th:replace="~{fragments/ns :: field('reference_LIABILITY','GENERAL_LIABILITY')}"></span></td>
+<td><span th:text="#{admin.reference.liability}" th:remove="tag"></span></td></tr>
+</table>
+<p><span th:text="#{admin.reference.note}" th:remove="tag"></span></p>
+<th:block th:replace="~{fragments/layout :: screenAudit}"></th:block>
+</main></th:block></html>

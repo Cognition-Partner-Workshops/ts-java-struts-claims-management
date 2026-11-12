@@ -25,7 +25,7 @@ class ClaimsBootApplicationTests {
     void explicitDoPathResolvesUnderClaimsContext() throws Exception {
         mockMvc.perform(get("/claims/login.do").contextPath("/claims"))
                 .andExpect(status().isOk())
-                .andExpect(content().string("Claims Boot foundation: login screen not implemented yet.\n"));
+                .andExpect(content().string(org.hamcrest.Matchers.containsString("ns:view /WEB-INF/jsp/login.jsp")));
     }
 
     @Test

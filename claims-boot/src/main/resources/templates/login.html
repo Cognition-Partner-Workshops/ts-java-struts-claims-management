@@ -1,0 +1,18 @@
+<th:block th:replace="~{fragments/ns :: view('/WEB-INF/jsp/login.jsp')}"></th:block>
+<html xmlns:th="http://www.thymeleaf.org"><head><title><span th:text="#{login.title}" th:remove="tag"></span></title>
+<link rel="stylesheet" type="text/css"
+      th:href="@{/northstar.css}"></head><body>
+<table class="login" cellpadding="4" cellspacing="0" border="0">
+<tr><td colspan="2"><h1><span th:text="#{login.title}" th:remove="tag"></span></h1></td></tr>
+<tr><td colspan="2"><th:block th:replace="~{fragments/ns :: errors(${errors})}"></th:block></td></tr>
+<form method="post" th:action="@{/login.do}">
+<tr><td><span th:text="#{login.username}" th:remove="tag"></span></td>
+<td><input type="text" name="username" th:value="${username}" size="25"></td></tr>
+<tr><td><span th:text="#{login.password}" th:remove="tag"></span></td>
+<td><input type="password" name="password" th:value="${password}" size="25"></td></tr>
+<tr><td>&nbsp;</td>
+<td><button type="submit"><span th:text="#{login.submit}" th:remove="tag"></span></button></td></tr>
+</form>
+<tr><td colspan="2"><span th:text="#{login.help}" th:remove="tag"></span></td></tr>
+</table>
+</body></html>

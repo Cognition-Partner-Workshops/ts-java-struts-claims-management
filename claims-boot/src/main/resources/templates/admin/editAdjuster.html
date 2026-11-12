@@ -1,0 +1,19 @@
+<html xmlns:th="http://www.thymeleaf.org"><th:block th:replace="~{fragments/layout :: page(~{::main})}"><main th:remove="tag">
+<th:block th:replace="~{fragments/ns :: view('/WEB-INF/jsp/admin/editAdjuster.jsp')}"></th:block>
+<h2><span th:text="#{admin.edit.heading}" th:remove="tag"></span></h2>
+<form method="post" th:action="@{/admin/adjusters.do}">
+<th:block th:replace="~{fragments/ns :: errors(${errors})}"></th:block>
+<table class="form" cellpadding="3" cellspacing="0" border="0">
+<tr><td><span th:text="#{admin.name}" th:remove="tag"></span></td>
+<td><input type="text" name="fullName" th:value="${fullName}"></td></tr>
+<tr><td><span th:text="#{admin.region}" th:remove="tag"></span></td>
+<td><input type="text" name="region" th:value="${region}"></td></tr>
+<tr><td><span th:text="#{admin.active}" th:remove="tag"></span></td>
+<td><input type="text" name="active" th:value="${active}"></td></tr>
+<tr><td>&nbsp;</td>
+<td><button type="submit"><span th:text="#{button.save}" th:remove="tag"></span></button></td></tr>
+</table>
+</form>
+<p><span th:text="#{admin.edit.instruction}" th:remove="tag"></span></p>
+<th:block th:replace="~{fragments/layout :: screenAudit}"></th:block>
+</main></th:block></html>
