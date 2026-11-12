@@ -1,0 +1,28 @@
+<th:block th:replace="~{fragments/layout :: page('/WEB-INF/jsp/settlement/refused.jsp', ~{::content})}"><th:block th:fragment="content">
+<th:block th:replace="~{fragments/markers :: errors(${nsValidationErrors})}"></th:block>
+<h2><th:block th:text="#{settlement.refused.heading}"></th:block></h2>
+<p><th:block th:text="#{errors.settlement.authority}"></th:block></p>
+<table class="details" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<th><th:block th:text="#{settlement.amount}"></th:block></th><td><th:block th:replace="~{fragments/markers :: field('refusedAmount', ${refusedAmount}, 'money')}"></th:block></td></tr>
+<tr>
+<th><th:block th:text="#{settlement.approvalLimit}"></th:block></th><td><th:block th:replace="~{fragments/markers :: field('approvalLimit', ${approvalLimit}, 'money')}"></th:block></td></tr>
+<tr>
+<th><th:block th:text="#{report.adjuster}"></th:block></th><td><th:block th:replace="~{fragments/markers :: field('refusedAdjuster', ${refusedAdjuster}, 'text')}"></th:block></td></tr>
+</table>
+<table class="screen-audit" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<th><th:block th:text="#{jsp.screen.context}"></th:block></th>
+<td><th:block th:text="#{jsp.screen.readOnly}"></th:block></td>
+</tr>
+<tr>
+<th><th:block th:text="#{jsp.screen.operator}"></th:block></th>
+<td><th:block th:text="${user}"></th:block></td>
+</tr>
+<tr>
+<th><th:block th:text="#{jsp.screen.asOf}"></th:block></th>
+<td><th:block th:text="${reportAsOfDate}"></th:block></td>
+</tr>
+</table>
+
+</th:block></th:block>
