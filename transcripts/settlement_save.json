@@ -1,5 +1,6 @@
 {
   "actor": "supervisor",
+  "db_snapshot": "db/settlement_save.json",
   "description": "Save the calculated settlement",
   "expected": {
     "business_fields": {

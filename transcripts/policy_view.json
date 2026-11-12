@@ -1,5 +1,6 @@
 {
   "actor": "supervisor",
+  "db_snapshot": "db/policy_view.json",
   "description": "View the reserved low-limit policy",
   "expected": {
     "business_fields": {

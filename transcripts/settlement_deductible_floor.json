@@ -1,5 +1,6 @@
 {
   "actor": "supervisor",
+  "db_snapshot": "db/settlement_deductible_floor.json",
   "description": "Settlement floored when deductible exceeds the loss",
   "expected": {
     "business_fields": {
