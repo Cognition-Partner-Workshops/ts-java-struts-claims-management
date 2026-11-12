@@ -19,7 +19,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /** Screen contracts and DB effects that would otherwise be lost in a framework port. */
-@SpringBootTest(properties = "claims.db.url=jdbc:hsqldb:mem:intake-workbench")
+@SpringBootTest(properties = "claims.db.url=jdbc:hsqldb:file:target/test-db/intake-workbench")
 @AutoConfigureMockMvc
 class IntakeWorkbenchTest {
     @Autowired MockMvc mvc;
