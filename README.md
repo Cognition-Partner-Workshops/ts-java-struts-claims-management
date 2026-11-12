@@ -1,6 +1,6 @@
 # NorthStar Claims Management
 
-NorthStar Claims Management is a deliberately dated Apache Struts 1.3.10
+NorthStar Claims Management is an Apache Struts 1.3.10
 property and casualty claims system. It uses Servlet 2.4 deployment
 descriptors, JSP runtime compilation, raw JDBC, and an HSQLDB file database.
 The source reflects the conventions and maintenance history of a long-lived
@@ -39,15 +39,6 @@ workflow scenario list, writes normalized JSON transcripts under
 `transcripts/`, and shuts Jetty down. The transcripts are fixtures for a
 replay harness and expose semantic values through the `<ns:field>` extraction
 spans.
-
-## Known issues / technical debt
-
-The application declares a container-managed JNDI datasource but retains a
-DriverManager fallback because deployment environments differ. Several
-actions contain direct SQL, SQL construction is inconsistent, and the
-connection pool is hand-rolled. JSPs use shared includes rather than a
-proper layout framework. The Maven Jetty run emits duplicate JSTL scanning
-warnings. Authentication uses plaintext-style adjuster credentials.
 
 This repository is the legacy source of truth. Modernization work belongs in
 a separate target repository and should not rewrite this baseline in place.

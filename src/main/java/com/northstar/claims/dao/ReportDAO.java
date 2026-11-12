@@ -180,12 +180,10 @@ public class ReportDAO {
         }
     }
 
-    /** Claims closed on or before the as-of date. */
     public List closedClaimsThrough(String asOfDate) throws SQLException {
         return closures("c.closed_date <= date '" + asOfDate + "'");
     }
 
-    /** Closures post the day after the close date, so count from then. */
     public List closuresPostedThrough(String asOfDate) throws SQLException {
         return closures("dateadd('day', 1, c.closed_date) <= date '"
                 + asOfDate + "'");

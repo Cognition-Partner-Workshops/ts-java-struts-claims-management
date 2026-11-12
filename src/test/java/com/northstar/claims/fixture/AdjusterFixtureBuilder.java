@@ -24,7 +24,6 @@ public class AdjusterFixtureBuilder {
         return this;
     }
 
-    /** Stores the adjuster with an MD5 password hash. */
     public String insert(int adjusterId) throws Exception {
         Connection connection = ConnectionPool.getInstance().getConnection();
         PreparedStatement statement = null;

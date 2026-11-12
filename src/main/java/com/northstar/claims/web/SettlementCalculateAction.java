@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Handles the SettlementCalculateAction request in the claims web module.
- * The calculated settlement is kept in the session for the save screen.
  */
 public class SettlementCalculateAction extends SettlementAuthorityAction {
 

@@ -11,7 +11,6 @@ public class SettlementCalculator {
     /** Settlement totals are kept to the cent. */
     public static final int SCALE = 2;
 
-    /** Half-cent totals round to the even cent. */
     public static final int ROUNDING = BigDecimal.ROUND_HALF_EVEN;
 
     private static SettlementCalculator instance;
