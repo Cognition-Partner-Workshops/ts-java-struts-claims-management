@@ -1,0 +1,61 @@
+id,layer,user,claim_id,covered_amount,deductible,depreciation,policy_limit,expected_outcome,expected_amount,expected_capped,expected_deductible_applied,expected_policy_limit,expected_approval_limit,expected_extra,suspect,reason
+C01,calculator,,,10000,500,100,20000,ok,9400.00,false,500.00,,,,,
+C02,calculator,,,10000,(blank),100,20000,ok,9900.00,false,0.00,,,,,
+C03,calculator,,,10000,,100,20000,ok,9900.00,false,0.00,,,,,
+C04,calculator,,,10000,(spaces),100,20000,ok,9900.00,false,0.00,,,,,
+C05,calculator,,,1000,2000,100,20000,ok,0.00,false,2000.00,,,,suspect,deductibleApplied reports the full 2000 although only 900 of loss remained after depreciation
+C06,calculator,,,1000,0,1500,20000,ok,0.00,false,0.00,,,,,
+C07,calculator,,,20000,500,100,10000,ok,10000.00,true,500.00,,,,,
+C08,calculator,,,10500,500,0,10000,ok,10000.00,false,500.00,,,,,
+C09,calculator,,,10000.01,0,0,10000,ok,10000.00,true,0.00,,,,,
+C10,calculator,,,100,0,0,0,ok,0.00,true,0.00,,,,,
+C11,calculator,,,0,0,0,0,ok,0.00,false,0.00,,,,,
+C12,calculator,,,100,0,0,-50,ok,-50.00,true,0.00,,,,suspect,negative policy limit produces a negative settlement because the zero floor runs before the cap
+C13,calculator,,,1000,-200,0,20000,ok,1200.00,false,-200.00,,,,suspect,negative deductible is accepted and increases the payout above the covered amount
+C14,calculator,,,1000,0,-300,20000,ok,1300.00,false,0.00,,,,suspect,negative depreciation is accepted and increases the payout above the covered amount
+C15,calculator,,,1000,n/a,0,20000,error:NumberFormatException,,,,,,,suspect,service path throws on a non-numeric deductible while the screen path binds it as 0 (see S03)
+C16,calculator,,,2000,"1,000",0,20000,error:NumberFormatException,,,,,,,suspect,grouped thousands are rejected by the service path but bind as 0 on the screen path (see S04)
+C17,calculator,,,1000, 250 ,0,20000,ok,750.00,false,250.00,,,,,
+C18,calculator,,,1000,1e2,0,20000,ok,900.00,false,100.00,,,,suspect,scientific notation is accepted as a deductible
+C19,calculator,,,1000,NaN,0,20000,error:NumberFormatException,,,,,,,suspect,NaN parses as a double and then fails inside BigDecimal.valueOf instead of a validation message
+C20,calculator,,,1000.01,500.005,0,20000,ok,500.00,false,500.005,,,,suspect,half cent created by the deductible rounds down to the even cent (HALF_UP would give 500.01)
+C21,calculator,,,100.00,0,0.005,1000,ok,100.00,false,0.00,,,,,
+C22,calculator,,,2000,0,0,1000.005,ok,1000.00,true,0.00,,,,,
+C23,calculator,,,2.675,0,0,100,ok,2.68,false,0.00,,,,,
+C24,calculator,,,1.0050001,0,0,100,ok,1.01,false,0.00,,,,,
+H00,calculator,,,1.005,0,0,100,ok,1.00,false,0.00,,,,suspect,HALF_EVEN rounds the half cent down to 1.00 (HALF_UP would give 1.01)
+H01,calculator,,,1.015,0,0,100,ok,1.02,false,0.00,,,,,
+H02,calculator,,,1.025,0,0,100,ok,1.02,false,0.00,,,,suspect,HALF_EVEN rounds the half cent down to 1.02 (HALF_UP would give 1.03)
+H03,calculator,,,1.035,0,0,100,ok,1.04,false,0.00,,,,,
+H04,calculator,,,1.045,0,0,100,ok,1.04,false,0.00,,,,suspect,HALF_EVEN rounds the half cent down to 1.04 (HALF_UP would give 1.05)
+H05,calculator,,,1.055,0,0,100,ok,1.06,false,0.00,,,,,
+H06,calculator,,,1.065,0,0,100,ok,1.06,false,0.00,,,,suspect,HALF_EVEN rounds the half cent down to 1.06 (HALF_UP would give 1.07)
+H07,calculator,,,1.075,0,0,100,ok,1.08,false,0.00,,,,,
+H08,calculator,,,1.085,0,0,100,ok,1.08,false,0.00,,,,suspect,HALF_EVEN rounds the half cent down to 1.08 (HALF_UP would give 1.09)
+H09,calculator,,,1.095,0,0,100,ok,1.10,false,0.00,,,,,
+S01,screen,supervisor,118,10000.00,500,100,,settlement,9400.00,false,500.00,150000.00,,,,
+S02,screen,supervisor,118,10000.00,(blank),100,,settlement,9900.00,false,0.00,150000.00,,,,
+S03,screen,supervisor,118,10000.00,n/a,0,,settlement,10000.00,false,0.00,150000.00,,,suspect,non-numeric deductible silently binds as 0 instead of a validation error
+S04,screen,supervisor,118,10000.00,"1,000",0,,settlement,10000.00,false,0.00,150000.00,,,suspect,grouped thousands deductible silently binds as 0
+S05,screen,supervisor,118,abc,0,0,,settlement,5000.00,false,0.00,150000.00,,,suspect,non-numeric covered amount falls back to an invented 5000
+S06,screen,supervisor,118,,0,0,,settlement,5000.00,false,0.00,150000.00,,,suspect,missing covered amount falls back to an invented 5000
+S07,screen,supervisor,,3000,0,0,,settlement,1000.00,true,0.00,1000.00,,,suspect,missing claimId silently defaults to claim 119 and its 1000 policy limit
+S08,screen,supervisor,99999,20000,0,0,,settlement,10000.00,true,0.00,10000.00,,,suspect,unknown claim falls back to a 10000 policy limit instead of an error
+S09,screen,supervisor,120,8000,(blank),0,,settlement,8000.00,false,0.00,100000.00,,,suspect,the policy's own 5000 deductible is ignored; only the form deductible is applied
+S10,screen,supervisor,118,500,0,x,,settlement,500.00,false,0.00,150000.00,,,suspect,non-numeric depreciation silently falls back to 0
+S11,screen,supervisor,118,-500,0,0,,settlement,0.00,false,0.00,150000.00,,,suspect,negative covered amount is accepted and floored to 0
+S12,screen,supervisor,118,NaN,0,0,,error:NumberFormatException,,,,,,,suspect,NaN covered amount parses and then fails inside BigDecimal.valueOf (HTTP 500 on the screen)
+S13,screen,supervisor,118,1000,NaN,0,,error:NumberFormatException,,,,,,,suspect,NaN deductible binds and then fails inside BigDecimal.valueOf (HTTP 500 on the screen)
+A01,screen,adjuster4,118,2500.00,0,0,,settlement,2500.00,false,0.00,150000.00,,,,
+A02,screen,adjuster4,118,2500.01,0,0,,refused,2500.01,,,,2500.00,,,
+A03,screen,adjuster5,118,6000.00,1000,0,,settlement,5000.00,false,1000.00,150000.00,,,,
+A04,screen,adjuster5,118,6000.00,0,1000.01,,settlement,4999.99,false,0.00,150000.00,,,,
+A05,screen,adjuster1,119,50000.00,0,0,,settlement,1000.00,true,0.00,1000.00,,,,
+A06,screen,adjuster1,118,10000.005,0,0,,settlement,10000.00,false,0.00,150000.00,,,suspect,a total half a cent above the 10000 limit is approved because the check uses the rounded amount
+A07,screen,adjuster2,118,30000.00,0,0,,refused,30000.00,,,,25000.00,,,
+A08,screen,adjuster3,118,50000.00,0,0,,settlement,50000.00,false,0.00,150000.00,,,,
+A09,screen,supervisor,3,300000.00,0,0,,refused,300000.00,,,,250000.00,,,
+A10,screen,nobody,118,0.01,0,0,,refused,0.01,,,,0.00,,,
+A11,screen,,118,1000.00,1000,0,,settlement,0.00,false,1000.00,150000.00,,,suspect,a session with no user passes the authority gate when the settlement is 0 (limit 0 and the check is strictly greater-than)
+V01,service,,1,300000.00,0,0,500000,ok,300000.00,false,0.00,,,settlement_id=10001;calculated_by=supervisor;calculated_date=2019-03-01,suspect,SettlementService.calculateAndSave applies no authority limit and stamps a hardcoded operator and date
+V02,service,,2,10000.00,500,100,20000,ok,9400.00,false,500.00,,,settlement_id=10002;calculated_by=supervisor;calculated_date=2019-03-01,suspect,settlement id is claimId + 10000 so a second save for the same claim would collide
