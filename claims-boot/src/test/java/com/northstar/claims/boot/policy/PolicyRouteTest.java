@@ -127,11 +127,11 @@ class PolicyRouteTest {
     @Test
     void stylesheetInclusionsMatchTheLegacyJspHeaders() throws Exception {
         HttpClient client = browser("supervisor");
-        for (String route : List.of("search", "view", "coverages")) {
+        for (String route : List.of("search", "list", "view", "coverages")) {
             assertThat(request(client, "/claims/policy/" + route + ".do?policyId=9001", null).body())
                     .doesNotContain("rel=\"stylesheet\"");
         }
-        for (String route : List.of("list", "coverageDetail", "insuredParty", "renewal")) {
+        for (String route : List.of("coverageDetail", "insuredParty", "renewal")) {
             assertThat(request(client, "/claims/policy/" + route + ".do?policyId=9001", null).body())
                     .contains("href=\"/claims/northstar.css\"");
         }
