@@ -1,0 +1,32 @@
+{
+  "asOf": "2019-04-01",
+  "rows": [
+    {
+      "count": 24.0,
+      "status": "APPROVED"
+    },
+    {
+      "count": 24.0,
+      "status": "CLOSED"
+    },
+    {
+      "count": 24.0,
+      "status": "DENIED"
+    },
+    {
+      "count": 24.0,
+      "status": "INVESTIGATING"
+    },
+    {
+      "count": 24.0,
+      "status": "OPEN"
+    }
+  ],
+  "source": "ReportDAO.claimCounts(\"count desc, status\")",
+  "totals": {
+    "rowCount": 5,
+    "sum": {
+      "count": 120.0
+    }
+  }
+}

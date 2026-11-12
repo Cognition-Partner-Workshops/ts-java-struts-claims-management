@@ -1,0 +1,72 @@
+{
+  "asOf": "2019-04-01",
+  "rows": [
+    {
+      "claimNumber": "CLM-09101",
+      "reserveAmount": 2500.0,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-09110",
+      "reserveAmount": 0.0,
+      "status": "CLOSED"
+    },
+    {
+      "claimNumber": "CLM-09111",
+      "reserveAmount": 0.0,
+      "status": "CLOSED"
+    },
+    {
+      "claimNumber": "CLM-09112",
+      "reserveAmount": 0.0,
+      "status": "CLOSED"
+    },
+    {
+      "claimNumber": "CLM-09120",
+      "reserveAmount": 100.25,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-09121",
+      "reserveAmount": 200.5,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-09122",
+      "reserveAmount": 300.75,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-09123",
+      "reserveAmount": 400.99,
+      "status": "INVESTIGATING"
+    },
+    {
+      "claimNumber": "CLM-09124",
+      "reserveAmount": 500.01,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-09125",
+      "reserveAmount": 600.5,
+      "status": "APPROVED"
+    },
+    {
+      "claimNumber": "CLM-09126",
+      "reserveAmount": 700.49,
+      "status": "OPEN"
+    },
+    {
+      "claimNumber": "CLM-09127",
+      "reserveAmount": 800.51,
+      "status": "OPEN"
+    }
+  ],
+  "source": "ReportDAO.claimsForAdjuster(\"adjuster9\")",
+  "totals": {
+    "rowCount": 12,
+    "sum": {
+      "reserveAmount": 6104.00
+    }
+  }
+}
