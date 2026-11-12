@@ -1,0 +1,70 @@
+package com.northstar.claims.boot;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import org.springframework.stereotype.Component;
+
+/**
+ * Thymeleaf replacement for the legacy {@code ns:field}, {@code ns:view} and
+ * {@code ns:message} tags plus the {@code ns:error} comments written by JSPs.
+ * Output is markup, so templates evaluate it in {@code th:with} and emit it
+ * with {@code th:utext} (Thymeleaf 3.1 rejects bean calls inside th:utext).
+ */
+@Component("ns")
+public class NsMarkup {
+
+    public String field(String name, Object value, String type) {
+        String text = formatValue(value == null ? null : String.valueOf(value), type);
+        return "<span id=\"f_" + escape(name) + "\">" + escape(text) + "</span>";
+    }
+
+    public String view(String path) {
+        return "<!-- ns:view " + path + " -->";
+    }
+
+    public String error(Object key) {
+        return "<!-- ns:error " + key + " -->";
+    }
+
+    public String message(String body) {
+        return body == null ? "" : body.trim();
+    }
+
+    private static String formatValue(String source, String type) {
+        if (source == null) {
+            return "";
+        }
+        if ("money".equals(type)) {
+            try {
+                return String.format("%.2f", Double.parseDouble(source));
+            } catch (NumberFormatException notMoney) {
+                return source;
+            }
+        }
+        if ("integer".equals(type)) {
+            try {
+                return String.valueOf((long) Double.parseDouble(source));
+            } catch (NumberFormatException notInteger) {
+                return source;
+            }
+        }
+        if ("date".equals(type)) {
+            try {
+                Date date = new SimpleDateFormat("yyyy-MM-dd").parse(source);
+                return new SimpleDateFormat("yyyy-MM-dd").format(date);
+            } catch (Exception notDate) {
+                return source;
+            }
+        }
+        return source;
+    }
+
+    private static String escape(String source) {
+        if (source == null) {
+            return "";
+        }
+        return source.replace("&", "&amp;").replace("<", "&lt;")
+                .replace(">", "&gt;").replace("\"", "&quot;");
+    }
+}

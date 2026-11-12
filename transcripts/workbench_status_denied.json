@@ -1,0 +1,23 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/workbench_status_denied.json",
+  "description": "workbench status denied",
+  "expected": {
+    "business_fields": {
+      "claimStatus": "DENIED"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/workbench/view.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "116",
+      "status": "DENIED"
+    },
+    "method": "POST",
+    "path": "/claims/workbench/status.do"
+  },
+  "scenario": "workbench_status_denied"
+}

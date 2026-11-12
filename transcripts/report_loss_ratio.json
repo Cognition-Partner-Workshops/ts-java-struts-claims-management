@@ -1,5 +1,6 @@
 {
   "actor": "supervisor",
+  "db_snapshot": "db/report_loss_ratio.json",
   "description": "Loss ratio by business line",
   "expected": {
     "business_fields": {

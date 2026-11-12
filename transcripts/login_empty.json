@@ -1,0 +1,21 @@
+{
+  "actor": "adjusterLogin",
+  "db_snapshot": "db/login_empty.json",
+  "description": "login empty",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/login.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "password": "",
+      "username": ""
+    },
+    "method": "POST",
+    "path": "/claims/login.do"
+  },
+  "scenario": "login_empty"
+}

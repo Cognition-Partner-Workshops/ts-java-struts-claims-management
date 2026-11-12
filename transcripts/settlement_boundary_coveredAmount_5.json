@@ -1,0 +1,29 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/settlement_boundary_coveredAmount_5.json",
+  "description": "settlement boundary coveredAmount 5",
+  "expected": {
+    "business_fields": {
+      "cappedAtLimit": "false",
+      "coveredAmount": "-1.00",
+      "deductibleApplied": "0.00",
+      "depreciation": "0.00",
+      "settlementAmount": "0.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/settlement/calculate.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "119",
+      "coveredAmount": "-1",
+      "deductible": "0",
+      "depreciation": "0"
+    },
+    "method": "POST",
+    "path": "/claims/settlement/calculate.do"
+  },
+  "scenario": "settlement_boundary_coveredAmount_5"
+}

@@ -1,0 +1,23 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/workbench_reserve_abc.json",
+  "description": "workbench reserve abc",
+  "expected": {
+    "business_fields": {
+      "reserveAmount": "4500.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/workbench/view.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "116",
+      "reserveAmount": "abc"
+    },
+    "method": "POST",
+    "path": "/claims/workbench/reserve.do"
+  },
+  "scenario": "workbench_reserve_abc"
+}

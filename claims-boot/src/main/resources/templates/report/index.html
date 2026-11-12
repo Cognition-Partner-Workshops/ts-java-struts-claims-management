@@ -1,0 +1,19 @@
+<th:block th:replace="~{report/frame :: page('/WEB-INF/jsp/report/index.jsp', false, ~{::content})}"><th:block th:fragment="content">
+<h2 th:text="#{report.index.heading}"></h2>
+<table class="results" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<th th:text="#{report.index.name}"></th>
+<th th:text="#{report.index.link}"></th></tr>
+<tr th:each="link : ${ {'report.open.heading|openByAdjuster.do', 'report.loss.heading|lossRatio.do',
+        'report.aged.heading|agedClaims.do', 'report.adjusterWorkload.heading|adjusterWorkload.do',
+        'report.adjusterClaims.heading|adjusterClaims.do?adjuster=adjuster1', 'report.closed.heading|closedClaims.do',
+        'report.inventory.heading|claimInventory.do', 'report.claimAgingDetail.heading|claimAgingDetail.do',
+        'report.reconciliation.heading|reconciliation.do', 'report.premiumDetail.heading|premiumDetail.do',
+        'report.adjusterWorkload.heading|adjusterWorkload.do', 'report.claimAgingDetail.heading|claimAgingDetail.do',
+        'report.reconciliation.heading|reconciliation.do', 'report.premiumDetail.heading|premiumDetail.do'} }"
+    th:with="parts=${#strings.arraySplit(link, '|')}"><td th:text="#{${parts[0]}}"></td>
+<td><a th:href="${parts[1]}" th:text="#{button.open}"></a></td></tr>
+</table>
+<p th:text="#{report.index.note}"></p>
+<table th:replace="~{report/frame :: audit}"></table>
+</th:block></th:block>

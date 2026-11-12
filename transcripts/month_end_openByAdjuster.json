@@ -1,0 +1,23 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/month_end_openByAdjuster.json",
+  "description": "month end openByAdjuster",
+  "expected": {
+    "business_fields": {
+      "openCount_adjuster1": "35",
+      "openCount_adjuster2": "25",
+      "reserveTotal_adjuster1": "25703.01",
+      "reserveTotal_adjuster2": "29928.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/report/openByAdjuster.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/report/openByAdjuster.do"
+  },
+  "scenario": "month_end_openByAdjuster"
+}

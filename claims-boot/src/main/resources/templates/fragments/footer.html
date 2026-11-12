@@ -1,0 +1,21 @@
+<!-- Port of WEB-INF/jsp/footer.jsp: footer row and footer links. -->
+<tr th:fragment="footer"><td class="footer" th:text="#{footer.copyright}">NorthStar Claims Operations</td></tr>
+<th:block th:fragment="links"><table class="footer-links" cellpadding="2" cellspacing="0" border="0">
+<tr>
+<td><a th:href="@{/home.do}" th:text="#{nav.home}">Home</a></td>
+<td><a th:href="@{/policy/list.do}" th:text="#{nav.policies}">Policies</a></td>
+</tr>
+<tr>
+<td><a th:href="@{/workbench/list.do}" th:text="#{nav.workbench}">Workbench</a></td>
+<td><a th:href="@{/logout.do}" th:text="#{nav.logout}">Logout</a></td>
+</tr>
+</table>
+<!-- NorthStar claims operator layout -->
+<!-- NorthStar claims operator layout -->
+<!-- NorthStar claims operator layout -->
+<!-- NorthStar claims operator layout -->
+<!-- NorthStar claims operator layout -->
+<!-- NorthStar claims operator layout -->
+<!-- NorthStar claims operator layout -->
+<!-- NorthStar claims operator layout -->
+</th:block>

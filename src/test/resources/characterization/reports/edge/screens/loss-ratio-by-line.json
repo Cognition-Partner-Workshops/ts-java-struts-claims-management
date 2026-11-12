@@ -1,0 +1,147 @@
+{
+  "fields": [
+    [
+      "premiumTotal_AUTO",
+      "90700.00"
+    ],
+    [
+      "lossTotal_AUTO",
+      "40770.00"
+    ],
+    [
+      "lossRatio_AUTO",
+      "0.45"
+    ],
+    [
+      "premiumTotal_COMMERCIAL_PROPERTY",
+      "91000.00"
+    ],
+    [
+      "lossTotal_COMMERCIAL_PROPERTY",
+      "38211.00"
+    ],
+    [
+      "lossRatio_COMMERCIAL_PROPERTY",
+      "0.42"
+    ],
+    [
+      "premiumTotal_EDGE_LINE",
+      "11000.00"
+    ],
+    [
+      "lossTotal_EDGE_LINE",
+      "3604.00"
+    ],
+    [
+      "lossRatio_EDGE_LINE",
+      "0.33"
+    ],
+    [
+      "premiumTotal_GENERAL_LIABILITY",
+      "93900.00"
+    ],
+    [
+      "lossTotal_GENERAL_LIABILITY",
+      "34490.00"
+    ],
+    [
+      "lossRatio_GENERAL_LIABILITY",
+      "0.37"
+    ],
+    [
+      "premiumTotal_HOMEOWNERS",
+      "93700.00"
+    ],
+    [
+      "lossTotal_HOMEOWNERS",
+      "37550.00"
+    ],
+    [
+      "lossRatio_HOMEOWNERS",
+      "0.40"
+    ],
+    [
+      "premiumTotal_ZERO_PREMIUM",
+      "0.00"
+    ],
+    [
+      "lossTotal_ZERO_PREMIUM",
+      "2900.00"
+    ],
+    [
+      "lossRatio_ZERO_PREMIUM",
+      "0.00"
+    ],
+    [
+      "premiumTotal_ZERO_PREMIUM_NO_LOSS",
+      "0.00"
+    ],
+    [
+      "lossTotal_ZERO_PREMIUM_NO_LOSS",
+      "0.00"
+    ],
+    [
+      "lossRatio_ZERO_PREMIUM_NO_LOSS",
+      "0.00"
+    ]
+  ],
+  "heading": "Loss Ratio by Line of Business",
+  "request": "GET /report/lossRatio.do",
+  "status": 200,
+  "tables": [
+    {
+      "class": "results",
+      "rows": [
+        [
+          "Line of Business",
+          "Premium Total",
+          "Loss Total",
+          "Loss Ratio"
+        ],
+        [
+          "AUTO",
+          "90700.00",
+          "40770.00",
+          "0.45"
+        ],
+        [
+          "COMMERCIAL_PROPERTY",
+          "91000.00",
+          "38211.00",
+          "0.42"
+        ],
+        [
+          "EDGE_LINE",
+          "11000.00",
+          "3604.00",
+          "0.33"
+        ],
+        [
+          "GENERAL_LIABILITY",
+          "93900.00",
+          "34490.00",
+          "0.37"
+        ],
+        [
+          "HOMEOWNERS",
+          "93700.00",
+          "37550.00",
+          "0.40"
+        ],
+        [
+          "ZERO_PREMIUM",
+          "0.00",
+          "2900.00",
+          "0.00"
+        ],
+        [
+          "ZERO_PREMIUM_NO_LOSS",
+          "0.00",
+          "0.00",
+          "0.00"
+        ]
+      ]
+    }
+  ],
+  "view": "/WEB-INF/jsp/report/lossRatio.jsp"
+}
