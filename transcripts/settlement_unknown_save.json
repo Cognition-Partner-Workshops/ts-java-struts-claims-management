@@ -1,0 +1,21 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/settlement_unknown_save.json",
+  "description": "settlement unknown save",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/error.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "99999",
+      "coveredAmount": "1000"
+    },
+    "method": "POST",
+    "path": "/claims/settlement/save.do"
+  },
+  "scenario": "settlement_unknown_save"
+}

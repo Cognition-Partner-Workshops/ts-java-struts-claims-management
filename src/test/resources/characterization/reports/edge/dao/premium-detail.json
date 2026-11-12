@@ -1,0 +1,328 @@
+{
+  "asOf": "2019-04-01",
+  "rows": [
+    {
+      "annualPremium": 1200.0,
+      "lineOfBusiness": "AUTO",
+      "policyId": 1,
+      "policyNumber": "NS-00001",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 1300.0,
+      "lineOfBusiness": "HOMEOWNERS",
+      "policyId": 2,
+      "policyNumber": "NS-00002",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 1400.0,
+      "lineOfBusiness": "COMMERCIAL_PROPERTY",
+      "policyId": 3,
+      "policyNumber": "NS-00003",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 1500.0,
+      "lineOfBusiness": "GENERAL_LIABILITY",
+      "policyId": 4,
+      "policyNumber": "NS-00004",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 1600.0,
+      "lineOfBusiness": "AUTO",
+      "policyId": 5,
+      "policyNumber": "NS-00005",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 1700.0,
+      "lineOfBusiness": "HOMEOWNERS",
+      "policyId": 6,
+      "policyNumber": "NS-00006",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 1800.0,
+      "lineOfBusiness": "COMMERCIAL_PROPERTY",
+      "policyId": 7,
+      "policyNumber": "NS-00007",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 1900.0,
+      "lineOfBusiness": "GENERAL_LIABILITY",
+      "policyId": 8,
+      "policyNumber": "NS-00008",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 2000.0,
+      "lineOfBusiness": "AUTO",
+      "policyId": 9,
+      "policyNumber": "NS-00009",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 2100.0,
+      "lineOfBusiness": "HOMEOWNERS",
+      "policyId": 10,
+      "policyNumber": "NS-00010",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 2200.0,
+      "lineOfBusiness": "COMMERCIAL_PROPERTY",
+      "policyId": 11,
+      "policyNumber": "NS-00011",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 2300.0,
+      "lineOfBusiness": "GENERAL_LIABILITY",
+      "policyId": 12,
+      "policyNumber": "NS-00012",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 2400.0,
+      "lineOfBusiness": "AUTO",
+      "policyId": 13,
+      "policyNumber": "NS-00013",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 2500.0,
+      "lineOfBusiness": "HOMEOWNERS",
+      "policyId": 14,
+      "policyNumber": "NS-00014",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 2600.0,
+      "lineOfBusiness": "COMMERCIAL_PROPERTY",
+      "policyId": 15,
+      "policyNumber": "NS-00015",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 2700.0,
+      "lineOfBusiness": "GENERAL_LIABILITY",
+      "policyId": 16,
+      "policyNumber": "NS-00016",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 2800.0,
+      "lineOfBusiness": "AUTO",
+      "policyId": 17,
+      "policyNumber": "NS-00017",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 2900.0,
+      "lineOfBusiness": "HOMEOWNERS",
+      "policyId": 18,
+      "policyNumber": "NS-00018",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 3000.0,
+      "lineOfBusiness": "COMMERCIAL_PROPERTY",
+      "policyId": 19,
+      "policyNumber": "NS-00019",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 3100.0,
+      "lineOfBusiness": "GENERAL_LIABILITY",
+      "policyId": 20,
+      "policyNumber": "NS-00020",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 3200.0,
+      "lineOfBusiness": "AUTO",
+      "policyId": 21,
+      "policyNumber": "NS-00021",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 3300.0,
+      "lineOfBusiness": "HOMEOWNERS",
+      "policyId": 22,
+      "policyNumber": "NS-00022",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 3400.0,
+      "lineOfBusiness": "COMMERCIAL_PROPERTY",
+      "policyId": 23,
+      "policyNumber": "NS-00023",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 3500.0,
+      "lineOfBusiness": "GENERAL_LIABILITY",
+      "policyId": 24,
+      "policyNumber": "NS-00024",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 3600.0,
+      "lineOfBusiness": "AUTO",
+      "policyId": 25,
+      "policyNumber": "NS-00025",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 3700.0,
+      "lineOfBusiness": "HOMEOWNERS",
+      "policyId": 26,
+      "policyNumber": "NS-00026",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 3800.0,
+      "lineOfBusiness": "COMMERCIAL_PROPERTY",
+      "policyId": 27,
+      "policyNumber": "NS-00027",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 3900.0,
+      "lineOfBusiness": "GENERAL_LIABILITY",
+      "policyId": 28,
+      "policyNumber": "NS-00028",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 4000.0,
+      "lineOfBusiness": "AUTO",
+      "policyId": 29,
+      "policyNumber": "NS-00029",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 4100.0,
+      "lineOfBusiness": "HOMEOWNERS",
+      "policyId": 30,
+      "policyNumber": "NS-00030",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 4200.0,
+      "lineOfBusiness": "COMMERCIAL_PROPERTY",
+      "policyId": 31,
+      "policyNumber": "NS-00031",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 4300.0,
+      "lineOfBusiness": "GENERAL_LIABILITY",
+      "policyId": 32,
+      "policyNumber": "NS-00032",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 4400.0,
+      "lineOfBusiness": "AUTO",
+      "policyId": 33,
+      "policyNumber": "NS-00033",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 4500.0,
+      "lineOfBusiness": "HOMEOWNERS",
+      "policyId": 34,
+      "policyNumber": "NS-00034",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 4600.0,
+      "lineOfBusiness": "COMMERCIAL_PROPERTY",
+      "policyId": 35,
+      "policyNumber": "NS-00035",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 4700.0,
+      "lineOfBusiness": "GENERAL_LIABILITY",
+      "policyId": 36,
+      "policyNumber": "NS-00036",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 4800.0,
+      "lineOfBusiness": "AUTO",
+      "policyId": 37,
+      "policyNumber": "NS-00037",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 4900.0,
+      "lineOfBusiness": "HOMEOWNERS",
+      "policyId": 38,
+      "policyNumber": "NS-00038",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 5000.0,
+      "lineOfBusiness": "COMMERCIAL_PROPERTY",
+      "policyId": 39,
+      "policyNumber": "NS-00039",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 5100.0,
+      "lineOfBusiness": "GENERAL_LIABILITY",
+      "policyId": 40,
+      "policyNumber": "NS-00040",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 700.0,
+      "lineOfBusiness": "AUTO",
+      "policyId": 9001,
+      "policyNumber": "NS-09001",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 700.0,
+      "lineOfBusiness": "HOMEOWNERS",
+      "policyId": 9002,
+      "policyNumber": "NS-09002",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 0.0,
+      "lineOfBusiness": "ZERO_PREMIUM",
+      "policyId": 9101,
+      "policyNumber": "NS-09101",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 0.0,
+      "lineOfBusiness": "ZERO_PREMIUM_NO_LOSS",
+      "policyId": 9102,
+      "policyNumber": "NS-09102",
+      "status": "ACTIVE"
+    },
+    {
+      "annualPremium": 1000.0,
+      "lineOfBusiness": "EDGE_LINE",
+      "policyId": 9103,
+      "policyNumber": "NS-09103",
+      "status": "ACTIVE"
+    }
+  ],
+  "source": "PolicyDAO.findAll() via PremiumDetailAction",
+  "totals": {
+    "rowCount": 45,
+    "sum": {
+      "annualPremium": 128400.0,
+      "policyId": 46129
+    }
+  }
+}

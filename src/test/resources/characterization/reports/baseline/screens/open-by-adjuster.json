@@ -1,0 +1,46 @@
+{
+  "fields": [
+    [
+      "openCount_adjuster1",
+      "24"
+    ],
+    [
+      "reserveTotal_adjuster1",
+      "25404.00"
+    ],
+    [
+      "openCount_adjuster2",
+      "24"
+    ],
+    [
+      "reserveTotal_adjuster2",
+      "25428.00"
+    ]
+  ],
+  "heading": "Open Claims by Adjuster",
+  "request": "GET /report/openByAdjuster.do",
+  "status": 200,
+  "tables": [
+    {
+      "class": "results",
+      "rows": [
+        [
+          "Adjuster",
+          "Open Claim Count",
+          "Reserve Total"
+        ],
+        [
+          "adjuster1",
+          "24",
+          "25404.00"
+        ],
+        [
+          "adjuster2",
+          "24",
+          "25428.00"
+        ]
+      ]
+    }
+  ],
+  "view": "/WEB-INF/jsp/report/openByAdjuster.jsp"
+}

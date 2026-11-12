@@ -1,5 +1,6 @@
 {
   "actor": "adjuster4",
+  "db_snapshot": "db/settlement_authority_within_limit.json",
   "description": "Save within the adjuster approval limit",
   "expected": {
     "business_fields": {

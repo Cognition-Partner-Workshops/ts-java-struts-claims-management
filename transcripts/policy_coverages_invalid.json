@@ -1,0 +1,21 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/policy_coverages_invalid.json",
+  "description": "policy coverages invalid",
+  "expected": {
+    "business_fields": {
+      "coverageDeductible": "500.00",
+      "coverageLimit": "25000.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/policy/coverages.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/policy/coverages.do?policyId=abc"
+  },
+  "scenario": "policy_coverages_invalid"
+}

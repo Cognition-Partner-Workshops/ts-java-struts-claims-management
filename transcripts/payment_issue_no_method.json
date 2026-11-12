@@ -1,0 +1,21 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/payment_issue_no_method.json",
+  "description": "payment issue no method",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/error.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "118",
+      "payeeName": "Parity Payee"
+    },
+    "method": "POST",
+    "path": "/claims/payment/issue.do"
+  },
+  "scenario": "payment_issue_no_method"
+}

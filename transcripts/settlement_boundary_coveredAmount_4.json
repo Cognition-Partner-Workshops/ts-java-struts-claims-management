@@ -1,0 +1,23 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/settlement_boundary_coveredAmount_4.json",
+  "description": "settlement boundary coveredAmount 4",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/error.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "119",
+      "coveredAmount": "Infinity",
+      "deductible": "0",
+      "depreciation": "0"
+    },
+    "method": "POST",
+    "path": "/claims/settlement/calculate.do"
+  },
+  "scenario": "settlement_boundary_coveredAmount_4"
+}

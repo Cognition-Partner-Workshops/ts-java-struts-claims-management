@@ -1,5 +1,6 @@
 {
   "actor": "supervisor",
+  "db_snapshot": "db/login.json",
   "description": "Valid operator login",
   "expected": {
     "business_fields": {

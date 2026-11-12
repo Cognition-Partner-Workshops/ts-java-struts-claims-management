@@ -1,5 +1,6 @@
 {
   "actor": "supervisor",
+  "db_snapshot": "db/intake_lenient_date.json",
   "description": "FNOL with a lenient February date",
   "expected": {
     "business_fields": {

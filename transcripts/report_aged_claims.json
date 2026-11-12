@@ -1,5 +1,6 @@
 {
   "actor": "supervisor",
+  "db_snapshot": "db/report_aged_claims.json",
   "description": "Aged claims report",
   "expected": {
     "business_fields": {

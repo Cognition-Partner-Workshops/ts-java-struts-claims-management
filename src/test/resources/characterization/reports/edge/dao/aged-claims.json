@@ -1,0 +1,33 @@
+{
+  "asOf": "2019-04-01",
+  "rows": [
+    {
+      "bucket": "0_30",
+      "claimCount": 22.0,
+      "reserveTotal": 22187.5
+    },
+    {
+      "bucket": "31_60",
+      "claimCount": 20.0,
+      "reserveTotal": 19957.0
+    },
+    {
+      "bucket": "61_90",
+      "claimCount": 20.0,
+      "reserveTotal": 20326.99
+    },
+    {
+      "bucket": "91_PLUS",
+      "claimCount": 19.0,
+      "reserveTotal": 19916.51
+    }
+  ],
+  "source": "ReportDAO.agedClaims()",
+  "totals": {
+    "rowCount": 4,
+    "sum": {
+      "claimCount": 81.0,
+      "reserveTotal": 82388.00
+    }
+  }
+}

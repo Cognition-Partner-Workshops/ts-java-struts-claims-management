@@ -1,5 +1,6 @@
 {
   "actor": "supervisor",
+  "db_snapshot": "db/settlement_session_save.json",
   "description": "Save the settlement kept in the session by the calculate screen",
   "expected": {
     "business_fields": {
