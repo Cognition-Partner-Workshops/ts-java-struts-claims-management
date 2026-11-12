@@ -1,13 +1,27 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8">
-  <title>NorthStar Claims</title>
-</head>
-<body>
-  <h1>NorthStar Claims</h1>
-  <p>Spring Boot foundation placeholder. Authentication is not implemented.</p>
-  <label for="username">Username</label>
-  <input id="username" name="username" type="text" th:value="${username}">
-</body>
-</html>
+<th:block th:replace="~{fragments/markers :: view('/WEB-INF/jsp/login.jsp')}"></th:block>
+<html><head><title th:text="#{login.title}">Claims Login</title>
+<th:block th:replace="~{fragments/header :: stylesheet}"></th:block></head><body>
+<table class="login" cellpadding="4" cellspacing="0" border="0">
+<tr><td colspan="2"><h1 th:text="#{login.title}">Claims Login</h1></td></tr>
+<tr><td colspan="2"></td></tr>
+<form name="loginForm" method="post" th:action="@{/login.do}">
+<tr><td th:text="#{login.username}">Username</td>
+<td><input type="text" name="username" size="25" th:value="${username}"></td></tr>
+<tr><td th:text="#{login.password}">Password</td>
+<td><input type="password" name="password" size="25" value=""></td></tr>
+<tr><td>&nbsp;</td>
+<td><input type="submit" th:value="#{login.submit}"></td></tr>
+</form>
+<script type="text/javascript" language="JavaScript">
+  <!--
+  var focusControl = document.forms["loginForm"].elements["username"];
+
+  if (focusControl != null && focusControl.type != "hidden" && !focusControl.disabled && focusControl.style.display != "none") {
+     focusControl.focus();
+  }
+  // -->
+</script>
+
+<tr><td colspan="2" th:text="#{login.help}"></td></tr>
+</table>
+</body></html>

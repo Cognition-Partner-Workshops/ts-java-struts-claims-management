@@ -14,20 +14,47 @@ JAVA_HOME=/path/to/jdk21 mvn -B -f claims-boot/pom.xml verify
 curl -si http://localhost:8081/claims/login.do
 ```
 
-Boot serves port **8081**, context **/claims**. Only `GET /login.do` is
-implemented, as a Thymeleaf placeholder, with optional legacy `username`
-parameter. It does not authenticate, process passwords, or implement POST
-login yet. Tests exercise a real embedded server, the configured context,
-explicit `.do` mapping, missing/empty parameters and unmapped paths.
-There is no suffix pattern matching: future controllers must explicitly
-map `.do` paths and preserve legacy query/form parameter names rather than
-introduce REST paths or rename fields.
+Boot serves port **8081**, context **/claims**. There is no suffix pattern
+matching: controllers explicitly map `.do` paths and keep legacy query/form
+parameter names rather than introduce REST paths or rename fields.
+
+## Shared layout, login and markers
+
+- Messages: `ApplicationResources.properties` is packaged unchanged from
+  `../src/main/resources` and is the Spring `MessageSource` (`#{key}`).
+  `northstar.css` is served from `../src/main/webapp` as a static resource.
+- Templates: `fragments/header.html`, `nav.html` and `footer.html` port the
+  JSP includes; `fragments/layout.html :: page(view, content)` assembles them
+  for operator screens (see `home.html`). `login.html` and `error.html` are
+  standalone, like their JSPs.
+- Markers: the `ns` bean (`NsMarkup`) replaces `ns:field`, `ns:view`,
+  `ns:message` and the `<!-- ns:error key -->` comments. Use the
+  `fragments/markers.html` fragments (`view(path)`, `field(name, value, type)`,
+  `errors(keys)`), which evaluate the bean in `th:with` and then emit it with
+  `th:utext`, because Thymeleaf 3.1 rejects bean calls inside `th:utext`.
+- Security (`SecurityConfig`, replacing `AuthFilter`): every `*.do` except
+  `login.do` needs a signed-in session, otherwise it gets a 302 to the absolute
+  `/claims/login.do`. `LegacyAuthenticationProvider` keeps the legacy users:
+  `supervisor`/`supervisor` (`ROLE_SUPERVISOR`) and any `adjuster*` with a
+  `legacy*` password (`ROLE_ADJUSTER`). `LoginController` ports `LoginAction`
+  (GET or POST, success renders home at `/login.do`, failure re-renders login,
+  session attributes `user`/`displayName`) and `LogoutAction` (invalidate,
+  render login). CSRF is off because the legacy forms and replay post without
+  tokens. Intentional differences: the session id changes on login, and a
+  rejected login no longer echoes the password into the page.
+- Errors (`LegacyErrorHandling`): unknown `.do` routes and action exceptions
+  render `error.html` with status 200 and `Reference status: null` (the Struts
+  unknown/global-exception forwards); anything under `/admin/` fails with 500;
+  other missing paths are a 404 error page.
+- `/admin` is ported as it behaves today (ROUTES.md): `adjusters.do` (which
+  still runs its ADJUSTER query) and `reference.do` answer 404 and the linked
+  `editAdjuster.do` answers 500.
 
 ## Legacy route contract (future ports)
 
 Paths below are relative to `/claims`; all **42** mapped actions from
-[`ROUTES.md`](../docs/migration/ROUTES.md) are listed. Only the login GET
-placeholder currently resolves in Boot; the other features are not ported.
+[`ROUTES.md`](../docs/migration/ROUTES.md) are listed. Only the shared routes
+are ported; the other areas still resolve to the legacy unknown-action page.
 
 | Area | Routes |
 | --- | --- |
@@ -50,7 +77,8 @@ behavior; preserving those is later parity work, not this scaffold.
 parity scenarios. See the [migration runbook](../docs/migration/RUNBOOK.md)
 and [coverage notes](../docs/migration/CAPTURE-COVERAGE.md) for replay with
 `--base-url http://localhost:8081/claims` and a separately seeded database.
-Full parity replay is not expected to pass against this placeholder.
+Replay of `--area "shared foundation"` matches legacy responses; full parity
+replay needs the remaining areas.
 
 ## Data layer
 

@@ -35,7 +35,16 @@
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-security</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.security</groupId>
+      <artifactId>spring-security-test</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -50,6 +59,14 @@
           <include>db/schema.sql</include>
           <include>db/seed.sql</include>
           <include>northstar.properties</include>
+          <include>ApplicationResources.properties</include>
+        </includes>
+      </resource>
+      <resource>
+        <directory>../src/main/webapp</directory>
+        <targetPath>static</targetPath>
+        <includes>
+          <include>northstar.css</include>
         </includes>
       </resource>
     </resources>

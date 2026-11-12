@@ -17,8 +17,10 @@ to keep data, `--claims.db.url=jdbc:hsqldb:file:/absolute/path` to choose a
 different file, or `--claims.db.server.port=9003` to move replay access.
 The schema, seed and operating properties are packaged from legacy resources,
 not maintained separately. Stop Boot with Ctrl-C so its pool/server close.
-Only the login placeholder is implemented; replay currently validates data
-plumbing, not full route parity. See [Data layer](../../claims-boot/README.md#data-layer)
+Only the shared foundation (login, home, logout, error, `/admin`) is ported.
+`--area "shared foundation"` matches all 10 legacy responses; its database
+snapshots still differ by the rows that unported intake, settlement and payment
+scenarios write earlier in the ordered stream. See [Data layer](../../claims-boot/README.md#data-layer)
 for DAO/transaction guidance.
 
 ## Baseline replay
