@@ -110,6 +110,11 @@
     "scenario": "intake_bad_date"
   },
   {
+    "description": "FNOL with a blank initial reserve",
+    "module": "intake",
+    "scenario": "intake_blank_reserve"
+  },
+  {
     "description": "Save above the adjuster approval limit",
     "module": "settlement",
     "scenario": "settlement_authority_refused"

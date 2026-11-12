@@ -16,7 +16,7 @@
   "request": {
     "form": {},
     "method": "GET",
-    "path": "/claims/settlement/save.do"
+    "path": "/claims/settlement/save.do?claimId=117"
   },
   "scenario": "settlement_session_save",
   "setup": [
