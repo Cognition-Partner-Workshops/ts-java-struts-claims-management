@@ -39,8 +39,10 @@ make seed       # DatabaseBootstrap: recreate schema + literal data in target/db
 make run        # mvn jetty:run (foreground) on :8080
 ```
 
-Open http://localhost:8080/claims/ and log in as `supervisor` / `supervisor`
-(capture also uses `adjuster4` / `legacy4`). A successful login renders
+Open http://localhost:8080/claims/login.do and log in as `supervisor` /
+`supervisor` (capture also uses `adjuster4` / `legacy4`). The bare context
+root `/claims/` has no welcome page. Jetty shows a directory listing there
+(`northstar.css`, `WEB-INF`), not a login form. A successful login renders
 `home.jsp` (`<!-- ns:view /WEB-INF/jsp/home.jsp -->`). Stop Jetty with
 Ctrl-C.
 
