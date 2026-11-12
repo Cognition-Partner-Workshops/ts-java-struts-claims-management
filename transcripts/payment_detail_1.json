@@ -1,0 +1,25 @@
+{
+  "actor": "supervisor",
+  "area": "payments",
+  "description": "Payment detail 1",
+  "expected": {
+    "business_fields": {
+      "detailPaymentAmount": "500.00",
+      "detailPaymentCheck": "CHK-00001",
+      "detailPaymentClaim": "1",
+      "detailPaymentDate": "2019-03-15",
+      "detailPaymentId": "1",
+      "detailPaymentStatus": "ISSUED"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/payment/detail.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/payment/detail.do?paymentId=1"
+  },
+  "scenario": "payment_detail_1"
+}

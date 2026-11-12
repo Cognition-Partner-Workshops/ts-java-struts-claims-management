@@ -1,0 +1,29 @@
+{
+  "actor": "supervisor",
+  "area": "settlement",
+  "description": "Calculate blank deductible coercion",
+  "expected": {
+    "business_fields": {
+      "cappedAtLimit": "false",
+      "coveredAmount": "5000.00",
+      "deductibleApplied": "0.00",
+      "depreciation": "0.00",
+      "settlementAmount": "5000.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/settlement/calculate.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "120",
+      "coveredAmount": "5000.00",
+      "deductible": "",
+      "depreciation": "0.00"
+    },
+    "method": "POST",
+    "path": "/claims/settlement/calculate.do"
+  },
+  "scenario": "settlement_calculate_blank_deductible_coercion"
+}

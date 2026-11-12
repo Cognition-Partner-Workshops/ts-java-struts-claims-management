@@ -1,0 +1,80 @@
+{
+  "actor": "supervisor",
+  "area": "reports",
+  "description": "Rendered reconciliation report",
+  "expected": {
+    "business_fields": {
+      "reconcileAsOf": "2019-04-01",
+      "reconcilePremium_AUTO": "113100.00",
+      "reconcilePremium_COMMERCIAL_PROPERTY": "91000.00",
+      "reconcilePremium_GENERAL_LIABILITY": "93900.00",
+      "reconcilePremium_HOMEOWNERS": "93700.00",
+      "reconcileRows": "4"
+    },
+    "db_state": {},
+    "rendered_tables": [
+      {
+        "class": "results",
+        "rows": [
+          [
+            "Line",
+            "Premium",
+            "Reserve",
+            "Paid",
+            "Variance"
+          ],
+          [
+            "AUTO",
+            "113100.00",
+            "",
+            "",
+            ""
+          ],
+          [
+            "COMMERCIAL_PROPERTY",
+            "91000.00",
+            "",
+            "",
+            ""
+          ],
+          [
+            "GENERAL_LIABILITY",
+            "93900.00",
+            "",
+            "",
+            ""
+          ],
+          [
+            "HOMEOWNERS",
+            "93700.00",
+            "",
+            "",
+            ""
+          ]
+        ]
+      },
+      {
+        "class": "detail",
+        "rows": [
+          [
+            "As of date",
+            "2019-04-01"
+          ],
+          [
+            "Report rows",
+            "4"
+          ]
+        ]
+      }
+    ],
+    "result": "forward:/WEB-INF/jsp/report/reconciliation.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/report/reconciliation.do"
+  },
+  "scenario": "report_reconciliation_rendered"
+}

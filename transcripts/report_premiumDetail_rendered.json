@@ -1,0 +1,468 @@
+{
+  "actor": "supervisor",
+  "area": "reports",
+  "description": "Rendered premiumDetail report",
+  "expected": {
+    "business_fields": {
+      "premiumAsOf": "2019-04-01",
+      "premiumPolicy_1": "1",
+      "premiumPolicy_10": "10",
+      "premiumPolicy_11": "11",
+      "premiumPolicy_12": "12",
+      "premiumPolicy_13": "13",
+      "premiumPolicy_14": "14",
+      "premiumPolicy_15": "15",
+      "premiumPolicy_16": "16",
+      "premiumPolicy_17": "17",
+      "premiumPolicy_18": "18",
+      "premiumPolicy_19": "19",
+      "premiumPolicy_2": "2",
+      "premiumPolicy_20": "20",
+      "premiumPolicy_21": "21",
+      "premiumPolicy_22": "22",
+      "premiumPolicy_23": "23",
+      "premiumPolicy_24": "24",
+      "premiumPolicy_25": "25",
+      "premiumPolicy_26": "26",
+      "premiumPolicy_27": "27",
+      "premiumPolicy_28": "28",
+      "premiumPolicy_29": "29",
+      "premiumPolicy_3": "3",
+      "premiumPolicy_30": "30",
+      "premiumPolicy_31": "31",
+      "premiumPolicy_32": "32",
+      "premiumPolicy_33": "33",
+      "premiumPolicy_34": "34",
+      "premiumPolicy_35": "35",
+      "premiumPolicy_36": "36",
+      "premiumPolicy_37": "37",
+      "premiumPolicy_38": "38",
+      "premiumPolicy_39": "39",
+      "premiumPolicy_4": "4",
+      "premiumPolicy_40": "40",
+      "premiumPolicy_5": "5",
+      "premiumPolicy_6": "6",
+      "premiumPolicy_7": "7",
+      "premiumPolicy_8": "8",
+      "premiumPolicy_9": "9",
+      "premiumPolicy_9001": "9001",
+      "premiumPolicy_9002": "9002",
+      "premiumRows": "42",
+      "premiumStatus_1": "ACTIVE",
+      "premiumStatus_10": "ACTIVE",
+      "premiumStatus_11": "ACTIVE",
+      "premiumStatus_12": "ACTIVE",
+      "premiumStatus_13": "ACTIVE",
+      "premiumStatus_14": "ACTIVE",
+      "premiumStatus_15": "ACTIVE",
+      "premiumStatus_16": "ACTIVE",
+      "premiumStatus_17": "ACTIVE",
+      "premiumStatus_18": "ACTIVE",
+      "premiumStatus_19": "ACTIVE",
+      "premiumStatus_2": "ACTIVE",
+      "premiumStatus_20": "ACTIVE",
+      "premiumStatus_21": "ACTIVE",
+      "premiumStatus_22": "ACTIVE",
+      "premiumStatus_23": "ACTIVE",
+      "premiumStatus_24": "ACTIVE",
+      "premiumStatus_25": "ACTIVE",
+      "premiumStatus_26": "ACTIVE",
+      "premiumStatus_27": "ACTIVE",
+      "premiumStatus_28": "ACTIVE",
+      "premiumStatus_29": "ACTIVE",
+      "premiumStatus_3": "ACTIVE",
+      "premiumStatus_30": "ACTIVE",
+      "premiumStatus_31": "ACTIVE",
+      "premiumStatus_32": "ACTIVE",
+      "premiumStatus_33": "ACTIVE",
+      "premiumStatus_34": "ACTIVE",
+      "premiumStatus_35": "ACTIVE",
+      "premiumStatus_36": "ACTIVE",
+      "premiumStatus_37": "ACTIVE",
+      "premiumStatus_38": "ACTIVE",
+      "premiumStatus_39": "ACTIVE",
+      "premiumStatus_4": "ACTIVE",
+      "premiumStatus_40": "ACTIVE",
+      "premiumStatus_5": "ACTIVE",
+      "premiumStatus_6": "ACTIVE",
+      "premiumStatus_7": "ACTIVE",
+      "premiumStatus_8": "ACTIVE",
+      "premiumStatus_9": "ACTIVE",
+      "premiumStatus_9001": "ACTIVE",
+      "premiumStatus_9002": "ACTIVE",
+      "premiumValue_1": "1200.00",
+      "premiumValue_10": "2100.00",
+      "premiumValue_11": "2200.00",
+      "premiumValue_12": "2300.00",
+      "premiumValue_13": "2400.00",
+      "premiumValue_14": "2500.00",
+      "premiumValue_15": "2600.00",
+      "premiumValue_16": "2700.00",
+      "premiumValue_17": "2800.00",
+      "premiumValue_18": "2900.00",
+      "premiumValue_19": "3000.00",
+      "premiumValue_2": "1300.00",
+      "premiumValue_20": "3100.00",
+      "premiumValue_21": "3200.00",
+      "premiumValue_22": "3300.00",
+      "premiumValue_23": "3400.00",
+      "premiumValue_24": "3500.00",
+      "premiumValue_25": "3600.00",
+      "premiumValue_26": "3700.00",
+      "premiumValue_27": "3800.00",
+      "premiumValue_28": "3900.00",
+      "premiumValue_29": "4000.00",
+      "premiumValue_3": "1400.00",
+      "premiumValue_30": "4100.00",
+      "premiumValue_31": "4200.00",
+      "premiumValue_32": "4300.00",
+      "premiumValue_33": "4400.00",
+      "premiumValue_34": "4500.00",
+      "premiumValue_35": "4600.00",
+      "premiumValue_36": "4700.00",
+      "premiumValue_37": "4800.00",
+      "premiumValue_38": "4900.00",
+      "premiumValue_39": "5000.00",
+      "premiumValue_4": "1500.00",
+      "premiumValue_40": "5100.00",
+      "premiumValue_5": "1600.00",
+      "premiumValue_6": "1700.00",
+      "premiumValue_7": "1800.00",
+      "premiumValue_8": "1900.00",
+      "premiumValue_9": "2000.00",
+      "premiumValue_9001": "700.00",
+      "premiumValue_9002": "700.00"
+    },
+    "db_state": {},
+    "rendered_tables": [
+      {
+        "class": "results",
+        "rows": [
+          [
+            "Policy",
+            "Number",
+            "Line",
+            "Premium",
+            "Status"
+          ],
+          [
+            "1",
+            "NS-00001",
+            "AUTO",
+            "1200.00",
+            "ACTIVE"
+          ],
+          [
+            "2",
+            "NS-00002",
+            "HOMEOWNERS",
+            "1300.00",
+            "ACTIVE"
+          ],
+          [
+            "3",
+            "NS-00003",
+            "COMMERCIAL_PROPERTY",
+            "1400.00",
+            "ACTIVE"
+          ],
+          [
+            "4",
+            "NS-00004",
+            "GENERAL_LIABILITY",
+            "1500.00",
+            "ACTIVE"
+          ],
+          [
+            "5",
+            "NS-00005",
+            "AUTO",
+            "1600.00",
+            "ACTIVE"
+          ],
+          [
+            "6",
+            "NS-00006",
+            "HOMEOWNERS",
+            "1700.00",
+            "ACTIVE"
+          ],
+          [
+            "7",
+            "NS-00007",
+            "COMMERCIAL_PROPERTY",
+            "1800.00",
+            "ACTIVE"
+          ],
+          [
+            "8",
+            "NS-00008",
+            "GENERAL_LIABILITY",
+            "1900.00",
+            "ACTIVE"
+          ],
+          [
+            "9",
+            "NS-00009",
+            "AUTO",
+            "2000.00",
+            "ACTIVE"
+          ],
+          [
+            "10",
+            "NS-00010",
+            "HOMEOWNERS",
+            "2100.00",
+            "ACTIVE"
+          ],
+          [
+            "11",
+            "NS-00011",
+            "COMMERCIAL_PROPERTY",
+            "2200.00",
+            "ACTIVE"
+          ],
+          [
+            "12",
+            "NS-00012",
+            "GENERAL_LIABILITY",
+            "2300.00",
+            "ACTIVE"
+          ],
+          [
+            "13",
+            "NS-00013",
+            "AUTO",
+            "2400.00",
+            "ACTIVE"
+          ],
+          [
+            "14",
+            "NS-00014",
+            "HOMEOWNERS",
+            "2500.00",
+            "ACTIVE"
+          ],
+          [
+            "15",
+            "NS-00015",
+            "COMMERCIAL_PROPERTY",
+            "2600.00",
+            "ACTIVE"
+          ],
+          [
+            "16",
+            "NS-00016",
+            "GENERAL_LIABILITY",
+            "2700.00",
+            "ACTIVE"
+          ],
+          [
+            "17",
+            "NS-00017",
+            "AUTO",
+            "2800.00",
+            "ACTIVE"
+          ],
+          [
+            "18",
+            "NS-00018",
+            "HOMEOWNERS",
+            "2900.00",
+            "ACTIVE"
+          ],
+          [
+            "19",
+            "NS-00019",
+            "COMMERCIAL_PROPERTY",
+            "3000.00",
+            "ACTIVE"
+          ],
+          [
+            "20",
+            "NS-00020",
+            "GENERAL_LIABILITY",
+            "3100.00",
+            "ACTIVE"
+          ],
+          [
+            "21",
+            "NS-00021",
+            "AUTO",
+            "3200.00",
+            "ACTIVE"
+          ],
+          [
+            "22",
+            "NS-00022",
+            "HOMEOWNERS",
+            "3300.00",
+            "ACTIVE"
+          ],
+          [
+            "23",
+            "NS-00023",
+            "COMMERCIAL_PROPERTY",
+            "3400.00",
+            "ACTIVE"
+          ],
+          [
+            "24",
+            "NS-00024",
+            "GENERAL_LIABILITY",
+            "3500.00",
+            "ACTIVE"
+          ],
+          [
+            "25",
+            "NS-00025",
+            "AUTO",
+            "3600.00",
+            "ACTIVE"
+          ],
+          [
+            "26",
+            "NS-00026",
+            "HOMEOWNERS",
+            "3700.00",
+            "ACTIVE"
+          ],
+          [
+            "27",
+            "NS-00027",
+            "COMMERCIAL_PROPERTY",
+            "3800.00",
+            "ACTIVE"
+          ],
+          [
+            "28",
+            "NS-00028",
+            "GENERAL_LIABILITY",
+            "3900.00",
+            "ACTIVE"
+          ],
+          [
+            "29",
+            "NS-00029",
+            "AUTO",
+            "4000.00",
+            "ACTIVE"
+          ],
+          [
+            "30",
+            "NS-00030",
+            "HOMEOWNERS",
+            "4100.00",
+            "ACTIVE"
+          ],
+          [
+            "31",
+            "NS-00031",
+            "COMMERCIAL_PROPERTY",
+            "4200.00",
+            "ACTIVE"
+          ],
+          [
+            "32",
+            "NS-00032",
+            "GENERAL_LIABILITY",
+            "4300.00",
+            "ACTIVE"
+          ],
+          [
+            "33",
+            "NS-00033",
+            "AUTO",
+            "4400.00",
+            "ACTIVE"
+          ],
+          [
+            "34",
+            "NS-00034",
+            "HOMEOWNERS",
+            "4500.00",
+            "ACTIVE"
+          ],
+          [
+            "35",
+            "NS-00035",
+            "COMMERCIAL_PROPERTY",
+            "4600.00",
+            "ACTIVE"
+          ],
+          [
+            "36",
+            "NS-00036",
+            "GENERAL_LIABILITY",
+            "4700.00",
+            "ACTIVE"
+          ],
+          [
+            "37",
+            "NS-00037",
+            "AUTO",
+            "4800.00",
+            "ACTIVE"
+          ],
+          [
+            "38",
+            "NS-00038",
+            "HOMEOWNERS",
+            "4900.00",
+            "ACTIVE"
+          ],
+          [
+            "39",
+            "NS-00039",
+            "COMMERCIAL_PROPERTY",
+            "5000.00",
+            "ACTIVE"
+          ],
+          [
+            "40",
+            "NS-00040",
+            "GENERAL_LIABILITY",
+            "5100.00",
+            "ACTIVE"
+          ],
+          [
+            "9001",
+            "NS-09001",
+            "AUTO",
+            "700.00",
+            "ACTIVE"
+          ],
+          [
+            "9002",
+            "NS-09002",
+            "HOMEOWNERS",
+            "700.00",
+            "ACTIVE"
+          ]
+        ]
+      },
+      {
+        "class": "detail",
+        "rows": [
+          [
+            "Policy rows",
+            "42"
+          ],
+          [
+            "As of date",
+            "2019-04-01"
+          ]
+        ]
+      }
+    ],
+    "result": "forward:/WEB-INF/jsp/report/premiumDetail.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/report/premiumDetail.do"
+  },
+  "scenario": "report_premiumDetail_rendered"
+}

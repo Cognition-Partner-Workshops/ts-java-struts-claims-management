@@ -1,0 +1,27 @@
+{
+  "actor": "supervisor",
+  "area": "settlement",
+  "description": "Settlement detail 124",
+  "expected": {
+    "business_fields": {
+      "detailAmount": "700.00",
+      "detailCapped": "false",
+      "detailClaimId": "124",
+      "detailCoveredAmount": "800.00",
+      "detailDate": "2019-04-01",
+      "detailDeductible": "100.00",
+      "detailDepreciation": "0.00",
+      "detailSettlementId": "124"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/settlement/detail.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/settlement/detail.do?claimId=124"
+  },
+  "scenario": "settlement_detail_124"
+}

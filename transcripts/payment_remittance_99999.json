@@ -1,0 +1,22 @@
+{
+  "actor": "supervisor",
+  "area": "payments",
+  "description": "Remittance for claim 99999",
+  "expected": {
+    "business_fields": {
+      "remitClaimId": "99999",
+      "remitCount": "0",
+      "remitTotal": "0.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/payment/remittance.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/payment/remittance.do?claimId=99999"
+  },
+  "scenario": "payment_remittance_99999"
+}

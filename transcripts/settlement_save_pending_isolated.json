@@ -1,0 +1,35 @@
+{
+  "actor": "supervisor",
+  "area": "settlement",
+  "description": "Save isolated session pending calculation",
+  "expected": {
+    "business_fields": {
+      "savedBy": "supervisor",
+      "settlementAmount": "750.00"
+    },
+    "db_state": {
+      "settlement.saved.claim.125.amount": "750.00"
+    },
+    "result": "forward:/WEB-INF/jsp/settlement/save.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/settlement/save.do?claimId=125"
+  },
+  "scenario": "settlement_save_pending_isolated",
+  "setup": [
+    {
+      "form": {
+        "claimId": "125",
+        "coveredAmount": "900",
+        "deductible": "100",
+        "depreciation": "50"
+      },
+      "method": "POST",
+      "path": "/claims/settlement/calculate.do"
+    }
+  ]
+}

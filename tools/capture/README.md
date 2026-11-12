@@ -65,3 +65,24 @@ adjusters, status accepts arbitrary ordinary strings, reserve falls back to
 Reserve/status history screens use empty lists even after mutations; notes
 remain unchanged. Full database snapshots expose these non-writes and closure
 insertion/removal alongside HTTP probes of claim state.
+
+New report scenarios opt into `capture_tables`, which adds
+`expected.rendered_tables` containing normalized cell text from `results` and
+`detail` tables. Existing `business_fields` still records every nonempty `f_`
+span. This option never changes the old report recordings. Navigation and
+screen-audit tables are excluded. All report JSPs have table content outside
+`f_` spans: adjuster/bucket/line labels in openByAdjuster, agedClaims,
+lossRatio, adjusterWorkload, and reconciliation; claim numbers in
+adjusterClaims, closedClaims, and claimInventory; policy numbers/lines in
+premiumDetail; status/adjuster in claimAgingDetail. The report index has no
+`f_` spans at all, so its report-link table is captured as rendered text.
+
+Settlement/payment mappings have no enabled field validation. Blank and
+non-numeric numeric inputs record their existing coercion/default behavior,
+and missing payee/method or settlement records the legacy database/system
+error. Payment methods have no enumeration or application restriction; the
+captures exercise CHECK, EFT, ACH, WIRE, and blank values. Remittance takes a
+claim id, not a payment id; an explicit scenario records ignored paymentId.
+The only report request parameter is adjusterClaims' `adjuster`; other report
+dates are configured, not supplied by the request. CI's unfiltered push event
+includes `devin/parity-set` without a workflow change.

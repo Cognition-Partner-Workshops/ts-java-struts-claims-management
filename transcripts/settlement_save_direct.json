@@ -1,0 +1,28 @@
+{
+  "actor": "supervisor",
+  "area": "settlement",
+  "description": "Save submitted amounts directly",
+  "expected": {
+    "business_fields": {
+      "savedBy": "supervisor",
+      "settlementAmount": "700.00"
+    },
+    "db_state": {
+      "settlement.saved.claim.124.amount": "700.00"
+    },
+    "result": "forward:/WEB-INF/jsp/settlement/save.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "124",
+      "coveredAmount": "800",
+      "deductible": "100",
+      "depreciation": "0"
+    },
+    "method": "POST",
+    "path": "/claims/settlement/save.do"
+  },
+  "scenario": "settlement_save_direct"
+}

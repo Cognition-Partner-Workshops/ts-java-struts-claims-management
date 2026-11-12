@@ -1,0 +1,59 @@
+{
+  "actor": "supervisor",
+  "area": "reports",
+  "description": "Rendered agedClaims report",
+  "expected": {
+    "business_fields": {
+      "agedBucket_0_30": "36",
+      "agedBucket_31_60": "19",
+      "agedBucket_61_90": "18",
+      "agedBucket_91_PLUS": "19",
+      "agedReserve_0_30": "26061",
+      "agedReserve_31_60": "19056",
+      "agedReserve_61_90": "19026",
+      "agedReserve_91_PLUS": "19116"
+    },
+    "db_state": {},
+    "rendered_tables": [
+      {
+        "class": "results",
+        "rows": [
+          [
+            "Age Bucket",
+            "Claim Count",
+            "Reserve Total"
+          ],
+          [
+            "0_30",
+            "36",
+            "26061"
+          ],
+          [
+            "31_60",
+            "19",
+            "19056"
+          ],
+          [
+            "61_90",
+            "18",
+            "19026"
+          ],
+          [
+            "91_PLUS",
+            "19",
+            "19116"
+          ]
+        ]
+      }
+    ],
+    "result": "forward:/WEB-INF/jsp/report/agedClaims.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/report/agedClaims.do"
+  },
+  "scenario": "report_agedClaims_rendered"
+}

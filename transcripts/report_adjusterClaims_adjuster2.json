@@ -1,0 +1,215 @@
+{
+  "actor": "supervisor",
+  "area": "reports",
+  "description": "Claims for adjuster adjuster2",
+  "expected": {
+    "business_fields": {
+      "adjuster": "adjuster2",
+      "claimCount": "26",
+      "claimStatus_CLM-00002": "INVESTIGATING",
+      "claimStatus_CLM-00007": "INVESTIGATING",
+      "claimStatus_CLM-00012": "INVESTIGATING",
+      "claimStatus_CLM-00017": "INVESTIGATING",
+      "claimStatus_CLM-00022": "INVESTIGATING",
+      "claimStatus_CLM-00027": "INVESTIGATING",
+      "claimStatus_CLM-00032": "INVESTIGATING",
+      "claimStatus_CLM-00037": "INVESTIGATING",
+      "claimStatus_CLM-00042": "INVESTIGATING",
+      "claimStatus_CLM-00047": "INVESTIGATING",
+      "claimStatus_CLM-00052": "INVESTIGATING",
+      "claimStatus_CLM-00057": "INVESTIGATING",
+      "claimStatus_CLM-00062": "INVESTIGATING",
+      "claimStatus_CLM-00067": "INVESTIGATING",
+      "claimStatus_CLM-00072": "INVESTIGATING",
+      "claimStatus_CLM-00077": "INVESTIGATING",
+      "claimStatus_CLM-00082": "INVESTIGATING",
+      "claimStatus_CLM-00087": "INVESTIGATING",
+      "claimStatus_CLM-00092": "INVESTIGATING",
+      "claimStatus_CLM-00097": "INVESTIGATING",
+      "claimStatus_CLM-00102": "INVESTIGATING",
+      "claimStatus_CLM-00107": "INVESTIGATING",
+      "claimStatus_CLM-00112": "INVESTIGATING",
+      "claimStatus_CLM-00117": "INVESTIGATING",
+      "claimStatus_CLM-121": "INVESTIGATING",
+      "claimStatus_CLM-124": "OPEN",
+      "reserveAmount_CLM-00002": "1002.00",
+      "reserveAmount_CLM-00007": "1007.00",
+      "reserveAmount_CLM-00012": "1012.00",
+      "reserveAmount_CLM-00017": "1017.00",
+      "reserveAmount_CLM-00022": "1022.00",
+      "reserveAmount_CLM-00027": "1027.00",
+      "reserveAmount_CLM-00032": "1032.00",
+      "reserveAmount_CLM-00037": "1037.00",
+      "reserveAmount_CLM-00042": "1042.00",
+      "reserveAmount_CLM-00047": "1047.00",
+      "reserveAmount_CLM-00052": "1052.00",
+      "reserveAmount_CLM-00057": "1057.00",
+      "reserveAmount_CLM-00062": "1062.00",
+      "reserveAmount_CLM-00067": "1067.00",
+      "reserveAmount_CLM-00072": "1072.00",
+      "reserveAmount_CLM-00077": "1077.00",
+      "reserveAmount_CLM-00082": "1082.00",
+      "reserveAmount_CLM-00087": "1087.00",
+      "reserveAmount_CLM-00092": "1092.00",
+      "reserveAmount_CLM-00097": "1097.00",
+      "reserveAmount_CLM-00102": "1102.00",
+      "reserveAmount_CLM-00107": "1107.00",
+      "reserveAmount_CLM-00112": "1112.00",
+      "reserveAmount_CLM-00117": "1117.00",
+      "reserveAmount_CLM-121": "4500.00",
+      "reserveAmount_CLM-124": "0.00"
+    },
+    "db_state": {},
+    "rendered_tables": [
+      {
+        "class": "results",
+        "rows": [
+          [
+            "Claim Number",
+            "Claim Status",
+            "Reserve Total"
+          ],
+          [
+            "CLM-00002",
+            "INVESTIGATING",
+            "1002.00"
+          ],
+          [
+            "CLM-00007",
+            "INVESTIGATING",
+            "1007.00"
+          ],
+          [
+            "CLM-00012",
+            "INVESTIGATING",
+            "1012.00"
+          ],
+          [
+            "CLM-00017",
+            "INVESTIGATING",
+            "1017.00"
+          ],
+          [
+            "CLM-00022",
+            "INVESTIGATING",
+            "1022.00"
+          ],
+          [
+            "CLM-00027",
+            "INVESTIGATING",
+            "1027.00"
+          ],
+          [
+            "CLM-00032",
+            "INVESTIGATING",
+            "1032.00"
+          ],
+          [
+            "CLM-00037",
+            "INVESTIGATING",
+            "1037.00"
+          ],
+          [
+            "CLM-00042",
+            "INVESTIGATING",
+            "1042.00"
+          ],
+          [
+            "CLM-00047",
+            "INVESTIGATING",
+            "1047.00"
+          ],
+          [
+            "CLM-00052",
+            "INVESTIGATING",
+            "1052.00"
+          ],
+          [
+            "CLM-00057",
+            "INVESTIGATING",
+            "1057.00"
+          ],
+          [
+            "CLM-00062",
+            "INVESTIGATING",
+            "1062.00"
+          ],
+          [
+            "CLM-00067",
+            "INVESTIGATING",
+            "1067.00"
+          ],
+          [
+            "CLM-00072",
+            "INVESTIGATING",
+            "1072.00"
+          ],
+          [
+            "CLM-00077",
+            "INVESTIGATING",
+            "1077.00"
+          ],
+          [
+            "CLM-00082",
+            "INVESTIGATING",
+            "1082.00"
+          ],
+          [
+            "CLM-00087",
+            "INVESTIGATING",
+            "1087.00"
+          ],
+          [
+            "CLM-00092",
+            "INVESTIGATING",
+            "1092.00"
+          ],
+          [
+            "CLM-00097",
+            "INVESTIGATING",
+            "1097.00"
+          ],
+          [
+            "CLM-00102",
+            "INVESTIGATING",
+            "1102.00"
+          ],
+          [
+            "CLM-00107",
+            "INVESTIGATING",
+            "1107.00"
+          ],
+          [
+            "CLM-00112",
+            "INVESTIGATING",
+            "1112.00"
+          ],
+          [
+            "CLM-00117",
+            "INVESTIGATING",
+            "1117.00"
+          ],
+          [
+            "CLM-121",
+            "INVESTIGATING",
+            "4500.00"
+          ],
+          [
+            "CLM-124",
+            "OPEN",
+            "0.00"
+          ]
+        ]
+      }
+    ],
+    "result": "forward:/WEB-INF/jsp/report/adjusterClaims.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/report/adjusterClaims.do?adjuster=adjuster2"
+  },
+  "scenario": "report_adjusterClaims_adjuster2"
+}

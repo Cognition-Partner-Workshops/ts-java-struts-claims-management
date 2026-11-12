@@ -1,0 +1,201 @@
+{
+  "actor": "supervisor",
+  "area": "reports",
+  "description": "Claims for adjuster adjuster3",
+  "expected": {
+    "business_fields": {
+      "adjuster": "adjuster3",
+      "claimCount": "24",
+      "claimStatus_CLM-00003": "APPROVED",
+      "claimStatus_CLM-00008": "APPROVED",
+      "claimStatus_CLM-00013": "APPROVED",
+      "claimStatus_CLM-00018": "APPROVED",
+      "claimStatus_CLM-00023": "APPROVED",
+      "claimStatus_CLM-00028": "APPROVED",
+      "claimStatus_CLM-00033": "APPROVED",
+      "claimStatus_CLM-00038": "APPROVED",
+      "claimStatus_CLM-00043": "APPROVED",
+      "claimStatus_CLM-00048": "APPROVED",
+      "claimStatus_CLM-00053": "APPROVED",
+      "claimStatus_CLM-00058": "APPROVED",
+      "claimStatus_CLM-00063": "APPROVED",
+      "claimStatus_CLM-00068": "APPROVED",
+      "claimStatus_CLM-00073": "APPROVED",
+      "claimStatus_CLM-00078": "APPROVED",
+      "claimStatus_CLM-00083": "APPROVED",
+      "claimStatus_CLM-00088": "APPROVED",
+      "claimStatus_CLM-00093": "APPROVED",
+      "claimStatus_CLM-00098": "APPROVED",
+      "claimStatus_CLM-00103": "APPROVED",
+      "claimStatus_CLM-00108": "APPROVED",
+      "claimStatus_CLM-00113": "APPROVED",
+      "claimStatus_CLM-00118": "APPROVED",
+      "reserveAmount_CLM-00003": "1003.00",
+      "reserveAmount_CLM-00008": "1008.00",
+      "reserveAmount_CLM-00013": "1013.00",
+      "reserveAmount_CLM-00018": "1018.00",
+      "reserveAmount_CLM-00023": "1023.00",
+      "reserveAmount_CLM-00028": "1028.00",
+      "reserveAmount_CLM-00033": "1033.00",
+      "reserveAmount_CLM-00038": "1038.00",
+      "reserveAmount_CLM-00043": "1043.00",
+      "reserveAmount_CLM-00048": "1048.00",
+      "reserveAmount_CLM-00053": "1053.00",
+      "reserveAmount_CLM-00058": "1058.00",
+      "reserveAmount_CLM-00063": "1063.00",
+      "reserveAmount_CLM-00068": "1068.00",
+      "reserveAmount_CLM-00073": "1073.00",
+      "reserveAmount_CLM-00078": "1078.00",
+      "reserveAmount_CLM-00083": "1083.00",
+      "reserveAmount_CLM-00088": "1088.00",
+      "reserveAmount_CLM-00093": "1093.00",
+      "reserveAmount_CLM-00098": "1098.00",
+      "reserveAmount_CLM-00103": "1103.00",
+      "reserveAmount_CLM-00108": "1108.00",
+      "reserveAmount_CLM-00113": "1113.00",
+      "reserveAmount_CLM-00118": "1118.00"
+    },
+    "db_state": {},
+    "rendered_tables": [
+      {
+        "class": "results",
+        "rows": [
+          [
+            "Claim Number",
+            "Claim Status",
+            "Reserve Total"
+          ],
+          [
+            "CLM-00003",
+            "APPROVED",
+            "1003.00"
+          ],
+          [
+            "CLM-00008",
+            "APPROVED",
+            "1008.00"
+          ],
+          [
+            "CLM-00013",
+            "APPROVED",
+            "1013.00"
+          ],
+          [
+            "CLM-00018",
+            "APPROVED",
+            "1018.00"
+          ],
+          [
+            "CLM-00023",
+            "APPROVED",
+            "1023.00"
+          ],
+          [
+            "CLM-00028",
+            "APPROVED",
+            "1028.00"
+          ],
+          [
+            "CLM-00033",
+            "APPROVED",
+            "1033.00"
+          ],
+          [
+            "CLM-00038",
+            "APPROVED",
+            "1038.00"
+          ],
+          [
+            "CLM-00043",
+            "APPROVED",
+            "1043.00"
+          ],
+          [
+            "CLM-00048",
+            "APPROVED",
+            "1048.00"
+          ],
+          [
+            "CLM-00053",
+            "APPROVED",
+            "1053.00"
+          ],
+          [
+            "CLM-00058",
+            "APPROVED",
+            "1058.00"
+          ],
+          [
+            "CLM-00063",
+            "APPROVED",
+            "1063.00"
+          ],
+          [
+            "CLM-00068",
+            "APPROVED",
+            "1068.00"
+          ],
+          [
+            "CLM-00073",
+            "APPROVED",
+            "1073.00"
+          ],
+          [
+            "CLM-00078",
+            "APPROVED",
+            "1078.00"
+          ],
+          [
+            "CLM-00083",
+            "APPROVED",
+            "1083.00"
+          ],
+          [
+            "CLM-00088",
+            "APPROVED",
+            "1088.00"
+          ],
+          [
+            "CLM-00093",
+            "APPROVED",
+            "1093.00"
+          ],
+          [
+            "CLM-00098",
+            "APPROVED",
+            "1098.00"
+          ],
+          [
+            "CLM-00103",
+            "APPROVED",
+            "1103.00"
+          ],
+          [
+            "CLM-00108",
+            "APPROVED",
+            "1108.00"
+          ],
+          [
+            "CLM-00113",
+            "APPROVED",
+            "1113.00"
+          ],
+          [
+            "CLM-00118",
+            "APPROVED",
+            "1118.00"
+          ]
+        ]
+      }
+    ],
+    "result": "forward:/WEB-INF/jsp/report/adjusterClaims.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/report/adjusterClaims.do?adjuster=adjuster3"
+  },
+  "scenario": "report_adjusterClaims_adjuster3"
+}

@@ -1,0 +1,32 @@
+{
+  "actor": "supervisor",
+  "area": "reports",
+  "description": "Claims for adjuster blank",
+  "expected": {
+    "business_fields": {
+      "claimCount": "0"
+    },
+    "db_state": {},
+    "rendered_tables": [
+      {
+        "class": "results",
+        "rows": [
+          [
+            "Claim Number",
+            "Claim Status",
+            "Reserve Total"
+          ]
+        ]
+      }
+    ],
+    "result": "forward:/WEB-INF/jsp/report/adjusterClaims.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/report/adjusterClaims.do?adjuster="
+  },
+  "scenario": "report_adjusterClaims_blank"
+}

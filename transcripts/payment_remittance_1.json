@@ -1,0 +1,26 @@
+{
+  "actor": "supervisor",
+  "area": "payments",
+  "description": "Remittance for claim 1",
+  "expected": {
+    "business_fields": {
+      "remitAmount_1": "500.00",
+      "remitCheck_1": "CHK-00001",
+      "remitClaimId": "1",
+      "remitCount": "1",
+      "remitDate_1": "2019-03-15",
+      "remitStatus_1": "ISSUED",
+      "remitTotal": "500.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/payment/remittance.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/payment/remittance.do?claimId=1"
+  },
+  "scenario": "payment_remittance_1"
+}

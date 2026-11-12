@@ -1,0 +1,85 @@
+{
+  "actor": "supervisor",
+  "area": "reports",
+  "description": "Rendered index report",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "rendered_tables": [
+      {
+        "class": "results",
+        "rows": [
+          [
+            "Report Name",
+            "Link"
+          ],
+          [
+            "Open Claims by Adjuster",
+            "Open"
+          ],
+          [
+            "Loss Ratio by Line of Business",
+            "Open"
+          ],
+          [
+            "Aged Claims",
+            "Open"
+          ],
+          [
+            "Adjuster workload",
+            "Open"
+          ],
+          [
+            "Claims by adjuster",
+            "Open"
+          ],
+          [
+            "Closed claims",
+            "Open"
+          ],
+          [
+            "Month-end claim inventory",
+            "Open"
+          ],
+          [
+            "Aged claim detail",
+            "Open"
+          ],
+          [
+            "Claims reconciliation",
+            "Open"
+          ],
+          [
+            "Premium detail",
+            "Open"
+          ],
+          [
+            "Adjuster workload",
+            "Open"
+          ],
+          [
+            "Aged claim detail",
+            "Open"
+          ],
+          [
+            "Claims reconciliation",
+            "Open"
+          ],
+          [
+            "Premium detail",
+            "Open"
+          ]
+        ]
+      }
+    ],
+    "result": "forward:/WEB-INF/jsp/report/index.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/report/index.do"
+  },
+  "scenario": "report_index_rendered"
+}

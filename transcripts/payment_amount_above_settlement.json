@@ -1,0 +1,29 @@
+{
+  "actor": "supervisor",
+  "area": "payments",
+  "description": "Payment amount above_settlement",
+  "expected": {
+    "business_fields": {
+      "checkNumber": "CHK-71",
+      "paymentAmount": "10000.00",
+      "paymentStatus": "ISSUED"
+    },
+    "db_state": {
+      "payment.count.claim.124": "10"
+    },
+    "result": "forward:/WEB-INF/jsp/payment/issue.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "amount": "10000",
+      "claimId": "124",
+      "payeeName": "Capture Payee",
+      "paymentMethod": "CHECK"
+    },
+    "method": "POST",
+    "path": "/claims/payment/issue.do"
+  },
+  "scenario": "payment_amount_above_settlement"
+}

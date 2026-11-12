@@ -1,0 +1,28 @@
+{
+  "actor": "adjuster4",
+  "area": "settlement",
+  "description": "Adjuster authority exact_limit",
+  "expected": {
+    "business_fields": {
+      "savedBy": "adjuster4",
+      "settlementAmount": "2500.00"
+    },
+    "db_state": {
+      "settlement.saved.claim.118.amount": "2500.00"
+    },
+    "result": "forward:/WEB-INF/jsp/settlement/save.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "118",
+      "coveredAmount": "3000",
+      "deductible": "500",
+      "depreciation": "0"
+    },
+    "method": "POST",
+    "path": "/claims/settlement/save.do"
+  },
+  "scenario": "settlement_save_authority_exact_limit"
+}

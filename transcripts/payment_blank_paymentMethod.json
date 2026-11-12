@@ -1,0 +1,29 @@
+{
+  "actor": "supervisor",
+  "area": "payments",
+  "description": "Blank paymentMethod accepted without validation",
+  "expected": {
+    "business_fields": {
+      "checkNumber": "CHK-73",
+      "paymentAmount": "100.00",
+      "paymentStatus": "ISSUED"
+    },
+    "db_state": {
+      "payment.count.claim.124": "12"
+    },
+    "result": "forward:/WEB-INF/jsp/payment/issue.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "amount": "100.00",
+      "claimId": "124",
+      "payeeName": "Capture Payee",
+      "paymentMethod": ""
+    },
+    "method": "POST",
+    "path": "/claims/payment/issue.do"
+  },
+  "scenario": "payment_blank_paymentMethod"
+}

@@ -1,0 +1,194 @@
+{
+  "actor": "supervisor",
+  "area": "reports",
+  "description": "Claims for adjuster adjuster4",
+  "expected": {
+    "business_fields": {
+      "adjuster": "adjuster4",
+      "claimCount": "23",
+      "claimStatus_CLM-00004": "DENIED",
+      "claimStatus_CLM-00009": "DENIED",
+      "claimStatus_CLM-00014": "DENIED",
+      "claimStatus_CLM-00019": "DENIED",
+      "claimStatus_CLM-00024": "DENIED",
+      "claimStatus_CLM-00029": "DENIED",
+      "claimStatus_CLM-00034": "DENIED",
+      "claimStatus_CLM-00039": "DENIED",
+      "claimStatus_CLM-00044": "DENIED",
+      "claimStatus_CLM-00049": "DENIED",
+      "claimStatus_CLM-00054": "DENIED",
+      "claimStatus_CLM-00059": "DENIED",
+      "claimStatus_CLM-00064": "DENIED",
+      "claimStatus_CLM-00069": "DENIED",
+      "claimStatus_CLM-00074": "DENIED",
+      "claimStatus_CLM-00079": "DENIED",
+      "claimStatus_CLM-00084": "DENIED",
+      "claimStatus_CLM-00089": "DENIED",
+      "claimStatus_CLM-00094": "DENIED",
+      "claimStatus_CLM-00099": "DENIED",
+      "claimStatus_CLM-00104": "DENIED",
+      "claimStatus_CLM-00109": "DENIED",
+      "claimStatus_CLM-00114": "DENIED",
+      "reserveAmount_CLM-00004": "1004.00",
+      "reserveAmount_CLM-00009": "1009.00",
+      "reserveAmount_CLM-00014": "1014.00",
+      "reserveAmount_CLM-00019": "1019.00",
+      "reserveAmount_CLM-00024": "1024.00",
+      "reserveAmount_CLM-00029": "1029.00",
+      "reserveAmount_CLM-00034": "1034.00",
+      "reserveAmount_CLM-00039": "1039.00",
+      "reserveAmount_CLM-00044": "1044.00",
+      "reserveAmount_CLM-00049": "1049.00",
+      "reserveAmount_CLM-00054": "1054.00",
+      "reserveAmount_CLM-00059": "1059.00",
+      "reserveAmount_CLM-00064": "1064.00",
+      "reserveAmount_CLM-00069": "1069.00",
+      "reserveAmount_CLM-00074": "1074.00",
+      "reserveAmount_CLM-00079": "1079.00",
+      "reserveAmount_CLM-00084": "1084.00",
+      "reserveAmount_CLM-00089": "1089.00",
+      "reserveAmount_CLM-00094": "1094.00",
+      "reserveAmount_CLM-00099": "1099.00",
+      "reserveAmount_CLM-00104": "1104.00",
+      "reserveAmount_CLM-00109": "1109.00",
+      "reserveAmount_CLM-00114": "1114.00"
+    },
+    "db_state": {},
+    "rendered_tables": [
+      {
+        "class": "results",
+        "rows": [
+          [
+            "Claim Number",
+            "Claim Status",
+            "Reserve Total"
+          ],
+          [
+            "CLM-00004",
+            "DENIED",
+            "1004.00"
+          ],
+          [
+            "CLM-00009",
+            "DENIED",
+            "1009.00"
+          ],
+          [
+            "CLM-00014",
+            "DENIED",
+            "1014.00"
+          ],
+          [
+            "CLM-00019",
+            "DENIED",
+            "1019.00"
+          ],
+          [
+            "CLM-00024",
+            "DENIED",
+            "1024.00"
+          ],
+          [
+            "CLM-00029",
+            "DENIED",
+            "1029.00"
+          ],
+          [
+            "CLM-00034",
+            "DENIED",
+            "1034.00"
+          ],
+          [
+            "CLM-00039",
+            "DENIED",
+            "1039.00"
+          ],
+          [
+            "CLM-00044",
+            "DENIED",
+            "1044.00"
+          ],
+          [
+            "CLM-00049",
+            "DENIED",
+            "1049.00"
+          ],
+          [
+            "CLM-00054",
+            "DENIED",
+            "1054.00"
+          ],
+          [
+            "CLM-00059",
+            "DENIED",
+            "1059.00"
+          ],
+          [
+            "CLM-00064",
+            "DENIED",
+            "1064.00"
+          ],
+          [
+            "CLM-00069",
+            "DENIED",
+            "1069.00"
+          ],
+          [
+            "CLM-00074",
+            "DENIED",
+            "1074.00"
+          ],
+          [
+            "CLM-00079",
+            "DENIED",
+            "1079.00"
+          ],
+          [
+            "CLM-00084",
+            "DENIED",
+            "1084.00"
+          ],
+          [
+            "CLM-00089",
+            "DENIED",
+            "1089.00"
+          ],
+          [
+            "CLM-00094",
+            "DENIED",
+            "1094.00"
+          ],
+          [
+            "CLM-00099",
+            "DENIED",
+            "1099.00"
+          ],
+          [
+            "CLM-00104",
+            "DENIED",
+            "1104.00"
+          ],
+          [
+            "CLM-00109",
+            "DENIED",
+            "1109.00"
+          ],
+          [
+            "CLM-00114",
+            "DENIED",
+            "1114.00"
+          ]
+        ]
+      }
+    ],
+    "result": "forward:/WEB-INF/jsp/report/adjusterClaims.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/report/adjusterClaims.do?adjuster=adjuster4"
+  },
+  "scenario": "report_adjusterClaims_adjuster4"
+}

@@ -2,8 +2,46 @@ import unittest
 from unittest.mock import patch
 import xml.etree.ElementTree as ET
 
-from capture import area, decode_rows, scenario_opener, schema_tables
+from capture import (area, decode_rows, fields, report_tables, scenario_opener,
+                     schema_tables, write_transcript)
 from coverage import action_paths, coverage, parse_actions
+
+
+class ReportTablesTest(unittest.TestCase):
+    def test_rendered_cells_and_entities(self):
+        body = ('<table class="page"><tr><td>Navigation</td></tr>'
+                '<table class="results"><tr><th>Claim</th><th>Amount</th></tr>'
+                '<tr><td><a href="view.do">CLM-1 &amp; review</a></td>'
+                '<td><span id="f_amount"> 12.00 </span></td></tr></table>'
+                '<table class="detail"><tr><td> Rows\n returned </td>'
+                '<td>1</td></tr></table>'
+                '<table class="screen-audit"><tr><td>Ignored</td></tr>'
+                '</table></table>')
+        self.assertEqual([
+            {"class": "results", "rows": [["Claim", "Amount"],
+                                         ["CLM-1 & review", "12.00"]]},
+            {"class": "detail", "rows": [["Rows returned", "1"]]}],
+            report_tables(body))
+        self.assertEqual({"amount": "12.00"}, fields(body))
+
+    def test_empty_and_error_responses(self):
+        self.assertEqual([], report_tables(""))
+        self.assertEqual([], report_tables("<h1>Claims System Error</h1>"))
+        self.assertEqual([{"class": "results", "rows": []}],
+                         report_tables('<table class="results"></table>'))
+
+    @patch("capture.request", return_value=(200, "", '<table class="results">'
+           '<tr><td><span id="f_count">2</span></td></tr></table>'))
+    def test_opt_in_preserves_legacy_payload(self, request):
+        scenario = ("report_example", "reporting", "Example", "GET",
+                    "/report/example.do", {}, {})
+        old = write_transcript(None, scenario)
+        self.assertNotIn("rendered_tables", old["expected"])
+        new = write_transcript(None, scenario + ({"capture_tables": True},))
+        self.assertEqual(old["expected"]["business_fields"],
+                         new["expected"]["business_fields"])
+        self.assertEqual([{"class": "results", "rows": [["2"]]}],
+                         new["expected"]["rendered_tables"])
 
 
 class CoverageTest(unittest.TestCase):

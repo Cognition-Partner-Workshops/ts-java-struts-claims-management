@@ -4,6 +4,7 @@
 import argparse
 import base64
 import glob
+from html.parser import HTMLParser
 import http.cookiejar
 import json
 import os
@@ -623,6 +624,213 @@ SCENARIOS = [
     ("workbench_statusHistory_untouched", "workbench", "statusHistory on untouched claim", "GET",
      "/workbench/statusHistory.do?claimId=1", {}, {"claim.1.status": "/workbench/view.do?claimId=1", "claim.1.reserve_amount": "/workbench/view.do?claimId=1", "claim.1.assigned_adjuster": "/workbench/view.do?claimId=1", "claim.1.loss_date": "/workbench/view.do?claimId=1"},
      {"area": "workbench"}),
+    ("settlement_calculate_standard", "settlement", "Calculate standard", "POST",
+     "/settlement/calculate.do", {"claimId": "120", "coveredAmount": "5000.00", "deductible": "500.00", "depreciation": "0.00"}, {},
+     {"area": "settlement"}),
+    ("settlement_calculate_blank_covered", "settlement", "Calculate blank covered", "POST",
+     "/settlement/calculate.do", {"claimId": "120", "coveredAmount": "", "deductible": "500.00", "depreciation": "0.00"}, {},
+     {"area": "settlement"}),
+    ("settlement_calculate_nonnumeric_covered", "settlement", "Calculate nonnumeric covered", "POST",
+     "/settlement/calculate.do", {"claimId": "120", "coveredAmount": "ordinary", "deductible": "500.00", "depreciation": "0.00"}, {},
+     {"area": "settlement"}),
+    ("settlement_calculate_blank_deductible_coercion", "settlement", "Calculate blank deductible coercion", "POST",
+     "/settlement/calculate.do", {"claimId": "120", "coveredAmount": "5000.00", "deductible": "", "depreciation": "0.00"}, {},
+     {"area": "settlement"}),
+    ("settlement_calculate_nonnumeric_deductible_coercion", "settlement", "Calculate nonnumeric deductible coercion", "POST",
+     "/settlement/calculate.do", {"claimId": "120", "coveredAmount": "5000.00", "deductible": "ordinary", "depreciation": "0.00"}, {},
+     {"area": "settlement"}),
+    ("settlement_calculate_round_even_down", "settlement", "Calculate round even down", "POST",
+     "/settlement/calculate.do", {"claimId": "120", "coveredAmount": "1.005", "deductible": "0", "depreciation": "0.00"}, {},
+     {"area": "settlement"}),
+    ("settlement_calculate_round_even_up", "settlement", "Calculate round even up", "POST",
+     "/settlement/calculate.do", {"claimId": "120", "coveredAmount": "1.015", "deductible": "0", "depreciation": "0.00"}, {},
+     {"area": "settlement"}),
+    ("settlement_calculate_round_2675", "settlement", "Calculate round 2675", "POST",
+     "/settlement/calculate.do", {"claimId": "120", "coveredAmount": "2.675", "deductible": "0", "depreciation": "0.00"}, {},
+     {"area": "settlement"}),
+    ("settlement_calculate_low_policy_cap", "settlement", "Calculate low policy cap", "POST",
+     "/settlement/calculate.do", {"claimId": "124", "coveredAmount": "5000", "deductible": "500.00", "depreciation": "0.00"}, {},
+     {"area": "settlement"}),
+    ("settlement_calculate_deductible_exceeds_loss", "settlement", "Calculate deductible exceeds loss", "POST",
+     "/settlement/calculate.do", {"claimId": "120", "coveredAmount": "5000.00", "deductible": "6000", "depreciation": "0.00"}, {},
+     {"area": "settlement"}),
+    ("settlement_calculate_depreciated", "settlement", "Calculate depreciated", "POST",
+     "/settlement/calculate.do", {"claimId": "120", "coveredAmount": "5000.00", "deductible": "500.00", "depreciation": "750.25"}, {},
+     {"area": "settlement"}),
+    ("settlement_calculate_depreciation_exceeds_loss", "settlement", "Calculate depreciation exceeds loss", "POST",
+     "/settlement/calculate.do", {"claimId": "120", "coveredAmount": "5000.00", "deductible": "500.00", "depreciation": "6000"}, {},
+     {"area": "settlement"}),
+    ("settlement_calculate_blank_depreciation", "settlement", "Calculate blank depreciation", "POST",
+     "/settlement/calculate.do", {"claimId": "120", "coveredAmount": "5000.00", "deductible": "500.00", "depreciation": ""}, {},
+     {"area": "settlement"}),
+    ("settlement_calculate_nonnumeric_depreciation", "settlement", "Calculate nonnumeric depreciation", "POST",
+     "/settlement/calculate.do", {"claimId": "120", "coveredAmount": "5000.00", "deductible": "500.00", "depreciation": "ordinary"}, {},
+     {"area": "settlement"}),
+    ("settlement_save_direct", "settlement", "Save submitted amounts directly", "POST",
+     "/settlement/save.do", {"claimId": "124", "coveredAmount": "800", "deductible": "100", "depreciation": "0"}, {"settlement.saved.claim.124.amount": "/settlement/detail.do?claimId=124"},
+     {"area": "settlement"}),
+    ("settlement_save_pending_isolated", "settlement", "Save isolated session pending calculation", "GET",
+     "/settlement/save.do?claimId=125", {}, {"settlement.saved.claim.125.amount": "/settlement/detail.do?claimId=125"},
+     {"area": "settlement", "session": "fresh", "setup": [["POST", "/settlement/calculate.do",{"claimId": "125", "coveredAmount": "900", "deductible": "100", "depreciation": "50"}]]}),
+    ("settlement_save_authority_refused", "settlement", "Adjuster authority refused", "POST",
+     "/settlement/save.do", {"claimId": "118", "coveredAmount": "3500", "deductible": "500", "depreciation": "0"}, {"settlement.saved.claim.118.amount": "/settlement/detail.do?claimId=118"},
+     {"area": "settlement", "actor": "adjuster4"}),
+    ("settlement_save_authority_within", "settlement", "Adjuster authority within", "POST",
+     "/settlement/save.do", {"claimId": "118", "coveredAmount": "2500", "deductible": "500", "depreciation": "0"}, {"settlement.saved.claim.118.amount": "/settlement/detail.do?claimId=118"},
+     {"area": "settlement", "actor": "adjuster4"}),
+    ("settlement_save_authority_exact_limit", "settlement", "Adjuster authority exact_limit", "POST",
+     "/settlement/save.do", {"claimId": "118", "coveredAmount": "3000", "deductible": "500", "depreciation": "0"}, {"settlement.saved.claim.118.amount": "/settlement/detail.do?claimId=118"},
+     {"area": "settlement", "actor": "adjuster4"}),
+    ("settlement_detail_124", "settlement", "Settlement detail 124", "GET",
+     "/settlement/detail.do?claimId=124", {}, {},
+     {"area": "settlement"}),
+    ("settlement_detail_140", "settlement", "Settlement detail 140", "GET",
+     "/settlement/detail.do?claimId=140", {}, {},
+     {"area": "settlement"}),
+    ("settlement_detail_invalid", "settlement", "Settlement detail invalid", "GET",
+     "/settlement/detail.do?claimId=invalid", {}, {},
+     {"area": "settlement"}),
+    ("payment_issue_check", "payments", "Issue CHECK payment", "POST",
+     "/payment/issue.do", {"claimId": "124", "payeeName": "Capture Payee", "amount": "100.00", "paymentMethod": "CHECK"}, {"payment.count.claim.124": "/payment/history.do?claimId=124"},
+     {"area": "payments"}),
+    ("payment_issue_eft", "payments", "Issue EFT payment", "POST",
+     "/payment/issue.do", {"claimId": "124", "payeeName": "Capture Payee", "amount": "100.00", "paymentMethod": "EFT"}, {"payment.count.claim.124": "/payment/history.do?claimId=124"},
+     {"area": "payments"}),
+    ("payment_issue_ach", "payments", "Issue ACH payment", "POST",
+     "/payment/issue.do", {"claimId": "124", "payeeName": "Capture Payee", "amount": "100.00", "paymentMethod": "ACH"}, {"payment.count.claim.124": "/payment/history.do?claimId=124"},
+     {"area": "payments"}),
+    ("payment_issue_wire", "payments", "Issue WIRE payment", "POST",
+     "/payment/issue.do", {"claimId": "124", "payeeName": "Capture Payee", "amount": "100.00", "paymentMethod": "WIRE"}, {"payment.count.claim.124": "/payment/history.do?claimId=124"},
+     {"area": "payments"}),
+    ("payment_amount_zero", "payments", "Payment amount zero", "POST",
+     "/payment/issue.do", {"claimId": "124", "payeeName": "Capture Payee", "amount": "0", "paymentMethod": "CHECK"}, {"payment.count.claim.124": "/payment/history.do?claimId=124"},
+     {"area": "payments"}),
+    ("payment_amount_negative", "payments", "Payment amount negative", "POST",
+     "/payment/issue.do", {"claimId": "124", "payeeName": "Capture Payee", "amount": "-10.00", "paymentMethod": "CHECK"}, {"payment.count.claim.124": "/payment/history.do?claimId=124"},
+     {"area": "payments"}),
+    ("payment_amount_half_cent", "payments", "Payment amount half_cent", "POST",
+     "/payment/issue.do", {"claimId": "124", "payeeName": "Capture Payee", "amount": "1.005", "paymentMethod": "CHECK"}, {"payment.count.claim.124": "/payment/history.do?claimId=124"},
+     {"area": "payments"}),
+    ("payment_amount_blank", "payments", "Payment amount blank", "POST",
+     "/payment/issue.do", {"claimId": "124", "payeeName": "Capture Payee", "amount": "", "paymentMethod": "CHECK"}, {"payment.count.claim.124": "/payment/history.do?claimId=124"},
+     {"area": "payments"}),
+    ("payment_amount_nonnumeric", "payments", "Payment amount nonnumeric", "POST",
+     "/payment/issue.do", {"claimId": "124", "payeeName": "Capture Payee", "amount": "ordinary", "paymentMethod": "CHECK"}, {"payment.count.claim.124": "/payment/history.do?claimId=124"},
+     {"area": "payments"}),
+    ("payment_amount_above_settlement", "payments", "Payment amount above_settlement", "POST",
+     "/payment/issue.do", {"claimId": "124", "payeeName": "Capture Payee", "amount": "10000", "paymentMethod": "CHECK"}, {"payment.count.claim.124": "/payment/history.do?claimId=124"},
+     {"area": "payments"}),
+    ("payment_blank_payeeName", "payments", "Blank payeeName accepted without validation", "POST",
+     "/payment/issue.do", {"claimId": "124", "payeeName": "", "amount": "100.00", "paymentMethod": "CHECK"}, {"payment.count.claim.124": "/payment/history.do?claimId=124"},
+     {"area": "payments"}),
+    ("payment_blank_paymentMethod", "payments", "Blank paymentMethod accepted without validation", "POST",
+     "/payment/issue.do", {"claimId": "124", "payeeName": "Capture Payee", "amount": "100.00", "paymentMethod": ""}, {"payment.count.claim.124": "/payment/history.do?claimId=124"},
+     {"area": "payments"}),
+    ("payment_missing_payeeName", "payments", "Missing payeeName", "POST",
+     "/payment/issue.do", {"claimId": "124", "amount": "100.00", "paymentMethod": "CHECK"}, {"payment.count.claim.124": "/payment/history.do?claimId=124"},
+     {"area": "payments"}),
+    ("payment_missing_paymentMethod", "payments", "Missing paymentMethod", "POST",
+     "/payment/issue.do", {"claimId": "124", "payeeName": "Capture Payee", "amount": "100.00"}, {"payment.count.claim.124": "/payment/history.do?claimId=124"},
+     {"area": "payments"}),
+    ("payment_missing_amount", "payments", "Missing amount", "POST",
+     "/payment/issue.do", {"claimId": "124", "payeeName": "Capture Payee", "paymentMethod": "CHECK"}, {"payment.count.claim.124": "/payment/history.do?claimId=124"},
+     {"area": "payments"}),
+    ("payment_without_settlement", "payments", "Issue payment without a settlement", "POST",
+     "/payment/issue.do", {"claimId": "140", "payeeName": "Capture Payee", "amount": "100.00", "paymentMethod": "CHECK"}, {"payment.count.claim.140": "/payment/history.do?claimId=140"},
+     {"area": "payments"}),
+    ("payment_history_124", "payments", "Payment history claim 124", "GET",
+     "/payment/history.do?claimId=124", {}, {},
+     {"area": "payments"}),
+    ("payment_history_1", "payments", "Payment history claim 1", "GET",
+     "/payment/history.do?claimId=1", {}, {},
+     {"area": "payments"}),
+    ("payment_history_99999", "payments", "Payment history claim 99999", "GET",
+     "/payment/history.do?claimId=99999", {}, {},
+     {"area": "payments"}),
+    ("payment_detail_1", "payments", "Payment detail 1", "GET",
+     "/payment/detail.do?paymentId=1", {}, {},
+     {"area": "payments"}),
+    ("payment_detail_62", "payments", "Payment detail 62", "GET",
+     "/payment/detail.do?paymentId=62", {}, {},
+     {"area": "payments"}),
+    ("payment_detail_99999", "payments", "Payment detail 99999", "GET",
+     "/payment/detail.do?paymentId=99999", {}, {},
+     {"area": "payments"}),
+    ("payment_detail_invalid", "payments", "Payment detail invalid", "GET",
+     "/payment/detail.do?paymentId=invalid", {}, {},
+     {"area": "payments"}),
+    ("payment_remittance_1", "payments", "Remittance for claim 1", "GET",
+     "/payment/remittance.do?claimId=1", {}, {},
+     {"area": "payments"}),
+    ("payment_remittance_124", "payments", "Remittance for claim 124", "GET",
+     "/payment/remittance.do?claimId=124", {}, {},
+     {"area": "payments"}),
+    ("payment_remittance_99999", "payments", "Remittance for claim 99999", "GET",
+     "/payment/remittance.do?claimId=99999", {}, {},
+     {"area": "payments"}),
+    ("payment_remittance_invalid", "payments", "Remittance for claim invalid", "GET",
+     "/payment/remittance.do?claimId=invalid", {}, {},
+     {"area": "payments"}),
+    ("payment_remittance_payment_id_ignored", "payments", "Remittance ignores payment id and defaults claim", "GET",
+     "/payment/remittance.do?paymentId=62", {}, {},
+     {"area": "payments"}),
+    ("report_index_rendered", "reports", "Rendered index report", "GET",
+     "/report/index.do", {}, {},
+     {"area": "reports", "capture_tables": True}),
+    ("report_adjusterWorkload_rendered", "reports", "Rendered adjusterWorkload report", "GET",
+     "/report/adjusterWorkload.do", {}, {},
+     {"area": "reports", "capture_tables": True}),
+    ("report_claimAgingDetail_rendered", "reports", "Rendered claimAgingDetail report", "GET",
+     "/report/claimAgingDetail.do", {}, {},
+     {"area": "reports", "capture_tables": True}),
+    ("report_reconciliation_rendered", "reports", "Rendered reconciliation report", "GET",
+     "/report/reconciliation.do", {}, {},
+     {"area": "reports", "capture_tables": True}),
+    ("report_premiumDetail_rendered", "reports", "Rendered premiumDetail report", "GET",
+     "/report/premiumDetail.do", {}, {},
+     {"area": "reports", "capture_tables": True}),
+    ("report_openByAdjuster_rendered", "reports", "Rendered openByAdjuster report", "GET",
+     "/report/openByAdjuster.do", {}, {},
+     {"area": "reports", "capture_tables": True}),
+    ("report_lossRatio_rendered", "reports", "Rendered lossRatio report", "GET",
+     "/report/lossRatio.do", {}, {},
+     {"area": "reports", "capture_tables": True}),
+    ("report_agedClaims_rendered", "reports", "Rendered agedClaims report", "GET",
+     "/report/agedClaims.do", {}, {},
+     {"area": "reports", "capture_tables": True}),
+    ("report_closedClaims_rendered", "reports", "Rendered closedClaims report", "GET",
+     "/report/closedClaims.do", {}, {},
+     {"area": "reports", "capture_tables": True}),
+    ("report_claimInventory_rendered", "reports", "Rendered claimInventory report", "GET",
+     "/report/claimInventory.do", {}, {},
+     {"area": "reports", "capture_tables": True}),
+    ("report_adjusterClaims_adjuster1", "reports", "Claims for adjuster adjuster1", "GET",
+     "/report/adjusterClaims.do?adjuster=adjuster1", {}, {},
+     {"area": "reports", "capture_tables": True}),
+    ("report_adjusterClaims_adjuster2", "reports", "Claims for adjuster adjuster2", "GET",
+     "/report/adjusterClaims.do?adjuster=adjuster2", {}, {},
+     {"area": "reports", "capture_tables": True}),
+    ("report_adjusterClaims_adjuster3", "reports", "Claims for adjuster adjuster3", "GET",
+     "/report/adjusterClaims.do?adjuster=adjuster3", {}, {},
+     {"area": "reports", "capture_tables": True}),
+    ("report_adjusterClaims_adjuster4", "reports", "Claims for adjuster adjuster4", "GET",
+     "/report/adjusterClaims.do?adjuster=adjuster4", {}, {},
+     {"area": "reports", "capture_tables": True}),
+    ("report_adjusterClaims_adjuster5", "reports", "Claims for adjuster adjuster5", "GET",
+     "/report/adjusterClaims.do?adjuster=adjuster5", {}, {},
+     {"area": "reports", "capture_tables": True}),
+    ("report_adjusterClaims_supervisor", "reports", "Claims for adjuster supervisor", "GET",
+     "/report/adjusterClaims.do?adjuster=supervisor", {}, {},
+     {"area": "reports", "capture_tables": True}),
+    ("report_adjusterClaims_blank", "reports", "Claims for adjuster blank", "GET",
+     "/report/adjusterClaims.do?adjuster=", {}, {},
+     {"area": "reports", "capture_tables": True}),
+    ("report_adjusterClaims_unknown", "reports", "Claims for adjuster unknown", "GET",
+     "/report/adjusterClaims.do?adjuster=unknown", {}, {},
+     {"area": "reports", "capture_tables": True}),
+    ("report_adjusterClaims_missing", "reports", "Claims report without adjuster parameter", "GET",
+     "/report/adjusterClaims.do", {}, {},
+     {"area": "reports", "capture_tables": True}),
 ]
 
 ACTOR_PASSWORDS = {"supervisor": "supervisor", "adjuster4": "legacy4"}
@@ -663,6 +871,47 @@ def fields(body):
         if value != "":
             values[name] = value
     return dict(sorted(values.items()))
+
+
+class ReportTables(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.tables = []
+        self.table = None
+        self.row = None
+        self.cell = None
+
+    def handle_starttag(self, tag, attrs):
+        if tag == "table" and dict(attrs).get("class") in ("results", "detail"):
+            self.table = {"class": dict(attrs)["class"], "rows": []}
+        elif self.table is not None:
+            if tag == "tr":
+                self.row = []
+            elif tag in ("td", "th"):
+                self.cell = []
+
+    def handle_data(self, data):
+        if self.cell is not None:
+            self.cell.append(data)
+
+    def handle_endtag(self, tag):
+        if self.table is None:
+            return
+        if tag in ("td", "th") and self.cell is not None:
+            self.row.append(re.sub(r"\s+", " ", "".join(self.cell)).strip())
+            self.cell = None
+        elif tag == "tr" and self.row is not None:
+            self.table["rows"].append(self.row)
+            self.row = None
+        elif tag == "table":
+            self.tables.append(self.table)
+            self.table = None
+
+
+def report_tables(body):
+    parser = ReportTables()
+    parser.feed(body)
+    return parser.tables
 
 
 def result(body, code, location=None):
@@ -812,6 +1061,8 @@ def write_transcript(opener, scenario):
     }
     if "area" in extra:
         transcript["area"] = extra["area"]
+    if extra.get("capture_tables"):
+        transcript["expected"]["rendered_tables"] = report_tables(body)
     if setup:
         transcript["setup"] = [{
             "method": setup_method,

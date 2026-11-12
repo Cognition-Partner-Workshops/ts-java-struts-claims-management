@@ -1,0 +1,24 @@
+{
+  "actor": "supervisor",
+  "area": "payments",
+  "description": "Missing payeeName",
+  "expected": {
+    "business_fields": {},
+    "db_state": {
+      "payment.count.claim.124": "12"
+    },
+    "result": "forward:/WEB-INF/jsp/error.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "amount": "100.00",
+      "claimId": "124",
+      "paymentMethod": "CHECK"
+    },
+    "method": "POST",
+    "path": "/claims/payment/issue.do"
+  },
+  "scenario": "payment_missing_payeeName"
+}

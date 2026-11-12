@@ -1,0 +1,29 @@
+{
+  "actor": "supervisor",
+  "area": "settlement",
+  "description": "Calculate round even down",
+  "expected": {
+    "business_fields": {
+      "cappedAtLimit": "false",
+      "coveredAmount": "1.01",
+      "deductibleApplied": "0.00",
+      "depreciation": "0.00",
+      "settlementAmount": "1.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/settlement/calculate.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "120",
+      "coveredAmount": "1.005",
+      "deductible": "0",
+      "depreciation": "0.00"
+    },
+    "method": "POST",
+    "path": "/claims/settlement/calculate.do"
+  },
+  "scenario": "settlement_calculate_round_even_down"
+}

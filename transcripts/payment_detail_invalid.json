@@ -1,0 +1,25 @@
+{
+  "actor": "supervisor",
+  "area": "payments",
+  "description": "Payment detail invalid",
+  "expected": {
+    "business_fields": {
+      "detailPaymentAmount": "1000.00",
+      "detailPaymentCheck": "CHK-61",
+      "detailPaymentClaim": "119",
+      "detailPaymentDate": "2019-04-03",
+      "detailPaymentId": "61",
+      "detailPaymentStatus": "ISSUED"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/payment/detail.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/payment/detail.do?paymentId=invalid"
+  },
+  "scenario": "payment_detail_invalid"
+}

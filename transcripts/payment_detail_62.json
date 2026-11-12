@@ -1,0 +1,25 @@
+{
+  "actor": "supervisor",
+  "area": "payments",
+  "description": "Payment detail 62",
+  "expected": {
+    "business_fields": {
+      "detailPaymentAmount": "100.00",
+      "detailPaymentCheck": "CHK-62",
+      "detailPaymentClaim": "124",
+      "detailPaymentDate": "2019-04-03",
+      "detailPaymentId": "62",
+      "detailPaymentStatus": "ISSUED"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/payment/detail.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/payment/detail.do?paymentId=62"
+  },
+  "scenario": "payment_detail_62"
+}

@@ -934,5 +934,419 @@
     "description": "statusHistory on untouched claim",
     "module": "workbench",
     "scenario": "workbench_statusHistory_untouched"
+  },
+  {
+    "area": "settlement",
+    "description": "Calculate standard",
+    "module": "settlement",
+    "scenario": "settlement_calculate_standard"
+  },
+  {
+    "area": "settlement",
+    "description": "Calculate blank covered",
+    "module": "settlement",
+    "scenario": "settlement_calculate_blank_covered"
+  },
+  {
+    "area": "settlement",
+    "description": "Calculate nonnumeric covered",
+    "module": "settlement",
+    "scenario": "settlement_calculate_nonnumeric_covered"
+  },
+  {
+    "area": "settlement",
+    "description": "Calculate blank deductible coercion",
+    "module": "settlement",
+    "scenario": "settlement_calculate_blank_deductible_coercion"
+  },
+  {
+    "area": "settlement",
+    "description": "Calculate nonnumeric deductible coercion",
+    "module": "settlement",
+    "scenario": "settlement_calculate_nonnumeric_deductible_coercion"
+  },
+  {
+    "area": "settlement",
+    "description": "Calculate round even down",
+    "module": "settlement",
+    "scenario": "settlement_calculate_round_even_down"
+  },
+  {
+    "area": "settlement",
+    "description": "Calculate round even up",
+    "module": "settlement",
+    "scenario": "settlement_calculate_round_even_up"
+  },
+  {
+    "area": "settlement",
+    "description": "Calculate round 2675",
+    "module": "settlement",
+    "scenario": "settlement_calculate_round_2675"
+  },
+  {
+    "area": "settlement",
+    "description": "Calculate low policy cap",
+    "module": "settlement",
+    "scenario": "settlement_calculate_low_policy_cap"
+  },
+  {
+    "area": "settlement",
+    "description": "Calculate deductible exceeds loss",
+    "module": "settlement",
+    "scenario": "settlement_calculate_deductible_exceeds_loss"
+  },
+  {
+    "area": "settlement",
+    "description": "Calculate depreciated",
+    "module": "settlement",
+    "scenario": "settlement_calculate_depreciated"
+  },
+  {
+    "area": "settlement",
+    "description": "Calculate depreciation exceeds loss",
+    "module": "settlement",
+    "scenario": "settlement_calculate_depreciation_exceeds_loss"
+  },
+  {
+    "area": "settlement",
+    "description": "Calculate blank depreciation",
+    "module": "settlement",
+    "scenario": "settlement_calculate_blank_depreciation"
+  },
+  {
+    "area": "settlement",
+    "description": "Calculate nonnumeric depreciation",
+    "module": "settlement",
+    "scenario": "settlement_calculate_nonnumeric_depreciation"
+  },
+  {
+    "area": "settlement",
+    "description": "Save submitted amounts directly",
+    "module": "settlement",
+    "scenario": "settlement_save_direct"
+  },
+  {
+    "area": "settlement",
+    "description": "Save isolated session pending calculation",
+    "module": "settlement",
+    "scenario": "settlement_save_pending_isolated"
+  },
+  {
+    "area": "settlement",
+    "description": "Adjuster authority refused",
+    "module": "settlement",
+    "scenario": "settlement_save_authority_refused"
+  },
+  {
+    "area": "settlement",
+    "description": "Adjuster authority within",
+    "module": "settlement",
+    "scenario": "settlement_save_authority_within"
+  },
+  {
+    "area": "settlement",
+    "description": "Adjuster authority exact_limit",
+    "module": "settlement",
+    "scenario": "settlement_save_authority_exact_limit"
+  },
+  {
+    "area": "settlement",
+    "description": "Settlement detail 124",
+    "module": "settlement",
+    "scenario": "settlement_detail_124"
+  },
+  {
+    "area": "settlement",
+    "description": "Settlement detail 140",
+    "module": "settlement",
+    "scenario": "settlement_detail_140"
+  },
+  {
+    "area": "settlement",
+    "description": "Settlement detail invalid",
+    "module": "settlement",
+    "scenario": "settlement_detail_invalid"
+  },
+  {
+    "area": "payments",
+    "description": "Issue CHECK payment",
+    "module": "payments",
+    "scenario": "payment_issue_check"
+  },
+  {
+    "area": "payments",
+    "description": "Issue EFT payment",
+    "module": "payments",
+    "scenario": "payment_issue_eft"
+  },
+  {
+    "area": "payments",
+    "description": "Issue ACH payment",
+    "module": "payments",
+    "scenario": "payment_issue_ach"
+  },
+  {
+    "area": "payments",
+    "description": "Issue WIRE payment",
+    "module": "payments",
+    "scenario": "payment_issue_wire"
+  },
+  {
+    "area": "payments",
+    "description": "Payment amount zero",
+    "module": "payments",
+    "scenario": "payment_amount_zero"
+  },
+  {
+    "area": "payments",
+    "description": "Payment amount negative",
+    "module": "payments",
+    "scenario": "payment_amount_negative"
+  },
+  {
+    "area": "payments",
+    "description": "Payment amount half_cent",
+    "module": "payments",
+    "scenario": "payment_amount_half_cent"
+  },
+  {
+    "area": "payments",
+    "description": "Payment amount blank",
+    "module": "payments",
+    "scenario": "payment_amount_blank"
+  },
+  {
+    "area": "payments",
+    "description": "Payment amount nonnumeric",
+    "module": "payments",
+    "scenario": "payment_amount_nonnumeric"
+  },
+  {
+    "area": "payments",
+    "description": "Payment amount above_settlement",
+    "module": "payments",
+    "scenario": "payment_amount_above_settlement"
+  },
+  {
+    "area": "payments",
+    "description": "Blank payeeName accepted without validation",
+    "module": "payments",
+    "scenario": "payment_blank_payeeName"
+  },
+  {
+    "area": "payments",
+    "description": "Blank paymentMethod accepted without validation",
+    "module": "payments",
+    "scenario": "payment_blank_paymentMethod"
+  },
+  {
+    "area": "payments",
+    "description": "Missing payeeName",
+    "module": "payments",
+    "scenario": "payment_missing_payeeName"
+  },
+  {
+    "area": "payments",
+    "description": "Missing paymentMethod",
+    "module": "payments",
+    "scenario": "payment_missing_paymentMethod"
+  },
+  {
+    "area": "payments",
+    "description": "Missing amount",
+    "module": "payments",
+    "scenario": "payment_missing_amount"
+  },
+  {
+    "area": "payments",
+    "description": "Issue payment without a settlement",
+    "module": "payments",
+    "scenario": "payment_without_settlement"
+  },
+  {
+    "area": "payments",
+    "description": "Payment history claim 124",
+    "module": "payments",
+    "scenario": "payment_history_124"
+  },
+  {
+    "area": "payments",
+    "description": "Payment history claim 1",
+    "module": "payments",
+    "scenario": "payment_history_1"
+  },
+  {
+    "area": "payments",
+    "description": "Payment history claim 99999",
+    "module": "payments",
+    "scenario": "payment_history_99999"
+  },
+  {
+    "area": "payments",
+    "description": "Payment detail 1",
+    "module": "payments",
+    "scenario": "payment_detail_1"
+  },
+  {
+    "area": "payments",
+    "description": "Payment detail 62",
+    "module": "payments",
+    "scenario": "payment_detail_62"
+  },
+  {
+    "area": "payments",
+    "description": "Payment detail 99999",
+    "module": "payments",
+    "scenario": "payment_detail_99999"
+  },
+  {
+    "area": "payments",
+    "description": "Payment detail invalid",
+    "module": "payments",
+    "scenario": "payment_detail_invalid"
+  },
+  {
+    "area": "payments",
+    "description": "Remittance for claim 1",
+    "module": "payments",
+    "scenario": "payment_remittance_1"
+  },
+  {
+    "area": "payments",
+    "description": "Remittance for claim 124",
+    "module": "payments",
+    "scenario": "payment_remittance_124"
+  },
+  {
+    "area": "payments",
+    "description": "Remittance for claim 99999",
+    "module": "payments",
+    "scenario": "payment_remittance_99999"
+  },
+  {
+    "area": "payments",
+    "description": "Remittance for claim invalid",
+    "module": "payments",
+    "scenario": "payment_remittance_invalid"
+  },
+  {
+    "area": "payments",
+    "description": "Remittance ignores payment id and defaults claim",
+    "module": "payments",
+    "scenario": "payment_remittance_payment_id_ignored"
+  },
+  {
+    "area": "reports",
+    "description": "Rendered index report",
+    "module": "reports",
+    "scenario": "report_index_rendered"
+  },
+  {
+    "area": "reports",
+    "description": "Rendered adjusterWorkload report",
+    "module": "reports",
+    "scenario": "report_adjusterWorkload_rendered"
+  },
+  {
+    "area": "reports",
+    "description": "Rendered claimAgingDetail report",
+    "module": "reports",
+    "scenario": "report_claimAgingDetail_rendered"
+  },
+  {
+    "area": "reports",
+    "description": "Rendered reconciliation report",
+    "module": "reports",
+    "scenario": "report_reconciliation_rendered"
+  },
+  {
+    "area": "reports",
+    "description": "Rendered premiumDetail report",
+    "module": "reports",
+    "scenario": "report_premiumDetail_rendered"
+  },
+  {
+    "area": "reports",
+    "description": "Rendered openByAdjuster report",
+    "module": "reports",
+    "scenario": "report_openByAdjuster_rendered"
+  },
+  {
+    "area": "reports",
+    "description": "Rendered lossRatio report",
+    "module": "reports",
+    "scenario": "report_lossRatio_rendered"
+  },
+  {
+    "area": "reports",
+    "description": "Rendered agedClaims report",
+    "module": "reports",
+    "scenario": "report_agedClaims_rendered"
+  },
+  {
+    "area": "reports",
+    "description": "Rendered closedClaims report",
+    "module": "reports",
+    "scenario": "report_closedClaims_rendered"
+  },
+  {
+    "area": "reports",
+    "description": "Rendered claimInventory report",
+    "module": "reports",
+    "scenario": "report_claimInventory_rendered"
+  },
+  {
+    "area": "reports",
+    "description": "Claims for adjuster adjuster1",
+    "module": "reports",
+    "scenario": "report_adjusterClaims_adjuster1"
+  },
+  {
+    "area": "reports",
+    "description": "Claims for adjuster adjuster2",
+    "module": "reports",
+    "scenario": "report_adjusterClaims_adjuster2"
+  },
+  {
+    "area": "reports",
+    "description": "Claims for adjuster adjuster3",
+    "module": "reports",
+    "scenario": "report_adjusterClaims_adjuster3"
+  },
+  {
+    "area": "reports",
+    "description": "Claims for adjuster adjuster4",
+    "module": "reports",
+    "scenario": "report_adjusterClaims_adjuster4"
+  },
+  {
+    "area": "reports",
+    "description": "Claims for adjuster adjuster5",
+    "module": "reports",
+    "scenario": "report_adjusterClaims_adjuster5"
+  },
+  {
+    "area": "reports",
+    "description": "Claims for adjuster supervisor",
+    "module": "reports",
+    "scenario": "report_adjusterClaims_supervisor"
+  },
+  {
+    "area": "reports",
+    "description": "Claims for adjuster blank",
+    "module": "reports",
+    "scenario": "report_adjusterClaims_blank"
+  },
+  {
+    "area": "reports",
+    "description": "Claims for adjuster unknown",
+    "module": "reports",
+    "scenario": "report_adjusterClaims_unknown"
+  },
+  {
+    "area": "reports",
+    "description": "Claims report without adjuster parameter",
+    "module": "reports",
+    "scenario": "report_adjusterClaims_missing"
   }
 ]

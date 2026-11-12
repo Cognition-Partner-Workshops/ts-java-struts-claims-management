@@ -1,0 +1,29 @@
+{
+  "actor": "supervisor",
+  "area": "payments",
+  "description": "Payment amount zero",
+  "expected": {
+    "business_fields": {
+      "checkNumber": "CHK-66",
+      "paymentAmount": "0.00",
+      "paymentStatus": "ISSUED"
+    },
+    "db_state": {
+      "payment.count.claim.124": "5"
+    },
+    "result": "forward:/WEB-INF/jsp/payment/issue.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "amount": "0",
+      "claimId": "124",
+      "payeeName": "Capture Payee",
+      "paymentMethod": "CHECK"
+    },
+    "method": "POST",
+    "path": "/claims/payment/issue.do"
+  },
+  "scenario": "payment_amount_zero"
+}

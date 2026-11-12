@@ -1,0 +1,29 @@
+{
+  "actor": "supervisor",
+  "area": "settlement",
+  "description": "Calculate deductible exceeds loss",
+  "expected": {
+    "business_fields": {
+      "cappedAtLimit": "false",
+      "coveredAmount": "5000.00",
+      "deductibleApplied": "6000.00",
+      "depreciation": "0.00",
+      "settlementAmount": "0.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/settlement/calculate.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "120",
+      "coveredAmount": "5000.00",
+      "deductible": "6000",
+      "depreciation": "0.00"
+    },
+    "method": "POST",
+    "path": "/claims/settlement/calculate.do"
+  },
+  "scenario": "settlement_calculate_deductible_exceeds_loss"
+}

@@ -1,0 +1,27 @@
+{
+  "actor": "supervisor",
+  "area": "settlement",
+  "description": "Settlement detail invalid",
+  "expected": {
+    "business_fields": {
+      "detailAmount": "1000.00",
+      "detailCapped": "true",
+      "detailClaimId": "119",
+      "detailCoveredAmount": "5000.00",
+      "detailDate": "2019-04-01",
+      "detailDeductible": "500.00",
+      "detailDepreciation": "0.00",
+      "detailSettlementId": "121"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/settlement/detail.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/settlement/detail.do?claimId=invalid"
+  },
+  "scenario": "settlement_detail_invalid"
+}
