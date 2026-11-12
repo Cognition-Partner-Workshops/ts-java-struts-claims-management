@@ -1,6 +1,6 @@
 # Business owner sign-off list
 
-**Claims business owner:** _not named yet_. The ticket "Compile the business owner sign-off list" asks who it is; record the name and each decision here.
+**Claims business owner:** Claims Operations Manager (role; no person named). All items below are open for this role to decide; record each decision in its Decision cell.
 
 Inputs, all on `claims-boot-integration` @ `84ae794`:
 
