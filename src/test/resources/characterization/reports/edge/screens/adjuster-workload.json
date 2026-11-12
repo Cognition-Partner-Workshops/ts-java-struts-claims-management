@@ -1,0 +1,96 @@
+{
+  "fields": [
+    [
+      "workloadOpen_adjuster1",
+      "24"
+    ],
+    [
+      "workloadReserve_adjuster1",
+      "25404.00"
+    ],
+    [
+      "workloadOldest_adjuster1",
+      ""
+    ],
+    [
+      "workloadOpen_adjuster2",
+      "24"
+    ],
+    [
+      "workloadReserve_adjuster2",
+      "25428.00"
+    ],
+    [
+      "workloadOldest_adjuster2",
+      ""
+    ],
+    [
+      "workloadOpen_adjuster9",
+      "8"
+    ],
+    [
+      "workloadReserve_adjuster9",
+      "5503.50"
+    ],
+    [
+      "workloadOldest_adjuster9",
+      ""
+    ],
+    [
+      "workloadAsOf",
+      "2019-04-01"
+    ],
+    [
+      "workloadRows",
+      "3"
+    ]
+  ],
+  "heading": "Adjuster workload",
+  "request": "GET /report/adjusterWorkload.do",
+  "status": 200,
+  "tables": [
+    {
+      "class": "results",
+      "rows": [
+        [
+          "Adjuster",
+          "Open claims",
+          "Reserve total",
+          "Oldest report"
+        ],
+        [
+          "adjuster1",
+          "24",
+          "25404.00",
+          ""
+        ],
+        [
+          "adjuster2",
+          "24",
+          "25428.00",
+          ""
+        ],
+        [
+          "adjuster9",
+          "8",
+          "5503.50",
+          ""
+        ]
+      ]
+    },
+    {
+      "class": "detail",
+      "rows": [
+        [
+          "As of date",
+          "2019-04-01"
+        ],
+        [
+          "Rows returned",
+          "3"
+        ]
+      ]
+    }
+  ],
+  "view": "/WEB-INF/jsp/report/adjusterWorkload.jsp"
+}

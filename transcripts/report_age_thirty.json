@@ -1,0 +1,39 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/report_age_thirty.json",
+  "description": "report age thirty",
+  "expected": {
+    "business_fields": {
+      "agedBucket_0_30": "33",
+      "agedBucket_31_60": "18",
+      "agedBucket_61_90": "18",
+      "agedBucket_91_PLUS": "17",
+      "agedReserve_0_30": "24187",
+      "agedReserve_31_60": "19056",
+      "agedReserve_61_90": "19026",
+      "agedReserve_91_PLUS": "18000"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/report/agedClaims.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/report/agedClaims.do"
+  },
+  "scenario": "report_age_thirty",
+  "setup": [
+    {
+      "form": {
+        "claimantName": "Age thirty",
+        "description": "Age boundary",
+        "initialReserve": "100.99",
+        "lossDate": "03/02/2019"
+      },
+      "method": "POST",
+      "path": "/claims/intake/submit.do"
+    }
+  ]
+}

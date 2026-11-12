@@ -1,0 +1,28 @@
+{
+  "fields": [
+    [
+      "adjuster",
+      "nobody"
+    ],
+    [
+      "claimCount",
+      "0"
+    ]
+  ],
+  "heading": "Claims by adjuster",
+  "request": "GET /report/adjusterClaims.do?adjuster=nobody",
+  "status": 200,
+  "tables": [
+    {
+      "class": "results",
+      "rows": [
+        [
+          "Claim Number",
+          "Claim Status",
+          "Reserve Total"
+        ]
+      ]
+    }
+  ],
+  "view": "/WEB-INF/jsp/report/adjusterClaims.jsp"
+}

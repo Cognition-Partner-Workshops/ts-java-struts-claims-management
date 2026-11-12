@@ -1,0 +1,24 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/policy_renewal_unknown.json",
+  "description": "policy renewal unknown",
+  "expected": {
+    "business_fields": {
+      "renewalDeductible": "100.00",
+      "renewalExpiration": "2019-12-31",
+      "renewalLimit": "1000.00",
+      "renewalPolicyId": "9001",
+      "renewalStatus": "ACTIVE"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/policy/renewal.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/policy/renewal.do?policyId=99999"
+  },
+  "scenario": "policy_renewal_unknown"
+}

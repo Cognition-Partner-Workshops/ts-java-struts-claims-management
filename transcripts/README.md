@@ -1,3 +1,8 @@
+# Frozen replay
+
+`make replay` compares committed responses and DB sidecars against a fresh
+legacy seed. External replay and manifest verification: [RUNBOOK](../docs/migration/RUNBOOK.md).
+
 # NorthStar transcript format
 
 Each scenario is one JSON object in `transcripts/<scenario>.json`. The
@@ -43,6 +48,27 @@ indentation, and ends every file with a newline. Run `make capture` to reset
 the fixed seed, execute the ordered scenarios, and regenerate the fixtures,
 including every file under `transcripts/db/` (stale snapshots are removed).
 Run it twice and `git diff -- transcripts/` must be empty.
+
+## Area replay and route coverage
+
+`python3 tools/capture/capture.py --check-routes` checks all 42 mapped routes
+from `docs/migration/ROUTES.md` before any server or database is started.
+Normal capture runs this gate too. Requests, setup requests and probes count.
+`transcripts/index.json` and scenario options carry the owning `area` without
+changing existing individual transcript payloads.
+
+Use `python3 tools/capture/capture.py --area intake` (or `policy`, `settlement`,
+`payments`, `reports`, `"shared foundation"`) to refresh just that area's
+transcripts and snapshots. The full ordered request stream is still replayed
+from seed, including other areas and probes: generated ids and session state
+must match the full capture. Other areas' files are not deleted or overwritten.
+This is an output slice, not a faster isolated execution.
+
+The appended matrix covers empty, invalid and unknown ids, all hard-coded
+login roles (including accepted usernames without an ADJUSTER row), FNOL
+validation, authority boundaries, payment failures and month-end boundaries.
+See `docs/migration/CAPTURE-COVERAGE.md` for characterization defect mappings
+and HTTP-inaccessible cases. Broken legacy responses are recorded, not fixed.
 
 ## Database snapshots
 

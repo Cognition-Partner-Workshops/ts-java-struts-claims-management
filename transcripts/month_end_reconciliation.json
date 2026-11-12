@@ -1,0 +1,25 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/month_end_reconciliation.json",
+  "description": "month end reconciliation",
+  "expected": {
+    "business_fields": {
+      "reconcileAsOf": "2019-04-01",
+      "reconcilePremium_AUTO": "99100.00",
+      "reconcilePremium_COMMERCIAL_PROPERTY": "91000.00",
+      "reconcilePremium_GENERAL_LIABILITY": "93900.00",
+      "reconcilePremium_HOMEOWNERS": "93700.00",
+      "reconcileRows": "4"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/report/reconciliation.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/report/reconciliation.do"
+  },
+  "scenario": "month_end_reconciliation"
+}

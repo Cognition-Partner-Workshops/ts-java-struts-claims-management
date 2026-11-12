@@ -1,0 +1,8 @@
+{
+  "asOf": "2019-04-01",
+  "rows": [],
+  "source": "ReportDAO.claimsForAdjuster(\"adjuster9\")",
+  "totals": {
+    "rowCount": 0
+  }
+}
