@@ -1,5 +1,6 @@
 {
   "actor": "supervisor",
+  "db_snapshot": "db/report_claim_inventory.json",
   "description": "Month-end inventory counting closures from the next day",
   "expected": {
     "business_fields": {

@@ -1,0 +1,18 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/settlement_detail_unknown.json",
+  "description": "settlement detail unknown",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/error.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/settlement/detail.do?claimId=99999"
+  },
+  "scenario": "settlement_detail_unknown"
+}

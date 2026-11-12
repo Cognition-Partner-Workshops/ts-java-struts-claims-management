@@ -1,0 +1,25 @@
+{
+  "actor": "adjuster1",
+  "db_snapshot": "db/authority_adjuster1_within.json",
+  "description": "authority adjuster1 within",
+  "expected": {
+    "business_fields": {
+      "savedBy": "adjuster1",
+      "settlementAmount": "2499.99"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/settlement/save.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "118",
+      "coveredAmount": "2499.99",
+      "deductible": "0"
+    },
+    "method": "POST",
+    "path": "/claims/settlement/save.do"
+  },
+  "scenario": "authority_adjuster1_within"
+}

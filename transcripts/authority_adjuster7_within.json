@@ -1,0 +1,28 @@
+{
+  "actor": "adjuster7",
+  "db_snapshot": "db/authority_adjuster7_within.json",
+  "description": "authority adjuster7 within",
+  "expected": {
+    "business_fields": {
+      "approvalLimit": "0.00",
+      "refusedAdjuster": "adjuster7",
+      "refusedAmount": "2499.99"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/settlement/refused.jsp",
+    "status": 200,
+    "validation_errors": [
+      "errors.settlement.authority"
+    ]
+  },
+  "request": {
+    "form": {
+      "claimId": "118",
+      "coveredAmount": "2499.99",
+      "deductible": "0"
+    },
+    "method": "POST",
+    "path": "/claims/settlement/save.do"
+  },
+  "scenario": "authority_adjuster7_within"
+}

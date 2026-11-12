@@ -1,0 +1,18 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/policy_search_home.json",
+  "description": "policy search home",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/policy/search.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/policy/search.do?lineOfBusiness=HOME"
+  },
+  "scenario": "policy_search_home"
+}

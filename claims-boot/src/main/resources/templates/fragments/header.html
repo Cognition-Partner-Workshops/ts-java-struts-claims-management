@@ -1,0 +1,8 @@
+<!-- Port of WEB-INF/jsp/header.jsp: stylesheet, banner and top navigation. -->
+<th:block th:fragment="stylesheet"><link rel="stylesheet" type="text/css"
+      th:href="@{/northstar.css}"></th:block>
+<th:block th:fragment="banner"><tr><td class="banner"><h1 th:text="#{app.title}">NorthStar Claims</h1></td></tr>
+<tr><td class="navigation"><a th:href="@{/policy/list.do}" th:text="#{nav.policies}">Policies</a> |
+<a th:href="@{/workbench/list.do}" th:text="#{nav.workbench}">Workbench</a> |
+<a th:href="@{/report/openByAdjuster.do}" th:text="#{nav.reports}">Reports</a> |
+<a th:href="@{/logout.do}" th:text="#{nav.logout}">Logout</a></td></tr></th:block>

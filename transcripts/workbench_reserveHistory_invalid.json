@@ -1,0 +1,22 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/workbench_reserveHistory_invalid.json",
+  "description": "workbench reserveHistory invalid",
+  "expected": {
+    "business_fields": {
+      "currentReserve": "1500.00",
+      "reserveHistoryClaim": "119",
+      "reserveReviewStatus": "DENIED"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/workbench/reserveHistory.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/workbench/reserveHistory.do?claimId=abc"
+  },
+  "scenario": "workbench_reserveHistory_invalid"
+}

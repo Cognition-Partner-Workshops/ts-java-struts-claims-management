@@ -1,0 +1,18 @@
+{
+  "actor": "adjuster1",
+  "db_snapshot": "db/screen_intake_intake_submit.json",
+  "description": "screen intake intake submit",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/error.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/intake/intake/submit.do"
+  },
+  "scenario": "screen_intake_intake_submit"
+}

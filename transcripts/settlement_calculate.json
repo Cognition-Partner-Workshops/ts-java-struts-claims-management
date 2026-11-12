@@ -1,5 +1,6 @@
 {
   "actor": "supervisor",
+  "db_snapshot": "db/settlement_calculate.json",
   "description": "Calculate a standard settlement",
   "expected": {
     "business_fields": {

@@ -1,0 +1,22 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/policy_view_invalid.json",
+  "description": "policy view invalid",
+  "expected": {
+    "business_fields": {
+      "deductibleApplied": "500.00",
+      "policyLimit": "25000.00",
+      "policyStatus": "ACTIVE"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/policy/view.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/policy/view.do?policyId=abc"
+  },
+  "scenario": "policy_view_invalid"
+}

@@ -1,0 +1,20 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/workbench_statusHistory_unknown.json",
+  "description": "workbench statusHistory unknown",
+  "expected": {
+    "business_fields": {
+      "statusHistoryCurrent": "UNKNOWN"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/workbench/statusHistory.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/workbench/statusHistory.do?claimId=99999"
+  },
+  "scenario": "workbench_statusHistory_unknown"
+}

@@ -13,6 +13,7 @@
     <maven.compiler.source>7</maven.compiler.source>
     <maven.compiler.target>7</maven.compiler.target>
     <struts.version>1.3.10</struts.version>
+    <claims.jetty.contextXml>${project.basedir}/src/main/webapp/WEB-INF/jetty-env.xml</claims.jetty.contextXml>
   </properties>
 
   <dependencies>
@@ -71,7 +72,7 @@
         <configuration>
           <httpConnector><port>8080</port></httpConnector>
           <webApp><contextPath>/claims</contextPath></webApp>
-          <contextXml>${project.basedir}/src/main/webapp/WEB-INF/jetty-env.xml</contextXml>
+          <contextXml>${claims.jetty.contextXml}</contextXml>
         </configuration>
         <dependencies>
           <dependency>

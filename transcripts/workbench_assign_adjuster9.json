@@ -1,0 +1,23 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/workbench_assign_adjuster9.json",
+  "description": "workbench assign adjuster9",
+  "expected": {
+    "business_fields": {
+      "assignedAdjuster": "adjuster9"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/workbench/view.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "adjuster": "adjuster9",
+      "claimId": "116"
+    },
+    "method": "POST",
+    "path": "/claims/workbench/assign.do"
+  },
+  "scenario": "workbench_assign_adjuster9"
+}

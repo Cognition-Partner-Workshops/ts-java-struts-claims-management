@@ -1,0 +1,14 @@
+<th:block th:replace="~{payment/fragments :: page('/WEB-INF/jsp/payment/detail.jsp', ~{::content}, true)}"><th:block th:fragment="content">
+<h2 th:text="#{jsp.payment.detail}"></h2>
+<table class="detail" cellpadding="3" cellspacing="0" border="1">
+<tr><th th:text="#{jsp.payment.number}"></th><td><th:block th:replace="~{fragments/markers :: field('detailPaymentId', ${payment.paymentId}, 'integer')}"></th:block></td></tr>
+<tr><th th:text="#{jsp.claim.number}"></th><td><th:block th:replace="~{fragments/markers :: field('detailPaymentClaim', ${payment.claimId}, 'integer')}"></th:block></td></tr>
+<tr><th th:text="#{jsp.payee}"></th><td><th:block th:text="${payment.payeeName}"></th:block></td></tr>
+<tr><th th:text="#{jsp.amount}"></th><td><th:block th:replace="~{fragments/markers :: field('detailPaymentAmount', ${payment.amount}, 'money')}"></th:block></td></tr>
+<tr><th th:text="#{jsp.method}"></th><td><th:block th:text="${payment.paymentMethod}"></th:block></td></tr>
+<tr><th th:text="#{jsp.check.number}"></th><td><th:block th:replace="~{fragments/markers :: field('detailPaymentCheck', ${payment.checkNumber}, 'text')}"></th:block></td></tr>
+<tr><th th:text="#{jsp.issued.date}"></th><td><th:block th:replace="~{fragments/markers :: field('detailPaymentDate', ${payment.issuedDate}, 'date')}"></th:block></td></tr>
+<tr><th th:text="#{jsp.status}"></th><td><th:block th:replace="~{fragments/markers :: field('detailPaymentStatus', ${payment.status}, 'text')}"></th:block></td></tr>
+</table>
+<table th:replace="~{payment/fragments :: audit}"></table>
+</th:block></th:block>

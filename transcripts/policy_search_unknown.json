@@ -1,0 +1,18 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/policy_search_unknown.json",
+  "description": "policy search unknown",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/policy/search.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/policy/search.do?lineOfBusiness=UNKNOWN"
+  },
+  "scenario": "policy_search_unknown"
+}
