@@ -1,3 +1,8 @@
+# Frozen replay
+
+`make replay` compares committed responses and DB sidecars against a fresh
+legacy seed. External replay and manifest verification: [RUNBOOK](../docs/migration/RUNBOOK.md).
+
 # NorthStar transcript format
 
 Each scenario is one JSON object in `transcripts/<scenario>.json`. The

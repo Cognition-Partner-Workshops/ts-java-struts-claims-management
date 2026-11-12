@@ -3,7 +3,9 @@
 
 import argparse
 import datetime
+import difflib
 import glob
+import hashlib
 import http.cookiejar
 import json
 import os
@@ -420,7 +422,7 @@ def start_server():
 class DatabaseSnapshots:
     """Reads every table through the HSQLDB server Jetty runs for capture."""
 
-    def __init__(self):
+    def __init__(self, url=DB_URL, user="SA", password=""):
         maven_args = os.environ.get("MAVEN_CAPTURE_ARGS", "").split()
         classpath_file = os.path.join(ROOT, "target", "capture",
                                       "hsqldb.classpath")
@@ -436,7 +438,7 @@ class DatabaseSnapshots:
         self.process = subprocess.Popen(
             ["java", "-cp", classpath,
              os.path.join(ROOT, "tools", "capture", "DbSnapshot.java"),
-             DB_URL, "SA", ""],
+             url, user, password],
             cwd=ROOT, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
             text=True, encoding="utf-8")
 
@@ -533,7 +535,7 @@ def login(actor):
     return opener
 
 
-def write_transcript(opener, scenario, snapshots, persist=True):
+def write_transcript(opener, scenario, snapshots, persist=True, database=None):
     name, module, description, method, path, form, probes = scenario[:7]
     extra = options(scenario)
     setup = extra.get("setup", [])
@@ -542,6 +544,8 @@ def write_transcript(opener, scenario, snapshots, persist=True):
     code, location, body = request(opener, method, path, form)
     if persist:
         write_snapshot(name, snapshots.take())
+    elif database is not None:
+        database.update(snapshots.take())
     state = {}
     for key, probe_path in sorted(probes.items()):
         state[key] = probe(opener, key, probe_path)
@@ -572,27 +576,82 @@ def write_transcript(opener, scenario, snapshots, persist=True):
     return transcript
 
 
+def compare_file(path, actual, label):
+    try:
+        with open(path, encoding="utf-8") as stream:
+            expected = json.load(stream)
+    except (OSError, ValueError) as error:
+        print("%s: cannot read expectation: %s" % (label, error))
+        return 1
+    if expected == actual:
+        return 0
+    print("".join(difflib.unified_diff(
+        (json.dumps(expected, indent=2, sort_keys=True) + "\n").splitlines(True),
+        (json.dumps(actual, indent=2, sort_keys=True) + "\n").splitlines(True),
+        fromfile=label + " expected", tofile=label + " actual")), end="")
+    return 1
+
+
+def verify_manifest(path):
+    with open(path, encoding="utf-8") as stream:
+        manifest = json.load(stream)
+    errors = 0
+    for relative, expected in manifest["files"].items():
+        try:
+            with open(os.path.join(ROOT, relative), "rb") as stream:
+                actual = hashlib.sha256(stream.read()).hexdigest()
+        except OSError:
+            actual = None
+        if actual != expected:
+            print("Manifest mismatch: " + relative)
+            errors += 1
+    if not manifest["files"]:
+        raise ValueError("Manifest contains no frozen files")
+    print("Manifest: %d files, %d mismatches" % (len(manifest["files"]), errors))
+    return errors
+
+
 def main():
+    global BASE
     parser = argparse.ArgumentParser()
+    parser.add_argument("mode", nargs="?", choices=["capture", "replay"], default="capture")
+    parser.add_argument("--base-url", default=BASE)
+    parser.add_argument("--start-legacy", action="store_true")
+    parser.add_argument("--db-url", default=DB_URL)
+    parser.add_argument("--db-user", default="SA")
+    parser.add_argument("--db-password", default=os.environ.get("CAPTURE_DB_PASSWORD", ""))
+    parser.add_argument("--expectations", default=os.path.join(ROOT, "transcripts"))
+    parser.add_argument("--verify-manifest", metavar="PATH")
     parser.add_argument("--no-reset", action="store_true")
     parser.add_argument("--area", choices=sorted(set(AREA_PREFIXES.values())))
     parser.add_argument("--check-routes", action="store_true")
     args = parser.parse_args()
+    if args.verify_manifest:
+        return bool(verify_manifest(args.verify_manifest))
+    BASE = args.base_url.rstrip("/")
     check_routes()
     if args.check_routes:
         return
     process = None
     snapshots = None
     try:
-        if not args.no_reset:
-            reset_database()
-        process = start_server()
-        snapshots = DatabaseSnapshots()
+        replay = args.mode == "replay"
+        if not replay or args.start_legacy:
+            if not args.no_reset:
+                reset_database()
+            process = start_server()
+        snapshots = DatabaseSnapshots(args.db_url, args.db_user, args.db_password)
+        differences = 0
+        count = 0
+        if replay:
+            differences += compare_file(os.path.join(args.expectations, "db", "_seed.json"),
+                                        {"scenario": SEED_SNAPSHOT, "tables": snapshots.take()}, "_seed database")
         os.makedirs(SNAPSHOT_DIR, exist_ok=True)
-        if not args.area:
+        if not replay and not args.area:
             for stale in glob.glob(os.path.join(SNAPSHOT_DIR, "*.json")):
                 os.remove(stale)
-        write_snapshot(SEED_SNAPSHOT, snapshots.take())
+        if not replay:
+            write_snapshot(SEED_SNAPSHOT, snapshots.take())
         jar = http.cookiejar.CookieJar()
         opener = urllib.request.build_opener(
             urllib.request.HTTPCookieProcessor(jar))
@@ -603,15 +662,28 @@ def main():
             if actor and actor not in actors:
                 actors[actor] = login(actor)
             selected = not args.area or area(scenario) == args.area
+            database = {} if replay and selected else None
             transcript = write_transcript(actors.get(actor, opener), scenario,
-                                          snapshots, persist=selected)
+                                          snapshots, persist=selected and not replay,
+                                          database=database)
             if not selected:
+                continue
+            if replay:
+                count += 1
+                name = scenario[0]
+                differences += compare_file(os.path.join(args.expectations, name + ".json"),
+                                            transcript, name + " response")
+                differences += compare_file(os.path.join(args.expectations, "db", name + ".json"),
+                                            {"scenario": name, "tables": database}, name + " database")
                 continue
             path = os.path.join(ROOT, "transcripts",
                                 transcript["scenario"] + ".json")
             with open(path, "w", encoding="utf-8") as stream:
                 json.dump(transcript, stream, indent=2, sort_keys=True)
                 stream.write("\n")
+        if replay:
+            print("Replay: %d scenarios, %d diffs" % (count, differences))
+            return bool(differences)
         index = [{
             "scenario": scenario[0],
             "module": scenario[1],
@@ -635,4 +707,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
