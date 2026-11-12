@@ -111,7 +111,42 @@ SCENARIOS = [
      {"claimantName": "Bad Date Claimant", "lossDate": "2019-02-30",
       "description": "Bad date validation", "lossType": "WATER"},
      {"claim.123.exists": "/workbench/view.do?claimId=123"}),
+    ("intake_blank_reserve", "intake",
+     "FNOL with a blank initial reserve", "POST", "/intake/submit.do",
+     {"claimantName": "Blank Reserve Claimant", "lossDate": "04/01/2019",
+      "description": "Blank reserve binding", "lossType": "WATER",
+      "initialReserve": ""},
+     {"claim.123.reserve_amount": "/workbench/view.do?claimId=123"}),
+    ("settlement_authority_refused", "settlement",
+     "Save above the adjuster approval limit", "POST",
+     "/settlement/save.do",
+     {"claimId": "118", "coveredAmount": "5000.00", "deductible": "1000.00",
+      "depreciation": "0.00"},
+     {"settlement.saved.claim.118.amount": "/settlement/detail.do?claimId=118"},
+     {"actor": "adjuster4"}),
+    ("settlement_authority_within_limit", "settlement",
+     "Save within the adjuster approval limit", "POST",
+     "/settlement/save.do",
+     {"claimId": "118", "coveredAmount": "3000.00", "deductible": "1000.00",
+      "depreciation": "0.00"},
+     {"settlement.saved.claim.118.amount": "/settlement/detail.do?claimId=118"},
+     {"actor": "adjuster4"}),
+    ("settlement_session_save", "settlement",
+     "Save the settlement kept in the session by the calculate screen", "GET",
+     "/settlement/save.do?claimId=117", {},
+     {"settlement.saved.claim.117.amount": "/settlement/detail.do?claimId=117"},
+     {"setup": [("POST", "/settlement/calculate.do",
+                 {"claimId": "117", "coveredAmount": "3210.55",
+                  "deductible": "250.00", "depreciation": "0.00"})]}),
+    ("report_closed_claims", "reporting",
+     "Claims closed on or before the reporting date", "GET",
+     "/report/closedClaims.do", {}, {}),
+    ("report_claim_inventory", "reporting",
+     "Month-end inventory counting closures from the next day", "GET",
+     "/report/claimInventory.do", {}, {}),
 ]
+
+ACTOR_PASSWORDS = {"supervisor": "supervisor", "adjuster4": "legacy4"}
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -156,6 +191,8 @@ def result(body, code, location=None):
 def probe(opener, key, path):
     code, unused, body = request(opener, "GET", path)
     values = fields(body)
+    if key.startswith("settlement.saved.claim."):
+        return values.get("detailAmount", "")
     if key.startswith("payment.count.claim."):
         return str(len([name for name in values if name.startswith("paymentAmount_")]))
     if key.startswith("payment.") and key.count(".") >= 2:
@@ -217,16 +254,34 @@ def start_server():
     raise RuntimeError("Jetty did not become ready")
 
 
+def options(scenario):
+    return scenario[7] if len(scenario) > 7 else {}
+
+
+def login(actor):
+    jar = http.cookiejar.CookieJar()
+    opener = urllib.request.build_opener(
+        urllib.request.HTTPCookieProcessor(jar))
+    request(opener, "GET", "/login.do")
+    request(opener, "POST", "/login.do",
+            {"username": actor, "password": ACTOR_PASSWORDS[actor]})
+    return opener
+
+
 def write_transcript(opener, scenario):
-    name, module, description, method, path, form, probes = scenario
+    name, module, description, method, path, form, probes = scenario[:7]
+    extra = options(scenario)
+    setup = extra.get("setup", [])
+    for setup_method, setup_path, setup_form in setup:
+        request(opener, setup_method, setup_path, setup_form)
     code, location, body = request(opener, method, path, form)
     state = {}
     for key, probe_path in sorted(probes.items()):
         state[key] = probe(opener, key, probe_path)
-    return {
+    transcript = {
         "scenario": name,
         "description": description,
-        "actor": "supervisor",
+        "actor": extra.get("actor", "supervisor"),
         "request": {
             "method": method,
             "path": CONTEXT_PATH + path,
@@ -240,6 +295,13 @@ def write_transcript(opener, scenario):
             "db_state": state
         }
     }
+    if setup:
+        transcript["setup"] = [{
+            "method": setup_method,
+            "path": CONTEXT_PATH + setup_path,
+            "form": setup_form
+        } for setup_method, setup_path, setup_form in setup]
+    return transcript
 
 
 def main():
@@ -255,8 +317,12 @@ def main():
         opener = urllib.request.build_opener(
             urllib.request.HTTPCookieProcessor(jar))
         request(opener, "GET", "/login.do")
+        actors = {}
         for scenario in SCENARIOS:
-            transcript = write_transcript(opener, scenario)
+            actor = options(scenario).get("actor")
+            if actor and actor not in actors:
+                actors[actor] = login(actor)
+            transcript = write_transcript(actors.get(actor, opener), scenario)
             path = os.path.join(ROOT, "transcripts",
                                 transcript["scenario"] + ".json")
             with open(path, "w", encoding="utf-8") as stream:

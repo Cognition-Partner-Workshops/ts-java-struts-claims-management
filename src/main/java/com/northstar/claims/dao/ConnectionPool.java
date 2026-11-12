@@ -6,6 +6,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 import javax.naming.InitialContext;
 import javax.sql.DataSource;
+import com.northstar.claims.util.ClaimsConfig;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -44,7 +45,8 @@ public class ConnectionPool {
         } catch (Exception namingFailure) {
             log.warn("Container data source unavailable; using DriverManager", namingFailure);
             System.out.println("DataSource lookup failed: " + namingFailure.getClass().getName());
-            return DriverManager.getConnection(url, "SA", "");
+            return DriverManager.getConnection(url, ClaimsConfig.get("db.user"),
+                    ClaimsConfig.get("db.password"));
         }
     }
 

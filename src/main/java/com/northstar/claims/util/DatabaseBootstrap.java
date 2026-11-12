@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import com.northstar.claims.dao.ConnectionPool;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -34,6 +35,7 @@ public class DatabaseBootstrap {
                 executeScript(connection, "db/schema.sql");
             }
             executeScript(connection, "db/seed.sql");
+            createApplicationUser(connection);
             connection.commit();
             log.info("Database bootstrap completed for " + path);
         } finally {
@@ -45,6 +47,24 @@ public class DatabaseBootstrap {
                 connection.close();
             } catch (Exception ignored) {
             }
+            ConnectionPool.getInstance().closeAll();
+        }
+    }
+
+    /** Recreates the application account named in northstar.properties. */
+    private static void createApplicationUser(Connection connection)
+            throws SQLException {
+        Statement statement = connection.createStatement();
+        try {
+            try {
+                statement.execute("CREATE USER " + ClaimsConfig.get("db.user")
+                        + " PASSWORD '" + ClaimsConfig.get("db.password") + "' ADMIN");
+            } catch (SQLException alreadyPresent) {
+                statement.execute("ALTER USER " + ClaimsConfig.get("db.user")
+                        + " SET PASSWORD '" + ClaimsConfig.get("db.password") + "'");
+            }
+        } finally {
+            statement.close();
         }
     }
 

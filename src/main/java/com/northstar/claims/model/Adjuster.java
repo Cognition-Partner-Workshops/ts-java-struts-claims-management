@@ -17,6 +17,7 @@ public class Adjuster {
     private String fullName;
     private String region;
     private boolean active;
+    private double approvalLimit;
 
     /** Returns the adjusterId value. */
     public int getAdjusterId() {
@@ -76,6 +77,16 @@ public class Adjuster {
     /** Stores the active value supplied by the caller. */
     public void setActive(boolean active) {
         this.active = active;
+    }
+
+    /** Returns the settlement approval limit. */
+    public double getApprovalLimit() {
+        return approvalLimit;
+    }
+
+    /** Stores the settlement approval limit. */
+    public void setApprovalLimit(double approvalLimit) {
+        this.approvalLimit = approvalLimit;
     }
 
     /** Provides a compact description useful in old server logs. */

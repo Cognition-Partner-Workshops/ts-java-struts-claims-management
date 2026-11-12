@@ -34,6 +34,8 @@ if (nsValidationErrors != null) {
 <td><textarea name="description" rows="5" cols="45"></textarea></td></tr>
 <tr><td><bean:message key="intake.lossType"/></td>
 <td><input type="text" name="lossType" size="20"/></td></tr>
+<tr><td><bean:message key="intake.initialReserve"/></td>
+<td><input type="text" name="initialReserve" size="20"/></td></tr>
 <tr><td>&nbsp;</td>
 <td><button type="submit"><bean:message key="button.submit"/></button></td></tr>
 </table>

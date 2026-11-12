@@ -1,6 +1,9 @@
 package com.northstar.claims.web;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import com.northstar.claims.model.Claim;
+import com.northstar.claims.util.ClaimsConfig;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
@@ -23,10 +26,39 @@ public class WorkbenchStatusAction extends ClaimsActionSupport {
         }
         update("update CLAIM set status = '" + status
                 + "' where claim_id = " + claimId);
+        updateClosure(claimId, "CLOSED".equalsIgnoreCase(status),
+                String.valueOf(request.getSession().getAttribute("user")));
         request.setAttribute("claim", findClaim(claimId));
         request.setAttribute("claimStatus", status);
         request.setAttribute("claimId", new Integer(claimId));
         request.setAttribute("screenName", "detail");
         return mapping.findForward("workbenchView");
+    }
+
+    /** Keeps the first close date while closed; a reopen removes it. */
+    private void updateClosure(int claimId, boolean closed, String user)
+            throws Exception {
+        Connection connection = openConnection();
+        PreparedStatement statement = null;
+        try {
+            if (closed) {
+                statement = connection.prepareStatement(
+                        "insert into CLAIM_CLOSURE select ?, cast(? as date), ? "
+                        + "from (values(0)) where not exists (select 1 "
+                        + "from CLAIM_CLOSURE where claim_id = ?)");
+                statement.setInt(1, claimId);
+                statement.setString(2, ClaimsConfig.get("report.asof.date"));
+                statement.setString(3, user);
+                statement.setInt(4, claimId);
+            } else {
+                statement = connection.prepareStatement(
+                        "delete from CLAIM_CLOSURE where claim_id = ?");
+                statement.setInt(1, claimId);
+            }
+            statement.executeUpdate();
+        } finally {
+            try { statement.close(); } catch (Exception ignored) {}
+            try { connection.close(); } catch (Exception ignored) {}
+        }
     }
 }

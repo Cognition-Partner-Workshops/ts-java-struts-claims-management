@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
+import com.northstar.claims.web.form.IntakeForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionMapping;
@@ -44,7 +45,7 @@ public class IntakeSubmitAction extends ClaimsActionSupport {
         try {
             statement = connection.prepareStatement(
                     "insert into CLAIM values "
-                    + "(?,? ,9001,?,?,?,?,?,'OPEN',0,"
+                    + "(?,? ,9001,?,?,?,?,?,'OPEN',?,"
                     + "'adjuster1','supervisor',?)");
             statement.setInt(1, claimId);
             statement.setString(2, "CLM-" + claimId);
@@ -53,7 +54,9 @@ public class IntakeSubmitAction extends ClaimsActionSupport {
             statement.setString(5, lossDate);
             statement.setString(6, "WATER");
             statement.setString(7, description);
-            statement.setString(8, lossDate);
+            statement.setDouble(8, form instanceof IntakeForm
+                    ? ((IntakeForm) form).getInitialReserve() : 0);
+            statement.setString(9, lossDate);
             statement.executeUpdate();
         } finally {
             try { statement.close(); } catch (Exception ignored) {}

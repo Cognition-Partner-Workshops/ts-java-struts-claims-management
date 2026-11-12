@@ -13,6 +13,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts.action.Action;
 import com.northstar.claims.model.Claim;
+import com.northstar.claims.util.ClaimsConfig;
 
 /**
  * Supplies only the small pieces of plumbing shared by screen actions.
@@ -25,7 +26,7 @@ public abstract class ClaimsActionSupport extends Action {
         String path = System.getProperty("claims.db.path",
                 "target/db/northstar");
         return DriverManager.getConnection("jdbc:hsqldb:file:" + path,
-                "SA", "");
+                ClaimsConfig.get("db.user"), ClaimsConfig.get("db.password"));
     }
 
     protected int integer(String value, int fallback) {

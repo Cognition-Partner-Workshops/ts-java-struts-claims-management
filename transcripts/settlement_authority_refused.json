@@ -1,0 +1,30 @@
+{
+  "actor": "adjuster4",
+  "description": "Save above the adjuster approval limit",
+  "expected": {
+    "business_fields": {
+      "approvalLimit": "2500.00",
+      "refusedAdjuster": "adjuster4",
+      "refusedAmount": "4000.00"
+    },
+    "db_state": {
+      "settlement.saved.claim.118.amount": "1118.00"
+    },
+    "result": "forward:/WEB-INF/jsp/settlement/refused.jsp",
+    "status": 200,
+    "validation_errors": [
+      "errors.settlement.authority"
+    ]
+  },
+  "request": {
+    "form": {
+      "claimId": "118",
+      "coveredAmount": "5000.00",
+      "deductible": "1000.00",
+      "depreciation": "0.00"
+    },
+    "method": "POST",
+    "path": "/claims/settlement/save.do"
+  },
+  "scenario": "settlement_authority_refused"
+}

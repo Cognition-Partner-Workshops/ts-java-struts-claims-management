@@ -13,6 +13,7 @@ public class IntakeForm extends BaseForm {
     private String claimantName;
     private String lossDate;
     private String description;
+    private double initialReserve;
 
     /** Creates an empty form for the request scope. */
     public IntakeForm() {
@@ -49,12 +50,23 @@ public class IntakeForm extends BaseForm {
         this.description = description;
     }
 
+    /** Returns the initial reserve bound by Struts. */
+    public double getInitialReserve() {
+        return initialReserve;
+    }
+
+    /** Stores the initial reserve bound by Struts. */
+    public void setInitialReserve(double initialReserve) {
+        this.initialReserve = initialReserve;
+    }
+
     /** Clears fields before Struts reuses the form instance. */
     public void reset(ActionMapping mapping, HttpServletRequest request) {
         super.reset(mapping, request);
         claimantName = null;
         lossDate = null;
         description = null;
+        initialReserve = 0;
     }
 
     /** Performs the screen-specific validation hook. */

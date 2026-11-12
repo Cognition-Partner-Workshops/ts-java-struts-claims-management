@@ -1,10 +1,12 @@
 package com.northstar.claims.util;
 
 import java.io.InputStream;
-import java.util.Hashtable;
+import java.util.Collections;
+import java.util.Map;
 import java.util.Properties;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.apache.commons.collections.map.LRUMap;
 
 /**
  * Loads fixed operating values used by the claims application.
@@ -15,7 +17,7 @@ public final class ClaimsConfig {
 
     private static final Properties properties = new Properties();
 
-    private static final Hashtable cache = new Hashtable();
+    private static final Map cache = Collections.synchronizedMap(new LRUMap(64));
 
     static {
         loadProperties();

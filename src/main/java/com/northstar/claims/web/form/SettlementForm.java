@@ -11,7 +11,7 @@ import org.apache.struts.action.ActionMapping;
 public class SettlementForm extends BaseForm {
 
     private String coveredAmount;
-    private String deductible;
+    private double deductible;
     private String depreciation;
     private String policyLimit;
 
@@ -31,12 +31,12 @@ public class SettlementForm extends BaseForm {
     }
 
     /** Returns the deductible submitted by the browser. */
-    public String getDeductible() {
+    public double getDeductible() {
         return deductible;
     }
 
     /** Stores the deductible submitted by the browser. */
-    public void setDeductible(String deductible) {
+    public void setDeductible(double deductible) {
         this.deductible = deductible;
     }
 
@@ -64,7 +64,7 @@ public class SettlementForm extends BaseForm {
     public void reset(ActionMapping mapping, HttpServletRequest request) {
         super.reset(mapping, request);
         coveredAmount = null;
-        deductible = null;
+        deductible = 0;
         depreciation = null;
         policyLimit = null;
     }

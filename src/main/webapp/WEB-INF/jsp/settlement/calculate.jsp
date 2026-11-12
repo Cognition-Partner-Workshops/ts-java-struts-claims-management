@@ -14,7 +14,7 @@
 <tr><td class="content">
 <%@ include file="../nav.jsp" %>
 <h2><bean:message key="settlement.heading"/></h2>
-<p><a href="detail.do?claimId=${claimId}"><bean:message key="settlement.detailLink"/></a></p>
+<p><a href="detail.do?claimId=${settlement.claimId}"><bean:message key="settlement.detailLink"/></a></p>
 <table class="details" cellpadding="3" cellspacing="0" border="1">
 <tr>
 <th><bean:message key="settlement.covered"/></th><td><ns:field name="coveredAmount" value="${settlement.coveredAmount}" type="money"/></td></tr>
@@ -27,7 +27,7 @@
 <tr>
 <th><bean:message key="settlement.amount"/></th><td><ns:field name="settlementAmount" value="${settlement.settlementAmount}" type="money"/></td></tr>
 </table>
-<p><a href="save.do"><bean:message key="settlement.save"/></a></p>
+<p><a href="save.do?claimId=${settlement.claimId}"><bean:message key="settlement.save"/></a></p>
 <table class="screen-audit" cellpadding="3" cellspacing="0" border="1">
 <tr>
 <th><bean:message key="jsp.screen.context"/></th>
