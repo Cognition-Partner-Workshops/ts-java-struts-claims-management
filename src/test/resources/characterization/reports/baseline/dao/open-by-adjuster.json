@@ -1,0 +1,23 @@
+{
+  "asOf": "2019-04-01",
+  "rows": [
+    {
+      "adjuster": "adjuster1",
+      "openCount": 24.0,
+      "reserveTotal": 25404.0
+    },
+    {
+      "adjuster": "adjuster2",
+      "openCount": 24.0,
+      "reserveTotal": 25428.0
+    }
+  ],
+  "source": "ReportDAO.openClaimsByAdjuster()",
+  "totals": {
+    "rowCount": 2,
+    "sum": {
+      "openCount": 48.0,
+      "reserveTotal": 50832.0
+    }
+  }
+}
