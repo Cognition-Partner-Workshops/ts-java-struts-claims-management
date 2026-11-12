@@ -1,0 +1,18 @@
+# report	loss-ratio
+# asOf	2019-04-01
+forward	report
+attribute	reportRowCount	4
+attribute	reportType	lossRatio
+attribute	screenName	detail
+columns	lineOfBusiness:text,premiumTotal:money,lossTotal:money,lossRatio:percent
+raw	{lineOfBusiness=AUTO, lossRatio=0.44950385887541344, lossTotal=40770.0, premiumTotal=90700.0}
+row	AUTO	90700.00	40770.00	44.95%
+raw	{lineOfBusiness=COMMERCIAL_PROPERTY, lossRatio=0.4199010989010989, lossTotal=38211.0, premiumTotal=91000.0}
+row	COMMERCIAL_PROPERTY	91000.00	38211.00	41.99%
+raw	{lineOfBusiness=GENERAL_LIABILITY, lossRatio=0.36730564430244944, lossTotal=34490.0, premiumTotal=93900.0}
+row	GENERAL_LIABILITY	93900.00	34490.00	36.73%
+raw	{lineOfBusiness=HOMEOWNERS, lossRatio=0.4007470651013874, lossTotal=37550.0, premiumTotal=93700.0}
+row	HOMEOWNERS	93700.00	37550.00	40.07%
+rows	4
+total	premiumTotal	369300.00
+total	lossTotal	151021.00

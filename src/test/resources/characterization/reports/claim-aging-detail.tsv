@@ -1,0 +1,35 @@
+# report	claim-aging-detail
+# asOf	2019-04-01
+forward	claimAgingDetail
+attribute	claimCount	24
+attribute	operatorScope	claims
+attribute	reportAsOf	2019-04-01
+attribute	screenMode	read
+attribute	screenName	report-detail
+columns	claimId:integer,reportedDate:date,status:text,reserveAmount:money,assignedAdjuster:text
+row	1	2019-03-15	OPEN	1001.00	adjuster1
+row	6	2019-02-15	OPEN	1006.00	adjuster1
+row	11	2019-01-15	OPEN	1011.00	adjuster1
+row	16	2018-12-01	OPEN	1016.00	adjuster1
+row	21	2019-03-15	OPEN	1021.00	adjuster1
+row	26	2019-02-15	OPEN	1026.00	adjuster1
+row	31	2019-01-15	OPEN	1031.00	adjuster1
+row	36	2018-12-01	OPEN	1036.00	adjuster1
+row	41	2019-03-15	OPEN	1041.00	adjuster1
+row	46	2019-02-15	OPEN	1046.00	adjuster1
+row	51	2019-01-15	OPEN	1051.00	adjuster1
+row	56	2018-12-01	OPEN	1056.00	adjuster1
+row	61	2019-03-15	OPEN	1061.00	adjuster1
+row	66	2019-02-15	OPEN	1066.00	adjuster1
+row	71	2019-01-15	OPEN	1071.00	adjuster1
+row	76	2018-12-01	OPEN	1076.00	adjuster1
+row	81	2019-03-15	OPEN	1081.00	adjuster1
+row	86	2019-02-15	OPEN	1086.00	adjuster1
+row	91	2019-01-15	OPEN	1091.00	adjuster1
+row	96	2018-12-01	OPEN	1096.00	adjuster1
+row	101	2019-03-15	OPEN	1101.00	adjuster1
+row	106	2019-02-15	OPEN	1106.00	adjuster1
+row	111	2019-01-15	OPEN	1111.00	adjuster1
+row	116	2018-12-01	OPEN	1116.00	adjuster1
+rows	24
+total	reserveAmount	25404.00

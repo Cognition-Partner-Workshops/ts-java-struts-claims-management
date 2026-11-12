@@ -1,0 +1,14 @@
+# report	open-by-adjuster
+# asOf	2019-04-01
+forward	report
+attribute	reportRowCount	2
+attribute	reportType	openByAdjuster
+attribute	screenName	detail
+columns	adjuster:text,openCount:integer,reserveTotal:money
+raw	{adjuster=adjuster1, openCount=24.0, reserveTotal=25404.0}
+row	adjuster1	24	25404.00
+raw	{adjuster=adjuster2, openCount=24.0, reserveTotal=25428.0}
+row	adjuster2	24	25428.00
+rows	2
+total	openCount	48
+total	reserveTotal	50832.00

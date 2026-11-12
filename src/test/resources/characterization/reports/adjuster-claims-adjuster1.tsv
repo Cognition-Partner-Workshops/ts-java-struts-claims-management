@@ -1,0 +1,58 @@
+# report	adjuster-claims-adjuster1
+# asOf	2019-04-01
+forward	report
+attribute	adjuster	adjuster1
+attribute	reportAsOf	2019-04-01
+attribute	reportRowCount	24
+attribute	screenName	detail
+columns	claimNumber:text,status:text,reserveAmount:money
+raw	{claimNumber=CLM-00001, reserveAmount=1001.0, status=OPEN}
+row	CLM-00001	OPEN	1001.00
+raw	{claimNumber=CLM-00006, reserveAmount=1006.0, status=OPEN}
+row	CLM-00006	OPEN	1006.00
+raw	{claimNumber=CLM-00011, reserveAmount=1011.0, status=OPEN}
+row	CLM-00011	OPEN	1011.00
+raw	{claimNumber=CLM-00016, reserveAmount=1016.0, status=OPEN}
+row	CLM-00016	OPEN	1016.00
+raw	{claimNumber=CLM-00021, reserveAmount=1021.0, status=OPEN}
+row	CLM-00021	OPEN	1021.00
+raw	{claimNumber=CLM-00026, reserveAmount=1026.0, status=OPEN}
+row	CLM-00026	OPEN	1026.00
+raw	{claimNumber=CLM-00031, reserveAmount=1031.0, status=OPEN}
+row	CLM-00031	OPEN	1031.00
+raw	{claimNumber=CLM-00036, reserveAmount=1036.0, status=OPEN}
+row	CLM-00036	OPEN	1036.00
+raw	{claimNumber=CLM-00041, reserveAmount=1041.0, status=OPEN}
+row	CLM-00041	OPEN	1041.00
+raw	{claimNumber=CLM-00046, reserveAmount=1046.0, status=OPEN}
+row	CLM-00046	OPEN	1046.00
+raw	{claimNumber=CLM-00051, reserveAmount=1051.0, status=OPEN}
+row	CLM-00051	OPEN	1051.00
+raw	{claimNumber=CLM-00056, reserveAmount=1056.0, status=OPEN}
+row	CLM-00056	OPEN	1056.00
+raw	{claimNumber=CLM-00061, reserveAmount=1061.0, status=OPEN}
+row	CLM-00061	OPEN	1061.00
+raw	{claimNumber=CLM-00066, reserveAmount=1066.0, status=OPEN}
+row	CLM-00066	OPEN	1066.00
+raw	{claimNumber=CLM-00071, reserveAmount=1071.0, status=OPEN}
+row	CLM-00071	OPEN	1071.00
+raw	{claimNumber=CLM-00076, reserveAmount=1076.0, status=OPEN}
+row	CLM-00076	OPEN	1076.00
+raw	{claimNumber=CLM-00081, reserveAmount=1081.0, status=OPEN}
+row	CLM-00081	OPEN	1081.00
+raw	{claimNumber=CLM-00086, reserveAmount=1086.0, status=OPEN}
+row	CLM-00086	OPEN	1086.00
+raw	{claimNumber=CLM-00091, reserveAmount=1091.0, status=OPEN}
+row	CLM-00091	OPEN	1091.00
+raw	{claimNumber=CLM-00096, reserveAmount=1096.0, status=OPEN}
+row	CLM-00096	OPEN	1096.00
+raw	{claimNumber=CLM-00101, reserveAmount=1101.0, status=OPEN}
+row	CLM-00101	OPEN	1101.00
+raw	{claimNumber=CLM-00106, reserveAmount=1106.0, status=OPEN}
+row	CLM-00106	OPEN	1106.00
+raw	{claimNumber=CLM-00111, reserveAmount=1111.0, status=OPEN}
+row	CLM-00111	OPEN	1111.00
+raw	{claimNumber=CLM-00116, reserveAmount=1116.0, status=OPEN}
+row	CLM-00116	OPEN	1116.00
+rows	24
+total	reserveAmount	25404.00

@@ -1,0 +1,22 @@
+# report	reconciliation
+# asOf	2019-04-01
+forward	reconciliation
+attribute	operatorScope	claims
+attribute	reportAsOf	2019-04-01
+attribute	reportRowCount	4
+attribute	screenMode	read
+attribute	screenName	report-detail
+columns	lineOfBusiness:text,premiumTotal:money,reserveTotal:money,paidTotal:money,variance:money
+raw	{lineOfBusiness=AUTO, lossRatio=0.44950385887541344, lossTotal=40770.0, premiumTotal=90700.0}
+row	AUTO	90700.00	0.00	0.00	0.00
+raw	{lineOfBusiness=COMMERCIAL_PROPERTY, lossRatio=0.4199010989010989, lossTotal=38211.0, premiumTotal=91000.0}
+row	COMMERCIAL_PROPERTY	91000.00	0.00	0.00	0.00
+raw	{lineOfBusiness=GENERAL_LIABILITY, lossRatio=0.36730564430244944, lossTotal=34490.0, premiumTotal=93900.0}
+row	GENERAL_LIABILITY	93900.00	0.00	0.00	0.00
+raw	{lineOfBusiness=HOMEOWNERS, lossRatio=0.4007470651013874, lossTotal=37550.0, premiumTotal=93700.0}
+row	HOMEOWNERS	93700.00	0.00	0.00	0.00
+rows	4
+total	premiumTotal	369300.00
+total	reserveTotal	0.00
+total	paidTotal	0.00
+total	variance	0.00

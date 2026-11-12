@@ -1,0 +1,58 @@
+# report	adjuster-claims-adjuster2
+# asOf	2019-04-01
+forward	report
+attribute	adjuster	adjuster2
+attribute	reportAsOf	2019-04-01
+attribute	reportRowCount	24
+attribute	screenName	detail
+columns	claimNumber:text,status:text,reserveAmount:money
+raw	{claimNumber=CLM-00002, reserveAmount=1002.0, status=INVESTIGATING}
+row	CLM-00002	INVESTIGATING	1002.00
+raw	{claimNumber=CLM-00007, reserveAmount=1007.0, status=INVESTIGATING}
+row	CLM-00007	INVESTIGATING	1007.00
+raw	{claimNumber=CLM-00012, reserveAmount=1012.0, status=INVESTIGATING}
+row	CLM-00012	INVESTIGATING	1012.00
+raw	{claimNumber=CLM-00017, reserveAmount=1017.0, status=INVESTIGATING}
+row	CLM-00017	INVESTIGATING	1017.00
+raw	{claimNumber=CLM-00022, reserveAmount=1022.0, status=INVESTIGATING}
+row	CLM-00022	INVESTIGATING	1022.00
+raw	{claimNumber=CLM-00027, reserveAmount=1027.0, status=INVESTIGATING}
+row	CLM-00027	INVESTIGATING	1027.00
+raw	{claimNumber=CLM-00032, reserveAmount=1032.0, status=INVESTIGATING}
+row	CLM-00032	INVESTIGATING	1032.00
+raw	{claimNumber=CLM-00037, reserveAmount=1037.0, status=INVESTIGATING}
+row	CLM-00037	INVESTIGATING	1037.00
+raw	{claimNumber=CLM-00042, reserveAmount=1042.0, status=INVESTIGATING}
+row	CLM-00042	INVESTIGATING	1042.00
+raw	{claimNumber=CLM-00047, reserveAmount=1047.0, status=INVESTIGATING}
+row	CLM-00047	INVESTIGATING	1047.00
+raw	{claimNumber=CLM-00052, reserveAmount=1052.0, status=INVESTIGATING}
+row	CLM-00052	INVESTIGATING	1052.00
+raw	{claimNumber=CLM-00057, reserveAmount=1057.0, status=INVESTIGATING}
+row	CLM-00057	INVESTIGATING	1057.00
+raw	{claimNumber=CLM-00062, reserveAmount=1062.0, status=INVESTIGATING}
+row	CLM-00062	INVESTIGATING	1062.00
+raw	{claimNumber=CLM-00067, reserveAmount=1067.0, status=INVESTIGATING}
+row	CLM-00067	INVESTIGATING	1067.00
+raw	{claimNumber=CLM-00072, reserveAmount=1072.0, status=INVESTIGATING}
+row	CLM-00072	INVESTIGATING	1072.00
+raw	{claimNumber=CLM-00077, reserveAmount=1077.0, status=INVESTIGATING}
+row	CLM-00077	INVESTIGATING	1077.00
+raw	{claimNumber=CLM-00082, reserveAmount=1082.0, status=INVESTIGATING}
+row	CLM-00082	INVESTIGATING	1082.00
+raw	{claimNumber=CLM-00087, reserveAmount=1087.0, status=INVESTIGATING}
+row	CLM-00087	INVESTIGATING	1087.00
+raw	{claimNumber=CLM-00092, reserveAmount=1092.0, status=INVESTIGATING}
+row	CLM-00092	INVESTIGATING	1092.00
+raw	{claimNumber=CLM-00097, reserveAmount=1097.0, status=INVESTIGATING}
+row	CLM-00097	INVESTIGATING	1097.00
+raw	{claimNumber=CLM-00102, reserveAmount=1102.0, status=INVESTIGATING}
+row	CLM-00102	INVESTIGATING	1102.00
+raw	{claimNumber=CLM-00107, reserveAmount=1107.0, status=INVESTIGATING}
+row	CLM-00107	INVESTIGATING	1107.00
+raw	{claimNumber=CLM-00112, reserveAmount=1112.0, status=INVESTIGATING}
+row	CLM-00112	INVESTIGATING	1112.00
+raw	{claimNumber=CLM-00117, reserveAmount=1117.0, status=INVESTIGATING}
+row	CLM-00117	INVESTIGATING	1117.00
+rows	24
+total	reserveAmount	25428.00
