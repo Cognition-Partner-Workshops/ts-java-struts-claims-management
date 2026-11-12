@@ -1,0 +1,228 @@
+{
+  "source_branch": "demo-insurance",
+  "source_commit": "60d91d266f75337a83f6bce076298d809d5f11b6",
+  "manifest_entries": {
+    "classes": [
+      {
+        "class": "form bean coercion",
+        "brief": "C",
+        "causing_condition": "IntakeForm.initialReserve and SettlementForm.deductible are primitive doubles, so Struts BeanUtils population turns a blank (or non-numeric) value into 0 instead of null or a validation error; the intake value is stored as CLAIM.reserve_amount on the new claim",
+        "file": "src/main/java/com/northstar/claims/web/form/IntakeForm.java",
+        "line": 16,
+        "surfaces": "Intake parity replay: POST /claims/intake/submit.do with initialReserve blank stores reserve 0.00 (transcripts/intake_blank_reserve.json, IntakeFormBindingTest). Also settlement: deductible blank -> deductibleApplied 0.00 (transcripts/settlement_blank_deductible.json, SettlementFormBindingTest)",
+        "related": [
+          {
+            "file": "src/main/java/com/northstar/claims/web/IntakeSubmitAction.java",
+            "line": 58
+          },
+          {
+            "file": "src/main/java/com/northstar/claims/web/form/SettlementForm.java",
+            "line": 14
+          }
+        ]
+      },
+      {
+        "class": "session state",
+        "brief": "C",
+        "causing_condition": "SettlementCalculateAction stores the calculated Settlement in HttpSession as pendingSettlement; SettlementSaveAction saves that object when the request carries no coveredAmount",
+        "file": "src/main/java/com/northstar/claims/web/SettlementCalculateAction.java",
+        "line": 20,
+        "related": [
+          {
+            "file": "src/main/java/com/northstar/claims/web/SettlementSaveAction.java",
+            "line": 37
+          }
+        ],
+        "surfaces": "calculate.do then save.do (the Save link on the calculate screen); transcripts/settlement_session_save.json"
+      },
+      {
+        "class": "BigDecimal scale",
+        "brief": "C",
+        "causing_condition": "Settlement total is computed with BigDecimal.valueOf inputs and setScale(2, ROUND_HALF_EVEN); a half-cent total such as 1.005 settles at 1.00, where HALF_UP gives 1.01",
+        "file": "src/main/java/com/northstar/claims/service/SettlementCalculator.java",
+        "line": 53,
+        "related": [
+          {
+            "file": "src/main/java/com/northstar/claims/service/SettlementCalculator.java",
+            "line": 15
+          }
+        ],
+        "surfaces": "transcripts/settlement_half_cent.json (settlementAmount 1.00); SettlementCalculatorTest.halfCentRoundsToEvenCent"
+      },
+      {
+        "class": "close-date counting",
+        "brief": "C",
+        "causing_condition": "Closed claims report counts a closure on its closed_date; month-end inventory counts it from closed_date + 1 day, so claims closed on the as-of date (2019-04-01) appear in one report and not the other",
+        "file": "src/main/java/com/northstar/claims/dao/ReportDAO.java",
+        "line": 185,
+        "related": [
+          {
+            "file": "src/main/java/com/northstar/claims/dao/ReportDAO.java",
+            "line": 190
+          },
+          {
+            "file": "src/main/resources/db/seed.sql",
+            "line": 696
+          },
+          {
+            "file": "src/main/resources/db/seed.sql",
+            "line": 698
+          }
+        ],
+        "surfaces": "/claims/report/closedClaims.do (23) vs /claims/report/claimInventory.do (21); transcripts/report_closed_claims.json, transcripts/report_claim_inventory.json"
+      },
+      {
+        "class": "dropped authority limit",
+        "brief": "D",
+        "causing_condition": "ADJUSTER.approval_limit is enforced only in SettlementAuthorityAction.execute, which the settlement actions inherit; their own executeSettlement methods do not check it, and no service, DAO, JSP or validator does",
+        "file": "src/main/java/com/northstar/claims/web/SettlementAuthorityAction.java",
+        "line": 33,
+        "related": [
+          {
+            "file": "src/main/resources/db/schema.sql",
+            "line": 129
+          }
+        ],
+        "surfaces": "save.do or calculate.do above the operator's limit; transcripts/settlement_authority_refused.json, transcripts/settlement_authority_within_limit.json; SettlementAuthorityActionTest"
+      },
+      {
+        "class": "SQL injection",
+        "brief": "D",
+        "causing_condition": "ReportDAO.claimsForAdjuster concatenates the adjuster request parameter into the WHERE clause of a Statement query",
+        "file": "src/main/java/com/northstar/claims/dao/ReportDAO.java",
+        "line": 166,
+        "related": [
+          {
+            "file": "src/main/java/com/northstar/claims/web/AdjusterClaimsReportAction.java",
+            "line": 19
+          }
+        ],
+        "surfaces": "GET /claims/report/adjusterClaims.do?adjuster=... on the local app"
+      },
+      {
+        "class": "vulnerable dependency",
+        "brief": "D",
+        "causing_condition": "commons-collections 3.2.1 (CVE-2015-7501, unsafe InvokerTransformer deserialization; fixed in 3.2.2) is a compile dependency packaged in the WAR and used by ClaimsConfig's LRUMap cache",
+        "file": "pom.xml",
+        "line": 44,
+        "related": [
+          {
+            "file": "src/main/java/com/northstar/claims/util/ClaimsConfig.java",
+            "line": 20
+          }
+        ],
+        "cve": "CVE-2015-7501",
+        "surfaces": "WEB-INF/lib/commons-collections-3.2.1.jar; every ClaimsConfig.get call"
+      },
+      {
+        "class": "secret in config",
+        "brief": "D",
+        "causing_condition": "db.password for the CLAIMS_APP account is stored in plain text in northstar.properties; the seed job creates the HSQLDB user with it and the DriverManager connection paths log in with it",
+        "file": "src/main/resources/northstar.properties",
+        "line": 5,
+        "related": [
+          {
+            "file": "src/main/java/com/northstar/claims/web/ClaimsActionSupport.java",
+            "line": 29
+          },
+          {
+            "file": "src/main/java/com/northstar/claims/dao/ConnectionPool.java",
+            "line": 49
+          },
+          {
+            "file": "src/main/java/com/northstar/claims/util/DatabaseBootstrap.java",
+            "line": 61
+          }
+        ],
+        "surfaces": "WEB-INF/classes/northstar.properties in the WAR; every database connection"
+      },
+      {
+        "class": "test-fixture finding",
+        "brief": "D",
+        "causing_condition": "AdjusterFixtureBuilder hard-codes a fixture password and stores it as an unsalted MD5 hash; test source only, not packaged in the WAR",
+        "file": "src/test/java/com/northstar/claims/fixture/AdjusterFixtureBuilder.java",
+        "line": 12,
+        "related": [
+          {
+            "file": "src/test/java/com/northstar/claims/fixture/AdjusterFixtureBuilder.java",
+            "line": 50
+          }
+        ],
+        "surfaces": "code scan of src/test; used by SettlementAuthorityActionTest"
+      }
+    ]
+  },
+  "removed_hints": [
+    {
+      "file": "demos/app/complexity-manifest.json",
+      "line": 1,
+      "original_text": "{\n  \"classes\": [\n    {\n      \"class\": \"form bean coercion\",\n      \"brief\": \"C\",\n      \"causing_condition\": \"IntakeForm.initialReserve and SettlementForm.deductible are primitive doubles, so Struts BeanUtils population turns a blank (or non-numeric) value into 0 instead of null or a validation error; the intake value is stored as CLAIM.reserve_amount on the new claim\",\n      \"file\": \"src/main/java/com/northstar/claims/web/form/IntakeForm.java\",\n      \"line\": 16,\n      \"surfaces\": \"Intake parity replay: POST /claims/intake/submit.do with initialReserve blank stores reserve 0.00 (transcripts/intake_blank_reserve.json, IntakeFormBindingTest). Also settlement: deductible blank -> deductibleApplied 0.00 (transcripts/settlement_blank_deductible.json, SettlementFormBindingTest)\",\n      \"related\": [\n        {\n          \"file\": \"src/main/java/com/northstar/claims/web/IntakeSubmitAction.java\",\n          \"line\": 58\n        },\n        {\n          \"file\": \"src/main/java/com/northstar/claims/web/form/SettlementForm.java\",\n          \"line\": 14\n        }\n      ]\n    },\n    {\n      \"class\": \"session state\",\n      \"brief\": \"C\",\n      \"causing_condition\": \"SettlementCalculateAction stores the calculated Settlement in HttpSession as pendingSettlement; SettlementSaveAction saves that object when the request carries no coveredAmount\",\n      \"file\": \"src/main/java/com/northstar/claims/web/SettlementCalculateAction.java\",\n      \"line\": 20,\n      \"related\": [\n        {\n          \"file\": \"src/main/java/com/northstar/claims/web/SettlementSaveAction.java\",\n          \"line\": 37\n        }\n      ],\n      \"surfaces\": \"calculate.do then save.do (the Save link on the calculate screen); transcripts/settlement_session_save.json\"\n    },\n    {\n      \"class\": \"BigDecimal scale\",\n      \"brief\": \"C\",\n      \"causing_condition\": \"Settlement total is computed with BigDecimal.valueOf inputs and setScale(2, ROUND_HALF_EVEN); a half-cent total such as 1.005 settles at 1.00, where HALF_UP gives 1.01\",\n      \"file\": \"src/main/java/com/northstar/claims/service/SettlementCalculator.java\",\n      \"line\": 53,\n      \"related\": [\n        {\n          \"file\": \"src/main/java/com/northstar/claims/service/SettlementCalculator.java\",\n          \"line\": 15\n        }\n      ],\n      \"surfaces\": \"transcripts/settlement_half_cent.json (settlementAmount 1.00); SettlementCalculatorTest.halfCentRoundsToEvenCent\"\n    },\n    {\n      \"class\": \"close-date counting\",\n      \"brief\": \"C\",\n      \"causing_condition\": \"Closed claims report counts a closure on its closed_date; month-end inventory counts it from closed_date + 1 day, so claims closed on the as-of date (2019-04-01) appear in one report and not the other\",\n      \"file\": \"src/main/java/com/northstar/claims/dao/ReportDAO.java\",\n      \"line\": 185,\n      \"related\": [\n        {\n          \"file\": \"src/main/java/com/northstar/claims/dao/ReportDAO.java\",\n          \"line\": 190\n        },\n        {\n          \"file\": \"src/main/resources/db/seed.sql\",\n          \"line\": 696\n        },\n        {\n          \"file\": \"src/main/resources/db/seed.sql\",\n          \"line\": 698\n        }\n      ],\n      \"surfaces\": \"/claims/report/closedClaims.do (23) vs /claims/report/claimInventory.do (21); transcripts/report_closed_claims.json, transcripts/report_claim_inventory.json\"\n    },\n    {\n      \"class\": \"dropped authority limit\",\n      \"brief\": \"D\",\n      \"causing_condition\": \"ADJUSTER.approval_limit is enforced only in SettlementAuthorityAction.execute, which the settlement actions inherit; their own executeSettlement methods do not check it, and no service, DAO, JSP or validator does\",\n      \"file\": \"src/main/java/com/northstar/claims/web/SettlementAuthorityAction.java\",\n      \"line\": 33,\n      \"related\": [\n        {\n          \"file\": \"src/main/resources/db/schema.sql\",\n          \"line\": 129\n        }\n      ],\n      \"surfaces\": \"save.do or calculate.do above the operator's limit; transcripts/settlement_authority_refused.json, transcripts/settlement_authority_within_limit.json; SettlementAuthorityActionTest\"\n    },\n    {\n      \"class\": \"SQL injection\",\n      \"brief\": \"D\",\n      \"causing_condition\": \"ReportDAO.claimsForAdjuster concatenates the adjuster request parameter into the WHERE clause of a Statement query\",\n      \"file\": \"src/main/java/com/northstar/claims/dao/ReportDAO.java\",\n      \"line\": 166,\n      \"related\": [\n        {\n          \"file\": \"src/main/java/com/northstar/claims/web/AdjusterClaimsReportAction.java\",\n          \"line\": 19\n        }\n      ],\n      \"surfaces\": \"GET /claims/report/adjusterClaims.do?adjuster=... on the local app\"\n    },\n    {\n      \"class\": \"vulnerable dependency\",\n      \"brief\": \"D\",\n      \"causing_condition\": \"commons-collections 3.2.1 (CVE-2015-7501, unsafe InvokerTransformer deserialization; fixed in 3.2.2) is a compile dependency packaged in the WAR and used by ClaimsConfig's LRUMap cache\",\n      \"file\": \"pom.xml\",\n      \"line\": 44,\n      \"related\": [\n        {\n          \"file\": \"src/main/java/com/northstar/claims/util/ClaimsConfig.java\",\n          \"line\": 20\n        }\n      ],\n      \"cve\": \"CVE-2015-7501\",\n      \"surfaces\": \"WEB-INF/lib/commons-collections-3.2.1.jar; every ClaimsConfig.get call\"\n    },\n    {\n      \"class\": \"secret in config\",\n      \"brief\": \"D\",\n      \"causing_condition\": \"db.password for the CLAIMS_APP account is stored in plain text in northstar.properties; the seed job creates the HSQLDB user with it and the DriverManager connection paths log in with it\",\n      \"file\": \"src/main/resources/northstar.properties\",\n      \"line\": 5,\n      \"related\": [\n        {\n          \"file\": \"src/main/java/com/northstar/claims/web/ClaimsActionSupport.java\",\n          \"line\": 29\n        },\n        {\n          \"file\": \"src/main/java/com/northstar/claims/dao/ConnectionPool.java\",\n          \"line\": 49\n        },\n        {\n          \"file\": \"src/main/java/com/northstar/claims/util/DatabaseBootstrap.java\",\n          \"line\": 61\n        }\n      ],\n      \"surfaces\": \"WEB-INF/classes/northstar.properties in the WAR; every database connection\"\n    },\n    {\n      \"class\": \"test-fixture finding\",\n      \"brief\": \"D\",\n      \"causing_condition\": \"AdjusterFixtureBuilder hard-codes a fixture password and stores it as an unsalted MD5 hash; test source only, not packaged in the WAR\",\n      \"file\": \"src/test/java/com/northstar/claims/fixture/AdjusterFixtureBuilder.java\",\n      \"line\": 12,\n      \"related\": [\n        {\n          \"file\": \"src/test/java/com/northstar/claims/fixture/AdjusterFixtureBuilder.java\",\n          \"line\": 50\n        }\n      ],\n      \"surfaces\": \"code scan of src/test; used by SettlementAuthorityActionTest\"\n    }\n  ]\n}\n"
+    },
+    {
+      "file": "README.md",
+      "line": 3,
+      "original_text": "NorthStar Claims Management is a deliberately dated Apache Struts 1.3.10",
+      "replacement": "NorthStar Claims Management is an Apache Struts 1.3.10"
+    },
+    {
+      "file": "README.md",
+      "line": 43,
+      "original_text": "## Known issues / technical debt\n\nThe application declares a container-managed JNDI datasource but retains a\nDriverManager fallback because deployment environments differ. Several\nactions contain direct SQL, SQL construction is inconsistent, and the\nconnection pool is hand-rolled. JSPs use shared includes rather than a\nproper layout framework. The Maven Jetty run emits duplicate JSTL scanning\nwarnings. Authentication uses plaintext-style adjuster credentials.\n\n",
+      "replacement": ""
+    },
+    {
+      "file": "src/main/java/com/northstar/claims/service/SettlementCalculator.java",
+      "line": 14,
+      "original_text": "    /** Half-cent totals round to the even cent. */\n",
+      "replacement": ""
+    },
+    {
+      "file": "src/main/java/com/northstar/claims/dao/ReportDAO.java",
+      "line": 183,
+      "original_text": "    /** Claims closed on or before the as-of date. */\n",
+      "replacement": ""
+    },
+    {
+      "file": "src/main/java/com/northstar/claims/dao/ReportDAO.java",
+      "line": 188,
+      "original_text": "    /** Closures post the day after the close date, so count from then. */\n",
+      "replacement": ""
+    },
+    {
+      "file": "src/main/java/com/northstar/claims/web/SettlementAuthorityAction.java",
+      "line": 19,
+      "original_text": "/**\n * Shared entry point for the settlement screens. The operator's approval\n * limit is checked here before the screen logic runs.\n */",
+      "replacement": "/** Shared entry point for the settlement screens. */"
+    },
+    {
+      "file": "src/main/java/com/northstar/claims/web/SettlementCalculateAction.java",
+      "line": 12,
+      "original_text": " * The calculated settlement is kept in the session for the save screen.\n",
+      "replacement": ""
+    },
+    {
+      "file": "src/main/java/com/northstar/claims/web/SettlementSaveAction.java",
+      "line": 13,
+      "original_text": " * Without submitted amounts it saves the settlement left by the calculate screen.\n",
+      "replacement": ""
+    },
+    {
+      "file": "src/test/java/com/northstar/claims/fixture/AdjusterFixtureBuilder.java",
+      "line": 27,
+      "original_text": "    /** Stores the adjuster with an MD5 password hash. */\n",
+      "replacement": ""
+    },
+    {
+      "file": "src/test/java/com/northstar/claims/web/IntakeFormBindingTest.java",
+      "line": 10,
+      "original_text": "/** Struts binds a blank initial reserve on the FNOL form as 0. */\n",
+      "replacement": ""
+    },
+    {
+      "file": "src/test/java/com/northstar/claims/web/SettlementFormBindingTest.java",
+      "line": 10,
+      "original_text": "/** Struts populates form beans through BeanUtils with its default converters. */\n",
+      "replacement": ""
+    }
+  ]
+}
