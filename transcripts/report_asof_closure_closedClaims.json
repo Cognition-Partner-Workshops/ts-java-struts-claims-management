@@ -1,0 +1,54 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/report_asof_closure_closedClaims.json",
+  "description": "report asof closure closedClaims",
+  "expected": {
+    "business_fields": {
+      "closedCount": "23",
+      "closedDate_CLM-00005": "2019-03-22",
+      "closedDate_CLM-00010": "2019-03-22",
+      "closedDate_CLM-00015": "2019-03-22",
+      "closedDate_CLM-00020": "2019-03-22",
+      "closedDate_CLM-00025": "2019-03-22",
+      "closedDate_CLM-00030": "2019-03-22",
+      "closedDate_CLM-00035": "2019-03-22",
+      "closedDate_CLM-00040": "2019-03-22",
+      "closedDate_CLM-00045": "2019-03-22",
+      "closedDate_CLM-00050": "2019-03-22",
+      "closedDate_CLM-00055": "2019-03-22",
+      "closedDate_CLM-00060": "2019-03-22",
+      "closedDate_CLM-00065": "2019-03-22",
+      "closedDate_CLM-00070": "2019-03-22",
+      "closedDate_CLM-00075": "2019-03-22",
+      "closedDate_CLM-00080": "2019-03-22",
+      "closedDate_CLM-00085": "2019-03-22",
+      "closedDate_CLM-00090": "2019-03-22",
+      "closedDate_CLM-00095": "2019-03-22",
+      "closedDate_CLM-00100": "2019-03-22",
+      "closedDate_CLM-00110": "2019-04-01",
+      "closedDate_CLM-00115": "2019-03-31",
+      "closedDate_CLM-00120": "2019-04-01",
+      "reportAsOf": "2019-04-01"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/report/closedClaims.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/report/closedClaims.do"
+  },
+  "scenario": "report_asof_closure_closedClaims",
+  "setup": [
+    {
+      "form": {
+        "claimId": "115",
+        "status": "CLOSED"
+      },
+      "method": "POST",
+      "path": "/claims/workbench/status.do"
+    }
+  ]
+}

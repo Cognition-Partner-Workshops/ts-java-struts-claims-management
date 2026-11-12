@@ -1,5 +1,6 @@
 {
   "actor": "supervisor",
+  "db_snapshot": "db/policy_search.json",
   "description": "Search policies by line of business",
   "expected": {
     "business_fields": {

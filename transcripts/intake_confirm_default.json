@@ -1,0 +1,18 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/intake_confirm_default.json",
+  "description": "intake confirm default",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/intake/confirm.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/intake/confirm.do"
+  },
+  "scenario": "intake_confirm_default"
+}

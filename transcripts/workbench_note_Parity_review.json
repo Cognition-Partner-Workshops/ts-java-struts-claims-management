@@ -1,0 +1,23 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/workbench_note_Parity_review.json",
+  "description": "workbench note Parity review",
+  "expected": {
+    "business_fields": {
+      "noteText": "Parity review"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/workbench/view.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "116",
+      "noteText": "Parity review"
+    },
+    "method": "POST",
+    "path": "/claims/workbench/note.do"
+  },
+  "scenario": "workbench_note_Parity_review"
+}

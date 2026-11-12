@@ -1,0 +1,23 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/workbench_status_closed.json",
+  "description": "workbench status closed",
+  "expected": {
+    "business_fields": {
+      "claimStatus": "CLOSED"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/workbench/view.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "116",
+      "status": "CLOSED"
+    },
+    "method": "POST",
+    "path": "/claims/workbench/status.do"
+  },
+  "scenario": "workbench_status_closed"
+}

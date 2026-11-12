@@ -1,142 +1,1304 @@
 [
   {
+    "area": "shared foundation",
     "description": "Valid operator login",
     "module": "policy",
     "scenario": "login"
   },
   {
+    "area": "policy",
     "description": "Search policies by line of business",
     "module": "policy",
     "scenario": "policy_search"
   },
   {
+    "area": "policy",
     "description": "View the reserved low-limit policy",
     "module": "policy",
     "scenario": "policy_view"
   },
   {
+    "area": "intake",
     "description": "Submit a first notice of loss",
     "module": "intake",
     "scenario": "fnol_submit"
   },
   {
+    "area": "intake",
     "description": "Assign the current claim",
     "module": "workbench",
     "scenario": "workbench_assign"
   },
   {
+    "area": "intake",
     "description": "Change the claim status",
     "module": "workbench",
     "scenario": "workbench_status"
   },
   {
+    "area": "intake",
     "description": "Change the claim reserve",
     "module": "workbench",
     "scenario": "workbench_reserve"
   },
   {
+    "area": "settlement",
     "description": "Calculate a standard settlement",
     "module": "settlement",
     "scenario": "settlement_calculate"
   },
   {
+    "area": "settlement",
     "description": "Save the calculated settlement",
     "module": "settlement",
     "scenario": "settlement_save"
   },
   {
+    "area": "payments",
     "description": "Issue a settlement payment",
     "module": "settlement",
     "scenario": "payment_issue"
   },
   {
+    "area": "payments",
     "description": "Review payment history",
     "module": "settlement",
     "scenario": "payment_history"
   },
   {
+    "area": "reports",
     "description": "Open claims by adjuster",
     "module": "reporting",
     "scenario": "report_open_by_adjuster"
   },
   {
+    "area": "reports",
     "description": "Loss ratio by business line",
     "module": "reporting",
     "scenario": "report_loss_ratio"
   },
   {
+    "area": "reports",
     "description": "Aged claims report",
     "module": "reporting",
     "scenario": "report_aged_claims"
   },
   {
+    "area": "settlement",
     "description": "FNOL settlement with a blank deductible",
     "module": "settlement",
     "scenario": "settlement_blank_deductible"
   },
   {
+    "area": "intake",
     "description": "FNOL with a lenient February date",
     "module": "intake",
     "scenario": "intake_lenient_date"
   },
   {
+    "area": "settlement",
     "description": "Settlement using double half-cent rounding",
     "module": "settlement",
     "scenario": "settlement_half_cent"
   },
   {
+    "area": "settlement",
     "description": "Settlement capped by the policy limit",
     "module": "settlement",
     "scenario": "settlement_policy_cap"
   },
   {
+    "area": "settlement",
     "description": "Settlement floored when deductible exceeds the loss",
     "module": "settlement",
     "scenario": "settlement_deductible_floor"
   },
   {
+    "area": "intake",
     "description": "FNOL validation when claimant is absent",
     "module": "intake",
     "scenario": "intake_missing_claimant"
   },
   {
+    "area": "intake",
     "description": "FNOL validation when description is absent",
     "module": "intake",
     "scenario": "intake_missing_description"
   },
   {
+    "area": "intake",
     "description": "FNOL validation for an incorrectly formatted date",
     "module": "intake",
     "scenario": "intake_bad_date"
   },
   {
+    "area": "intake",
     "description": "FNOL with a blank initial reserve",
     "module": "intake",
     "scenario": "intake_blank_reserve"
   },
   {
+    "area": "settlement",
     "description": "Save above the adjuster approval limit",
     "module": "settlement",
     "scenario": "settlement_authority_refused"
   },
   {
+    "area": "settlement",
     "description": "Save within the adjuster approval limit",
     "module": "settlement",
     "scenario": "settlement_authority_within_limit"
   },
   {
+    "area": "settlement",
     "description": "Save the settlement kept in the session by the calculate screen",
     "module": "settlement",
     "scenario": "settlement_session_save"
   },
   {
+    "area": "reports",
     "description": "Claims closed on or before the reporting date",
     "module": "reporting",
     "scenario": "report_closed_claims"
   },
   {
+    "area": "reports",
     "description": "Month-end inventory counting closures from the next day",
     "module": "reporting",
     "scenario": "report_claim_inventory"
+  },
+  {
+    "area": "policy",
+    "description": "policy view default",
+    "module": "policy",
+    "scenario": "policy_view_default"
+  },
+  {
+    "area": "policy",
+    "description": "policy view invalid",
+    "module": "policy",
+    "scenario": "policy_view_invalid"
+  },
+  {
+    "area": "policy",
+    "description": "policy view unknown",
+    "module": "policy",
+    "scenario": "policy_view_unknown"
+  },
+  {
+    "area": "policy",
+    "description": "policy coverages default",
+    "module": "policy",
+    "scenario": "policy_coverages_default"
+  },
+  {
+    "area": "policy",
+    "description": "policy coverages invalid",
+    "module": "policy",
+    "scenario": "policy_coverages_invalid"
+  },
+  {
+    "area": "policy",
+    "description": "policy coverages unknown",
+    "module": "policy",
+    "scenario": "policy_coverages_unknown"
+  },
+  {
+    "area": "policy",
+    "description": "policy coverageDetail default",
+    "module": "policy",
+    "scenario": "policy_coverageDetail_default"
+  },
+  {
+    "area": "policy",
+    "description": "policy coverageDetail invalid",
+    "module": "policy",
+    "scenario": "policy_coverageDetail_invalid"
+  },
+  {
+    "area": "policy",
+    "description": "policy coverageDetail unknown",
+    "module": "policy",
+    "scenario": "policy_coverageDetail_unknown"
+  },
+  {
+    "area": "policy",
+    "description": "policy insuredParty default",
+    "module": "policy",
+    "scenario": "policy_insuredParty_default"
+  },
+  {
+    "area": "policy",
+    "description": "policy insuredParty invalid",
+    "module": "policy",
+    "scenario": "policy_insuredParty_invalid"
+  },
+  {
+    "area": "policy",
+    "description": "policy insuredParty unknown",
+    "module": "policy",
+    "scenario": "policy_insuredParty_unknown"
+  },
+  {
+    "area": "policy",
+    "description": "policy renewal default",
+    "module": "policy",
+    "scenario": "policy_renewal_default"
+  },
+  {
+    "area": "policy",
+    "description": "policy renewal invalid",
+    "module": "policy",
+    "scenario": "policy_renewal_invalid"
+  },
+  {
+    "area": "policy",
+    "description": "policy renewal unknown",
+    "module": "policy",
+    "scenario": "policy_renewal_unknown"
+  },
+  {
+    "area": "intake",
+    "description": "workbench view default",
+    "module": "intake",
+    "scenario": "workbench_view_default"
+  },
+  {
+    "area": "intake",
+    "description": "workbench view invalid",
+    "module": "intake",
+    "scenario": "workbench_view_invalid"
+  },
+  {
+    "area": "intake",
+    "description": "workbench view unknown",
+    "module": "intake",
+    "scenario": "workbench_view_unknown"
+  },
+  {
+    "area": "intake",
+    "description": "workbench notes default",
+    "module": "intake",
+    "scenario": "workbench_notes_default"
+  },
+  {
+    "area": "intake",
+    "description": "workbench notes invalid",
+    "module": "intake",
+    "scenario": "workbench_notes_invalid"
+  },
+  {
+    "area": "intake",
+    "description": "workbench notes unknown",
+    "module": "intake",
+    "scenario": "workbench_notes_unknown"
+  },
+  {
+    "area": "intake",
+    "description": "workbench reserveHistory default",
+    "module": "intake",
+    "scenario": "workbench_reserveHistory_default"
+  },
+  {
+    "area": "intake",
+    "description": "workbench reserveHistory invalid",
+    "module": "intake",
+    "scenario": "workbench_reserveHistory_invalid"
+  },
+  {
+    "area": "intake",
+    "description": "workbench reserveHistory unknown",
+    "module": "intake",
+    "scenario": "workbench_reserveHistory_unknown"
+  },
+  {
+    "area": "intake",
+    "description": "workbench statusHistory default",
+    "module": "intake",
+    "scenario": "workbench_statusHistory_default"
+  },
+  {
+    "area": "intake",
+    "description": "workbench statusHistory invalid",
+    "module": "intake",
+    "scenario": "workbench_statusHistory_invalid"
+  },
+  {
+    "area": "intake",
+    "description": "workbench statusHistory unknown",
+    "module": "intake",
+    "scenario": "workbench_statusHistory_unknown"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement detail default",
+    "module": "settlement",
+    "scenario": "settlement_detail_default"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement detail invalid",
+    "module": "settlement",
+    "scenario": "settlement_detail_invalid"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement detail unknown",
+    "module": "settlement",
+    "scenario": "settlement_detail_unknown"
+  },
+  {
+    "area": "payments",
+    "description": "payment history default",
+    "module": "payments",
+    "scenario": "payment_history_default"
+  },
+  {
+    "area": "payments",
+    "description": "payment history invalid",
+    "module": "payments",
+    "scenario": "payment_history_invalid"
+  },
+  {
+    "area": "payments",
+    "description": "payment history unknown",
+    "module": "payments",
+    "scenario": "payment_history_unknown"
+  },
+  {
+    "area": "payments",
+    "description": "payment remittance default",
+    "module": "payments",
+    "scenario": "payment_remittance_default"
+  },
+  {
+    "area": "payments",
+    "description": "payment remittance invalid",
+    "module": "payments",
+    "scenario": "payment_remittance_invalid"
+  },
+  {
+    "area": "payments",
+    "description": "payment remittance unknown",
+    "module": "payments",
+    "scenario": "payment_remittance_unknown"
+  },
+  {
+    "area": "payments",
+    "description": "payment detail default",
+    "module": "payments",
+    "scenario": "payment_detail_default"
+  },
+  {
+    "area": "payments",
+    "description": "payment detail invalid",
+    "module": "payments",
+    "scenario": "payment_detail_invalid"
+  },
+  {
+    "area": "payments",
+    "description": "payment detail unknown",
+    "module": "payments",
+    "scenario": "payment_detail_unknown"
+  },
+  {
+    "area": "intake",
+    "description": "intake confirm default",
+    "module": "intake",
+    "scenario": "intake_confirm_default"
+  },
+  {
+    "area": "intake",
+    "description": "intake confirm invalid",
+    "module": "intake",
+    "scenario": "intake_confirm_invalid"
+  },
+  {
+    "area": "intake",
+    "description": "intake confirm unknown",
+    "module": "intake",
+    "scenario": "intake_confirm_unknown"
+  },
+  {
+    "area": "shared foundation",
+    "description": "screen home",
+    "module": "shared foundation",
+    "scenario": "screen_home"
+  },
+  {
+    "area": "shared foundation",
+    "description": "screen admin adjusters",
+    "module": "shared foundation",
+    "scenario": "screen_admin_adjusters"
+  },
+  {
+    "area": "shared foundation",
+    "description": "screen admin reference",
+    "module": "shared foundation",
+    "scenario": "screen_admin_reference"
+  },
+  {
+    "area": "shared foundation",
+    "description": "screen admin editAdjuster",
+    "module": "shared foundation",
+    "scenario": "screen_admin_editAdjuster"
+  },
+  {
+    "area": "policy",
+    "description": "screen policy list",
+    "module": "policy",
+    "scenario": "screen_policy_list"
+  },
+  {
+    "area": "intake",
+    "description": "screen intake new",
+    "module": "intake",
+    "scenario": "screen_intake_new"
+  },
+  {
+    "area": "intake",
+    "description": "screen workbench list",
+    "module": "intake",
+    "scenario": "screen_workbench_list"
+  },
+  {
+    "area": "intake",
+    "description": "screen workbench assignment",
+    "module": "intake",
+    "scenario": "screen_workbench_assignment"
+  },
+  {
+    "area": "intake",
+    "description": "screen intake intake submit",
+    "module": "intake",
+    "scenario": "screen_intake_intake_submit"
+  },
+  {
+    "area": "shared foundation",
+    "description": "screen logout",
+    "module": "shared foundation",
+    "scenario": "screen_logout"
+  },
+  {
+    "area": "shared foundation",
+    "description": "login bad password",
+    "module": "shared foundation",
+    "scenario": "login_bad_password"
+  },
+  {
+    "area": "shared foundation",
+    "description": "login empty",
+    "module": "shared foundation",
+    "scenario": "login_empty"
+  },
+  {
+    "area": "shared foundation",
+    "description": "login unknown",
+    "module": "shared foundation",
+    "scenario": "login_unknown"
+  },
+  {
+    "area": "shared foundation",
+    "description": "login prefix credentials",
+    "module": "shared foundation",
+    "scenario": "login_prefix_credentials"
+  },
+  {
+    "area": "policy",
+    "description": "policy search auto",
+    "module": "policy",
+    "scenario": "policy_search_auto"
+  },
+  {
+    "area": "policy",
+    "description": "policy search home",
+    "module": "policy",
+    "scenario": "policy_search_home"
+  },
+  {
+    "area": "policy",
+    "description": "policy search property",
+    "module": "policy",
+    "scenario": "policy_search_property"
+  },
+  {
+    "area": "policy",
+    "description": "policy search blank",
+    "module": "policy",
+    "scenario": "policy_search_blank"
+  },
+  {
+    "area": "policy",
+    "description": "policy search unknown",
+    "module": "policy",
+    "scenario": "policy_search_unknown"
+  },
+  {
+    "area": "intake",
+    "description": "fnol claimantName 0",
+    "module": "intake",
+    "scenario": "fnol_claimantName_0"
+  },
+  {
+    "area": "intake",
+    "description": "fnol claimantName 1",
+    "module": "intake",
+    "scenario": "fnol_claimantName_1"
+  },
+  {
+    "area": "intake",
+    "description": "fnol description 0",
+    "module": "intake",
+    "scenario": "fnol_description_0"
+  },
+  {
+    "area": "intake",
+    "description": "fnol description 1",
+    "module": "intake",
+    "scenario": "fnol_description_1"
+  },
+  {
+    "area": "intake",
+    "description": "fnol lossDate 0",
+    "module": "intake",
+    "scenario": "fnol_lossDate_0"
+  },
+  {
+    "area": "intake",
+    "description": "fnol lossDate 1",
+    "module": "intake",
+    "scenario": "fnol_lossDate_1"
+  },
+  {
+    "area": "intake",
+    "description": "fnol lossDate 2",
+    "module": "intake",
+    "scenario": "fnol_lossDate_2"
+  },
+  {
+    "area": "intake",
+    "description": "fnol lossDate 3",
+    "module": "intake",
+    "scenario": "fnol_lossDate_3"
+  },
+  {
+    "area": "intake",
+    "description": "fnol lossDate 4",
+    "module": "intake",
+    "scenario": "fnol_lossDate_4"
+  },
+  {
+    "area": "intake",
+    "description": "fnol initialReserve 0",
+    "module": "intake",
+    "scenario": "fnol_initialReserve_0"
+  },
+  {
+    "area": "intake",
+    "description": "fnol initialReserve 1",
+    "module": "intake",
+    "scenario": "fnol_initialReserve_1"
+  },
+  {
+    "area": "intake",
+    "description": "fnol initialReserve 2",
+    "module": "intake",
+    "scenario": "fnol_initialReserve_2"
+  },
+  {
+    "area": "intake",
+    "description": "fnol initialReserve 3",
+    "module": "intake",
+    "scenario": "fnol_initialReserve_3"
+  },
+  {
+    "area": "intake",
+    "description": "fnol initialReserve 4",
+    "module": "intake",
+    "scenario": "fnol_initialReserve_4"
+  },
+  {
+    "area": "intake",
+    "description": "fnol all missing",
+    "module": "intake",
+    "scenario": "fnol_all_missing"
+  },
+  {
+    "area": "intake",
+    "description": "fnol then workbench",
+    "module": "intake",
+    "scenario": "fnol_then_workbench"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary coveredAmount 0",
+    "module": "settlement",
+    "scenario": "settlement_boundary_coveredAmount_0"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary coveredAmount 1",
+    "module": "settlement",
+    "scenario": "settlement_boundary_coveredAmount_1"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary coveredAmount 2",
+    "module": "settlement",
+    "scenario": "settlement_boundary_coveredAmount_2"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary coveredAmount 3",
+    "module": "settlement",
+    "scenario": "settlement_boundary_coveredAmount_3"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary coveredAmount 4",
+    "module": "settlement",
+    "scenario": "settlement_boundary_coveredAmount_4"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary coveredAmount 5",
+    "module": "settlement",
+    "scenario": "settlement_boundary_coveredAmount_5"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary coveredAmount 6",
+    "module": "settlement",
+    "scenario": "settlement_boundary_coveredAmount_6"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary coveredAmount 7",
+    "module": "settlement",
+    "scenario": "settlement_boundary_coveredAmount_7"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary coveredAmount 8",
+    "module": "settlement",
+    "scenario": "settlement_boundary_coveredAmount_8"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary coveredAmount 9",
+    "module": "settlement",
+    "scenario": "settlement_boundary_coveredAmount_9"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary coveredAmount 10",
+    "module": "settlement",
+    "scenario": "settlement_boundary_coveredAmount_10"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary coveredAmount 11",
+    "module": "settlement",
+    "scenario": "settlement_boundary_coveredAmount_11"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary coveredAmount 12",
+    "module": "settlement",
+    "scenario": "settlement_boundary_coveredAmount_12"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary coveredAmount 13",
+    "module": "settlement",
+    "scenario": "settlement_boundary_coveredAmount_13"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary deductible 0",
+    "module": "settlement",
+    "scenario": "settlement_boundary_deductible_0"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary deductible 1",
+    "module": "settlement",
+    "scenario": "settlement_boundary_deductible_1"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary deductible 2",
+    "module": "settlement",
+    "scenario": "settlement_boundary_deductible_2"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary deductible 3",
+    "module": "settlement",
+    "scenario": "settlement_boundary_deductible_3"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary deductible 4",
+    "module": "settlement",
+    "scenario": "settlement_boundary_deductible_4"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary deductible 5",
+    "module": "settlement",
+    "scenario": "settlement_boundary_deductible_5"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary deductible 6",
+    "module": "settlement",
+    "scenario": "settlement_boundary_deductible_6"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary deductible 7",
+    "module": "settlement",
+    "scenario": "settlement_boundary_deductible_7"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary depreciation 0",
+    "module": "settlement",
+    "scenario": "settlement_boundary_depreciation_0"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary depreciation 1",
+    "module": "settlement",
+    "scenario": "settlement_boundary_depreciation_1"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary depreciation 2",
+    "module": "settlement",
+    "scenario": "settlement_boundary_depreciation_2"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary depreciation 3",
+    "module": "settlement",
+    "scenario": "settlement_boundary_depreciation_3"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary claimId 0",
+    "module": "settlement",
+    "scenario": "settlement_boundary_claimId_0"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary claimId 1",
+    "module": "settlement",
+    "scenario": "settlement_boundary_claimId_1"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement boundary claimId 2",
+    "module": "settlement",
+    "scenario": "settlement_boundary_claimId_2"
+  },
+  {
+    "area": "settlement",
+    "description": "authority supervisor within",
+    "module": "settlement",
+    "scenario": "authority_supervisor_within"
+  },
+  {
+    "area": "settlement",
+    "description": "authority supervisor at",
+    "module": "settlement",
+    "scenario": "authority_supervisor_at"
+  },
+  {
+    "area": "settlement",
+    "description": "authority supervisor above",
+    "module": "settlement",
+    "scenario": "authority_supervisor_above"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster1 within",
+    "module": "settlement",
+    "scenario": "authority_adjuster1_within"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster1 at",
+    "module": "settlement",
+    "scenario": "authority_adjuster1_at"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster1 above",
+    "module": "settlement",
+    "scenario": "authority_adjuster1_above"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster2 within",
+    "module": "settlement",
+    "scenario": "authority_adjuster2_within"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster2 at",
+    "module": "settlement",
+    "scenario": "authority_adjuster2_at"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster2 above",
+    "module": "settlement",
+    "scenario": "authority_adjuster2_above"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster3 within",
+    "module": "settlement",
+    "scenario": "authority_adjuster3_within"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster3 at",
+    "module": "settlement",
+    "scenario": "authority_adjuster3_at"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster3 above",
+    "module": "settlement",
+    "scenario": "authority_adjuster3_above"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster4 within",
+    "module": "settlement",
+    "scenario": "authority_adjuster4_within"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster4 at",
+    "module": "settlement",
+    "scenario": "authority_adjuster4_at"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster4 above",
+    "module": "settlement",
+    "scenario": "authority_adjuster4_above"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster5 within",
+    "module": "settlement",
+    "scenario": "authority_adjuster5_within"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster5 at",
+    "module": "settlement",
+    "scenario": "authority_adjuster5_at"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster5 above",
+    "module": "settlement",
+    "scenario": "authority_adjuster5_above"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster6 within",
+    "module": "settlement",
+    "scenario": "authority_adjuster6_within"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster6 at",
+    "module": "settlement",
+    "scenario": "authority_adjuster6_at"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster6 above",
+    "module": "settlement",
+    "scenario": "authority_adjuster6_above"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster7 within",
+    "module": "settlement",
+    "scenario": "authority_adjuster7_within"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster7 at",
+    "module": "settlement",
+    "scenario": "authority_adjuster7_at"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster7 above",
+    "module": "settlement",
+    "scenario": "authority_adjuster7_above"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster8 within",
+    "module": "settlement",
+    "scenario": "authority_adjuster8_within"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster8 at",
+    "module": "settlement",
+    "scenario": "authority_adjuster8_at"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster8 above",
+    "module": "settlement",
+    "scenario": "authority_adjuster8_above"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster9 within",
+    "module": "settlement",
+    "scenario": "authority_adjuster9_within"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster9 at",
+    "module": "settlement",
+    "scenario": "authority_adjuster9_at"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster9 above",
+    "module": "settlement",
+    "scenario": "authority_adjuster9_above"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster10 within",
+    "module": "settlement",
+    "scenario": "authority_adjuster10_within"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster10 at",
+    "module": "settlement",
+    "scenario": "authority_adjuster10_at"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster10 above",
+    "module": "settlement",
+    "scenario": "authority_adjuster10_above"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjusterUnknown within",
+    "module": "settlement",
+    "scenario": "authority_adjusterUnknown_within"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjusterUnknown at",
+    "module": "settlement",
+    "scenario": "authority_adjusterUnknown_at"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjusterUnknown above",
+    "module": "settlement",
+    "scenario": "authority_adjusterUnknown_above"
+  },
+  {
+    "area": "settlement",
+    "description": "authority unknown zero",
+    "module": "settlement",
+    "scenario": "authority_unknown_zero"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement session duplicate",
+    "module": "settlement",
+    "scenario": "settlement_session_duplicate"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement session consumed",
+    "module": "settlement",
+    "scenario": "settlement_session_consumed"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement session mismatch",
+    "module": "settlement",
+    "scenario": "settlement_session_mismatch"
+  },
+  {
+    "area": "settlement",
+    "description": "settlement unknown save",
+    "module": "settlement",
+    "scenario": "settlement_unknown_save"
+  },
+  {
+    "area": "reports",
+    "description": "month end index",
+    "module": "reports",
+    "scenario": "month_end_index"
+  },
+  {
+    "area": "reports",
+    "description": "month end openByAdjuster",
+    "module": "reports",
+    "scenario": "month_end_openByAdjuster"
+  },
+  {
+    "area": "reports",
+    "description": "month end lossRatio",
+    "module": "reports",
+    "scenario": "month_end_lossRatio"
+  },
+  {
+    "area": "reports",
+    "description": "month end agedClaims",
+    "module": "reports",
+    "scenario": "month_end_agedClaims"
+  },
+  {
+    "area": "reports",
+    "description": "month end adjusterWorkload",
+    "module": "reports",
+    "scenario": "month_end_adjusterWorkload"
+  },
+  {
+    "area": "reports",
+    "description": "month end claimAgingDetail",
+    "module": "reports",
+    "scenario": "month_end_claimAgingDetail"
+  },
+  {
+    "area": "reports",
+    "description": "month end reconciliation",
+    "module": "reports",
+    "scenario": "month_end_reconciliation"
+  },
+  {
+    "area": "reports",
+    "description": "month end premiumDetail",
+    "module": "reports",
+    "scenario": "month_end_premiumDetail"
+  },
+  {
+    "area": "reports",
+    "description": "month end closedClaims",
+    "module": "reports",
+    "scenario": "month_end_closedClaims"
+  },
+  {
+    "area": "reports",
+    "description": "month end claimInventory",
+    "module": "reports",
+    "scenario": "month_end_claimInventory"
+  },
+  {
+    "area": "reports",
+    "description": "report claims adjuster1",
+    "module": "reports",
+    "scenario": "report_claims_adjuster1"
+  },
+  {
+    "area": "reports",
+    "description": "report claims adjuster5",
+    "module": "reports",
+    "scenario": "report_claims_adjuster5"
+  },
+  {
+    "area": "reports",
+    "description": "report claims adjuster9",
+    "module": "reports",
+    "scenario": "report_claims_adjuster9"
+  },
+  {
+    "area": "reports",
+    "description": "report claims unknown",
+    "module": "reports",
+    "scenario": "report_claims_unknown"
+  },
+  {
+    "area": "reports",
+    "description": "report claims blank",
+    "module": "reports",
+    "scenario": "report_claims_blank"
+  },
+  {
+    "area": "intake",
+    "description": "workbench status open",
+    "module": "intake",
+    "scenario": "workbench_status_open"
+  },
+  {
+    "area": "intake",
+    "description": "workbench status investigating",
+    "module": "intake",
+    "scenario": "workbench_status_investigating"
+  },
+  {
+    "area": "intake",
+    "description": "workbench status approved",
+    "module": "intake",
+    "scenario": "workbench_status_approved"
+  },
+  {
+    "area": "intake",
+    "description": "workbench status closed",
+    "module": "intake",
+    "scenario": "workbench_status_closed"
+  },
+  {
+    "area": "intake",
+    "description": "workbench status denied",
+    "module": "intake",
+    "scenario": "workbench_status_denied"
+  },
+  {
+    "area": "intake",
+    "description": "workbench assign adjuster9",
+    "module": "intake",
+    "scenario": "workbench_assign_adjuster9"
+  },
+  {
+    "area": "intake",
+    "description": "workbench reserve 0 005",
+    "module": "intake",
+    "scenario": "workbench_reserve_0_005"
+  },
+  {
+    "area": "intake",
+    "description": "workbench reserve -1",
+    "module": "intake",
+    "scenario": "workbench_reserve_-1"
+  },
+  {
+    "area": "intake",
+    "description": "workbench reserve abc",
+    "module": "intake",
+    "scenario": "workbench_reserve_abc"
+  },
+  {
+    "area": "intake",
+    "description": "workbench note Parity review",
+    "module": "intake",
+    "scenario": "workbench_note_Parity_review"
+  },
+  {
+    "area": "payments",
+    "description": "payment issue missing",
+    "module": "payments",
+    "scenario": "payment_issue_missing"
+  },
+  {
+    "area": "payments",
+    "description": "payment issue no method",
+    "module": "payments",
+    "scenario": "payment_issue_no_method"
+  },
+  {
+    "area": "payments",
+    "description": "payment issue zero",
+    "module": "payments",
+    "scenario": "payment_issue_zero"
+  },
+  {
+    "area": "payments",
+    "description": "payment issue negative",
+    "module": "payments",
+    "scenario": "payment_issue_negative"
+  },
+  {
+    "area": "reports",
+    "description": "report age future",
+    "module": "reports",
+    "scenario": "report_age_future"
+  },
+  {
+    "area": "reports",
+    "description": "report age zero",
+    "module": "reports",
+    "scenario": "report_age_zero"
+  },
+  {
+    "area": "reports",
+    "description": "report age thirty",
+    "module": "reports",
+    "scenario": "report_age_thirty"
+  },
+  {
+    "area": "reports",
+    "description": "report age thirty one",
+    "module": "reports",
+    "scenario": "report_age_thirty_one"
+  },
+  {
+    "area": "reports",
+    "description": "report age sixty",
+    "module": "reports",
+    "scenario": "report_age_sixty"
+  },
+  {
+    "area": "reports",
+    "description": "report age sixty one",
+    "module": "reports",
+    "scenario": "report_age_sixty_one"
+  },
+  {
+    "area": "reports",
+    "description": "report age ninety",
+    "module": "reports",
+    "scenario": "report_age_ninety"
+  },
+  {
+    "area": "reports",
+    "description": "report age ninety one",
+    "module": "reports",
+    "scenario": "report_age_ninety_one"
+  },
+  {
+    "area": "reports",
+    "description": "report asof closure closedClaims",
+    "module": "reports",
+    "scenario": "report_asof_closure_closedClaims"
+  },
+  {
+    "area": "reports",
+    "description": "report asof closure claimInventory",
+    "module": "reports",
+    "scenario": "report_asof_closure_claimInventory"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster5 limit 4999 99",
+    "module": "settlement",
+    "scenario": "authority_adjuster5_limit_4999_99"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster5 limit 5000",
+    "module": "settlement",
+    "scenario": "authority_adjuster5_limit_5000"
+  },
+  {
+    "area": "settlement",
+    "description": "authority adjuster5 limit 5000 01",
+    "module": "settlement",
+    "scenario": "authority_adjuster5_limit_5000_01"
   }
 ]

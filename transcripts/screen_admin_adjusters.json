@@ -1,0 +1,18 @@
+{
+  "actor": "adjuster1",
+  "db_snapshot": "db/screen_admin_adjusters.json",
+  "description": "screen admin adjusters",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/error.jsp",
+    "status": 404,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/admin/adjusters.do"
+  },
+  "scenario": "screen_admin_adjusters"
+}

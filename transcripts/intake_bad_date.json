@@ -1,5 +1,6 @@
 {
   "actor": "supervisor",
+  "db_snapshot": "db/intake_bad_date.json",
   "description": "FNOL validation for an incorrectly formatted date",
   "expected": {
     "business_fields": {},

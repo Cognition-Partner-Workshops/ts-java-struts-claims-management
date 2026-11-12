@@ -1,0 +1,25 @@
+{
+  "actor": "adjuster5",
+  "db_snapshot": "db/authority_adjuster5_limit_5000.json",
+  "description": "authority adjuster5 limit 5000",
+  "expected": {
+    "business_fields": {
+      "savedBy": "adjuster5",
+      "settlementAmount": "5000.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/settlement/save.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "118",
+      "coveredAmount": "5000",
+      "deductible": "0"
+    },
+    "method": "POST",
+    "path": "/claims/settlement/save.do"
+  },
+  "scenario": "authority_adjuster5_limit_5000"
+}
