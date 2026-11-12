@@ -69,12 +69,18 @@ class SessionAdminTests {
                 .andExpect(content().string(containsString("<span id=\"f_signedInUser\">supervisor</span>")));
         mvc.perform(get("/admin/adjusters.do").session(session)).andExpect(status().isOk())
                 .andExpect(model().attributeExists("adjusters", "adjusterCount"))
-                .andExpect(content().string(containsString("ns:view /WEB-INF/jsp/admin/adjusters.jsp")))
-                .andExpect(content().string(containsString("<span id=\"f_adjusterUsername_1\">adjuster1</span>")));
+                .andExpect(forwardedUrl("/admin/WEB-INF/jsp/admin/adjusters.jsp"));
         mvc.perform(get("/admin/reference.do").session(session)).andExpect(status().isOk())
                 .andExpect(model().attribute("referenceVersion", "2019.04"))
-                .andExpect(content().string(containsString("ns:view /WEB-INF/jsp/admin/reference.jsp")))
-                .andExpect(content().string(containsString("<span id=\"f_reference_COMMERCIAL\">COMMERCIAL_PROPERTY</span>")));
+                .andExpect(model().attribute("lossTypes", java.util.List.of("WATER", "FIRE", "THEFT", "COLLISION")))
+                .andExpect(forwardedUrl("/admin/WEB-INF/jsp/admin/reference.jsp"));
+        for (String page : new String[]{"adjusters", "reference"}) {
+            mvc.perform(get("/admin/WEB-INF/jsp/admin/" + page + ".jsp").session(session))
+                    .andExpect(status().isNotFound()).andExpect(view().name("error"))
+                    .andExpect(content().string(containsString("ns:view /WEB-INF/jsp/error.jsp")))
+                    .andExpect(content().string(containsString("Reference status: 404")))
+                    .andExpect(content().string(not(containsString("id=\"f_"))));
+        }
         mvc.perform(get("/admin/editAdjuster.do").session(session))
                 .andExpect(status().isInternalServerError())
                 .andExpect(content().string(containsString("ns:view /WEB-INF/jsp/error.jsp")));

@@ -22,19 +22,20 @@ public class AdminController {
         List rows = adjusters.findAll();
         model.addAttribute("adjusters", rows);
         model.addAttribute("adjusterCount", rows.size());
-        return "admin/adjusters";
+        return "forward:/admin/WEB-INF/jsp/admin/adjusters.jsp";
     }
 
     @RequestMapping("/admin/reference.do")
     public String reference(Model model) {
         model.addAttribute("referenceVersion", "2019.04");
         model.addAttribute("lossTypes", List.of("WATER", "FIRE", "THEFT", "COLLISION"));
-        return "admin/reference";
+        return "forward:/admin/WEB-INF/jsp/admin/reference.jsp";
     }
 
     @RequestMapping("/admin/editAdjuster.do")
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public String editAdjuster() {
+    public String editAdjuster(Model model) {
+        model.addAttribute("status", 500);
         return "error";
     }
 }

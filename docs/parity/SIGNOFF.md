@@ -5,8 +5,10 @@
 Freshly seeded legacy Jetty on 8080 returns HTTP 404 and
 `ns:view /WEB-INF/jsp/error.jsp` for authenticated requests to
 `/claims/admin/adjusters.do` and `/claims/admin/reference.do`.
-Boot currently renders the ported admin templates with HTTP 200 and their
-original field spans. This difference is **not signed off**.
+Boot is **ported as observed (404); exposing the admin screens needs signoff**.
+The controllers still execute the action logic, then forward to the missing
+module-relative resources and render the 404 error page without field spans.
+The ported admin templates remain in the repository but are unreachable.
 
 The legacy admin module is mounted at `/admin` in `WEB-INF/web.xml`.
 Its forwards in `WEB-INF/struts-config-admin.xml` point to
@@ -16,10 +18,9 @@ there are no corresponding resources under `/admin/WEB-INF/jsp/`.
 The actions execute (observed in the Jetty log); the HTTP responses above
 are the baseline, not an assumed successful admin screen.
 
-Decision needed: preserve the observed 404/error views, or approve exposing
-the existing admin JSP contents through the new templates. No legacy code
-was changed to make the comparison pass. UNT-9's admin parity acceptance
-remains open until this decision is made.
+Exposing the existing admin JSP contents through the new templates still
+requires signoff; this entry remains open for that decision, not resolved.
+No legacy code was changed to make the comparison pass.
 
 The separate `/admin/editAdjuster.do` path has no action mapping in the
 legacy module and returns HTTP 500 with the error view. Boot preserves that
@@ -32,7 +33,6 @@ Reproduce with both servers running on fresh seed data:
 python3 claims-boot/parity/compare.py
 ```
 
-Observed result: 14/16 comparisons match; only the two authenticated admin
-requests above differ. Login (good, bad, empty and initial GET), home,
+Observed result: 16/16 comparisons match. Login (good, bad, empty and initial GET), home,
 logout, unauthenticated redirects, edit's error response, and
 `transcripts/login.json` match.
