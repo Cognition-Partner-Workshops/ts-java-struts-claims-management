@@ -2,11 +2,13 @@
 """Captures deterministic NorthStar claims workflow transcripts."""
 
 import argparse
+import datetime
 import glob
 import http.cookiejar
 import json
 import os
 import re
+import socket
 import subprocess
 import sys
 import time
@@ -21,6 +23,22 @@ CONTEXT_PATH = "/claims"
 FIELD_RE = re.compile(r'<span id="f_([^"]+)">(.*?)</span>', re.S)
 VIEW_RE = re.compile(r"<!--\s*ns:view\s+([^ ]+)\s*-->")
 ERROR_RE = re.compile(r"<!--\s*ns:error\s+([^ ]+)\s*-->")
+SESSION_RE = re.compile(r";jsessionid=[^?]+")
+HTTP_PORT = 8080
+DB_PORT = int(os.environ.get("CAPTURE_DB_PORT", "9001"))
+DB_URL = "jdbc:hsqldb:hsql://127.0.0.1:%d/northstar" % DB_PORT
+SNAPSHOT_DIR = os.path.join(ROOT, "transcripts", "db")
+SEED_SNAPSHOT = "_seed"
+CAPTURE_CONTEXT_XML = os.path.join(ROOT, "tools", "capture", "jetty-capture.xml")
+DEPENDENCY_PLUGIN = "org.apache.maven.plugins:maven-dependency-plugin:3.6.1"
+VOLATILE_TYPES = {
+    "TIME": "<timestamp>",
+    "TIME WITH TIME ZONE": "<timestamp>",
+    "TIMESTAMP": "<timestamp>",
+    "TIMESTAMP WITH TIME ZONE": "<timestamp>",
+}
+# (TABLE, COLUMN) -> placeholder for generated tokens that differ per run.
+VOLATILE_COLUMNS = {}
 
 
 SCENARIOS = [
@@ -178,7 +196,7 @@ def fields(body):
 
 def result(body, code, location=None):
     if code in (301, 302, 303, 307, 308) and location:
-        location = re.sub(r";jsessionid=[^?]+", "", location)
+        location = SESSION_RE.sub("", location)
         return "redirect:" + location
     match = VIEW_RE.search(body)
     if match:
@@ -234,9 +252,22 @@ def reset_database():
         cwd=ROOT, check=True)
 
 
+def ensure_port_free(port):
+    with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as probe_socket:
+        if probe_socket.connect_ex(("127.0.0.1", port)) == 0:
+            raise RuntimeError("port %d is already in use; stop the other "
+                               "server before capturing" % port)
+
+
 def start_server():
     maven_args = os.environ.get("MAVEN_CAPTURE_ARGS", "").split()
-    process = subprocess.Popen(["mvn"] + maven_args + ["-q", "jetty:run"],
+    ensure_port_free(HTTP_PORT)
+    ensure_port_free(DB_PORT)
+    process = subprocess.Popen(["mvn"] + maven_args + [
+                                "-q",
+                                "-Dclaims.jetty.contextXml=" + CAPTURE_CONTEXT_XML,
+                                "-Dclaims.capture.db.port=%d" % DB_PORT,
+                                "jetty:run"],
                                cwd=ROOT,
                                stdout=subprocess.DEVNULL,
                                stderr=subprocess.STDOUT)
@@ -254,6 +285,108 @@ def start_server():
     raise RuntimeError("Jetty did not become ready")
 
 
+class DatabaseSnapshots:
+    """Reads every table through the HSQLDB server Jetty runs for capture."""
+
+    def __init__(self):
+        maven_args = os.environ.get("MAVEN_CAPTURE_ARGS", "").split()
+        classpath_file = os.path.join(ROOT, "target", "capture",
+                                      "hsqldb.classpath")
+        subprocess.run(
+            ["mvn"] + maven_args + ["-q",
+             DEPENDENCY_PLUGIN + ":build-classpath",
+             "-DincludeArtifactIds=hsqldb",
+             "-Dmdep.outputFile=" + classpath_file],
+            cwd=ROOT, check=True)
+        with open(classpath_file, encoding="utf-8") as stream:
+            classpath = stream.read().strip()
+        self.today = datetime.date.today().isoformat()
+        self.process = subprocess.Popen(
+            ["java", "-cp", classpath,
+             os.path.join(ROOT, "tools", "capture", "DbSnapshot.java"),
+             DB_URL, "SA", ""],
+            cwd=ROOT, stdin=subprocess.PIPE, stdout=subprocess.PIPE,
+            text=True, encoding="utf-8")
+
+    def take(self):
+        self.process.stdin.write("snapshot\n")
+        self.process.stdin.flush()
+        line = self.process.stdout.readline()
+        if not line:
+            raise RuntimeError("database snapshot helper exited with %s"
+                               % self.process.wait())
+        return self.normalize(json.loads(line))
+
+    def normalize(self, raw):
+        tables = {}
+        for table in raw["tables"]:
+            columns = table["columns"]
+            rows = [[self.value(table["name"], column, value)
+                     for column, value in zip(columns, row)]
+                    for row in table["rows"]]
+            tables[table["name"]] = {
+                "columns": [[column["name"], column["type"]]
+                            for column in columns],
+                "primary_key": table["primary_key"],
+                "rows": rows
+            }
+        return tables
+
+    def value(self, table, column, value):
+        if value is None:
+            return None
+        placeholder = VOLATILE_COLUMNS.get((table, column["name"]),
+                                           VOLATILE_TYPES.get(column["type"]))
+        if placeholder:
+            return placeholder
+        if column["type"] == "DATE" and value == self.today:
+            return "<today>"
+        if isinstance(value, str):
+            return SESSION_RE.sub("", value)
+        return value
+
+    def close(self):
+        try:
+            self.process.stdin.close()
+        except OSError:
+            pass
+        try:
+            self.process.wait(timeout=15)
+        except subprocess.TimeoutExpired:
+            self.process.kill()
+            self.process.wait()
+
+
+def render_snapshot(name, tables):
+    def text(value):
+        return json.dumps(value, ensure_ascii=False)
+    lines = ["{", '  "scenario": %s,' % text(name), '  "tables": {']
+    names = sorted(tables)
+    for table_index, table_name in enumerate(names):
+        table = tables[table_name]
+        lines.append("    %s: {" % text(table_name))
+        lines.append('      "columns": %s,' % text(table["columns"]))
+        lines.append('      "primary_key": %s,' % text(table["primary_key"]))
+        if table["rows"]:
+            lines.append('      "rows": [')
+            for row_index, row in enumerate(table["rows"]):
+                comma = "," if row_index < len(table["rows"]) - 1 else ""
+                lines.append("        " + text(row) + comma)
+            lines.append("      ]")
+        else:
+            lines.append('      "rows": []')
+        lines.append("    }" + ("," if table_index < len(names) - 1 else ""))
+    lines.append("  }")
+    lines.append("}")
+    return "\n".join(lines) + "\n"
+
+
+def write_snapshot(name, tables):
+    with open(os.path.join(SNAPSHOT_DIR, name + ".json"), "w",
+              encoding="utf-8") as stream:
+        stream.write(render_snapshot(name, tables))
+
+
 def options(scenario):
     return scenario[7] if len(scenario) > 7 else {}
 
@@ -268,13 +401,14 @@ def login(actor):
     return opener
 
 
-def write_transcript(opener, scenario):
+def write_transcript(opener, scenario, snapshots):
     name, module, description, method, path, form, probes = scenario[:7]
     extra = options(scenario)
     setup = extra.get("setup", [])
     for setup_method, setup_path, setup_form in setup:
         request(opener, setup_method, setup_path, setup_form)
     code, location, body = request(opener, method, path, form)
+    write_snapshot(name, snapshots.take())
     state = {}
     for key, probe_path in sorted(probes.items()):
         state[key] = probe(opener, key, probe_path)
@@ -293,7 +427,8 @@ def write_transcript(opener, scenario):
             "business_fields": fields(body),
             "validation_errors": ERROR_RE.findall(body),
             "db_state": state
-        }
+        },
+        "db_snapshot": "db/" + name + ".json"
     }
     if setup:
         transcript["setup"] = [{
@@ -309,10 +444,16 @@ def main():
     parser.add_argument("--no-reset", action="store_true")
     args = parser.parse_args()
     process = None
+    snapshots = None
     try:
         if not args.no_reset:
             reset_database()
         process = start_server()
+        snapshots = DatabaseSnapshots()
+        os.makedirs(SNAPSHOT_DIR, exist_ok=True)
+        for stale in glob.glob(os.path.join(SNAPSHOT_DIR, "*.json")):
+            os.remove(stale)
+        write_snapshot(SEED_SNAPSHOT, snapshots.take())
         jar = http.cookiejar.CookieJar()
         opener = urllib.request.build_opener(
             urllib.request.HTTPCookieProcessor(jar))
@@ -322,7 +463,8 @@ def main():
             actor = options(scenario).get("actor")
             if actor and actor not in actors:
                 actors[actor] = login(actor)
-            transcript = write_transcript(actors.get(actor, opener), scenario)
+            transcript = write_transcript(actors.get(actor, opener), scenario,
+                                          snapshots)
             path = os.path.join(ROOT, "transcripts",
                                 transcript["scenario"] + ".json")
             with open(path, "w", encoding="utf-8") as stream:
@@ -338,6 +480,8 @@ def main():
             json.dump(index, stream, indent=2, sort_keys=True)
             stream.write("\n")
     finally:
+        if snapshots is not None:
+            snapshots.close()
         if process is not None:
             process.terminate()
             try:
