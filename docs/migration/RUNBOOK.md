@@ -1,5 +1,28 @@
 # Frozen parity baseline
 
+## Claims Boot data/run
+
+From the repository root, build with JDK 21:
+
+```sh
+JAVA_HOME=/path/to/jdk21 mvn -B -f claims-boot/pom.xml verify
+/path/to/jdk21/bin/java -jar claims-boot/target/claims-boot-0.1.0-SNAPSHOT.jar --claims.db.server.enabled=true
+```
+
+Boot uses HTTP 8081, HSQL loopback 9002, alias `northstar`, PUBLIC schema,
+and its own file `claims-boot/target/db/claims-boot`; legacy remains on
+HTTP 8080 with `target/db/northstar` (build/run with JDK 11).
+Each Boot launch resets and seeds by default. Use `--claims.db.reset=false`
+to keep data, `--claims.db.url=jdbc:hsqldb:file:/absolute/path` to choose a
+different file, or `--claims.db.server.port=9003` to move replay access.
+The schema, seed and operating properties are packaged from legacy resources,
+not maintained separately. Stop Boot with Ctrl-C so its pool/server close.
+Only the login placeholder is implemented; replay currently validates data
+plumbing, not full route parity. See [Data layer](../../claims-boot/README.md#data-layer)
+for DAO/transaction guidance.
+
+## Baseline replay
+
 `parity-v1` is the frozen baseline (217 ordered scenarios). Any change to the
 frozen set requires a new tag, never moving `parity-v1`.
 

@@ -6,7 +6,7 @@ not share legacy sources or dependencies. The legacy JDK 11 build remains
 `JAVA_HOME=/path/to/jdk11 mvn -B verify` at the repository root and serves
 port **8080**, context `/claims`.
 
-From the repository root:
+From the repository root (including when launching the jar):
 
 ```sh
 JAVA_HOME=/path/to/jdk21 mvn -B -f claims-boot/pom.xml verify
@@ -51,3 +51,37 @@ parity scenarios. See the [migration runbook](../docs/migration/RUNBOOK.md)
 and [coverage notes](../docs/migration/CAPTURE-COVERAGE.md) for replay with
 `--base-url http://localhost:8081/claims` and a separately seeded database.
 Full parity replay is not expected to pass against this placeholder.
+
+## Data layer
+
+Inject `JdbcTemplate` or `NamedParameterJdbcTemplate` into Spring DAO beans
+and keep legacy SQL verbatim; no DAOs have been ported yet. HikariCP connects
+as the legacy `db.user`/`db.password` with autocommit **true**.
+A `DataSourceTransactionManager` is available: only add `@Transactional`
+where the legacy DAO explicitly managed transactions, not as a blanket policy.
+`ClaimsConfig` exposes `get(key)` (missing keys return `""`) and typed
+`reportAsOfDate()`. `DateHelper` and `LegacyFormatHelper` preserve legacy
+lenient dates, rounding, null behavior, and JVM default locale/timezone.
+
+Maven packages the legacy `db/schema.sql`, `db/seed.sql`, and
+`northstar.properties` directly from `../src/main/resources`; edit only
+those sources. Builds require the whole repository checkout.
+
+| Property | Default |
+| --- | --- |
+| `claims.db.url` | `jdbc:hsqldb:file:claims-boot/target/db/claims-boot` (relative to working directory) |
+| `claims.db.reset` | `true`: recreate schema and seed on every startup |
+| `claims.db.server.enabled` | `false` |
+| `claims.db.server.port` | `9002` (legacy replay uses 9001) |
+
+Pass overrides as `--claims.db.reset=false`, etc. Keep mode preserves an
+existing PUBLIC schema without reapplying non-idempotent seed inserts; an
+empty database is initialized. The reset path uses the legacy line-based
+script splitter, SA connection, schema then seed, application-user
+create/alter, commit and shutdown before opening the pool.
+Tests use `target/test-db/`, never the development database.
+
+Enable the loopback-only in-process HSQL server for replay with
+`--claims.db.server.enabled=true`. It shares the same file database and
+PUBLIC schema with the pool, at `jdbc:hsqldb:hsql://localhost:9002/northstar`.
+Do not start a second JVM HSQL server on this file.
