@@ -1,0 +1,27 @@
+# report	index
+# asOf	2019-04-01
+forward	reportIndex
+attribute	operatorScope	claims
+attribute	reportAccess	supervisor
+attribute	reportArea	claims operations
+attribute	reportAsOf	2019-04-01
+attribute	reportCount	7
+attribute	reportFormat	html
+attribute	reportNavigation	standard
+attribute	screenMode	read
+attribute	screenName	report-index
+link	openByAdjuster.do
+link	lossRatio.do
+link	agedClaims.do
+link	adjusterWorkload.do
+link	adjusterClaims.do?adjuster=adjuster1
+link	closedClaims.do
+link	claimInventory.do
+link	claimAgingDetail.do
+link	reconciliation.do
+link	premiumDetail.do
+link	adjusterWorkload.do
+link	claimAgingDetail.do
+link	reconciliation.do
+link	premiumDetail.do
+rows	14

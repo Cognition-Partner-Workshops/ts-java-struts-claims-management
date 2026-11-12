@@ -1,0 +1,58 @@
+# report	adjuster-claims-adjuster4
+# asOf	2019-04-01
+forward	report
+attribute	adjuster	adjuster4
+attribute	reportAsOf	2019-04-01
+attribute	reportRowCount	24
+attribute	screenName	detail
+columns	claimNumber:text,status:text,reserveAmount:money
+raw	{claimNumber=CLM-00004, reserveAmount=1004.0, status=DENIED}
+row	CLM-00004	DENIED	1004.00
+raw	{claimNumber=CLM-00009, reserveAmount=1009.0, status=DENIED}
+row	CLM-00009	DENIED	1009.00
+raw	{claimNumber=CLM-00014, reserveAmount=1014.0, status=DENIED}
+row	CLM-00014	DENIED	1014.00
+raw	{claimNumber=CLM-00019, reserveAmount=1019.0, status=DENIED}
+row	CLM-00019	DENIED	1019.00
+raw	{claimNumber=CLM-00024, reserveAmount=1024.0, status=DENIED}
+row	CLM-00024	DENIED	1024.00
+raw	{claimNumber=CLM-00029, reserveAmount=1029.0, status=DENIED}
+row	CLM-00029	DENIED	1029.00
+raw	{claimNumber=CLM-00034, reserveAmount=1034.0, status=DENIED}
+row	CLM-00034	DENIED	1034.00
+raw	{claimNumber=CLM-00039, reserveAmount=1039.0, status=DENIED}
+row	CLM-00039	DENIED	1039.00
+raw	{claimNumber=CLM-00044, reserveAmount=1044.0, status=DENIED}
+row	CLM-00044	DENIED	1044.00
+raw	{claimNumber=CLM-00049, reserveAmount=1049.0, status=DENIED}
+row	CLM-00049	DENIED	1049.00
+raw	{claimNumber=CLM-00054, reserveAmount=1054.0, status=DENIED}
+row	CLM-00054	DENIED	1054.00
+raw	{claimNumber=CLM-00059, reserveAmount=1059.0, status=DENIED}
+row	CLM-00059	DENIED	1059.00
+raw	{claimNumber=CLM-00064, reserveAmount=1064.0, status=DENIED}
+row	CLM-00064	DENIED	1064.00
+raw	{claimNumber=CLM-00069, reserveAmount=1069.0, status=DENIED}
+row	CLM-00069	DENIED	1069.00
+raw	{claimNumber=CLM-00074, reserveAmount=1074.0, status=DENIED}
+row	CLM-00074	DENIED	1074.00
+raw	{claimNumber=CLM-00079, reserveAmount=1079.0, status=DENIED}
+row	CLM-00079	DENIED	1079.00
+raw	{claimNumber=CLM-00084, reserveAmount=1084.0, status=DENIED}
+row	CLM-00084	DENIED	1084.00
+raw	{claimNumber=CLM-00089, reserveAmount=1089.0, status=DENIED}
+row	CLM-00089	DENIED	1089.00
+raw	{claimNumber=CLM-00094, reserveAmount=1094.0, status=DENIED}
+row	CLM-00094	DENIED	1094.00
+raw	{claimNumber=CLM-00099, reserveAmount=1099.0, status=DENIED}
+row	CLM-00099	DENIED	1099.00
+raw	{claimNumber=CLM-00104, reserveAmount=1104.0, status=DENIED}
+row	CLM-00104	DENIED	1104.00
+raw	{claimNumber=CLM-00109, reserveAmount=1109.0, status=DENIED}
+row	CLM-00109	DENIED	1109.00
+raw	{claimNumber=CLM-00114, reserveAmount=1114.0, status=DENIED}
+row	CLM-00114	DENIED	1114.00
+raw	{claimNumber=CLM-00119, reserveAmount=1500.0, status=DENIED}
+row	CLM-00119	DENIED	1500.00
+rows	24
+total	reserveAmount	25857.00

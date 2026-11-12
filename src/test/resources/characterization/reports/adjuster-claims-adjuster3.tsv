@@ -1,0 +1,58 @@
+# report	adjuster-claims-adjuster3
+# asOf	2019-04-01
+forward	report
+attribute	adjuster	adjuster3
+attribute	reportAsOf	2019-04-01
+attribute	reportRowCount	24
+attribute	screenName	detail
+columns	claimNumber:text,status:text,reserveAmount:money
+raw	{claimNumber=CLM-00003, reserveAmount=1003.0, status=APPROVED}
+row	CLM-00003	APPROVED	1003.00
+raw	{claimNumber=CLM-00008, reserveAmount=1008.0, status=APPROVED}
+row	CLM-00008	APPROVED	1008.00
+raw	{claimNumber=CLM-00013, reserveAmount=1013.0, status=APPROVED}
+row	CLM-00013	APPROVED	1013.00
+raw	{claimNumber=CLM-00018, reserveAmount=1018.0, status=APPROVED}
+row	CLM-00018	APPROVED	1018.00
+raw	{claimNumber=CLM-00023, reserveAmount=1023.0, status=APPROVED}
+row	CLM-00023	APPROVED	1023.00
+raw	{claimNumber=CLM-00028, reserveAmount=1028.0, status=APPROVED}
+row	CLM-00028	APPROVED	1028.00
+raw	{claimNumber=CLM-00033, reserveAmount=1033.0, status=APPROVED}
+row	CLM-00033	APPROVED	1033.00
+raw	{claimNumber=CLM-00038, reserveAmount=1038.0, status=APPROVED}
+row	CLM-00038	APPROVED	1038.00
+raw	{claimNumber=CLM-00043, reserveAmount=1043.0, status=APPROVED}
+row	CLM-00043	APPROVED	1043.00
+raw	{claimNumber=CLM-00048, reserveAmount=1048.0, status=APPROVED}
+row	CLM-00048	APPROVED	1048.00
+raw	{claimNumber=CLM-00053, reserveAmount=1053.0, status=APPROVED}
+row	CLM-00053	APPROVED	1053.00
+raw	{claimNumber=CLM-00058, reserveAmount=1058.0, status=APPROVED}
+row	CLM-00058	APPROVED	1058.00
+raw	{claimNumber=CLM-00063, reserveAmount=1063.0, status=APPROVED}
+row	CLM-00063	APPROVED	1063.00
+raw	{claimNumber=CLM-00068, reserveAmount=1068.0, status=APPROVED}
+row	CLM-00068	APPROVED	1068.00
+raw	{claimNumber=CLM-00073, reserveAmount=1073.0, status=APPROVED}
+row	CLM-00073	APPROVED	1073.00
+raw	{claimNumber=CLM-00078, reserveAmount=1078.0, status=APPROVED}
+row	CLM-00078	APPROVED	1078.00
+raw	{claimNumber=CLM-00083, reserveAmount=1083.0, status=APPROVED}
+row	CLM-00083	APPROVED	1083.00
+raw	{claimNumber=CLM-00088, reserveAmount=1088.0, status=APPROVED}
+row	CLM-00088	APPROVED	1088.00
+raw	{claimNumber=CLM-00093, reserveAmount=1093.0, status=APPROVED}
+row	CLM-00093	APPROVED	1093.00
+raw	{claimNumber=CLM-00098, reserveAmount=1098.0, status=APPROVED}
+row	CLM-00098	APPROVED	1098.00
+raw	{claimNumber=CLM-00103, reserveAmount=1103.0, status=APPROVED}
+row	CLM-00103	APPROVED	1103.00
+raw	{claimNumber=CLM-00108, reserveAmount=1108.0, status=APPROVED}
+row	CLM-00108	APPROVED	1108.00
+raw	{claimNumber=CLM-00113, reserveAmount=1113.0, status=APPROVED}
+row	CLM-00113	APPROVED	1113.00
+raw	{claimNumber=CLM-00118, reserveAmount=1118.0, status=APPROVED}
+row	CLM-00118	APPROVED	1118.00
+rows	24
+total	reserveAmount	25452.00

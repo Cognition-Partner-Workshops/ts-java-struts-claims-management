@@ -1,0 +1,51 @@
+# report	claim-inventory
+# asOf	2019-04-01
+# suspect	Legacy closed-claims count 23 versus inventory posted-closure count 21; preserved, not reconciled.
+forward	report
+attribute	reportAsOf	2019-04-01
+attribute	reportRowCount	21
+attribute	screenName	detail
+columns	claimNumber:text,closedDate:date
+raw	{claimNumber=CLM-00005, closedDate=2019-03-22}
+row	CLM-00005	2019-03-22
+raw	{claimNumber=CLM-00010, closedDate=2019-03-22}
+row	CLM-00010	2019-03-22
+raw	{claimNumber=CLM-00015, closedDate=2019-03-22}
+row	CLM-00015	2019-03-22
+raw	{claimNumber=CLM-00020, closedDate=2019-03-22}
+row	CLM-00020	2019-03-22
+raw	{claimNumber=CLM-00025, closedDate=2019-03-22}
+row	CLM-00025	2019-03-22
+raw	{claimNumber=CLM-00030, closedDate=2019-03-22}
+row	CLM-00030	2019-03-22
+raw	{claimNumber=CLM-00035, closedDate=2019-03-22}
+row	CLM-00035	2019-03-22
+raw	{claimNumber=CLM-00040, closedDate=2019-03-22}
+row	CLM-00040	2019-03-22
+raw	{claimNumber=CLM-00045, closedDate=2019-03-22}
+row	CLM-00045	2019-03-22
+raw	{claimNumber=CLM-00050, closedDate=2019-03-22}
+row	CLM-00050	2019-03-22
+raw	{claimNumber=CLM-00055, closedDate=2019-03-22}
+row	CLM-00055	2019-03-22
+raw	{claimNumber=CLM-00060, closedDate=2019-03-22}
+row	CLM-00060	2019-03-22
+raw	{claimNumber=CLM-00065, closedDate=2019-03-22}
+row	CLM-00065	2019-03-22
+raw	{claimNumber=CLM-00070, closedDate=2019-03-22}
+row	CLM-00070	2019-03-22
+raw	{claimNumber=CLM-00075, closedDate=2019-03-22}
+row	CLM-00075	2019-03-22
+raw	{claimNumber=CLM-00080, closedDate=2019-03-22}
+row	CLM-00080	2019-03-22
+raw	{claimNumber=CLM-00085, closedDate=2019-03-22}
+row	CLM-00085	2019-03-22
+raw	{claimNumber=CLM-00090, closedDate=2019-03-22}
+row	CLM-00090	2019-03-22
+raw	{claimNumber=CLM-00095, closedDate=2019-03-22}
+row	CLM-00095	2019-03-22
+raw	{claimNumber=CLM-00100, closedDate=2019-03-22}
+row	CLM-00100	2019-03-22
+raw	{claimNumber=CLM-00115, closedDate=2019-03-31}
+row	CLM-00115	2019-03-31
+rows	21
