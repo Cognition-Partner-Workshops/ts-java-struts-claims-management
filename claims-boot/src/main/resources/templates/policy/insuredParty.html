@@ -1,0 +1,41 @@
+<th:block th:replace="~{fragments/layout :: page('/WEB-INF/jsp/policy/insuredParty.jsp', ~{::content})}"><th:block th:fragment="content">
+<h2><th:block th:text="#{jsp.insured.party.detail}"></th:block></h2>
+<table class="detail" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<th><th:block th:text="#{jsp.policy}"></th:block></th><td><th:block th:replace="~{fragments/markers :: field('insuredPolicyId', ${policy.policyId}, 'integer')}"></th:block></td></tr>
+<tr>
+<th><th:block th:text="#{jsp.policy.number}"></th:block></th><td th:text="${policy.policyNumber}"></td></tr>
+<tr>
+<th><th:block th:text="#{jsp.insured.name}"></th:block></th><td th:text="${policy.insuredName}"></td></tr>
+<tr>
+<th><th:block th:text="#{jsp.address}"></th:block></th><td th:text="${policy.insuredAddress}"></td></tr>
+<tr>
+<th><th:block th:text="#{jsp.city}"></th:block></th><td><th:block th:text="#{jsp.address.on.file}"></th:block></td></tr>
+<tr>
+<th><th:block th:text="#{jsp.state}"></th:block></th><td><th:block th:text="#{jsp.address.on.file}"></th:block></td></tr>
+<tr>
+<th><th:block th:text="#{jsp.postal.code}"></th:block></th><td><th:block th:text="#{jsp.address.on.file}"></th:block></td></tr>
+</table>
+<table class="detail" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<th><th:block th:text="#{jsp.effective.date}"></th:block></th><td><th:block th:replace="~{fragments/markers :: field('insuredEffective', ${policy.effectiveDate}, 'date')}"></th:block></td></tr>
+<tr>
+<th><th:block th:text="#{jsp.expiration.date}"></th:block></th><td><th:block th:replace="~{fragments/markers :: field('insuredExpiration', ${policy.expiryDate}, 'date')}"></th:block></td></tr>
+<tr>
+<th><th:block th:text="#{jsp.policy.status}"></th:block></th><td><th:block th:replace="~{fragments/markers :: field('insuredPolicyStatus', ${policy.status}, 'text')}"></th:block></td></tr>
+</table>
+<table class="screen-audit" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<th><th:block th:text="#{jsp.screen.context}"></th:block></th>
+<td><th:block th:text="#{jsp.screen.readOnly}"></th:block></td>
+</tr>
+<tr>
+<th><th:block th:text="#{jsp.screen.operator}"></th:block></th>
+<td><th:block th:text="${user}"></th:block></td>
+</tr>
+<tr>
+<th><th:block th:text="#{jsp.screen.asOf}"></th:block></th>
+<td><th:block th:text="${reportAsOfDate}"></th:block></td>
+</tr>
+</table>
+</th:block></th:block>
