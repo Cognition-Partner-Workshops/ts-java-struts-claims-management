@@ -1,0 +1,25 @@
+{
+  "actor": "supervisor",
+  "area": "workbench",
+  "description": "Assign claim to adjuster5",
+  "expected": {
+    "business_fields": {
+      "assignedAdjuster": "adjuster5"
+    },
+    "db_state": {
+      "claim.124.assigned_adjuster": "adjuster5"
+    },
+    "result": "forward:/WEB-INF/jsp/workbench/view.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "adjuster": "adjuster5",
+      "claimId": "124"
+    },
+    "method": "POST",
+    "path": "/claims/workbench/assign.do"
+  },
+  "scenario": "workbench_assign_adjuster5"
+}

@@ -1,0 +1,26 @@
+{
+  "actor": "supervisor",
+  "area": "workbench",
+  "description": "statusHistory on untouched claim",
+  "expected": {
+    "business_fields": {
+      "statusHistoryClaim": "1",
+      "statusHistoryCurrent": "OPEN"
+    },
+    "db_state": {
+      "claim.1.assigned_adjuster": "adjuster1",
+      "claim.1.loss_date": "2019-01-15",
+      "claim.1.reserve_amount": "1001.00",
+      "claim.1.status": "OPEN"
+    },
+    "result": "forward:/WEB-INF/jsp/workbench/statusHistory.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/workbench/statusHistory.do?claimId=1"
+  },
+  "scenario": "workbench_statusHistory_untouched"
+}

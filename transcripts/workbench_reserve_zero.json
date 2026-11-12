@@ -1,0 +1,25 @@
+{
+  "actor": "supervisor",
+  "area": "workbench",
+  "description": "Reserve zero",
+  "expected": {
+    "business_fields": {
+      "reserveAmount": "0.00"
+    },
+    "db_state": {
+      "claim.124.reserve_amount": "0.00"
+    },
+    "result": "forward:/WEB-INF/jsp/workbench/view.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "124",
+      "reserveAmount": "0"
+    },
+    "method": "POST",
+    "path": "/claims/workbench/reserve.do"
+  },
+  "scenario": "workbench_reserve_zero"
+}

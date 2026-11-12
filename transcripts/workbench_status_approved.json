@@ -1,0 +1,25 @@
+{
+  "actor": "supervisor",
+  "area": "workbench",
+  "description": "Set status APPROVED",
+  "expected": {
+    "business_fields": {
+      "claimStatus": "APPROVED"
+    },
+    "db_state": {
+      "claim.124.status": "APPROVED"
+    },
+    "result": "forward:/WEB-INF/jsp/workbench/view.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "124",
+      "status": "APPROVED"
+    },
+    "method": "POST",
+    "path": "/claims/workbench/status.do"
+  },
+  "scenario": "workbench_status_approved"
+}

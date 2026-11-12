@@ -1,0 +1,25 @@
+{
+  "actor": "supervisor",
+  "area": "workbench",
+  "description": "Set status CLOSED",
+  "expected": {
+    "business_fields": {
+      "claimStatus": "CLOSED"
+    },
+    "db_state": {
+      "claim.124.status": "CLOSED"
+    },
+    "result": "forward:/WEB-INF/jsp/workbench/view.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "124",
+      "status": "CLOSED"
+    },
+    "method": "POST",
+    "path": "/claims/workbench/status.do"
+  },
+  "scenario": "workbench_status_closed"
+}

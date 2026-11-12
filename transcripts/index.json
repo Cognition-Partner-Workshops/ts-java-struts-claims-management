@@ -538,5 +538,401 @@
     "description": "Anonymous admin editAdjuster",
     "module": "admin",
     "scenario": "admin_editAdjuster_anonymous"
+  },
+  {
+    "area": "intake",
+    "description": "Open the new FNOL form",
+    "module": "intake",
+    "scenario": "intake_new_form"
+  },
+  {
+    "area": "intake",
+    "description": "loss type fire",
+    "module": "intake",
+    "scenario": "intake_loss_type_fire"
+  },
+  {
+    "area": "intake",
+    "description": "loss type water",
+    "module": "intake",
+    "scenario": "intake_loss_type_water"
+  },
+  {
+    "area": "intake",
+    "description": "loss type liability",
+    "module": "intake",
+    "scenario": "intake_loss_type_liability"
+  },
+  {
+    "area": "intake",
+    "description": "loss type collision",
+    "module": "intake",
+    "scenario": "intake_loss_type_collision"
+  },
+  {
+    "area": "intake",
+    "description": "reserve positive",
+    "module": "intake",
+    "scenario": "intake_reserve_positive"
+  },
+  {
+    "area": "intake",
+    "description": "reserve zero",
+    "module": "intake",
+    "scenario": "intake_reserve_zero"
+  },
+  {
+    "area": "intake",
+    "description": "reserve negative",
+    "module": "intake",
+    "scenario": "intake_reserve_negative"
+  },
+  {
+    "area": "intake",
+    "description": "reserve blank coercion",
+    "module": "intake",
+    "scenario": "intake_reserve_blank_coercion"
+  },
+  {
+    "area": "intake",
+    "description": "reserve nonnumeric coercion",
+    "module": "intake",
+    "scenario": "intake_reserve_nonnumeric_coercion"
+  },
+  {
+    "area": "intake",
+    "description": "required blank claimantName",
+    "module": "intake",
+    "scenario": "intake_required_blank_claimantName"
+  },
+  {
+    "area": "intake",
+    "description": "required blank lossDate",
+    "module": "intake",
+    "scenario": "intake_required_blank_lossDate"
+  },
+  {
+    "area": "intake",
+    "description": "required blank description",
+    "module": "intake",
+    "scenario": "intake_required_blank_description"
+  },
+  {
+    "area": "intake",
+    "description": "required missing claimantName",
+    "module": "intake",
+    "scenario": "intake_required_missing_claimantName"
+  },
+  {
+    "area": "intake",
+    "description": "required missing lossDate",
+    "module": "intake",
+    "scenario": "intake_required_missing_lossDate"
+  },
+  {
+    "area": "intake",
+    "description": "required missing description",
+    "module": "intake",
+    "scenario": "intake_required_missing_description"
+  },
+  {
+    "area": "intake",
+    "description": "date leap year",
+    "module": "intake",
+    "scenario": "intake_date_leap_year"
+  },
+  {
+    "area": "intake",
+    "description": "date nonleap february",
+    "module": "intake",
+    "scenario": "intake_date_nonleap_february"
+  },
+  {
+    "area": "intake",
+    "description": "date april rollover",
+    "module": "intake",
+    "scenario": "intake_date_april_rollover"
+  },
+  {
+    "area": "intake",
+    "description": "date month rollover",
+    "module": "intake",
+    "scenario": "intake_date_month_rollover"
+  },
+  {
+    "area": "intake",
+    "description": "date zero month day",
+    "module": "intake",
+    "scenario": "intake_date_zero_month_day"
+  },
+  {
+    "area": "intake",
+    "description": "date format rejected",
+    "module": "intake",
+    "scenario": "intake_date_format_rejected"
+  },
+  {
+    "area": "intake",
+    "description": "Confirm a claim created by setup",
+    "module": "intake",
+    "scenario": "intake_confirm_after_setup"
+  },
+  {
+    "area": "intake",
+    "description": "Confirm with missing claim id",
+    "module": "intake",
+    "scenario": "intake_confirm_missing"
+  },
+  {
+    "area": "intake",
+    "description": "Confirm with invalid claim id",
+    "module": "intake",
+    "scenario": "intake_confirm_invalid"
+  },
+  {
+    "area": "intake",
+    "description": "Confirm with not_found claim id",
+    "module": "intake",
+    "scenario": "intake_confirm_not_found"
+  },
+  {
+    "area": "workbench",
+    "description": "List open claims",
+    "module": "workbench",
+    "scenario": "workbench_list_default"
+  },
+  {
+    "area": "workbench",
+    "description": "Status adjuster and paging parameters are ignored",
+    "module": "workbench",
+    "scenario": "workbench_list_ignored_filters"
+  },
+  {
+    "area": "workbench",
+    "description": "View claim 1",
+    "module": "workbench",
+    "scenario": "workbench_view_1"
+  },
+  {
+    "area": "workbench",
+    "description": "View claim 119",
+    "module": "workbench",
+    "scenario": "workbench_view_119"
+  },
+  {
+    "area": "workbench",
+    "description": "View claim 120",
+    "module": "workbench",
+    "scenario": "workbench_view_120"
+  },
+  {
+    "area": "workbench",
+    "description": "View claim 124",
+    "module": "workbench",
+    "scenario": "workbench_view_124"
+  },
+  {
+    "area": "workbench",
+    "description": "View claim 140",
+    "module": "workbench",
+    "scenario": "workbench_view_140"
+  },
+  {
+    "area": "workbench",
+    "description": "View claim 99999",
+    "module": "workbench",
+    "scenario": "workbench_view_99999"
+  },
+  {
+    "area": "workbench",
+    "description": "View claim invalid",
+    "module": "workbench",
+    "scenario": "workbench_view_invalid"
+  },
+  {
+    "area": "workbench",
+    "description": "Assign claim to adjuster1",
+    "module": "workbench",
+    "scenario": "workbench_assign_adjuster1"
+  },
+  {
+    "area": "workbench",
+    "description": "Assign claim to adjuster2",
+    "module": "workbench",
+    "scenario": "workbench_assign_adjuster2"
+  },
+  {
+    "area": "workbench",
+    "description": "Assign claim to adjuster3",
+    "module": "workbench",
+    "scenario": "workbench_assign_adjuster3"
+  },
+  {
+    "area": "workbench",
+    "description": "Assign claim to adjuster4",
+    "module": "workbench",
+    "scenario": "workbench_assign_adjuster4"
+  },
+  {
+    "area": "workbench",
+    "description": "Assign claim to adjuster5",
+    "module": "workbench",
+    "scenario": "workbench_assign_adjuster5"
+  },
+  {
+    "area": "workbench",
+    "description": "Assign claim to supervisor",
+    "module": "workbench",
+    "scenario": "workbench_assign_supervisor"
+  },
+  {
+    "area": "workbench",
+    "description": "Assign claim to blank default",
+    "module": "workbench",
+    "scenario": "workbench_assign_blank_default"
+  },
+  {
+    "area": "workbench",
+    "description": "Invalid claim id defaults during assignment",
+    "module": "workbench",
+    "scenario": "workbench_assign_invalid_id"
+  },
+  {
+    "area": "workbench",
+    "description": "Set status OPEN",
+    "module": "workbench",
+    "scenario": "workbench_status_open"
+  },
+  {
+    "area": "workbench",
+    "description": "Set status INVESTIGATING",
+    "module": "workbench",
+    "scenario": "workbench_status_investigating"
+  },
+  {
+    "area": "workbench",
+    "description": "Set status APPROVED",
+    "module": "workbench",
+    "scenario": "workbench_status_approved"
+  },
+  {
+    "area": "workbench",
+    "description": "Set status DENIED",
+    "module": "workbench",
+    "scenario": "workbench_status_denied"
+  },
+  {
+    "area": "workbench",
+    "description": "Set status CLOSED",
+    "module": "workbench",
+    "scenario": "workbench_status_closed"
+  },
+  {
+    "area": "workbench",
+    "description": "Set status PENDING",
+    "module": "workbench",
+    "scenario": "workbench_status_pending"
+  },
+  {
+    "area": "workbench",
+    "description": "Set status blank default",
+    "module": "workbench",
+    "scenario": "workbench_status_blank_default"
+  },
+  {
+    "area": "workbench",
+    "description": "Repeated close retains the first closure record",
+    "module": "workbench",
+    "scenario": "workbench_status_close_repeat"
+  },
+  {
+    "area": "workbench",
+    "description": "Reopen removes the closure record",
+    "module": "workbench",
+    "scenario": "workbench_status_reopen"
+  },
+  {
+    "area": "workbench",
+    "description": "Reserve positive",
+    "module": "workbench",
+    "scenario": "workbench_reserve_positive"
+  },
+  {
+    "area": "workbench",
+    "description": "Reserve blank",
+    "module": "workbench",
+    "scenario": "workbench_reserve_blank"
+  },
+  {
+    "area": "workbench",
+    "description": "Reserve nonnumeric",
+    "module": "workbench",
+    "scenario": "workbench_reserve_nonnumeric"
+  },
+  {
+    "area": "workbench",
+    "description": "Reserve negative",
+    "module": "workbench",
+    "scenario": "workbench_reserve_negative"
+  },
+  {
+    "area": "workbench",
+    "description": "Reserve zero",
+    "module": "workbench",
+    "scenario": "workbench_reserve_zero"
+  },
+  {
+    "area": "workbench",
+    "description": "Note text without persistence",
+    "module": "workbench",
+    "scenario": "workbench_note_text"
+  },
+  {
+    "area": "workbench",
+    "description": "Note blank without persistence",
+    "module": "workbench",
+    "scenario": "workbench_note_blank"
+  },
+  {
+    "area": "workbench",
+    "description": "Note missing without persistence",
+    "module": "workbench",
+    "scenario": "workbench_note_missing"
+  },
+  {
+    "area": "workbench",
+    "description": "notes on changed claim",
+    "module": "workbench",
+    "scenario": "workbench_notes_changed"
+  },
+  {
+    "area": "workbench",
+    "description": "notes on untouched claim",
+    "module": "workbench",
+    "scenario": "workbench_notes_untouched"
+  },
+  {
+    "area": "workbench",
+    "description": "reserveHistory on changed claim",
+    "module": "workbench",
+    "scenario": "workbench_reserveHistory_changed"
+  },
+  {
+    "area": "workbench",
+    "description": "reserveHistory on untouched claim",
+    "module": "workbench",
+    "scenario": "workbench_reserveHistory_untouched"
+  },
+  {
+    "area": "workbench",
+    "description": "statusHistory on changed claim",
+    "module": "workbench",
+    "scenario": "workbench_statusHistory_changed"
+  },
+  {
+    "area": "workbench",
+    "description": "statusHistory on untouched claim",
+    "module": "workbench",
+    "scenario": "workbench_statusHistory_untouched"
   }
 ]

@@ -1,0 +1,20 @@
+{
+  "actor": "supervisor",
+  "area": "intake",
+  "description": "Confirm with not_found claim id",
+  "expected": {
+    "business_fields": {
+      "claimId": "99999"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/intake/confirm.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/intake/confirm.do?claimId=99999"
+  },
+  "scenario": "intake_confirm_not_found"
+}

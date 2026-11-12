@@ -1,0 +1,25 @@
+{
+  "actor": "supervisor",
+  "area": "workbench",
+  "description": "Reserve nonnumeric",
+  "expected": {
+    "business_fields": {
+      "reserveAmount": "4500.00"
+    },
+    "db_state": {
+      "claim.124.reserve_amount": "4500.00"
+    },
+    "result": "forward:/WEB-INF/jsp/workbench/view.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "124",
+      "reserveAmount": "ordinary"
+    },
+    "method": "POST",
+    "path": "/claims/workbench/reserve.do"
+  },
+  "scenario": "workbench_reserve_nonnumeric"
+}

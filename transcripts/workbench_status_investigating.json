@@ -1,0 +1,25 @@
+{
+  "actor": "supervisor",
+  "area": "workbench",
+  "description": "Set status INVESTIGATING",
+  "expected": {
+    "business_fields": {
+      "claimStatus": "INVESTIGATING"
+    },
+    "db_state": {
+      "claim.124.status": "INVESTIGATING"
+    },
+    "result": "forward:/WEB-INF/jsp/workbench/view.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "124",
+      "status": "INVESTIGATING"
+    },
+    "method": "POST",
+    "path": "/claims/workbench/status.do"
+  },
+  "scenario": "workbench_status_investigating"
+}

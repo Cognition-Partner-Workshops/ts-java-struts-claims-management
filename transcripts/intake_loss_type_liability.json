@@ -1,0 +1,31 @@
+{
+  "actor": "supervisor",
+  "area": "intake",
+  "description": "loss type liability",
+  "expected": {
+    "business_fields": {
+      "claimId": "126",
+      "claimStatus": "OPEN"
+    },
+    "db_state": {
+      "claim.126.assigned_adjuster": "adjuster1",
+      "claim.126.loss_date": "2019-04-01",
+      "claim.126.reserve_amount": "0.00",
+      "claim.126.status": "OPEN"
+    },
+    "result": "forward:/WEB-INF/jsp/intake/confirm.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimantName": "Capture Claimant",
+      "description": "Intake workflow capture",
+      "lossDate": "04/01/2019",
+      "lossType": "LIABILITY"
+    },
+    "method": "POST",
+    "path": "/claims/intake/submit.do"
+  },
+  "scenario": "intake_loss_type_liability"
+}

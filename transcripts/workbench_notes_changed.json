@@ -1,0 +1,27 @@
+{
+  "actor": "supervisor",
+  "area": "workbench",
+  "description": "notes on changed claim",
+  "expected": {
+    "business_fields": {
+      "noteClaimId": "124",
+      "noteClaimStatus": "OPEN",
+      "noteReserve": "0.00"
+    },
+    "db_state": {
+      "claim.124.assigned_adjuster": "adjuster2",
+      "claim.124.loss_date": "2019-04-01",
+      "claim.124.reserve_amount": "0.00",
+      "claim.124.status": "OPEN"
+    },
+    "result": "forward:/WEB-INF/jsp/workbench/notes.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/workbench/notes.do?claimId=124"
+  },
+  "scenario": "workbench_notes_changed"
+}

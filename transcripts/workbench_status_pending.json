@@ -1,0 +1,25 @@
+{
+  "actor": "supervisor",
+  "area": "workbench",
+  "description": "Set status PENDING",
+  "expected": {
+    "business_fields": {
+      "claimStatus": "PENDING"
+    },
+    "db_state": {
+      "claim.124.status": "PENDING"
+    },
+    "result": "forward:/WEB-INF/jsp/workbench/view.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "124",
+      "status": "PENDING"
+    },
+    "method": "POST",
+    "path": "/claims/workbench/status.do"
+  },
+  "scenario": "workbench_status_pending"
+}

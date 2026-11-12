@@ -1,0 +1,27 @@
+{
+  "actor": "supervisor",
+  "area": "intake",
+  "description": "required blank claimantName",
+  "expected": {
+    "business_fields": {},
+    "db_state": {
+      "claim.133.exists": "false"
+    },
+    "result": "forward:/WEB-INF/jsp/intake/new.jsp",
+    "status": 200,
+    "validation_errors": [
+      "errors.claimant.required"
+    ]
+  },
+  "request": {
+    "form": {
+      "claimantName": "",
+      "description": "Intake workflow capture",
+      "lossDate": "04/01/2019",
+      "lossType": "WATER"
+    },
+    "method": "POST",
+    "path": "/claims/intake/submit.do"
+  },
+  "scenario": "intake_required_blank_claimantName"
+}

@@ -1,0 +1,31 @@
+{
+  "actor": "supervisor",
+  "area": "intake",
+  "description": "loss type collision",
+  "expected": {
+    "business_fields": {
+      "claimId": "127",
+      "claimStatus": "OPEN"
+    },
+    "db_state": {
+      "claim.127.assigned_adjuster": "adjuster1",
+      "claim.127.loss_date": "2019-04-01",
+      "claim.127.reserve_amount": "0.00",
+      "claim.127.status": "OPEN"
+    },
+    "result": "forward:/WEB-INF/jsp/intake/confirm.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimantName": "Capture Claimant",
+      "description": "Intake workflow capture",
+      "lossDate": "04/01/2019",
+      "lossType": "COLLISION"
+    },
+    "method": "POST",
+    "path": "/claims/intake/submit.do"
+  },
+  "scenario": "intake_loss_type_collision"
+}

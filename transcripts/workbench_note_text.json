@@ -1,0 +1,28 @@
+{
+  "actor": "supervisor",
+  "area": "workbench",
+  "description": "Note text without persistence",
+  "expected": {
+    "business_fields": {
+      "noteText": "Routine claim review"
+    },
+    "db_state": {
+      "claim.124.assigned_adjuster": "adjuster2",
+      "claim.124.loss_date": "2019-04-01",
+      "claim.124.reserve_amount": "0.00",
+      "claim.124.status": "OPEN"
+    },
+    "result": "forward:/WEB-INF/jsp/workbench/view.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "124",
+      "noteText": "Routine claim review"
+    },
+    "method": "POST",
+    "path": "/claims/workbench/note.do"
+  },
+  "scenario": "workbench_note_text"
+}

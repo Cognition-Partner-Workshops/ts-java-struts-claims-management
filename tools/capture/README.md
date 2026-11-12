@@ -48,3 +48,20 @@ Policy search only uses `lineOfBusiness`; the other submitted criteria are
 ignored. Renewal is a read-only review, with no form or validation rules.
 Blank, invalid and absent policy identifiers record its fallback behavior,
 and a POST with blank renewal fields records that no update occurs.
+
+Intake/workbench captures append after the session/policy/admin set. Intake
+creates claims 124–139, then the confirmation setup creates claim 140. Probes
+read the created claim after each submit; rejected submits probe the next id
+to show that it does not exist. Subsequent workbench mutations use claim 124;
+claim 1 is the untouched history comparison. All earlier captures stay fixed.
+
+The legacy intake mapping disables Validator validation: blank/missing loss
+dates default rather than producing the configured required-field error.
+The action enforces claimant/description requirements and date shape itself.
+Submitted loss types are ignored in favor of WATER. Workbench has no paging
+or filtering beyond its hard-coded OPEN selection. Assignment defaults blank
+adjusters, status accepts arbitrary ordinary strings, reserve falls back to
+4500 for blank/non-numeric input, and note requests only set a request attribute.
+Reserve/status history screens use empty lists even after mutations; notes
+remain unchanged. Full database snapshots expose these non-writes and closure
+insertion/removal alongside HTTP probes of claim state.

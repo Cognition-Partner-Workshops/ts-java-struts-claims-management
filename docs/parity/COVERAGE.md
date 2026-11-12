@@ -9,9 +9,9 @@ Explicit requests only; redirects, forwards, probes, and implicit login are not 
 | `/admin/adjusters.do` | admin_adjusters_authenticated, admin_adjusters_anonymous | — |
 | `/admin/reference.do` | admin_reference_authenticated, admin_reference_anonymous | — |
 | `/home.do` | session_home_authenticated, session_home_anonymous | — |
-| `/intake/confirm.do` | — | — |
-| `/intake/new.do` | — | — |
-| `/intake/submit.do` | fnol_submit, intake_lenient_date, intake_missing_claimant, intake_missing_description, intake_bad_date, intake_blank_reserve | — |
+| `/intake/confirm.do` | intake_confirm_after_setup, intake_confirm_missing, intake_confirm_invalid, intake_confirm_not_found | — |
+| `/intake/new.do` | intake_new_form | — |
+| `/intake/submit.do` | fnol_submit, intake_lenient_date, intake_missing_claimant, intake_missing_description, intake_bad_date, intake_blank_reserve, intake_loss_type_fire, intake_loss_type_water, intake_loss_type_liability, intake_loss_type_collision, intake_reserve_positive, intake_reserve_zero, intake_reserve_negative, intake_reserve_blank_coercion, intake_reserve_nonnumeric_coercion, intake_required_blank_claimantName, intake_required_blank_lossDate, intake_required_blank_description, intake_required_missing_claimantName, intake_required_missing_lossDate, intake_required_missing_description, intake_date_leap_year, intake_date_nonleap_february, intake_date_april_rollover, intake_date_month_rollover, intake_date_zero_month_day, intake_date_format_rejected | intake_confirm_after_setup |
 | `/login.do` | login, session_login_ok, session_login_adjuster, session_login_bad_password, session_login_unknown_user, session_login_blank_fields, session_login_blank_username, session_login_blank_password | — |
 | `/logout.do` | session_logout | session_protected_after_logout |
 | `/payment/detail.do` | — | — |
@@ -39,15 +39,15 @@ Explicit requests only; redirects, forwards, probes, and implicit login are not 
 | `/settlement/calculate.do` | settlement_calculate, settlement_blank_deductible, settlement_half_cent, settlement_policy_cap, settlement_deductible_floor | settlement_session_save |
 | `/settlement/detail.do` | — | — |
 | `/settlement/save.do` | settlement_save, settlement_authority_refused, settlement_authority_within_limit, settlement_session_save | — |
-| `/workbench/assign.do` | workbench_assign | — |
-| `/workbench/list.do` | — | — |
-| `/workbench/note.do` | — | — |
-| `/workbench/notes.do` | — | — |
-| `/workbench/reserve.do` | workbench_reserve | — |
-| `/workbench/reserveHistory.do` | — | — |
-| `/workbench/status.do` | workbench_status | — |
-| `/workbench/statusHistory.do` | — | — |
-| `/workbench/view.do` | — | — |
+| `/workbench/assign.do` | workbench_assign, workbench_assign_adjuster1, workbench_assign_adjuster2, workbench_assign_adjuster3, workbench_assign_adjuster4, workbench_assign_adjuster5, workbench_assign_supervisor, workbench_assign_blank_default, workbench_assign_invalid_id | — |
+| `/workbench/list.do` | workbench_list_default, workbench_list_ignored_filters | — |
+| `/workbench/note.do` | workbench_note_text, workbench_note_blank, workbench_note_missing | — |
+| `/workbench/notes.do` | workbench_notes_changed, workbench_notes_untouched | — |
+| `/workbench/reserve.do` | workbench_reserve, workbench_reserve_positive, workbench_reserve_blank, workbench_reserve_nonnumeric, workbench_reserve_negative, workbench_reserve_zero | — |
+| `/workbench/reserveHistory.do` | workbench_reserveHistory_changed, workbench_reserveHistory_untouched | — |
+| `/workbench/status.do` | workbench_status, workbench_status_open, workbench_status_investigating, workbench_status_approved, workbench_status_denied, workbench_status_closed, workbench_status_pending, workbench_status_blank_default, workbench_status_close_repeat, workbench_status_reopen | workbench_status_close_repeat |
+| `/workbench/statusHistory.do` | workbench_statusHistory_changed, workbench_statusHistory_untouched | — |
+| `/workbench/view.do` | workbench_view_1, workbench_view_119, workbench_view_120, workbench_view_124, workbench_view_140, workbench_view_99999, workbench_view_invalid | — |
 
 ## Requests with no mapping
 

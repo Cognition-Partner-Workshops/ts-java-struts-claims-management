@@ -1,0 +1,27 @@
+{
+  "actor": "supervisor",
+  "area": "intake",
+  "description": "date format rejected",
+  "expected": {
+    "business_fields": {},
+    "db_state": {
+      "claim.140.exists": "false"
+    },
+    "result": "forward:/WEB-INF/jsp/intake/new.jsp",
+    "status": 200,
+    "validation_errors": [
+      "errors.lossdate.format"
+    ]
+  },
+  "request": {
+    "form": {
+      "claimantName": "Capture Claimant",
+      "description": "Intake workflow capture",
+      "lossDate": "2019-04-01",
+      "lossType": "WATER"
+    },
+    "method": "POST",
+    "path": "/claims/intake/submit.do"
+  },
+  "scenario": "intake_date_format_rejected"
+}

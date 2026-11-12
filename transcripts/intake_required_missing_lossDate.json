@@ -1,0 +1,30 @@
+{
+  "actor": "supervisor",
+  "area": "intake",
+  "description": "required missing lossDate",
+  "expected": {
+    "business_fields": {
+      "claimId": "134",
+      "claimStatus": "OPEN"
+    },
+    "db_state": {
+      "claim.134.assigned_adjuster": "adjuster1",
+      "claim.134.loss_date": "2019-04-01",
+      "claim.134.reserve_amount": "0.00",
+      "claim.134.status": "OPEN"
+    },
+    "result": "forward:/WEB-INF/jsp/intake/confirm.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimantName": "Capture Claimant",
+      "description": "Intake workflow capture",
+      "lossType": "WATER"
+    },
+    "method": "POST",
+    "path": "/claims/intake/submit.do"
+  },
+  "scenario": "intake_required_missing_lossDate"
+}

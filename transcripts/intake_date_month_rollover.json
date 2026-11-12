@@ -1,0 +1,31 @@
+{
+  "actor": "supervisor",
+  "area": "intake",
+  "description": "date month rollover",
+  "expected": {
+    "business_fields": {
+      "claimId": "138",
+      "claimStatus": "OPEN"
+    },
+    "db_state": {
+      "claim.138.assigned_adjuster": "adjuster1",
+      "claim.138.loss_date": "2020-01-01",
+      "claim.138.reserve_amount": "0.00",
+      "claim.138.status": "OPEN"
+    },
+    "result": "forward:/WEB-INF/jsp/intake/confirm.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimantName": "Capture Claimant",
+      "description": "Intake workflow capture",
+      "lossDate": "13/01/2019",
+      "lossType": "WATER"
+    },
+    "method": "POST",
+    "path": "/claims/intake/submit.do"
+  },
+  "scenario": "intake_date_month_rollover"
+}

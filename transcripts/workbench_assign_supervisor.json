@@ -1,0 +1,25 @@
+{
+  "actor": "supervisor",
+  "area": "workbench",
+  "description": "Assign claim to supervisor",
+  "expected": {
+    "business_fields": {
+      "assignedAdjuster": "supervisor"
+    },
+    "db_state": {
+      "claim.124.assigned_adjuster": "supervisor"
+    },
+    "result": "forward:/WEB-INF/jsp/workbench/view.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "adjuster": "supervisor",
+      "claimId": "124"
+    },
+    "method": "POST",
+    "path": "/claims/workbench/assign.do"
+  },
+  "scenario": "workbench_assign_supervisor"
+}

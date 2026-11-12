@@ -1,0 +1,27 @@
+{
+  "actor": "supervisor",
+  "area": "workbench",
+  "description": "reserveHistory on changed claim",
+  "expected": {
+    "business_fields": {
+      "currentReserve": "0.00",
+      "reserveHistoryClaim": "124",
+      "reserveReviewStatus": "OPEN"
+    },
+    "db_state": {
+      "claim.124.assigned_adjuster": "adjuster2",
+      "claim.124.loss_date": "2019-04-01",
+      "claim.124.reserve_amount": "0.00",
+      "claim.124.status": "OPEN"
+    },
+    "result": "forward:/WEB-INF/jsp/workbench/reserveHistory.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/workbench/reserveHistory.do?claimId=124"
+  },
+  "scenario": "workbench_reserveHistory_changed"
+}

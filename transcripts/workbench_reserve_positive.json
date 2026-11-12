@@ -1,0 +1,25 @@
+{
+  "actor": "supervisor",
+  "area": "workbench",
+  "description": "Reserve positive",
+  "expected": {
+    "business_fields": {
+      "reserveAmount": "2750.25"
+    },
+    "db_state": {
+      "claim.124.reserve_amount": "2750.25"
+    },
+    "result": "forward:/WEB-INF/jsp/workbench/view.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "124",
+      "reserveAmount": "2750.25"
+    },
+    "method": "POST",
+    "path": "/claims/workbench/reserve.do"
+  },
+  "scenario": "workbench_reserve_positive"
+}

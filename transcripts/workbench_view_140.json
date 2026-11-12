@@ -1,0 +1,23 @@
+{
+  "actor": "supervisor",
+  "area": "workbench",
+  "description": "View claim 140",
+  "expected": {
+    "business_fields": {
+      "assignedAdjuster": "adjuster1",
+      "claimStatus": "OPEN",
+      "lossDate": "2019-04-01",
+      "reserveAmount": "0.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/workbench/view.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/workbench/view.do?claimId=140"
+  },
+  "scenario": "workbench_view_140"
+}

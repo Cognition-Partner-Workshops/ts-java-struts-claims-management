@@ -1,0 +1,18 @@
+{
+  "actor": "supervisor",
+  "area": "intake",
+  "description": "Open the new FNOL form",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/intake/new.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/intake/new.do"
+  },
+  "scenario": "intake_new_form"
+}

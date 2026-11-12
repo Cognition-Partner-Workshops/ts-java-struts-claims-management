@@ -1,0 +1,18 @@
+{
+  "actor": "supervisor",
+  "area": "intake",
+  "description": "Confirm with missing claim id",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/intake/confirm.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/intake/confirm.do"
+  },
+  "scenario": "intake_confirm_missing"
+}

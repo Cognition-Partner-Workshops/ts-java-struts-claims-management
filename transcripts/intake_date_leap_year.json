@@ -1,0 +1,31 @@
+{
+  "actor": "supervisor",
+  "area": "intake",
+  "description": "date leap year",
+  "expected": {
+    "business_fields": {
+      "claimId": "135",
+      "claimStatus": "OPEN"
+    },
+    "db_state": {
+      "claim.135.assigned_adjuster": "adjuster1",
+      "claim.135.loss_date": "2020-02-29",
+      "claim.135.reserve_amount": "0.00",
+      "claim.135.status": "OPEN"
+    },
+    "result": "forward:/WEB-INF/jsp/intake/confirm.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimantName": "Capture Claimant",
+      "description": "Intake workflow capture",
+      "lossDate": "02/29/2020",
+      "lossType": "WATER"
+    },
+    "method": "POST",
+    "path": "/claims/intake/submit.do"
+  },
+  "scenario": "intake_date_leap_year"
+}
