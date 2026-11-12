@@ -1,0 +1,21 @@
+{
+  "actor": "anonymous",
+  "area": "session",
+  "description": "Login with blank username",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/login.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "password": "supervisor",
+      "username": ""
+    },
+    "method": "POST",
+    "path": "/claims/login.do"
+  },
+  "scenario": "session_login_blank_username"
+}

@@ -238,9 +238,205 @@ SCENARIOS = [
     ("report_claim_inventory", "reporting",
      "Month-end inventory counting closures from the next day", "GET",
      "/report/claimInventory.do", {}, {}),
+
+    ("session_login_ok", "session", "Login in an isolated session", "POST",
+     "/login.do", {"username":"supervisor","password":"supervisor"}, {},
+     {"area":"session","session":"anonymous"}),
+    ("session_login_adjuster", "session", "Login as a seeded adjuster", "POST",
+     "/login.do", {"username":"adjuster4","password":"legacy4"}, {},
+     {"area":"session","session":"anonymous"}),
+    ("session_login_bad_password", "session", "Login with bad password", "POST",
+     "/login.do", {"username":"supervisor","password":"incorrect"}, {},
+     {"area":"session","session":"anonymous"}),
+    ("session_login_unknown_user", "session", "Login with unknown user", "POST",
+     "/login.do", {"username":"unknown","password":"incorrect"}, {},
+     {"area":"session","session":"anonymous"}),
+    ("session_login_blank_fields", "session", "Login with blank fields", "POST",
+     "/login.do", {"username":"","password":""}, {},
+     {"area":"session","session":"anonymous"}),
+    ("session_login_blank_username", "session", "Login with blank username", "POST",
+     "/login.do", {"username":"","password":"supervisor"}, {},
+     {"area":"session","session":"anonymous"}),
+    ("session_login_blank_password", "session", "Login with blank password", "POST",
+     "/login.do", {"username":"supervisor","password":""}, {},
+     {"area":"session","session":"anonymous"}),
+    ("session_home_authenticated", "session", "Authenticated home", "GET",
+     "/home.do", {}, {},
+     {"area":"session"}),
+    ("session_home_anonymous", "session", "Anonymous home redirect", "GET",
+     "/home.do", {}, {},
+     {"area":"session","session":"anonymous"}),
+    ("session_logout", "session", "Logout without changing the shared session", "GET",
+     "/logout.do", {}, {},
+     {"area":"session","session":"fresh"}),
+    ("session_protected_after_logout", "session", "Protected page after logout", "GET",
+     "/policy/list.do", {}, {},
+     {"area":"session","session":"fresh","setup":[["GET","/logout.do",{}]]}),
+    ("policy_search_auto", "policy", "Policy search line AUTO", "GET",
+     "/policy/search.do?lineOfBusiness=AUTO", {}, {},
+     {"area":"policy"}),
+    ("policy_search_homeowners", "policy", "Policy search line HOMEOWNERS", "GET",
+     "/policy/search.do?lineOfBusiness=HOMEOWNERS", {}, {},
+     {"area":"policy"}),
+    ("policy_search_commercial_property", "policy", "Policy search line COMMERCIAL_PROPERTY", "GET",
+     "/policy/search.do?lineOfBusiness=COMMERCIAL_PROPERTY", {}, {},
+     {"area":"policy"}),
+    ("policy_search_general_liability", "policy", "Policy search line GENERAL_LIABILITY", "GET",
+     "/policy/search.do?lineOfBusiness=GENERAL_LIABILITY", {}, {},
+     {"area":"policy"}),
+    ("policy_search_marine", "policy", "Policy search line MARINE", "GET",
+     "/policy/search.do?lineOfBusiness=MARINE", {}, {},
+     {"area":"policy"}),
+    ("policy_search_blank", "policy", "Policy search line blank", "GET",
+     "/policy/search.do?lineOfBusiness=", {}, {},
+     {"area":"policy"}),
+    ("policy_search_default", "policy", "Policy search with no criteria", "GET",
+     "/policy/search.do", {}, {},
+     {"area":"policy"}),
+    ("policy_search_policyNumber", "policy", "Search with ignored policyNumber criterion", "GET",
+     "/policy/search.do?policyNumber=NS-09002", {}, {},
+     {"area":"policy"}),
+    ("policy_search_insuredName", "policy", "Search with ignored insuredName criterion", "GET",
+     "/policy/search.do?insuredName=Policyholder%202", {}, {},
+     {"area":"policy"}),
+    ("policy_search_term", "policy", "Search with ignored term criterion", "GET",
+     "/policy/search.do?term=NS-00003", {}, {},
+     {"area":"policy"}),
+    ("policy_list", "policy", "List all policies", "GET",
+     "/policy/list.do", {}, {},
+     {"area":"policy"}),
+    ("policy_view_1", "policy", "View policy 1", "GET",
+     "/policy/view.do?policyId=1", {}, {},
+     {"area":"policy"}),
+    ("policy_view_2", "policy", "View policy 2", "GET",
+     "/policy/view.do?policyId=2", {}, {},
+     {"area":"policy"}),
+    ("policy_view_3", "policy", "View policy 3", "GET",
+     "/policy/view.do?policyId=3", {}, {},
+     {"area":"policy"}),
+    ("policy_view_4", "policy", "View policy 4", "GET",
+     "/policy/view.do?policyId=4", {}, {},
+     {"area":"policy"}),
+    ("policy_view_9002", "policy", "View policy 9002", "GET",
+     "/policy/view.do?policyId=9002", {}, {},
+     {"area":"policy"}),
+    ("policy_view_99999", "policy", "View policy 99999", "GET",
+     "/policy/view.do?policyId=99999", {}, {},
+     {"area":"policy"}),
+    ("policy_view_invalid", "policy", "View policy invalid", "GET",
+     "/policy/view.do?policyId=invalid", {}, {},
+     {"area":"policy"}),
+    ("policy_view_blank", "policy", "View policy blank", "GET",
+     "/policy/view.do?policyId=", {}, {},
+     {"area":"policy"}),
+    ("policy_view_default", "policy", "View without a policy id", "GET",
+     "/policy/view.do", {}, {},
+     {"area":"policy"}),
+    ("policy_coverages_9001", "policy", "coverages for policy 9001", "GET",
+     "/policy/coverages.do?policyId=9001", {}, {},
+     {"area":"policy"}),
+    ("policy_coverages_9002", "policy", "coverages for policy 9002", "GET",
+     "/policy/coverages.do?policyId=9002", {}, {},
+     {"area":"policy"}),
+    ("policy_coverages_99999", "policy", "coverages for policy 99999", "GET",
+     "/policy/coverages.do?policyId=99999", {}, {},
+     {"area":"policy"}),
+    ("policy_coverages_invalid", "policy", "coverages for policy invalid", "GET",
+     "/policy/coverages.do?policyId=invalid", {}, {},
+     {"area":"policy"}),
+    ("policy_coverages_blank", "policy", "coverages for policy blank", "GET",
+     "/policy/coverages.do?policyId=", {}, {},
+     {"area":"policy"}),
+    ("policy_coverages_default", "policy", "coverages without policy id", "GET",
+     "/policy/coverages.do", {}, {},
+     {"area":"policy"}),
+    ("policy_coverageDetail_9001", "policy", "coverageDetail for policy 9001", "GET",
+     "/policy/coverageDetail.do?policyId=9001", {}, {},
+     {"area":"policy"}),
+    ("policy_coverageDetail_9002", "policy", "coverageDetail for policy 9002", "GET",
+     "/policy/coverageDetail.do?policyId=9002", {}, {},
+     {"area":"policy"}),
+    ("policy_coverageDetail_99999", "policy", "coverageDetail for policy 99999", "GET",
+     "/policy/coverageDetail.do?policyId=99999", {}, {},
+     {"area":"policy"}),
+    ("policy_coverageDetail_invalid", "policy", "coverageDetail for policy invalid", "GET",
+     "/policy/coverageDetail.do?policyId=invalid", {}, {},
+     {"area":"policy"}),
+    ("policy_coverageDetail_blank", "policy", "coverageDetail for policy blank", "GET",
+     "/policy/coverageDetail.do?policyId=", {}, {},
+     {"area":"policy"}),
+    ("policy_coverageDetail_default", "policy", "coverageDetail without policy id", "GET",
+     "/policy/coverageDetail.do", {}, {},
+     {"area":"policy"}),
+    ("policy_insuredParty_9001", "policy", "insuredParty for policy 9001", "GET",
+     "/policy/insuredParty.do?policyId=9001", {}, {},
+     {"area":"policy"}),
+    ("policy_insuredParty_9002", "policy", "insuredParty for policy 9002", "GET",
+     "/policy/insuredParty.do?policyId=9002", {}, {},
+     {"area":"policy"}),
+    ("policy_insuredParty_99999", "policy", "insuredParty for policy 99999", "GET",
+     "/policy/insuredParty.do?policyId=99999", {}, {},
+     {"area":"policy"}),
+    ("policy_insuredParty_invalid", "policy", "insuredParty for policy invalid", "GET",
+     "/policy/insuredParty.do?policyId=invalid", {}, {},
+     {"area":"policy"}),
+    ("policy_insuredParty_blank", "policy", "insuredParty for policy blank", "GET",
+     "/policy/insuredParty.do?policyId=", {}, {},
+     {"area":"policy"}),
+    ("policy_insuredParty_default", "policy", "insuredParty without policy id", "GET",
+     "/policy/insuredParty.do", {}, {},
+     {"area":"policy"}),
+    ("policy_renewal_9001", "policy", "renewal for policy 9001", "GET",
+     "/policy/renewal.do?policyId=9001", {}, {},
+     {"area":"policy"}),
+    ("policy_renewal_9002", "policy", "renewal for policy 9002", "GET",
+     "/policy/renewal.do?policyId=9002", {}, {},
+     {"area":"policy"}),
+    ("policy_renewal_99999", "policy", "renewal for policy 99999", "GET",
+     "/policy/renewal.do?policyId=99999", {}, {},
+     {"area":"policy"}),
+    ("policy_renewal_invalid", "policy", "renewal for policy invalid", "GET",
+     "/policy/renewal.do?policyId=invalid", {}, {},
+     {"area":"policy"}),
+    ("policy_renewal_blank", "policy", "renewal for policy blank", "GET",
+     "/policy/renewal.do?policyId=", {}, {},
+     {"area":"policy"}),
+    ("policy_renewal_default", "policy", "renewal without policy id", "GET",
+     "/policy/renewal.do", {}, {},
+     {"area":"policy"}),
+    ("policy_renewal_post", "policy", "Renewal POST remains a read-only review", "POST",
+     "/policy/renewal.do", {"policyId":"9002","expiryDate":"","policyLimit":"","deductible":""}, {"policy.9002.limit":"/policy/view.do?policyId=9002"},
+     {"area":"policy"}),
+    ("admin_adjusters_authenticated", "admin", "Authenticated admin adjusters", "GET",
+     "/admin/adjusters.do", {}, {},
+     {"area":"admin"}),
+    ("admin_adjusters_anonymous", "admin", "Anonymous admin adjusters", "GET",
+     "/admin/adjusters.do", {}, {},
+     {"area":"admin","session":"anonymous"}),
+    ("admin_reference_authenticated", "admin", "Authenticated admin reference", "GET",
+     "/admin/reference.do", {}, {},
+     {"area":"admin"}),
+    ("admin_reference_anonymous", "admin", "Anonymous admin reference", "GET",
+     "/admin/reference.do", {}, {},
+     {"area":"admin","session":"anonymous"}),
+    ("admin_editAdjuster_authenticated", "admin", "Authenticated admin editAdjuster", "GET",
+     "/admin/editAdjuster.do", {}, {},
+     {"area":"admin"}),
+    ("admin_editAdjuster_anonymous", "admin", "Anonymous admin editAdjuster", "GET",
+     "/admin/editAdjuster.do", {}, {},
+     {"area":"admin","session":"anonymous"}),
 ]
 
 ACTOR_PASSWORDS = {"supervisor": "supervisor", "adjuster4": "legacy4"}
+
+
+def area(scenario):
+    name = scenario[0]
+    if name == "login" or name.startswith("session_"):
+        return "session"
+    prefix = name.split("_", 1)[0]
+    return {"payment": "payments", "report": "reports",
+            "fnol": "intake"}.get(prefix, prefix)
 
 
 class NoRedirect(urllib.request.HTTPRedirectHandler):
@@ -258,7 +454,8 @@ def request(opener, method, path, form=None):
         response = opener.open(req, timeout=20)
         return response.getcode(), response.geturl(), response.read().decode("utf-8")
     except urllib.error.HTTPError as error:
-        return error.code, error.geturl(), error.read().decode("utf-8")
+        return (error.code, error.headers.get("Location", error.geturl()),
+                error.read().decode("utf-8"))
 
 
 def fields(body):
@@ -356,14 +553,35 @@ def options(scenario):
     return scenario[7] if len(scenario) > 7 else {}
 
 
-def login(actor):
+def anonymous():
     jar = http.cookiejar.CookieJar()
-    opener = urllib.request.build_opener(
-        urllib.request.HTTPCookieProcessor(jar))
+    return urllib.request.build_opener(
+        urllib.request.HTTPCookieProcessor(jar), NoRedirect())
+
+
+def login(actor):
+    opener = anonymous()
     request(opener, "GET", "/login.do")
     request(opener, "POST", "/login.do",
             {"username": actor, "password": ACTOR_PASSWORDS[actor]})
     return opener
+
+
+def scenario_opener(scenario, shared, actors):
+    extra = options(scenario)
+    session = extra.get("session", "shared")
+    if session == "anonymous":
+        return anonymous()
+    actor = extra.get("actor", "supervisor")
+    if session == "fresh":
+        return login(actor)
+    if session != "shared":
+        raise ValueError("Unknown session mode: " + session)
+    if "actor" not in extra:
+        return shared
+    if actor not in actors:
+        actors[actor] = login(actor)
+    return actors[actor]
 
 
 def write_transcript(opener, scenario):
@@ -379,7 +597,8 @@ def write_transcript(opener, scenario):
     transcript = {
         "scenario": name,
         "description": description,
-        "actor": extra.get("actor", "supervisor"),
+        "actor": ("anonymous" if extra.get("session") == "anonymous"
+                  else extra.get("actor", "supervisor")),
         "request": {
             "method": method,
             "path": CONTEXT_PATH + path,
@@ -393,6 +612,8 @@ def write_transcript(opener, scenario):
             "db_state": state
         }
     }
+    if "area" in extra:
+        transcript["area"] = extra["area"]
     if setup:
         transcript["setup"] = [{
             "method": setup_method,
@@ -418,10 +639,8 @@ def main():
         request(opener, "GET", "/login.do")
         actors = {}
         for scenario in SCENARIOS:
-            actor = options(scenario).get("actor")
-            if actor and actor not in actors:
-                actors[actor] = login(actor)
-            transcript = write_transcript(actors.get(actor, opener), scenario)
+            transcript = write_transcript(
+                scenario_opener(scenario, opener, actors), scenario)
             write_snapshot(transcript["scenario"], tables, classes)
             path = os.path.join(ROOT, "transcripts",
                                 transcript["scenario"] + ".json")
@@ -431,6 +650,7 @@ def main():
         index = [{
             "scenario": scenario[0],
             "module": scenario[1],
+            "area": area(scenario),
             "description": scenario[2]
         } for scenario in SCENARIOS]
         with open(os.path.join(ROOT, "transcripts", "index.json"), "w",

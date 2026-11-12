@@ -26,3 +26,25 @@ its lookup behavior), but points to the server URL. Snapshot readers connect
 as SA over that server, never opening the locked database file themselves.
 
 Run helper tests with `python3 -m unittest discover -s tools/capture -p 'test_*.py'`.
+
+## Scenario metadata and isolation
+
+Append scenarios only. The original 28 transcript payloads remain unchanged;
+their areas are supplied in `index.json`. New scenarios include `area` in their
+options and transcript. Keep the legacy `module` values in the index.
+
+The default session is shared. Use `session: anonymous` for a fresh cookie jar,
+or `session: fresh` to log into a new jar using `actor` (default supervisor).
+These isolated sessions do not follow redirects, so authentication redirects
+are recorded rather than hidden by the login page. Setup steps use the same
+session as the scenario; logout tests must use an isolated session.
+
+Run `python3 tools/capture/coverage.py` after capture to regenerate
+`docs/parity/COVERAGE.md`. It reads module prefixes from `web.xml` and action
+mappings with an XML parser, separates explicit requests from setup steps,
+lists unmapped requests, and exits 1 until every action has a scenario.
+
+Policy search only uses `lineOfBusiness`; the other submitted criteria are
+ignored. Renewal is a read-only review, with no form or validation rules.
+Blank, invalid and absent policy identifiers record its fallback behavior,
+and a POST with blank renewal fields records that no update occurs.

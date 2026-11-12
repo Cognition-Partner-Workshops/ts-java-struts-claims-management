@@ -1,0 +1,21 @@
+{
+  "actor": "supervisor",
+  "area": "policy",
+  "description": "coverages without policy id",
+  "expected": {
+    "business_fields": {
+      "coverageDeductible": "500.00",
+      "coverageLimit": "25000.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/policy/coverages.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/policy/coverages.do"
+  },
+  "scenario": "policy_coverages_default"
+}

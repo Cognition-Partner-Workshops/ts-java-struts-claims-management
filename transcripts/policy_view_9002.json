@@ -1,0 +1,22 @@
+{
+  "actor": "supervisor",
+  "area": "policy",
+  "description": "View policy 9002",
+  "expected": {
+    "business_fields": {
+      "deductibleApplied": "5000.00",
+      "policyLimit": "100000.00",
+      "policyStatus": "ACTIVE"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/policy/view.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/policy/view.do?policyId=9002"
+  },
+  "scenario": "policy_view_9002"
+}

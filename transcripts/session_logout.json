@@ -1,0 +1,18 @@
+{
+  "actor": "supervisor",
+  "area": "session",
+  "description": "Logout without changing the shared session",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/login.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/logout.do"
+  },
+  "scenario": "session_logout"
+}

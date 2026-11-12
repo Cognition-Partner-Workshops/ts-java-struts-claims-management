@@ -1,0 +1,31 @@
+{
+  "actor": "supervisor",
+  "area": "policy",
+  "description": "Renewal POST remains a read-only review",
+  "expected": {
+    "business_fields": {
+      "renewalDeductible": "5000.00",
+      "renewalExpiration": "2019-12-31",
+      "renewalLimit": "100000.00",
+      "renewalPolicyId": "9002",
+      "renewalStatus": "ACTIVE"
+    },
+    "db_state": {
+      "policy.9002.limit": "100000.00"
+    },
+    "result": "forward:/WEB-INF/jsp/policy/renewal.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "deductible": "",
+      "expiryDate": "",
+      "policyId": "9002",
+      "policyLimit": ""
+    },
+    "method": "POST",
+    "path": "/claims/policy/renewal.do"
+  },
+  "scenario": "policy_renewal_post"
+}

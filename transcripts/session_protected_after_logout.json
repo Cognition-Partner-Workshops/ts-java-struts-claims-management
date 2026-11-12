@@ -1,0 +1,25 @@
+{
+  "actor": "supervisor",
+  "area": "session",
+  "description": "Protected page after logout",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "result": "redirect:http://localhost:8080/claims/login.do",
+    "status": 302,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/policy/list.do"
+  },
+  "scenario": "session_protected_after_logout",
+  "setup": [
+    {
+      "form": {},
+      "method": "GET",
+      "path": "/claims/logout.do"
+    }
+  ]
+}

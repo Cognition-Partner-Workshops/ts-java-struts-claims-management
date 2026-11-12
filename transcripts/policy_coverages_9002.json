@@ -1,0 +1,21 @@
+{
+  "actor": "supervisor",
+  "area": "policy",
+  "description": "coverages for policy 9002",
+  "expected": {
+    "business_fields": {
+      "coverageDeductible": "5000.00",
+      "coverageLimit": "100000.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/policy/coverages.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/policy/coverages.do?policyId=9002"
+  },
+  "scenario": "policy_coverages_9002"
+}

@@ -1,0 +1,23 @@
+{
+  "actor": "supervisor",
+  "area": "policy",
+  "description": "insuredParty without policy id",
+  "expected": {
+    "business_fields": {
+      "insuredEffective": "2018-01-01",
+      "insuredExpiration": "2019-12-31",
+      "insuredPolicyId": "9001",
+      "insuredPolicyStatus": "ACTIVE"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/policy/insuredParty.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/policy/insuredParty.do"
+  },
+  "scenario": "policy_insuredParty_default"
+}

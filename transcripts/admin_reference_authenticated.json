@@ -1,0 +1,18 @@
+{
+  "actor": "supervisor",
+  "area": "admin",
+  "description": "Authenticated admin reference",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/error.jsp",
+    "status": 404,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/admin/reference.do"
+  },
+  "scenario": "admin_reference_authenticated"
+}

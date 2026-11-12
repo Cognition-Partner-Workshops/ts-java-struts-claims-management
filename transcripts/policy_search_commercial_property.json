@@ -1,0 +1,29 @@
+{
+  "actor": "supervisor",
+  "area": "policy",
+  "description": "Policy search line COMMERCIAL_PROPERTY",
+  "expected": {
+    "business_fields": {
+      "policyLimit_11": "500000.00",
+      "policyLimit_15": "500000.00",
+      "policyLimit_19": "500000.00",
+      "policyLimit_23": "500000.00",
+      "policyLimit_27": "500000.00",
+      "policyLimit_3": "500000.00",
+      "policyLimit_31": "500000.00",
+      "policyLimit_35": "500000.00",
+      "policyLimit_39": "500000.00",
+      "policyLimit_7": "500000.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/policy/search.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/policy/search.do?lineOfBusiness=COMMERCIAL_PROPERTY"
+  },
+  "scenario": "policy_search_commercial_property"
+}

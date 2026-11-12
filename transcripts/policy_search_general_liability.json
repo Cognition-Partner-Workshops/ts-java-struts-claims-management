@@ -1,0 +1,29 @@
+{
+  "actor": "supervisor",
+  "area": "policy",
+  "description": "Policy search line GENERAL_LIABILITY",
+  "expected": {
+    "business_fields": {
+      "policyLimit_12": "100000.00",
+      "policyLimit_16": "100000.00",
+      "policyLimit_20": "100000.00",
+      "policyLimit_24": "100000.00",
+      "policyLimit_28": "100000.00",
+      "policyLimit_32": "100000.00",
+      "policyLimit_36": "100000.00",
+      "policyLimit_4": "100000.00",
+      "policyLimit_40": "100000.00",
+      "policyLimit_8": "100000.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/policy/search.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/policy/search.do?lineOfBusiness=GENERAL_LIABILITY"
+  },
+  "scenario": "policy_search_general_liability"
+}

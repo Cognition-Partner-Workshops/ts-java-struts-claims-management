@@ -1,0 +1,18 @@
+{
+  "actor": "anonymous",
+  "area": "session",
+  "description": "Anonymous home redirect",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "result": "redirect:http://localhost:8080/claims/login.do",
+    "status": 302,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/home.do"
+  },
+  "scenario": "session_home_anonymous"
+}

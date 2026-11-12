@@ -1,0 +1,30 @@
+{
+  "actor": "supervisor",
+  "area": "policy",
+  "description": "Policy search line HOMEOWNERS",
+  "expected": {
+    "business_fields": {
+      "policyLimit_10": "150000.00",
+      "policyLimit_14": "150000.00",
+      "policyLimit_18": "150000.00",
+      "policyLimit_2": "150000.00",
+      "policyLimit_22": "150000.00",
+      "policyLimit_26": "150000.00",
+      "policyLimit_30": "150000.00",
+      "policyLimit_34": "150000.00",
+      "policyLimit_38": "150000.00",
+      "policyLimit_6": "150000.00",
+      "policyLimit_9002": "100000.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/policy/search.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/policy/search.do?lineOfBusiness=HOMEOWNERS"
+  },
+  "scenario": "policy_search_homeowners"
+}

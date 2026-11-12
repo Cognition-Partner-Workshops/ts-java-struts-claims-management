@@ -1,142 +1,542 @@
 [
   {
+    "area": "session",
     "description": "Valid operator login",
     "module": "policy",
     "scenario": "login"
   },
   {
+    "area": "policy",
     "description": "Search policies by line of business",
     "module": "policy",
     "scenario": "policy_search"
   },
   {
+    "area": "policy",
     "description": "View the reserved low-limit policy",
     "module": "policy",
     "scenario": "policy_view"
   },
   {
+    "area": "intake",
     "description": "Submit a first notice of loss",
     "module": "intake",
     "scenario": "fnol_submit"
   },
   {
+    "area": "workbench",
     "description": "Assign the current claim",
     "module": "workbench",
     "scenario": "workbench_assign"
   },
   {
+    "area": "workbench",
     "description": "Change the claim status",
     "module": "workbench",
     "scenario": "workbench_status"
   },
   {
+    "area": "workbench",
     "description": "Change the claim reserve",
     "module": "workbench",
     "scenario": "workbench_reserve"
   },
   {
+    "area": "settlement",
     "description": "Calculate a standard settlement",
     "module": "settlement",
     "scenario": "settlement_calculate"
   },
   {
+    "area": "settlement",
     "description": "Save the calculated settlement",
     "module": "settlement",
     "scenario": "settlement_save"
   },
   {
+    "area": "payments",
     "description": "Issue a settlement payment",
     "module": "settlement",
     "scenario": "payment_issue"
   },
   {
+    "area": "payments",
     "description": "Review payment history",
     "module": "settlement",
     "scenario": "payment_history"
   },
   {
+    "area": "reports",
     "description": "Open claims by adjuster",
     "module": "reporting",
     "scenario": "report_open_by_adjuster"
   },
   {
+    "area": "reports",
     "description": "Loss ratio by business line",
     "module": "reporting",
     "scenario": "report_loss_ratio"
   },
   {
+    "area": "reports",
     "description": "Aged claims report",
     "module": "reporting",
     "scenario": "report_aged_claims"
   },
   {
+    "area": "settlement",
     "description": "FNOL settlement with a blank deductible",
     "module": "settlement",
     "scenario": "settlement_blank_deductible"
   },
   {
+    "area": "intake",
     "description": "FNOL with a lenient February date",
     "module": "intake",
     "scenario": "intake_lenient_date"
   },
   {
+    "area": "settlement",
     "description": "Settlement using double half-cent rounding",
     "module": "settlement",
     "scenario": "settlement_half_cent"
   },
   {
+    "area": "settlement",
     "description": "Settlement capped by the policy limit",
     "module": "settlement",
     "scenario": "settlement_policy_cap"
   },
   {
+    "area": "settlement",
     "description": "Settlement floored when deductible exceeds the loss",
     "module": "settlement",
     "scenario": "settlement_deductible_floor"
   },
   {
+    "area": "intake",
     "description": "FNOL validation when claimant is absent",
     "module": "intake",
     "scenario": "intake_missing_claimant"
   },
   {
+    "area": "intake",
     "description": "FNOL validation when description is absent",
     "module": "intake",
     "scenario": "intake_missing_description"
   },
   {
+    "area": "intake",
     "description": "FNOL validation for an incorrectly formatted date",
     "module": "intake",
     "scenario": "intake_bad_date"
   },
   {
+    "area": "intake",
     "description": "FNOL with a blank initial reserve",
     "module": "intake",
     "scenario": "intake_blank_reserve"
   },
   {
+    "area": "settlement",
     "description": "Save above the adjuster approval limit",
     "module": "settlement",
     "scenario": "settlement_authority_refused"
   },
   {
+    "area": "settlement",
     "description": "Save within the adjuster approval limit",
     "module": "settlement",
     "scenario": "settlement_authority_within_limit"
   },
   {
+    "area": "settlement",
     "description": "Save the settlement kept in the session by the calculate screen",
     "module": "settlement",
     "scenario": "settlement_session_save"
   },
   {
+    "area": "reports",
     "description": "Claims closed on or before the reporting date",
     "module": "reporting",
     "scenario": "report_closed_claims"
   },
   {
+    "area": "reports",
     "description": "Month-end inventory counting closures from the next day",
     "module": "reporting",
     "scenario": "report_claim_inventory"
+  },
+  {
+    "area": "session",
+    "description": "Login in an isolated session",
+    "module": "session",
+    "scenario": "session_login_ok"
+  },
+  {
+    "area": "session",
+    "description": "Login as a seeded adjuster",
+    "module": "session",
+    "scenario": "session_login_adjuster"
+  },
+  {
+    "area": "session",
+    "description": "Login with bad password",
+    "module": "session",
+    "scenario": "session_login_bad_password"
+  },
+  {
+    "area": "session",
+    "description": "Login with unknown user",
+    "module": "session",
+    "scenario": "session_login_unknown_user"
+  },
+  {
+    "area": "session",
+    "description": "Login with blank fields",
+    "module": "session",
+    "scenario": "session_login_blank_fields"
+  },
+  {
+    "area": "session",
+    "description": "Login with blank username",
+    "module": "session",
+    "scenario": "session_login_blank_username"
+  },
+  {
+    "area": "session",
+    "description": "Login with blank password",
+    "module": "session",
+    "scenario": "session_login_blank_password"
+  },
+  {
+    "area": "session",
+    "description": "Authenticated home",
+    "module": "session",
+    "scenario": "session_home_authenticated"
+  },
+  {
+    "area": "session",
+    "description": "Anonymous home redirect",
+    "module": "session",
+    "scenario": "session_home_anonymous"
+  },
+  {
+    "area": "session",
+    "description": "Logout without changing the shared session",
+    "module": "session",
+    "scenario": "session_logout"
+  },
+  {
+    "area": "session",
+    "description": "Protected page after logout",
+    "module": "session",
+    "scenario": "session_protected_after_logout"
+  },
+  {
+    "area": "policy",
+    "description": "Policy search line AUTO",
+    "module": "policy",
+    "scenario": "policy_search_auto"
+  },
+  {
+    "area": "policy",
+    "description": "Policy search line HOMEOWNERS",
+    "module": "policy",
+    "scenario": "policy_search_homeowners"
+  },
+  {
+    "area": "policy",
+    "description": "Policy search line COMMERCIAL_PROPERTY",
+    "module": "policy",
+    "scenario": "policy_search_commercial_property"
+  },
+  {
+    "area": "policy",
+    "description": "Policy search line GENERAL_LIABILITY",
+    "module": "policy",
+    "scenario": "policy_search_general_liability"
+  },
+  {
+    "area": "policy",
+    "description": "Policy search line MARINE",
+    "module": "policy",
+    "scenario": "policy_search_marine"
+  },
+  {
+    "area": "policy",
+    "description": "Policy search line blank",
+    "module": "policy",
+    "scenario": "policy_search_blank"
+  },
+  {
+    "area": "policy",
+    "description": "Policy search with no criteria",
+    "module": "policy",
+    "scenario": "policy_search_default"
+  },
+  {
+    "area": "policy",
+    "description": "Search with ignored policyNumber criterion",
+    "module": "policy",
+    "scenario": "policy_search_policyNumber"
+  },
+  {
+    "area": "policy",
+    "description": "Search with ignored insuredName criterion",
+    "module": "policy",
+    "scenario": "policy_search_insuredName"
+  },
+  {
+    "area": "policy",
+    "description": "Search with ignored term criterion",
+    "module": "policy",
+    "scenario": "policy_search_term"
+  },
+  {
+    "area": "policy",
+    "description": "List all policies",
+    "module": "policy",
+    "scenario": "policy_list"
+  },
+  {
+    "area": "policy",
+    "description": "View policy 1",
+    "module": "policy",
+    "scenario": "policy_view_1"
+  },
+  {
+    "area": "policy",
+    "description": "View policy 2",
+    "module": "policy",
+    "scenario": "policy_view_2"
+  },
+  {
+    "area": "policy",
+    "description": "View policy 3",
+    "module": "policy",
+    "scenario": "policy_view_3"
+  },
+  {
+    "area": "policy",
+    "description": "View policy 4",
+    "module": "policy",
+    "scenario": "policy_view_4"
+  },
+  {
+    "area": "policy",
+    "description": "View policy 9002",
+    "module": "policy",
+    "scenario": "policy_view_9002"
+  },
+  {
+    "area": "policy",
+    "description": "View policy 99999",
+    "module": "policy",
+    "scenario": "policy_view_99999"
+  },
+  {
+    "area": "policy",
+    "description": "View policy invalid",
+    "module": "policy",
+    "scenario": "policy_view_invalid"
+  },
+  {
+    "area": "policy",
+    "description": "View policy blank",
+    "module": "policy",
+    "scenario": "policy_view_blank"
+  },
+  {
+    "area": "policy",
+    "description": "View without a policy id",
+    "module": "policy",
+    "scenario": "policy_view_default"
+  },
+  {
+    "area": "policy",
+    "description": "coverages for policy 9001",
+    "module": "policy",
+    "scenario": "policy_coverages_9001"
+  },
+  {
+    "area": "policy",
+    "description": "coverages for policy 9002",
+    "module": "policy",
+    "scenario": "policy_coverages_9002"
+  },
+  {
+    "area": "policy",
+    "description": "coverages for policy 99999",
+    "module": "policy",
+    "scenario": "policy_coverages_99999"
+  },
+  {
+    "area": "policy",
+    "description": "coverages for policy invalid",
+    "module": "policy",
+    "scenario": "policy_coverages_invalid"
+  },
+  {
+    "area": "policy",
+    "description": "coverages for policy blank",
+    "module": "policy",
+    "scenario": "policy_coverages_blank"
+  },
+  {
+    "area": "policy",
+    "description": "coverages without policy id",
+    "module": "policy",
+    "scenario": "policy_coverages_default"
+  },
+  {
+    "area": "policy",
+    "description": "coverageDetail for policy 9001",
+    "module": "policy",
+    "scenario": "policy_coverageDetail_9001"
+  },
+  {
+    "area": "policy",
+    "description": "coverageDetail for policy 9002",
+    "module": "policy",
+    "scenario": "policy_coverageDetail_9002"
+  },
+  {
+    "area": "policy",
+    "description": "coverageDetail for policy 99999",
+    "module": "policy",
+    "scenario": "policy_coverageDetail_99999"
+  },
+  {
+    "area": "policy",
+    "description": "coverageDetail for policy invalid",
+    "module": "policy",
+    "scenario": "policy_coverageDetail_invalid"
+  },
+  {
+    "area": "policy",
+    "description": "coverageDetail for policy blank",
+    "module": "policy",
+    "scenario": "policy_coverageDetail_blank"
+  },
+  {
+    "area": "policy",
+    "description": "coverageDetail without policy id",
+    "module": "policy",
+    "scenario": "policy_coverageDetail_default"
+  },
+  {
+    "area": "policy",
+    "description": "insuredParty for policy 9001",
+    "module": "policy",
+    "scenario": "policy_insuredParty_9001"
+  },
+  {
+    "area": "policy",
+    "description": "insuredParty for policy 9002",
+    "module": "policy",
+    "scenario": "policy_insuredParty_9002"
+  },
+  {
+    "area": "policy",
+    "description": "insuredParty for policy 99999",
+    "module": "policy",
+    "scenario": "policy_insuredParty_99999"
+  },
+  {
+    "area": "policy",
+    "description": "insuredParty for policy invalid",
+    "module": "policy",
+    "scenario": "policy_insuredParty_invalid"
+  },
+  {
+    "area": "policy",
+    "description": "insuredParty for policy blank",
+    "module": "policy",
+    "scenario": "policy_insuredParty_blank"
+  },
+  {
+    "area": "policy",
+    "description": "insuredParty without policy id",
+    "module": "policy",
+    "scenario": "policy_insuredParty_default"
+  },
+  {
+    "area": "policy",
+    "description": "renewal for policy 9001",
+    "module": "policy",
+    "scenario": "policy_renewal_9001"
+  },
+  {
+    "area": "policy",
+    "description": "renewal for policy 9002",
+    "module": "policy",
+    "scenario": "policy_renewal_9002"
+  },
+  {
+    "area": "policy",
+    "description": "renewal for policy 99999",
+    "module": "policy",
+    "scenario": "policy_renewal_99999"
+  },
+  {
+    "area": "policy",
+    "description": "renewal for policy invalid",
+    "module": "policy",
+    "scenario": "policy_renewal_invalid"
+  },
+  {
+    "area": "policy",
+    "description": "renewal for policy blank",
+    "module": "policy",
+    "scenario": "policy_renewal_blank"
+  },
+  {
+    "area": "policy",
+    "description": "renewal without policy id",
+    "module": "policy",
+    "scenario": "policy_renewal_default"
+  },
+  {
+    "area": "policy",
+    "description": "Renewal POST remains a read-only review",
+    "module": "policy",
+    "scenario": "policy_renewal_post"
+  },
+  {
+    "area": "admin",
+    "description": "Authenticated admin adjusters",
+    "module": "admin",
+    "scenario": "admin_adjusters_authenticated"
+  },
+  {
+    "area": "admin",
+    "description": "Anonymous admin adjusters",
+    "module": "admin",
+    "scenario": "admin_adjusters_anonymous"
+  },
+  {
+    "area": "admin",
+    "description": "Authenticated admin reference",
+    "module": "admin",
+    "scenario": "admin_reference_authenticated"
+  },
+  {
+    "area": "admin",
+    "description": "Anonymous admin reference",
+    "module": "admin",
+    "scenario": "admin_reference_anonymous"
+  },
+  {
+    "area": "admin",
+    "description": "Authenticated admin editAdjuster",
+    "module": "admin",
+    "scenario": "admin_editAdjuster_authenticated"
+  },
+  {
+    "area": "admin",
+    "description": "Anonymous admin editAdjuster",
+    "module": "admin",
+    "scenario": "admin_editAdjuster_anonymous"
   }
 ]

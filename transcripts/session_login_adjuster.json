@@ -1,0 +1,23 @@
+{
+  "actor": "anonymous",
+  "area": "session",
+  "description": "Login as a seeded adjuster",
+  "expected": {
+    "business_fields": {
+      "signedInUser": "adjuster4"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/home.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "password": "legacy4",
+      "username": "adjuster4"
+    },
+    "method": "POST",
+    "path": "/claims/login.do"
+  },
+  "scenario": "session_login_adjuster"
+}

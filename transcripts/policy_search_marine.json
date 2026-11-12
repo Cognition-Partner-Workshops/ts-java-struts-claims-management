@@ -1,0 +1,18 @@
+{
+  "actor": "supervisor",
+  "area": "policy",
+  "description": "Policy search line MARINE",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/policy/search.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/policy/search.do?lineOfBusiness=MARINE"
+  },
+  "scenario": "policy_search_marine"
+}

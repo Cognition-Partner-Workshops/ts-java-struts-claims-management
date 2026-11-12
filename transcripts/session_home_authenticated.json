@@ -1,0 +1,20 @@
+{
+  "actor": "supervisor",
+  "area": "session",
+  "description": "Authenticated home",
+  "expected": {
+    "business_fields": {
+      "signedInUser": "supervisor"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/home.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/home.do"
+  },
+  "scenario": "session_home_authenticated"
+}

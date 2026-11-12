@@ -1,0 +1,18 @@
+{
+  "actor": "anonymous",
+  "area": "admin",
+  "description": "Anonymous admin adjusters",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "result": "redirect:http://localhost:8080/claims/login.do",
+    "status": 302,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/admin/adjusters.do"
+  },
+  "scenario": "admin_adjusters_anonymous"
+}

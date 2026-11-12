@@ -1,0 +1,22 @@
+{
+  "actor": "supervisor",
+  "area": "policy",
+  "description": "coverageDetail for policy blank",
+  "expected": {
+    "business_fields": {
+      "coverageDeductible": "100.00",
+      "coveragePolicyId": "9001",
+      "coveragePolicyLimit": "1000.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/policy/coverageDetail.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/policy/coverageDetail.do?policyId="
+  },
+  "scenario": "policy_coverageDetail_blank"
+}
