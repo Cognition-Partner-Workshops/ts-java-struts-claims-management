@@ -1,0 +1,21 @@
+{
+  "actor": "adjusterLogin",
+  "db_snapshot": "db/login_unknown.json",
+  "description": "login unknown",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/login.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "password": "wrong",
+      "username": "nobody"
+    },
+    "method": "POST",
+    "path": "/claims/login.do"
+  },
+  "scenario": "login_unknown"
+}

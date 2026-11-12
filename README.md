@@ -38,7 +38,8 @@ database files and build output.
 workflow scenario list, writes normalized JSON transcripts under
 `transcripts/`, and shuts Jetty down. The transcripts are fixtures for a
 replay harness and expose semantic values through the `<ns:field>` extraction
-spans.
+spans. After every recorded request the harness also writes a full database
+snapshot to `transcripts/db/<scenario>.json`; see `transcripts/README.md`.
 
 This repository is the legacy source of truth. Modernization work belongs in
 a separate target repository and should not rewrite this baseline in place.

@@ -1,0 +1,20 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/report_claims_blank.json",
+  "description": "report claims blank",
+  "expected": {
+    "business_fields": {
+      "claimCount": "0"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/report/adjusterClaims.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/report/adjusterClaims.do?adjuster="
+  },
+  "scenario": "report_claims_blank"
+}

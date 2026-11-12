@@ -1,0 +1,22 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/payment_history_invalid.json",
+  "description": "payment history invalid",
+  "expected": {
+    "business_fields": {
+      "checkNumber_61": "CHK-61",
+      "paymentAmount_61": "1000.00",
+      "paymentStatus_61": "ISSUED"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/payment/history.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/payment/history.do?claimId=abc"
+  },
+  "scenario": "payment_history_invalid"
+}

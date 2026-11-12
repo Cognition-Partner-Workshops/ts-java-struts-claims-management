@@ -1,0 +1,22 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/workbench_notes_invalid.json",
+  "description": "workbench notes invalid",
+  "expected": {
+    "business_fields": {
+      "noteClaimId": "119",
+      "noteClaimStatus": "DENIED",
+      "noteReserve": "1500.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/workbench/notes.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/workbench/notes.do?claimId=abc"
+  },
+  "scenario": "workbench_notes_invalid"
+}

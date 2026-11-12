@@ -1,5 +1,6 @@
 {
   "actor": "supervisor",
+  "db_snapshot": "db/fnol_submit.json",
   "description": "Submit a first notice of loss",
   "expected": {
     "business_fields": {

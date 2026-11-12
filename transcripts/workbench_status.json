@@ -1,5 +1,6 @@
 {
   "actor": "supervisor",
+  "db_snapshot": "db/workbench_status.json",
   "description": "Change the claim status",
   "expected": {
     "business_fields": {

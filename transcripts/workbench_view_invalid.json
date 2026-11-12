@@ -1,0 +1,23 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/workbench_view_invalid.json",
+  "description": "workbench view invalid",
+  "expected": {
+    "business_fields": {
+      "assignedAdjuster": "adjuster4",
+      "claimStatus": "DENIED",
+      "lossDate": "2019-01-15",
+      "reserveAmount": "1500.00"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/workbench/view.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/workbench/view.do?claimId=abc"
+  },
+  "scenario": "workbench_view_invalid"
+}

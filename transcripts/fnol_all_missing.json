@@ -1,0 +1,21 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/fnol_all_missing.json",
+  "description": "fnol all missing",
+  "expected": {
+    "business_fields": {},
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/intake/new.jsp",
+    "status": 200,
+    "validation_errors": [
+      "errors.claimant.required",
+      "errors.description.required"
+    ]
+  },
+  "request": {
+    "form": {},
+    "method": "POST",
+    "path": "/claims/intake/submit.do"
+  },
+  "scenario": "fnol_all_missing"
+}

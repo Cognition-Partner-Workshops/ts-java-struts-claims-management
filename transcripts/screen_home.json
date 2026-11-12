@@ -1,0 +1,20 @@
+{
+  "actor": "adjuster1",
+  "db_snapshot": "db/screen_home.json",
+  "description": "screen home",
+  "expected": {
+    "business_fields": {
+      "signedInUser": "adjuster1"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/home.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {},
+    "method": "GET",
+    "path": "/claims/home.do"
+  },
+  "scenario": "screen_home"
+}

@@ -1,0 +1,14 @@
+<th:block th:replace="~{fragments/markers :: view('/WEB-INF/jsp/error.jsp')}"></th:block>
+<html><head><title th:text="#{errors.title}">Claims System Error</title></head><body>
+<table class="error" cellpadding="4" cellspacing="0" border="1">
+<tr><td><h1 th:text="#{errors.title}"></h1></td></tr>
+<tr><td th:text="#{errors.system}"></td></tr>
+<tr><td>[[#{errors.reference}]]: [[${referenceStatus}]]</td></tr>
+<tr><td><a th:href="@{/login.do}" th:text="#{errors.loginLink}"></a></td></tr>
+<tr><td th:text="#{errors.contact}"></td></tr>
+<tr><td th:text="#{errors.retry}"></td></tr>
+<tr><td th:text="#{errors.reference}"></td></tr>
+<tr><td th:text="#{errors.status}"></td></tr>
+<tr><td th:text="#{errors.session}"></td></tr>
+</table>
+</body></html>
