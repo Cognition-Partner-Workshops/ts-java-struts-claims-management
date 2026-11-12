@@ -7,7 +7,6 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.junit.Test;
 import com.northstar.claims.web.form.SettlementForm;
 
-/** Struts populates form beans through BeanUtils with its default converters. */
 public class SettlementFormBindingTest {
 
     @Test

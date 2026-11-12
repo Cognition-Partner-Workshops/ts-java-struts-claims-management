@@ -7,7 +7,6 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.junit.Test;
 import com.northstar.claims.web.form.IntakeForm;
 
-/** Struts binds a blank initial reserve on the FNOL form as 0. */
 public class IntakeFormBindingTest {
 
     @Test

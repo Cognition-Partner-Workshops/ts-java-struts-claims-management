@@ -16,10 +16,7 @@ import com.northstar.claims.model.Settlement;
 import com.northstar.claims.service.SettlementCalculator;
 import com.northstar.claims.web.form.SettlementForm;
 
-/**
- * Shared entry point for the settlement screens. The operator's approval
- * limit is checked here before the screen logic runs.
- */
+/** Shared entry point for the settlement screens. */
 public abstract class SettlementAuthorityAction extends ClaimsActionSupport {
 
     public static final String PENDING_SETTLEMENT = "pendingSettlement";
