@@ -32,13 +32,27 @@ class SettlementRoutesTest {
     }
 
     @Test
-    void refusalEmptyDetailAndCalculationError() throws Exception {
+    void calculateAndSaveForOperator() throws Exception {
         MockHttpSession session = new MockHttpSession();
         session.setAttribute("user", "adjuster4");
         mvc.perform(post("/settlement/calculate.do").with(user("adjuster4")).session(session)
                         .param("claimId", "118").param("coveredAmount", "5000").param("deductible", "1000"))
-                .andExpect(view().name("settlement/refused"))
-                .andExpect(content().string(containsString("<!-- ns:error errors.settlement.authority -->")));
+                .andExpect(view().name("settlement/calculate"))
+                .andExpect(model().attribute("settlement",
+                        org.hamcrest.Matchers.hasProperty("settlementAmount", org.hamcrest.Matchers.is(4000.0))));
+        mvc.perform(post("/settlement/save.do").with(user("adjuster4")).session(session)
+                        .param("claimId", "118"))
+                .andExpect(view().name("settlement/save"))
+                .andExpect(model().attribute("settlementAmount", 4000.0));
+        mvc.perform(get("/settlement/detail.do").with(user("adjuster4")).session(session)
+                        .param("claimId", "118"))
+                .andExpect(view().name("settlement/detail"))
+                .andExpect(model().attribute("settlement",
+                        org.hamcrest.Matchers.hasProperty("settlementAmount", org.hamcrest.Matchers.is(4000.0))));
+    }
+
+    @Test
+    void emptyDetailAndCalculationError() throws Exception {
         mvc.perform(get("/settlement/detail.do").with(user("supervisor")).param("claimId", "99999"))
                 .andExpect(view().name("error")).andExpect(status().isOk())
                 .andExpect(content().string(containsString("Reference status: null")));

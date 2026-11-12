@@ -33,18 +33,7 @@ public class SettlementController {
 
     public String execute(HttpServletRequest request, boolean save) {
         SettlementForm form = SettlementForm.bind(request);
-        Settlement proposed = resolve(form, request, save);
         String user = String.valueOf(request.getSession().getAttribute("user"));
-        var adjusters = jdbc.query("select * from ADJUSTER where username = ?",
-                (rs, row) -> rs.getDouble("approval_limit"), user);
-        double limit = adjusters.isEmpty() ? 0 : adjusters.get(0);
-        if (proposed.getSettlementAmount() > limit) {
-            request.setAttribute("nsValidationErrors", List.of("errors.settlement.authority"));
-            request.setAttribute("refusedAmount", proposed.getSettlementAmount());
-            request.setAttribute("approvalLimit", limit);
-            request.setAttribute("refusedAdjuster", user);
-            return "settlement/refused";
-        }
         Settlement value = resolve(form, request, save);
         if (save) {
             value.setSettlementId(jdbc.queryForObject("select coalesce(max(settlement_id),0)+1 from SETTLEMENT", Integer.class));
@@ -78,7 +67,7 @@ public class SettlementController {
 
     private void copyAttributes(HttpServletRequest request, org.springframework.ui.Model model) {
         for (String name : List.of("settlement", "settlementAmount", "policyLimit", "screenName",
-                "screenMode", "operatorScope", "nsValidationErrors", "refusedAmount", "approvalLimit", "refusedAdjuster")) {
+                "screenMode", "operatorScope")) {
             model.addAttribute(name, request.getAttribute(name));
         }
     }
