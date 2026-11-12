@@ -40,5 +40,91 @@ it never opens the HSQLDB file while Jetty is running.
 The harness strips `jsessionid` URL suffixes, excludes tokens and timestamps,
 collapses extracted HTML whitespace, sorts JSON map keys, writes two-space
 indentation, and ends every file with a newline. Run `make capture` to reset
-the fixed seed, execute the ordered scenarios, and regenerate the fixtures.
+the fixed seed, execute the ordered scenarios, and regenerate the fixtures,
+including every file under `transcripts/db/` (stale snapshots are removed).
 Run it twice and `git diff -- transcripts/` must be empty.
+
+## Area replay and route coverage
+
+`python3 tools/capture/capture.py --check-routes` checks all 42 mapped routes
+from `docs/migration/ROUTES.md` before any server or database is started.
+Normal capture runs this gate too. Requests, setup requests and probes count.
+`transcripts/index.json` and scenario options carry the owning `area` without
+changing existing individual transcript payloads.
+
+Use `python3 tools/capture/capture.py --area intake` (or `policy`, `settlement`,
+`payments`, `reports`, `"shared foundation"`) to refresh just that area's
+transcripts and snapshots. The full ordered request stream is still replayed
+from seed, including other areas and probes: generated ids and session state
+must match the full capture. Other areas' files are not deleted or overwritten.
+This is an output slice, not a faster isolated execution.
+
+The appended matrix covers empty, invalid and unknown ids, all hard-coded
+login roles (including accepted usernames without an ADJUSTER row), FNOL
+validation, authority boundaries, payment failures and month-end boundaries.
+See `docs/migration/CAPTURE-COVERAGE.md` for characterization defect mappings
+and HTTP-inaccessible cases. Broken legacy responses are recorded, not fixed.
+
+## Database snapshots
+
+Every transcript also has a top-level `db_snapshot` key holding the path,
+relative to `transcripts/`, of a sidecar file with the complete database state
+taken right after the recorded request returned (after any `setup` requests,
+before the `db_state` probes run). The existing keys above are unchanged.
+`db/_seed.json` is the same snapshot of the freshly seeded database, taken
+before the first request.
+
+```json
+{
+  "scenario": "workbench_assign",
+  "tables": {
+    "CLAIM": {
+      "columns": [["CLAIM_ID", "INTEGER"], ["CLAIM_NUMBER", "VARCHAR"], ...],
+      "primary_key": ["CLAIM_ID"],
+      "rows": [
+        [121, "CLM-121", 9001, "Capture Claimant", "2019-04-01", ...]
+      ]
+    }
+  }
+}
+```
+
+* `tables` holds every base table in the `PUBLIC` schema, keyed by its
+  upper-case name and sorted by name.
+* `columns` lists `[name, SQL type]` pairs in table column order. Each row is
+  an array in that same order.
+* `primary_key` lists the key columns in key order. Rows are sorted by the
+  primary key, or by every column when a table has none.
+* Values are typed: integer columns are JSON numbers, `BOOLEAN` columns are
+  `true`/`false`, SQL `NULL` is `null`. `DOUBLE` values are strings holding
+  the shortest decimal that round-trips the stored double, in plain notation
+  (`"4500.0"`, `"1.005"`), so binary floating-point drift stays visible.
+  `DECIMAL` values are plain strings at their stored scale. Dates are
+  `yyyy-MM-dd` strings. Other types use their JDBC string form.
+* Volatile values are replaced with placeholders, the same way the response
+  normalization drops them: `TIME`/`TIMESTAMP` columns become `"<timestamp>"`,
+  a `DATE` equal to the capture machine's current date becomes `"<today>"`,
+  and `jsessionid` URL suffixes are stripped from strings. Columns holding
+  generated tokens are listed in `VOLATILE_COLUMNS` in
+  `tools/capture/capture.py` and replaced with the placeholder given there.
+  The current application writes only fixed dates, so no seeded or captured
+  value is replaced today; the rules guard future scenarios.
+* Each row is written on one line, so a changed row shows as a one-line diff.
+
+### How the snapshot is read
+
+Capture runs HSQLDB in server mode inside the Jetty JVM, so the harness reads
+the live database over JDBC without opening the locked file. `capture.py`
+starts Jetty with `-Dclaims.jetty.contextXml=tools/capture/jetty-capture.xml`.
+That context file binds the same resources as `WEB-INF/jetty-env.xml`, starts
+an `org.hsqldb.server.Server` for `target/db/northstar` on
+`127.0.0.1:9001` (`CAPTURE_DB_PORT` overrides the port), and makes `org.hsqldb`
+a webapp system class. With that, the application's in-process `jdbc:hsqldb:file:`
+connections and the server share one open database. `make run` and the
+deployed WAR are unchanged and do not start the server.
+
+`tools/capture/DbSnapshot.java` is the JDBC reader. Capture runs it as a
+single-file Java program (JDK 11+) on the project's `hsqldb` jar, resolved
+with `maven-dependency-plugin:build-classpath`, and asks it for one snapshot
+per request over stdin/stdout, inside one read-only transaction. Capture stops
+with an error if port 8080 or the database port is already in use.

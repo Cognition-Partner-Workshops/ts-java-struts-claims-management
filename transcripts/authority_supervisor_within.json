@@ -1,0 +1,25 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/authority_supervisor_within.json",
+  "description": "authority supervisor within",
+  "expected": {
+    "business_fields": {
+      "savedBy": "supervisor",
+      "settlementAmount": "2499.99"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/settlement/save.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimId": "118",
+      "coveredAmount": "2499.99",
+      "deductible": "0"
+    },
+    "method": "POST",
+    "path": "/claims/settlement/save.do"
+  },
+  "scenario": "authority_supervisor_within"
+}

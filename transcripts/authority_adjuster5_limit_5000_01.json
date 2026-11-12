@@ -1,0 +1,28 @@
+{
+  "actor": "adjuster5",
+  "db_snapshot": "db/authority_adjuster5_limit_5000_01.json",
+  "description": "authority adjuster5 limit 5000 01",
+  "expected": {
+    "business_fields": {
+      "approvalLimit": "5000.00",
+      "refusedAdjuster": "adjuster5",
+      "refusedAmount": "5000.01"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/settlement/refused.jsp",
+    "status": 200,
+    "validation_errors": [
+      "errors.settlement.authority"
+    ]
+  },
+  "request": {
+    "form": {
+      "claimId": "118",
+      "coveredAmount": "5000.01",
+      "deductible": "0"
+    },
+    "method": "POST",
+    "path": "/claims/settlement/save.do"
+  },
+  "scenario": "authority_adjuster5_limit_5000_01"
+}

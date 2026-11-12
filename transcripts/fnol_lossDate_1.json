@@ -1,0 +1,27 @@
+{
+  "actor": "supervisor",
+  "db_snapshot": "db/fnol_lossDate_1.json",
+  "description": "fnol lossDate 1",
+  "expected": {
+    "business_fields": {
+      "claimId": "125",
+      "claimStatus": "OPEN"
+    },
+    "db_state": {},
+    "result": "forward:/WEB-INF/jsp/intake/confirm.jsp",
+    "status": 200,
+    "validation_errors": []
+  },
+  "request": {
+    "form": {
+      "claimantName": "Parity Claimant",
+      "description": "Parity loss",
+      "initialReserve": "100",
+      "lossDate": "02/30/2019",
+      "lossType": "FIRE"
+    },
+    "method": "POST",
+    "path": "/claims/intake/submit.do"
+  },
+  "scenario": "fnol_lossDate_1"
+}
