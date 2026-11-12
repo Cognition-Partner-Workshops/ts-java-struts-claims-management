@@ -1,0 +1,43 @@
+<th:block th:replace="~{fragments/markers :: view('/WEB-INF/jsp/workbench/view.jsp')}"></th:block>
+<table class="page" cellpadding="0" cellspacing="0" border="0">
+<th:block th:replace="~{fragments/header :: banner}"></th:block>
+<tr><td class="content">
+<table th:replace="~{fragments/nav :: nav}"></table>
+<h2><th:block th:text="#{workbench.view.heading}"></th:block></h2>
+<table class="details" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<th><th:block th:text="#{claim.number}"></th:block></th><td><th:block th:text="${claim.claimNumber}"></th:block></td></tr>
+<tr>
+<th><th:block th:text="#{intake.lossDate}"></th:block></th><td><th:block th:replace="~{fragments/markers :: field('lossDate', ${lossDate}, 'date')}"></th:block></td></tr>
+<tr>
+<th><th:block th:text="#{claim.status}"></th:block></th><td><th:block th:replace="~{fragments/markers :: field('claimStatus', ${claimStatus}, 'text')}"></th:block></td></tr>
+<tr>
+<th><th:block th:text="#{claim.reserve}"></th:block></th><td><th:block th:replace="~{fragments/markers :: field('reserveAmount', ${reserveAmount}, 'money')}"></th:block></td></tr>
+<tr>
+<th><th:block th:text="#{claim.adjuster}"></th:block></th><td><th:block th:replace="~{fragments/markers :: field('assignedAdjuster', ${assignedAdjuster}, 'text')}"></th:block></td></tr>
+<tr>
+<th><th:block th:text="#{claim.note}"></th:block></th><td><th:block th:replace="~{fragments/markers :: field('noteText', ${noteText}, 'text')}"></th:block></td></tr>
+</table>
+<p><a href="assign.do"><th:block th:text="#{workbench.assign}"></th:block></a> | <a href="reserve.do"><th:block th:text="#{workbench.reserve}"></th:block></a></p>
+<p><a href="status.do?status=INVESTIGATING"><th:block th:text="#{workbench.investigate}"></th:block></a> | <a href="note.do"><th:block th:text="#{workbench.note}"></th:block></a></p>
+<p><a th:href="|notes.do?claimId=${claimId}|"><th:block th:text="#{workbench.notesHistory}"></th:block></a> |
+<a th:href="|reserveHistory.do?claimId=${claimId}|"><th:block th:text="#{workbench.reserveHistory}"></th:block></a> |
+<a th:href="|statusHistory.do?claimId=${claimId}|"><th:block th:text="#{workbench.statusHistory}"></th:block></a></p>
+<table class="screen-audit" cellpadding="3" cellspacing="0" border="1">
+<tr>
+<th><th:block th:text="#{jsp.screen.context}"></th:block></th>
+<td><th:block th:text="#{jsp.screen.readOnly}"></th:block></td>
+</tr>
+<tr>
+<th><th:block th:text="#{jsp.screen.operator}"></th:block></th>
+<td><th:block th:text="${user}"></th:block></td>
+</tr>
+<tr>
+<th><th:block th:text="#{jsp.screen.asOf}"></th:block></th>
+<td>[[${reportAsOfDate}]]</td>
+</tr>
+</table>
+</td></tr>
+<tr th:replace="~{fragments/footer :: footer}"></tr>
+</table>
+<th:block th:replace="~{fragments/footer :: links}"></th:block>
