@@ -1,0 +1,89 @@
+case_id,scope,steps,actor_limit,claim_id,claim_setup,policy_limit,covered_amount,deductible,depreciation,expected_amount,expected_capped,expected_refused,expected_saved_claim,expected_error,suspected_defect,description
+C01,calculator,calculate,,,,20000,10000,500,100,9400.00,false,,,,,Depreciation then deductible under the limit
+C02,calculator,calculate,,,,20000,10000,,100,9900.00,false,,,,,Blank deductible applies zero
+C03,calculator,calculate,,,,20000,10000,~,100,9900.00,false,,,,,Null deductible applies zero
+C04,calculator,calculate,,,,20000,10000,"   ",100,9900.00,false,,,,,Whitespace-only deductible applies zero
+C05,calculator,calculate,,,,20000,10000," 500 ",100,9400.00,false,,,,,Deductible with surrounding spaces is trimmed
+C06,calculator,calculate,,,,20000,1000,1000,0,0.00,false,,,,,Deductible equal to the loss
+C07,calculator,calculate,,,,20000,1000,2000,100,0.00,false,,,,SD-17,Deductible above the loss floors at zero
+C08,calculator,calculate,,,,20000,1000,0,1500,0.00,false,,,,,Depreciation above the loss floors at zero
+C09,calculator,calculate,,,,25000,5000,500,1000.50,3499.50,false,,,,,Fractional depreciation
+C10,calculator,calculate,,,,10000,20000,500,100,10000.00,true,,,,,Policy limit caps the payout
+C11,calculator,calculate,,,,10000,10500,500,0,10000.00,false,,,,,Net loss exactly at the policy limit is not capped
+C12,calculator,calculate,,,,10000,10500.01,500,0,10000.00,true,,,,,Net loss one cent over the policy limit is capped
+C13,calculator,calculate,,,,10000,10499.99,500,0,9999.99,false,,,,,Net loss one cent under the policy limit
+C14,calculator,calculate,,,,0,100,0,0,0.00,true,,,,,Zero policy limit pays nothing and reports capped
+C15,calculator,calculate,,,,0,0,0,0,0.00,false,,,,,Zero policy limit with zero loss is not capped
+C16,calculator,calculate,,,,-50,100,0,0,-50.00,true,,,,SD-02,Negative policy limit produces a negative settlement
+C17,calculator,calculate,,,,100,1.005,0,0,1.00,false,,,,SD-01,Half cent rounds down to the even cent
+C18,calculator,calculate,,,,100,1.015,0,0,1.02,false,,,,,Half cent rounds up to the even cent
+C19,calculator,calculate,,,,100,1.025,0,0,1.02,false,,,,SD-01,Half cent rounds down to the even cent
+C20,calculator,calculate,,,,100,2.675,0,0,2.68,false,,,,,Half cent uses the decimal text of the double
+C21,calculator,calculate,,,,100,0.125,0,0,0.12,false,,,,SD-01,Half cent rounds down to the even cent
+C22,calculator,calculate,,,,100,1.004,0,0,1.00,false,,,,,Below half a cent rounds down
+C23,calculator,calculate,,,,100,1.006,0,0,1.01,false,,,,,Above half a cent rounds up
+C24,calculator,calculate,,,,100,0.3,0,0.1,0.20,false,,,,,Subtraction is decimal and not binary floating point
+C25,calculator,calculate,,,,10000,1000.10,0.1,0,1000.00,false,,,,,Decimal deductible subtraction
+C26,calculator,calculate,,,,1000,1000.004,0,0,1000.00,true,,,,SD-05,Cap flag is set before rounding
+C27,calculator,calculate,,,,1000.005,2000,0,0,1000.00,true,,,,,Fractional-cent policy limit is rounded half-even
+C28,calculator,calculate,,,,1000,-100,0,0,0.00,false,,,,,Negative covered amount floors at zero
+C29,calculator,calculate,,,,10000,1000,-500,0,1500.00,false,,,,SD-03,Negative deductible increases the payout
+C30,calculator,calculate,,,,10000,1000,0,-200,1200.00,false,,,,SD-04,Negative depreciation increases the payout
+C31,calculator,calculate,,,,10000,1000,abc,0,,,,,NumberFormatException,,Non-numeric deductible is rejected
+C32,calculator,calculate,,,,10000,1000,"1,000",0,,,,,NumberFormatException,,Deductible with a thousands separator is rejected
+C33,calculator,calculate,,,,10000,1000,$500,0,,,,,NumberFormatException,,Deductible with a currency sign is rejected
+C34,calculator,calculate,,,,10000,1000,NaN,0,,,,,NumberFormatException,SD-11,NaN deductible fails inside BigDecimal
+C35,calculator,calculate,,,,20000,10000,1e3,100,8900.00,false,,,,,Deductible in exponent notation is accepted
+C36,calculator,calculate,,,,10000,NaN,0,0,,,,,NumberFormatException,SD-11,NaN covered amount fails inside BigDecimal
+C37,calculator,calculate,,,,10000,Infinity,0,0,,,,,NumberFormatException,SD-11,Infinite covered amount fails inside BigDecimal
+C38,calculator,calculate,,,,1000000000,99999999.99,0,0,99999999.99,false,,,,,Large amount keeps its cents
+A01,action,calculate,250000.00,117,seed,25000,3210.55,250.00,0.00,2960.55,false,false,,,,Standard calculation keeps the result as the pending settlement
+A02,action,calculate,250000.00,120,seed,100000,5000.00,,500.00,4500.00,false,false,,,SD-06,Blank deductible applies zero and not the policy deductible of 5000
+A03,action,calculate,250000.00,120,seed,100000,5000.00,~,500.00,4500.00,false,false,,,SD-06,Absent deductible applies zero
+A04,action,calculate,250000.00,120,seed,100000,5000.00,abc,500.00,4500.00,false,false,,,SD-07,Non-numeric deductible binds as zero
+A05,action,calculate,250000.00,120,seed,100000,5000.00,"1,000.00",0.00,5000.00,false,false,,,SD-07,Deductible with a thousands separator binds as zero
+A06,action,calculate,250000.00,118,seed,150000,3000.00,-500.00,0.00,3500.00,false,false,,,SD-03,Negative deductible increases the payout
+A07,action,calculate,250000.00,120,seed,100000,1000.00,2000.00,0.00,0.00,false,false,,,,Deductible above the loss floors at zero
+A08,action,calculate,250000.00,119,seed,1000,20000.00,100.00,0.00,1000.00,true,false,,,,Policy limit of the claim caps the payout
+A09,action,calculate,250000.00,9101,fixture,0,100.00,0.00,0.00,0.00,true,false,,,,Zero policy limit pays nothing
+A10,action,calculate,250000.00,118,seed,150000,5000.00,500.00,1250.75,3249.25,false,false,,,,Fractional depreciation
+A11,action,calculate,250000.00,120,seed,100000,1.005,,0.00,1.00,false,false,,,SD-01,Half cent rounds down to the even cent
+A12,action,calculate,250000.00,120,seed,100000,1.025,,0.00,1.02,false,false,,,SD-01,Half cent rounds down to the even cent
+A13,action,calculate,250000.00,120,seed,100000,2.675,,0.00,2.68,false,false,,,,Half cent rounds up to the even cent
+A14,action,calculate,250000.00,117,seed,25000,,0.00,0.00,5000.00,false,false,,,SD-08,Blank covered amount defaults to 5000.00
+A15,action,calculate,250000.00,117,seed,25000,abc,0.00,0.00,5000.00,false,false,,,SD-08,Non-numeric covered amount defaults to 5000.00
+A16,action,calculate,250000.00,117,seed,25000,~,0.00,0.00,5000.00,false,false,,,SD-08,Absent covered amount defaults to 5000.00
+A17,action,calculate,250000.00,117,seed,25000,-100.00,0.00,0.00,0.00,false,false,,,,Negative covered amount floors at zero
+A18,action,calculate,250000.00,117,seed,25000,"$3,000.00",0.00,0.00,5000.00,false,false,,,SD-08,Formatted covered amount defaults to 5000.00
+A19,action,calculate,250000.00,117,seed,25000,NaN,0.00,0.00,,,,,NumberFormatException,SD-11,NaN covered amount is an unhandled error
+A20,action,calculate,250000.00,117,seed,25000,Infinity,0.00,0.00,,,,,NumberFormatException,SD-11,Infinite covered amount is an unhandled error
+A21,action,calculate,250000.00,118,seed,150000,3000.00,0.00,abc,3000.00,false,false,,,SD-09,Non-numeric depreciation applies zero
+A22,action,calculate,250000.00,~,,,5000.00,0.00,0.00,1000.00,true,false,,,SD-10,Absent claim id falls back to claim 119 and its 1000 limit
+A23,action,calculate,250000.00,abc,,,5000.00,0.00,0.00,1000.00,true,false,,,SD-10,Non-numeric claim id falls back to claim 119
+A24,action,calculate,250000.00,99999,absent,,20000.00,0.00,0.00,10000.00,true,false,,,SD-12,Unknown claim uses a 10000 fallback limit
+A25,action,calculate,2500.00,118,seed,150000,2500.00,0.00,0.00,2500.00,false,false,,,,Calculation exactly at the approval limit is allowed
+A26,action,calculate,2500.00,118,seed,150000,2500.01,0.00,0.00,2500.01,,true,,,,Calculation one cent over the approval limit is refused
+A27,action,calculate,2500.00,118,seed,150000,2499.99,0.00,0.00,2499.99,false,false,,,,Calculation one cent under the approval limit is allowed
+A28,action,save,2500.00,118,seed,150000,2500.00,0.00,0.00,2500.00,false,false,118,,,Save exactly at the approval limit is stored
+A29,action,save,2500.00,118,seed,150000,2500.01,0.00,0.00,2500.01,,true,,,,Save one cent over the approval limit is refused and not stored
+A30,action,save,2500.00,118,seed,150000,2499.99,0.00,0.00,2499.99,false,false,118,,,Save one cent under the approval limit is stored
+A31,action,save,2500.00,118,seed,150000,2500.005,0.00,0.00,2500.00,false,false,118,,,Authority compares the rounded amount (half-even down to the limit)
+A32,action,save,2500.00,118,seed,150000,2500.015,0.00,0.00,2500.02,,true,,,,Authority compares the rounded amount (half-even up over the limit)
+A33,action,save,2500.00,118,seed,150000,3000.00,500.00,0.00,2500.00,false,false,118,,,Authority applies to the net amount after the deductible
+A34,action,save,2500.00,119,seed,1000,5000.00,0.00,0.00,1000.00,true,false,119,,,Authority applies to the amount after the policy cap
+A35,action,calculate,none,117,seed,25000,100.00,0.00,0.00,100.00,,true,,,,User without an adjuster record has a zero limit
+A36,action,save,none,120,seed,100000,1000.00,2000.00,0.00,0.00,false,false,120,,SD-13,User without an adjuster record can save a zero settlement
+A37,action,save,~,120,seed,100000,1000.00,2000.00,0.00,0.00,false,false,120,,SD-13,No session user can save a zero settlement recorded as null
+A38,action,save,~,120,seed,100000,1000.00,0.00,0.00,1000.00,,true,,,,No session user is refused a positive settlement
+A39,action,save|save,250000.00,117,seed,25000,1200.00,200.00,0.00,1000.00,false,false,117|117,,SD-14,The same save submitted twice stores two rows
+A40,action,calculate|save,250000.00,117,seed,25000,3210.55|~,250.00|~,0.00|~,2960.55,false,false,|117,,,Session save stores the pending settlement and clears it
+A41,action,calculate|save|save,250000.00,117,seed,25000,3210.55|~|~,250.00|~|~,0.00|~|~,2960.55|2960.55|5000.00,false,false,|117|117,,SD-15,Repeating the session save stores a 5000.00 default settlement
+A42,action,calculate|save,250000.00,117|118,seed,25000,3210.55|~,250.00|~,0.00|~,2960.55|5000.00,false,false,|118,,SD-15,Session save for another claim ignores the pending settlement and stores 5000.00
+A43,action,calculate|save,250000.00,117|~,seed,25000,3210.55|~,250.00|~,0.00|~,2960.55,false,false,|117,,,Session save without a claim id stores the pending settlement
+A44,action,calculate|save,250000.00,117,seed,25000,3210.55|4000.00,250.00|250.00,0.00|0.00,2960.55|3750.00,false,false,|117,,,Save with a covered amount recalculates instead of using the pending settlement
+A45,action,calculate|save,2500.00,118,seed,150000,3000.00|~,0.00|~,0.00|~,3000.00|5000.00,,true,,,SD-15,Session save after a refused calculation evaluates the 5000.00 default
+A46,action,save,250000.00,99999,absent,,1000.00,0.00,0.00,,,,,SQLIntegrityConstraintViolationException,SD-12,Save for an unknown claim fails on the claim foreign key
+A47,action,save,250000.00,9101,fixture,0,100.00,0.00,0.00,0.00,true,false,9101,,,Save on a zero-limit policy stores a capped zero settlement
+S01,service,calculate_and_save,,120,seed,100000,5000,500,0,4500.00,false,,120,,,Service calculates and stores with a fixed id and operator
+S02,service,calculate_and_save|calculate_and_save,,117,seed,25000,1200,200,0,1000.00|,false|,,117|,|SQLIntegrityConstraintViolationException,SD-16,A second service save for the same claim collides on the derived settlement id
+S03,service,calculate_and_save,,118,seed,150000,1000,abc,0,,,,,NumberFormatException,,Service rejects a non-numeric deductible before storing
