@@ -77,6 +77,24 @@ public class SettlementAuthorityActionTest {
     }
 
     @Test
+    public void pendingSettlementIsSavedOnlyForItsOwnClaim() throws Exception {
+        Settlement pending = new Settlement();
+        pending.setClaimId(117);
+        pending.setSettlementAmount(500);
+        sessionAttributes.put(SettlementAuthorityAction.PENDING_SETTLEMENT, pending);
+        params.put("claimId", String.valueOf(CLAIM));
+        ActionForward other = new SettlementSaveAction().execute(mapping(),
+                new SettlementForm(), request(), null);
+        assertEquals("refused", other.getName());
+        params.put("claimId", "117");
+        ActionForward own = new SettlementSaveAction().execute(mapping(),
+                new SettlementForm(), request(), null);
+        assertEquals("settlement", own.getName());
+        assertEquals(500.0, new SettlementDAO().findByClaim(117)
+                .getSettlementAmount(), 0.0);
+    }
+
+    @Test
     public void screenLogicAloneDoesNotCheckTheLimit() throws Exception {
         params.put("claimId", String.valueOf(CLAIM));
         params.put("coveredAmount", "1900.00");

@@ -35,7 +35,9 @@ public class SettlementSaveAction extends SettlementAuthorityAction {
             HttpServletRequest request) throws Exception {
         Settlement pending = (Settlement) request.getSession()
                 .getAttribute(PENDING_SETTLEMENT);
-        if (pending != null && request.getParameter("coveredAmount") == null) {
+        if (pending != null && request.getParameter("coveredAmount") == null
+                && pending.getClaimId() == integer(
+                        request.getParameter("claimId"), pending.getClaimId())) {
             return pending;
         }
         return super.resolveSettlement(form, request);
